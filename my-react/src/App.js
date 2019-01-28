@@ -1,26 +1,24 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import styled from "styled-components";
+import { TodoInput, TodoList } from "./components";
+
+const StyledMain = styled.main`
+  background-color: white;
+  position: absolute;
+  left: 10%;
+  top: 10%;
+  width: 80vw;
+  outline: 1px solid indigo;
+  height: 80vh;
+`;
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <StyledMain>
+        <TodoInput />
+        <TodoList />
+      </StyledMain>
     );
   }
 }
