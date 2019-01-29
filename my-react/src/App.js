@@ -1,23 +1,18 @@
 import React, { Component } from "react";
-import styled from "styled-components";
-import { TodoInput, TodoList } from "./components";
-
-const StyledMain = styled.main`
-  background-color: white;
-  position: absolute;
-  left: 10%;
-  top: 10%;
-  width: 80vw;
-  outline: 1px solid indigo;
-  height: 80vh;
-`;
+import {
+  StyledMain,
+  StyledTodoHeader,
+  StyledTodoInput,
+  StyledTodoList
+} from "./App.styled";
 
 class App extends Component {
   render() {
     return (
       <StyledMain>
-        <TodoInput />
-        <TodoList />
+        <StyledTodoHeader />
+        <StyledTodoInput placeholder={`Hello, world!`} />
+        <StyledTodoList apiURI={"http://crong.codesquad.kr:8080/todo"} />
       </StyledMain>
     );
   }
