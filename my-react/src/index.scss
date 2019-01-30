@@ -1,0 +1,25 @@
+html,
+main,
+body,
+div,
+h1,
+h2,
+h3,
+p,
+ul {
+  margin: unset;
+  padding: unset;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 10px;
+}
+
+h1 {
+  font-size: 4.5rem;
+}
+
+p {
+  font-size: 1.6rem;
+}
