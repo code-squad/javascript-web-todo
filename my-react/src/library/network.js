@@ -1,7 +1,7 @@
 async function _asyncGetJson(apiURI) {
   const init = {
-    method: "GET",
-    mode: "cors"
+    method: 'GET',
+    mode: 'cors',
   };
 
   const data = await fetch(apiURI, init);
