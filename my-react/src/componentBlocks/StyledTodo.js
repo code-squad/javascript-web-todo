@@ -1,14 +1,17 @@
-import styled from "styled-components";
-import { TodoHeader, TodoInput, TodoList } from "./Lib.components";
+import styled from 'styled-components';
+import Todo from '../components/Todo';
+import TodoList from './Todo/TodoList';
+
+const { Header: TodoHeader, Input: TodoInput, Item: TodoItem } = Todo;
 
 const theme = {
   color: {
-    highlight: "#0aa",
-    highlightReverse: "white",
-    background: "lightcyan",
-    boxShadow: "#888",
-    alert: "#a00"
-  }
+    highlight: '#0aa',
+    highlightReverse: 'white',
+    background: 'lightcyan',
+    boxShadow: '#888',
+    alert: '#a00',
+  },
 };
 
 export const StyledMain = styled.main`
@@ -92,3 +95,34 @@ export const StyledTodoList = styled(TodoList)`
     grid-column: 1 / 3;
   }
 `;
+
+export const StyledTodoItem = styled(TodoItem)`
+  display: grid;
+  grid-template-columns: auto 10%;
+  grid-template-rows: 10% auto 10%;
+  padding: 1rem;
+  margin: 1rem auto;
+  background-color: white;
+
+  span {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  button {
+    grid-column: 2;
+    grid-row: 2;
+    color: red;
+    border: none;
+    background: none;
+    font-size: 2rem;
+  }
+`;
+
+const StyledTodo = {
+  Main: StyledMain,
+  Header: StyledTodoHeader,
+  Input: StyledTodoInput,
+  List: StyledTodoList,
+  Item: StyledTodoItem,
+};
+export default StyledTodo;

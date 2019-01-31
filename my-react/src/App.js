@@ -1,21 +1,15 @@
-import React, { Component } from "react";
-import {
-  StyledMain,
-  StyledTodoHeader,
-  StyledTodoInput,
-  StyledTodoList
-} from "./App.styled";
+import React from 'react';
+import StyledTodo from './componentBlocks/StyledTodo';
 
-class App extends Component {
-  render() {
-    return (
-      <StyledMain>
-        <StyledTodoHeader />
-        <StyledTodoInput placeholder={`Hello, world!`} />
-        <StyledTodoList apiURI={"http://crong.codesquad.kr:8080/todo"} />
-      </StyledMain>
-    );
-  }
-}
+const App = () => (
+  <StyledTodo.Main>
+    <StyledTodo.Header>
+      <h1>To-Do List</h1>
+      <p>Every big dish starts with one small bite</p>
+    </StyledTodo.Header>
+    <StyledTodo.Input placeholder="Hello, world!" />
+    <StyledTodo.List apiURI="http://crong.codesquad.kr:8080/todo" ItemTemplate={StyledTodo.Item} />
+  </StyledTodo.Main>
+);
 
 export default App;

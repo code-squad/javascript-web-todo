@@ -1,9 +1,6 @@
-async function _asyncGetTodoJson(apiURI) {
+async function _asyncGetJson(apiURI) {
   const init = {
     method: "GET",
-    headers: new Headers({
-      "Content-Type": "application/json"
-    }),
     mode: "cors"
   };
 
@@ -13,4 +10,4 @@ async function _asyncGetTodoJson(apiURI) {
   return json;
 }
 
-export default _asyncGetTodoJson;
+export default _asyncGetJson;
