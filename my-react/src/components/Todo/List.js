@@ -20,8 +20,8 @@ export default function TodoList(props) {
       return (
         <div className={this.props.className}>
           <h2>Things to Do</h2>
-          <button type="button" className="foldBtn">
-            {props.folded ? 'Unfold' : 'Fold'}
+          <button type="button" className="foldBtn" onClick={this.props.handleClick}>
+            {this.props.folded ? 'Unfold' : 'Fold'}
           </button>
           <ul>
             {this.props.todoData.map((item, idx) => (

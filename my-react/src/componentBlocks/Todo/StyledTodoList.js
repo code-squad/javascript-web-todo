@@ -29,7 +29,7 @@ const StyledTodoList = styled(Todo.List)`
     grid-row: 3;
     grid-column: 1 / 3;
 
-    transition: all 0.5s;
+    border-bottom: 1px dotted black;
 
     ${props => (props.folded
     ? `li {
@@ -42,7 +42,6 @@ const StyledTodoList = styled(Todo.List)`
         overflow: hidden;
         margin: 0;
         padding: 0;
-        border-bottom: 1px dotted black; 
         `
     : '')}
   }

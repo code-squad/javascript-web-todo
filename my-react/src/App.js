@@ -6,9 +6,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.apiURI = 'http://crong.codesquad.kr:8080/todo';
+    this.toggleFold = this.toggleFold.bind(this);
     this.state = {
       folded: {
-        TodoList: true,
+        TodoList: false,
       },
       todoData: [],
     };
@@ -16,6 +17,10 @@ class App extends React.Component {
 
   componentDidMount() {
     _asyncGetJson(this.apiURI).then(todoData => this.setState({ todoData }));
+  }
+
+  toggleFold(target) {
+    return () => this.setState({ folded: { TodoList: !this.state.folded[target] } });
   }
 
   render() {
@@ -32,6 +37,7 @@ class App extends React.Component {
           ItemTemplate={StyledTodo.Item}
           folded={folded.TodoList}
           todoData={todoData}
+          handleClick={this.toggleFold('TodoList')}
         />
       </StyledTodo.Main>
     );
