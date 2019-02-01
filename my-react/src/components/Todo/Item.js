@@ -1,10 +1,12 @@
 import React from 'react';
 
-export default function TodoItem({ todoTitle, className }) {
+export default function TodoItem({ todoTitle, className, onClick }) {
   return (
     <li className={className}>
       <span>{todoTitle}</span>
-      <button type="button">X</button>
+      <button onClick={onClick} type="button">
+        X
+      </button>
     </li>
   );
 }

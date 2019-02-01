@@ -20,12 +20,16 @@ export default function TodoList(props) {
       return (
         <div className={this.props.className}>
           <h2>Things to Do</h2>
-          <button type="button" className="foldBtn" onClick={this.props.handleClick}>
+          <button type="button" className="foldBtn" onClick={this.props.onFoldClick}>
             {this.props.folded ? 'Unfold' : 'Fold'}
           </button>
           <ul>
-            {this.props.todoData.map((item, idx) => (
-              <props.ItemTemplate key={item.id ? item.id : idx} todoTitle={item.title} />
+            {this.props.todoData.map(item => (
+              <props.ItemTemplate
+                key={item.id}
+                todoTitle={item.title}
+                onClick={this.props.onDelClick(item.id)}
+              />
             ))}
           </ul>
         </div>

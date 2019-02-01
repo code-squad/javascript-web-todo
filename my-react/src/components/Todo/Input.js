@@ -1,10 +1,12 @@
 import React from 'react';
 
-export default function TodoInput({ className, placeholder }) {
+export default function TodoInput({
+  className, placeholder, onChange, onSubmit, value,
+}) {
   return (
-    <div className={className}>
-      <input placeholder={placeholder} type="text" />
-      <button type="button">Add Item</button>
-    </div>
+    <form className={className} onSubmit={onSubmit}>
+      <input placeholder={placeholder} type="text" onChange={onChange} value={value} />
+      <input type="submit" value="Add Item" />
+    </form>
   );
 }

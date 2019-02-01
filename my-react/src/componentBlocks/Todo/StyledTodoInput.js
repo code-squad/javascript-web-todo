@@ -16,7 +16,7 @@ const StyledTodoInput = styled(Todo.Input)`
     border: unset;
     outline: 1px solid ${theme.color.highlight};
   }
-  button {
+  input[type='submit'] {
     grid-column: 2;
     grid-row: 2;
     background: unset;
