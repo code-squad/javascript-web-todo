@@ -9,14 +9,12 @@ class App extends React.Component {
     this.toggleFold = this.toggleFold.bind(this);
     this.deleteTodoItem = this.deleteTodoItem.bind(this);
     this.addTodoItem = this.addTodoItem.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleInputSubmit = this.handleInputSubmit.bind(this);
     this.state = {
       folded: {
         TodoList: false,
       },
       todoData: [],
-      inputVal: '',
     };
   }
 
@@ -41,23 +39,17 @@ class App extends React.Component {
     return () => this.setState({ todoData: this.state.todoData.filter(todo => todo.id !== itemID) });
   }
 
-  addTodoItem() {
+  addTodoItem(todoTitle) {
     const generateID = () => `${Math.floor(Math.random() * 999 + 1)}${new Date().valueOf()}`;
-    const newTodoItem = { id: `${generateID()}`, title: this.state.inputVal, status: 'todo' };
+    const newTodoItem = { id: `${generateID()}`, title: todoTitle, status: 'todo' };
 
     const newTodoData = [...this.state.todoData.map(todo => Object.assign({}, todo)), newTodoItem];
 
-    this.setState({ todoData: newTodoData, inputVal: '' });
+    this.setState({ todoData: newTodoData });
   }
 
-  handleInputChange(evt) {
-    this.setState({ inputVal: evt.target.value });
-  }
-
-  handleInputSubmit(evt) {
-    evt.preventDefault();
-
-    this.addTodoItem();
+  handleInputSubmit(inputVal) {
+    this.addTodoItem(inputVal);
   }
 
   render() {
@@ -69,12 +61,7 @@ class App extends React.Component {
           <h1>To-Do List</h1>
           <p>Every big dish starts with one small bite</p>
         </StyledTodo.Header>
-        <StyledTodo.Input
-          placeholder="Hello, world!"
-          value={this.state.inputVal}
-          onChange={this.handleInputChange}
-          onSubmit={this.handleInputSubmit}
-        />
+        <StyledTodo.Input placeholder="Hello, world!" onSubmit={this.handleInputSubmit} />
         <StyledTodo.List
           ItemTemplate={StyledTodo.Item}
           folded={folded.TodoList}
