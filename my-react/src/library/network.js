@@ -1,4 +1,4 @@
-async function _asyncGetJson(apiURI) {
+export async function asyncGetJson(apiURI) {
   const init = {
     method: 'GET',
     mode: 'cors',
@@ -10,4 +10,4 @@ async function _asyncGetJson(apiURI) {
   return json;
 }
 
-export default _asyncGetJson;
+export default { asyncGetJson };

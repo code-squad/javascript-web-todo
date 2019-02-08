@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Todo from '../../components/Todo';
+import Todo from '../../componentAtoms/TodoAtoms';
 
 const StyledTodoItem = styled(Todo.Item)`
   display: grid;

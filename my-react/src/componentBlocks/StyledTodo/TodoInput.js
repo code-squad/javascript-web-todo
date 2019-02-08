@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Todo from '../../components/Todo';
+import Todo from '../../componentAtoms/TodoAtoms';
 import theme from '../themePalette';
 
 const StyledTodoInput = styled(Todo.Input)`
@@ -8,7 +8,7 @@ const StyledTodoInput = styled(Todo.Input)`
   grid-template-rows: 10% auto 10%;
   column-gap: 1rem;
 
-  input {
+  input[type='text'] {
     grid-column: 1;
     grid-row: 2;
     font-size: 2rem;

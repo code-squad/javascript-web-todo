@@ -1,15 +1,15 @@
-import StyledMain from './Todo/StyledMain';
-import StyledHeader from './Todo/StyledHeader';
-import StyledTodoInput from './Todo/StyledTodoInput';
-import StyledTodoItem from './Todo/StyledTodoItem';
-import StyledTodoList from './Todo/StyledTodoList';
+import StyledMain from './StyledTodo/Main';
+import StyledHeader from './StyledTodo/Header';
+import StyledTodoInput from './StyledTodo/TodoInput';
+import StyledTodoItem from './StyledTodo/TodoItem';
+import StyledTodoList from './StyledTodo/FoldableList/TodoList';
 
 const StyledTodo = {
   Main: StyledMain,
   Header: StyledHeader,
   Input: StyledTodoInput,
   Item: StyledTodoItem,
-  List: StyledTodoList,
+  FoldableList: StyledTodoList,
 };
 
 export default StyledTodo;
