@@ -1,7 +1,11 @@
+import React from 'react';
 import styled from 'styled-components';
-import Todo from '../../componentAtoms/TodoAtoms';
 
-const StyledTodoHeader = styled(Todo.Header)`
+function TodoHeader({ className, children }) {
+  return <header className={className}>{children}</header>;
+}
+
+const StyledTodoHeader = styled(TodoHeader)`
   grid-column: 2 / 3;
   grid-row: 2 / 3;
   * {
