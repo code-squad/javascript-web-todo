@@ -64,8 +64,7 @@ const StyledTodoInput = styled(TodoInput)`
     grid-row: 2;
     font-size: 2rem;
     padding-left: 2rem;
-    border: unset;
-    outline: 1px solid ${theme.color.highlight};
+    border: 1px solid ${theme.color.highlight};
     &::placeholder {
       font-style: italic;
       color: #bbb;
@@ -76,10 +75,15 @@ const StyledTodoInput = styled(TodoInput)`
     grid-row: 2;
     background: unset;
     background-color: ${theme.color.highlight};
-    border: unset;
-    outline: 1px solid ${theme.color.highlightReverse};
+    border: 1px solid ${theme.color.highlightReverse};
     font-size: 2rem;
     color: white;
+    transition: all 0.2s;
+
+    &:hover,
+    &:active {
+      background-color: black;
+    }
   }
 
   grid-column: 2 / 3;

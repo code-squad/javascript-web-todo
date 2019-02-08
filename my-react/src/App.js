@@ -19,7 +19,7 @@ class App extends React.Component {
   }
 
   async getTodoData() {
-    const assignID = (todoItem, idx) => Object.assign(todoItem, { id: `${idx}${new Date().valueOf()}` });
+    const assignID = (todoItem, idx) => Object.assign(todoItem, { localId: `${idx}${new Date().valueOf()}` });
     const todoJson = await asyncGetJson(this.apiURI);
     const todoDataWithID = todoJson.map(assignID);
 
@@ -29,13 +29,13 @@ class App extends React.Component {
 
   deleteTodoItem(itemID) {
     const { todoData } = this.state;
-    return () => this.setState({ todoData: todoData.filter(todo => todo.id !== itemID) });
+    return () => this.setState({ todoData: todoData.filter(todo => todo.localId !== itemID) });
   }
 
   addTodoItem(todoTitle) {
     const { todoData } = this.state;
     const generateID = () => `${Math.floor(Math.random() * 999 + 1)}${new Date().valueOf()}`;
-    const newTodoItem = { id: `${generateID()}`, title: todoTitle, status: 'todo' };
+    const newTodoItem = { localId: `${generateID()}`, title: todoTitle, status: 'todo' };
 
     const newTodoData = [...todoData.map(todo => Object.assign({}, todo)), newTodoItem];
 

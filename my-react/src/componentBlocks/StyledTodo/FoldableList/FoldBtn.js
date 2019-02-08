@@ -12,6 +12,12 @@ const FoldBtn = styled(({ className, folded, onClick }) => (
   font-size: 2rem;
   text-align: center;
   color: ${props => (props.folded ? 'white' : theme.color.highlight)};
+  transition: all 0.2s;
+
+  &:hover,
+  &:active {
+    background-color: black;
+  }
 `;
 
 export default FoldBtn;

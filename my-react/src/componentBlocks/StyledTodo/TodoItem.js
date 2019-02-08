@@ -3,7 +3,7 @@ import Todo from '../../componentAtoms/TodoAtoms';
 
 const StyledTodoItem = styled(Todo.Item)`
   display: grid;
-  grid-template-columns: 90% 10%;
+  grid-template-columns: 85% 15%;
   grid-template-rows: 10% 80% 10%;
   padding: 1rem;
   margin: 0 auto;
@@ -21,6 +21,15 @@ const StyledTodoItem = styled(Todo.Item)`
     border: none;
     background: none;
     font-size: 2rem;
+    line-height: 100%;
+    border-radius: 50px;
+    transition: all 0.2s;
+
+    &:hover,
+    &:active {
+      background-color: red;
+      color: white;
+    }
   }
 `;
 

@@ -43,7 +43,11 @@ class FoldableList extends React.Component {
         <FoldBtn folded={folded} className="foldBtn" onClick={this.toggleFold} />
         <FoldUl folded={folded} className="foldUl">
           {todoData.map(item => (
-            <ItemTemplate key={item.id} todoTitle={item.title} onClick={onDelClick(item.id)} />
+            <ItemTemplate
+              key={item.localId}
+              todoTitle={item.title}
+              onClick={onDelClick(item.localId)}
+            />
           ))}
         </FoldUl>
       </div>
@@ -63,7 +67,7 @@ FoldableList.propTypes = {
 
 const StyledTodoList = styled(FoldableList)`
   display: grid;
-  grid-template-columns: 90% 10%;
+  grid-template-columns: 85% 15%;
   grid-template-rows: 10% 10% 80%;
 
   grid-column: 2 / 3;
