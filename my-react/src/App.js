@@ -10,7 +10,13 @@ class App extends React.Component {
     this.addTodoItem = this.addTodoItem.bind(this);
     this.handleInputSubmit = this.handleInputSubmit.bind(this);
     this.state = {
-      todoData: [],
+      todoData: [
+        // Default value before fetch completion
+        { localid: 1, title: 'Test Todo', type: 'todo' },
+        { localid: 2, title: 'Hi, there!', type: 'todo' },
+        { localid: 3, title: 'Try Add & Delete!', type: 'todo' },
+        { localid: 4, title: 'And also poke "Fold" button on the top-right!', type: 'todo' },
+      ],
     };
   }
 

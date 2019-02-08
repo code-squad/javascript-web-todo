@@ -29,6 +29,10 @@ const StyledTodoItem = styled(Todo.Item)`
     &:active {
       background-color: red;
       color: white;
+
+      svg {
+        stroke: white;
+      }
     }
   }
 `;
