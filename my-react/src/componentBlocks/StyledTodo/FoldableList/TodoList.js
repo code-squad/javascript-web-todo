@@ -62,14 +62,16 @@ FoldableList.propTypes = {
 };
 
 const StyledTodoList = styled(FoldableList)`
-  border-bottom: 1px solid lightgray;
   display: grid;
   grid-template-columns: 90% 10%;
-  grid-template-rows: 10% 10% auto;
+  grid-template-rows: 10% 10% 80%;
 
   grid-column: 2 / 3;
   grid-row: 4;
+
   font-size: 2rem;
+  max-height: 32rem;
+  overflow: hidden;
 
   .listHeader {
     grid-column: 1;
@@ -83,7 +85,10 @@ const StyledTodoList = styled(FoldableList)`
     grid-row: 3;
     grid-column: 1 / 3;
 
+    margin-top: 1rem;
     border-bottom: 1px dotted black;
+    width: 103%;
+    overflow-y: scroll;
   }
 `;
 

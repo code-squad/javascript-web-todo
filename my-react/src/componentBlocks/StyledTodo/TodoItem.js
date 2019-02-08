@@ -3,10 +3,11 @@ import Todo from '../../componentAtoms/TodoAtoms';
 
 const StyledTodoItem = styled(Todo.Item)`
   display: grid;
-  grid-template-columns: auto 10%;
-  grid-template-rows: 10% auto 10%;
+  grid-template-columns: 90% 10%;
+  grid-template-rows: 10% 80% 10%;
   padding: 1rem;
-  margin: 1rem auto;
+  margin: 0 auto;
+  margin-bottom: 1rem;
   background-color: white;
 
   span {
