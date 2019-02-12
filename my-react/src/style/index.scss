@@ -6,7 +6,8 @@ h1,
 h2,
 h3,
 p,
-ul {
+ul,
+button {
   margin: unset;
   padding: unset;
   box-sizing: border-box;
@@ -22,4 +23,12 @@ h1 {
 
 p {
   font-size: 1.6rem;
+}
+
+a,
+input,
+button {
+  &:focus {
+    outline: unset;
+  }
 }
