@@ -13,25 +13,19 @@ class FoldableList extends React.Component {
     };
   }
 
-  componentDidUpdate(prevProps) {
-    const { todoData } = this.props;
-
-    if (todoData !== prevProps.todoData) {
-      this.render();
-    }
+  toggleFold() {
+    this.setState(prevState => ({ folded: !prevState.folded }));
   }
 
-  toggleFold() {
-    const { folded } = this.state;
+  handleItemDelete(targetId) {
+    const { onDelClick } = this.props;
 
-    this.setState({ folded: !folded });
+    onDelClick(targetId);
   }
 
   render() {
     const { folded } = this.state;
-    const {
-      todoData, className, onDelClick, ItemTemplate,
-    } = this.props;
+    const { todoData, className, ItemTemplate } = this.props;
 
     if (!todoData[0]) {
       return <div className={className}>Loading...</div>;
@@ -46,7 +40,9 @@ class FoldableList extends React.Component {
             <ItemTemplate
               key={item.localId}
               todoTitle={item.title}
-              onClick={onDelClick(item.localId)}
+              onClick={() => {
+                this.handleItemDelete(item.localId);
+              }}
             />
           ))}
         </FoldUl>

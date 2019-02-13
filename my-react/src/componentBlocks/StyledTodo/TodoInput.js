@@ -17,8 +17,9 @@ class TodoInput extends React.Component {
 
   handleInputChange(evt) {
     const defaultSetup = { placeholder: this.props.placeholder, wrongInput: false };
+    const newValue = evt.target.value;
 
-    this.setState({ value: evt.target.value, ...defaultSetup });
+    this.setState(() => ({ value: newValue, ...defaultSetup }));
   }
 
   handleInputSubmit(evt) {

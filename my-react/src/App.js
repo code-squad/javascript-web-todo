@@ -32,18 +32,18 @@ class App extends React.Component {
   }
 
   deleteTodoItem(itemID) {
-    const { todoData } = this.state;
-    return () => this.setState({ todoData: todoData.filter(todo => todo.localId !== itemID) });
+    this.setState(prevState => ({
+      todoData: prevState.todoData.filter(todo => todo.localId !== itemID),
+    }));
   }
 
   addTodoItem(todoTitle) {
-    const { todoData } = this.state;
-    const generateID = Settings.ID.mappingFn;
-    const newTodoItem = { localId: `${generateID()}`, title: todoTitle, status: 'todo' };
+    const newID = Settings.ID.mappingFn();
+    const newTodoItem = { localId: `${newID}`, title: todoTitle, status: 'todo' };
 
-    const newTodoData = [...todoData.map(todo => Object.assign({}, todo)), newTodoItem];
-
-    this.setState({ todoData: newTodoData });
+    this.setState(prevState => ({
+      todoData: [...prevState.todoData.map(todo => Object.assign({}, todo)), newTodoItem],
+    }));
   }
 
   handleInputSubmit(inputVal) {
