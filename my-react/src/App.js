@@ -1,5 +1,5 @@
 import React from 'react';
-import StyledTodo from './componentBlocks/StyledTodo';
+import StyledTodo from './componentBlocks';
 import { asyncGetJson } from './lib/network';
 import Settings from './settings';
 
