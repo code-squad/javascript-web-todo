@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { DeleteIcon } from '../../library/icons';
+import { DeleteIcon } from '../../lib/icons';
 
 function TodoItem({ todoTitle, className, onClick }) {
   return (

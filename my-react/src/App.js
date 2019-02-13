@@ -1,21 +1,19 @@
 import React from 'react';
 import StyledTodo from './componentBlocks/StyledTodo';
-import { asyncGetJson } from './library/network';
+import { asyncGetJson } from './lib/network';
+import Settings from './settings';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.apiURI = 'http://crong.codesquad.kr:8080/todo';
+    this.apiURI = Settings.apiURI;
     this.deleteTodoItem = this.deleteTodoItem.bind(this);
     this.addTodoItem = this.addTodoItem.bind(this);
     this.handleInputSubmit = this.handleInputSubmit.bind(this);
     this.state = {
       todoData: [
         // Default value before fetch completion
-        { localId: 1, title: 'Test Todo', type: 'todo' },
-        { localId: 2, title: 'Hi, there!', type: 'todo' },
-        { localId: 3, title: 'Try Add & Delete!', type: 'todo' },
-        { localId: 4, title: 'And also poke "Fold" button on the top-right!', type: 'todo' },
+        ...Settings.defaultTodoData,
       ],
     };
   }
@@ -40,7 +38,7 @@ class App extends React.Component {
 
   addTodoItem(todoTitle) {
     const { todoData } = this.state;
-    const generateID = () => `${Math.floor(Math.random() * 999 + 1)}${new Date().valueOf()}`;
+    const generateID = Settings.ID.mappingFn;
     const newTodoItem = { localId: `${generateID()}`, title: todoTitle, status: 'todo' };
 
     const newTodoData = [...todoData.map(todo => Object.assign({}, todo)), newTodoItem];
