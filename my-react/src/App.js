@@ -1,7 +1,7 @@
 import React from 'react';
 import StyledTodo from './componentBlocks';
-import { asyncGetJson } from './lib/network';
 import Settings from './settings';
+import actions from './actions';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,23 +23,28 @@ class App extends React.Component {
   }
 
   async getTodoData() {
-    const assignID = (todoItem, idx) => Object.assign(todoItem, { localId: `${idx}${new Date().valueOf()}` });
-    const todoJson = await asyncGetJson(this.apiURI);
-    const todoDataWithID = todoJson.map(assignID);
+    const request = new Request(Settings.graphqlApiURI, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ query: actions.GET_DEFAULT }),
+    });
 
-    this.setState({ todoData: todoDataWithID });
-    return todoDataWithID;
+    const { data } = await fetch(request).then(res => res.json());
+
+    this.setState({ todoData: Object.values(data.getDefaultTasks) });
   }
 
   deleteTodoItem(itemID) {
     this.setState(prevState => ({
-      todoData: prevState.todoData.filter(todo => todo.localId !== itemID),
+      todoData: prevState.todoData.filter(todo => todo.id !== itemID),
     }));
   }
 
   addTodoItem(todoTitle) {
     const newID = Settings.ID.mappingFn();
-    const newTodoItem = { localId: `${newID}`, title: todoTitle, status: 'todo' };
+    const newTodoItem = { id: `${newID}`, title: todoTitle, status: 'todo' };
 
     this.setState(prevState => ({
       todoData: [...prevState.todoData.map(todo => Object.assign({}, todo)), newTodoItem],

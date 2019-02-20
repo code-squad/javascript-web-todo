@@ -38,10 +38,10 @@ class FoldableList extends React.Component {
         <FoldUl folded={folded} className="foldUl">
           {todoData.map(item => (
             <ItemTemplate
-              key={item.localId}
+              key={item.id}
               todoTitle={item.title}
               onClick={() => {
-                this.handleItemDelete(item.localId);
+                this.handleItemDelete(item.id);
               }}
             />
           ))}
