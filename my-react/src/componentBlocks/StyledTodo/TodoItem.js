@@ -2,15 +2,25 @@ import React from 'react';
 import styled from 'styled-components';
 import { DeleteIcon, CompleteIcon } from '../../lib/icons';
 
+// handleInputChange(evt) {
+//   const defaultSetup = { placeholder: this.props.placeholder, wrongInput: false };
+//   const newValue = evt.target.value;
+
+//   this.setState(() => ({ value: newValue, ...defaultSetup }));
+// }
+
 function TodoItem({
-  todoTitle, className, onDelete, onStatusToggle,
+  todoTitle, className, onDelete, onStatusToggle, titleUpdator,
 }) {
+  const onTitleChange = (evt) => {
+    const newTitle = evt.target.value;
+
+    titleUpdator(newTitle);
+  };
+
   return (
     <li className={className}>
-      <span>
-        {todoTitle}
-        {/* span onclick => 타이틀 수정 모드 */}
-      </span>
+      <input type="text" value={todoTitle} onChange={onTitleChange} />
       <button className="completeBtn" onClick={onStatusToggle} type="button">
         <CompleteIcon height="20" width="20" viewBox="10 10 30 30" />
       </button>
@@ -39,7 +49,8 @@ const StyledTodoItem = styled(TodoItem)`
     return null;
   }};
 
-  span {
+  input {
+    all: unset;
     grid-column: 1;
     grid-row: 2;
   }

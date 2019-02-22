@@ -36,7 +36,9 @@ class FoldableList extends React.Component {
 
   render() {
     const { folded } = this.state;
-    const { todoData, className, ItemTemplate } = this.props;
+    const {
+      todoData, className, ItemTemplate, updateFn,
+    } = this.props;
 
     if (!todoData[0]) {
       return <div className={className}>Loading...</div>;
@@ -54,6 +56,7 @@ class FoldableList extends React.Component {
               status={item.status}
               onDelete={() => this.handleItemDelete(item.id)}
               onStatusToggle={() => this.handleItemStatusToggle(item.id, item.status)}
+              titleUpdator={newTitle => updateFn({ itemID: item.id, title: newTitle })}
             />
           ))}
         </FoldUl>
