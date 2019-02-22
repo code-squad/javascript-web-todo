@@ -2,10 +2,10 @@ import uuidv4 from 'uuid';
 
 const Settings = {
   defaultTodoData: [
-    { id: 1, title: 'Test Todo', status: 'todo' },
-    { id: 2, title: 'Hi, there!', status: 'todo' },
-    { id: 3, title: 'Try Add & Delete!', status: 'todo' },
-    { id: 4, title: 'And also poke "Fold" button on the top-right!', status: 'todo' },
+    { id: 1, title: 'Test Todo', status: 'TODO' },
+    { id: 2, title: 'Hi, there!', status: 'DONE' },
+    { id: 3, title: 'Try Add & Delete!', status: 'TODO' },
+    { id: 4, title: 'And also poke "Fold" button on the top-right!', status: 'TODO' },
   ],
   ID: {
     mappingFn: uuidv4,

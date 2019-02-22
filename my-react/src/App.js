@@ -8,6 +8,7 @@ class App extends React.Component {
     super(props);
     this.apiURI = Settings.apiURI;
     this.deleteTodoItem = this.deleteTodoItem.bind(this);
+    this.updateTodoItem = this.updateTodoItem.bind(this);
     this.addTodoItem = this.addTodoItem.bind(this);
     this.handleInputSubmit = this.handleInputSubmit.bind(this);
     this.state = {
@@ -51,6 +52,24 @@ class App extends React.Component {
     }));
   }
 
+  updateTodoItem({ itemID, title, status }) {
+    const updatedTask = { id: `${itemID}` };
+
+    if (title) updatedTask.title = title;
+    if (status) updatedTask.status = status;
+
+    const stateUpdator = (prevState) => {
+      const updatedTodoData = prevState.todoData.map((task) => {
+        if (task.id !== itemID) return Object.assign({}, task);
+        return Object.assign(task, updatedTask);
+      });
+
+      return { todoData: updatedTodoData };
+    };
+
+    this.setState(stateUpdator);
+  }
+
   handleInputSubmit(inputVal) {
     this.addTodoItem(inputVal);
   }
@@ -69,6 +88,7 @@ class App extends React.Component {
           ItemTemplate={StyledTodo.Item}
           todoData={todoData}
           onDelClick={this.deleteTodoItem}
+          updateFn={this.updateTodoItem}
         />
       </StyledTodo.Main>
     );

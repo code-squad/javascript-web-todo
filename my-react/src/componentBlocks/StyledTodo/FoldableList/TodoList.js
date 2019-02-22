@@ -8,6 +8,7 @@ class FoldableList extends React.Component {
   constructor(props) {
     super(props);
     this.toggleFold = this.toggleFold.bind(this);
+    this.handleItemStatusToggle = this.handleItemStatusToggle.bind(this);
     this.state = {
       folded: false,
     };
@@ -21,6 +22,16 @@ class FoldableList extends React.Component {
     const { onDelClick } = this.props;
 
     onDelClick(targetId);
+  }
+
+  handleItemStatusToggle(targetId, status) {
+    const { updateFn } = this.props;
+    const newStatus = status === 'DONE' ? 'TODO' : 'DONE';
+
+    updateFn({
+      itemID: targetId,
+      status: newStatus,
+    });
   }
 
   render() {
@@ -40,9 +51,9 @@ class FoldableList extends React.Component {
             <ItemTemplate
               key={item.id}
               todoTitle={item.title}
-              onClick={() => {
-                this.handleItemDelete(item.id);
-              }}
+              status={item.status}
+              onDelete={() => this.handleItemDelete(item.id)}
+              onStatusToggle={() => this.handleItemStatusToggle(item.id, item.status)}
             />
           ))}
         </FoldUl>
@@ -55,6 +66,7 @@ FoldableList.propTypes = {
   todoData: PropTypes.arrayOf(PropTypes.object).isRequired,
   className: PropTypes.string.isRequired,
   onDelClick: PropTypes.func.isRequired,
+  updateFn: PropTypes.func.isRequired,
   ItemTemplate: PropTypes.oneOfType([
     PropTypes.shape({ styledComponentId: PropTypes.string }).isRequired, // StyledComponent
     PropTypes.node,
