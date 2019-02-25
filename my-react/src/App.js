@@ -10,7 +10,6 @@ class App extends React.Component {
     this.deleteTodoItem = this.deleteTodoItem.bind(this);
     this.updateTodoItem = this.updateTodoItem.bind(this);
     this.addTodoItem = this.addTodoItem.bind(this);
-    this.handleInputSubmit = this.handleInputSubmit.bind(this);
     this.state = {
       todoData: [
         // Default value before fetch completion
@@ -45,7 +44,7 @@ class App extends React.Component {
 
   addTodoItem(todoTitle) {
     const newID = Settings.ID.mappingFn();
-    const newTodoItem = { id: `${newID}`, title: todoTitle, status: 'todo' };
+    const newTodoItem = { id: `${newID}`, title: todoTitle, status: 'TODO' };
 
     this.setState(prevState => ({
       todoData: [...prevState.todoData.map(todo => Object.assign({}, todo)), newTodoItem],
@@ -70,10 +69,6 @@ class App extends React.Component {
     this.setState(stateUpdator);
   }
 
-  handleInputSubmit(inputVal) {
-    this.addTodoItem(inputVal);
-  }
-
   render() {
     const { todoData } = this.state;
 
@@ -83,7 +78,7 @@ class App extends React.Component {
           <h1>To-Do List</h1>
           <p>Every big dish starts with one small bite</p>
         </StyledTodo.Header>
-        <StyledTodo.Input placeholder="Hello, world!" onSubmit={this.handleInputSubmit} />
+        <StyledTodo.Input placeholder="Hello, world!" onSubmit={this.addTodoItem} />
         <StyledTodo.FoldableList
           ItemTemplate={StyledTodo.Item}
           todoData={todoData}

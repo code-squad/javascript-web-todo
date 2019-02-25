@@ -88,11 +88,11 @@ const StyledTodoItem = styled(TodoItem)`
     border-radius: 50px;
     transition: all 0.2s;
 
-    stroke: ${({ status }) => (status === 'DONE' ? 'lightgray' : 'green')};
+    stroke: ${({ status }) => (status === 'DONE' ? 'lightgray' : '#0aa')};
 
     &:hover,
     &:active {
-      background-color: ${({ status }) => (status === 'DONE' ? 'lightgray' : 'green')};
+      background-color: ${({ status }) => (status === 'DONE' ? 'lightgray' : '#0aa')};
       color: white;
 
       svg {

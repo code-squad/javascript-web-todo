@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import FoldBtn from './FoldBtn';
-import FoldUl from './FoldUl';
+import FoldableUL from './FoldUl';
+import StatusCounterBoard from './StatusCounterBoard';
 
 class FoldableList extends React.Component {
   constructor(props) {
@@ -40,15 +41,18 @@ class FoldableList extends React.Component {
       todoData, className, ItemTemplate, updateFn,
     } = this.props;
 
-    if (!todoData[0]) {
-      return <div className={className}>Loading...</div>;
-    }
-
     return (
-      <div className={className}>
-        <h2 className="listHeader">Things to Do</h2>
-        <FoldBtn folded={folded} className="foldBtn" onClick={this.toggleFold} />
-        <FoldUl folded={folded} className="foldUl">
+      <section className={className}>
+        <header className="listHeader">
+          <div className="titleAndCount">
+            <h2 className="title">Things to Do</h2>
+            <div className="statusCountWrapper">
+              <StatusCounterBoard todoData={todoData} className="statusCount" />
+            </div>
+          </div>
+          <FoldBtn folded={folded} className="foldBtn" onClick={this.toggleFold} />
+        </header>
+        <FoldableUL folded={folded} className="foldableUL">
           {todoData.map(item => (
             <ItemTemplate
               key={item.id}
@@ -59,8 +63,8 @@ class FoldableList extends React.Component {
               titleUpdator={newTitle => updateFn({ itemID: item.id, title: newTitle })}
             />
           ))}
-        </FoldUl>
-      </div>
+        </FoldableUL>
+      </section>
     );
   }
 }
@@ -89,14 +93,36 @@ const StyledTodoList = styled(FoldableList)`
   overflow: hidden;
 
   .listHeader {
-    grid-column: 1;
-    grid-row: 2;
+    grid-column: 1 / -1;
+    grid-row: 1;
+
+    display: grid;
+    grid-template-columns: 70% 15% 15%;
+    .titleAndCount {
+      grid-column: 1;
+
+      .title,
+      .statusCountWrapper {
+        display: inline-grid;
+        height: 3.6rem;
+        vertical-align: bottom;
+      }
+
+      .statusCountWrapper {
+        margin-left: 1.5rem;
+      }
+      .statusCountWrapper > .statusCount {
+        display: grid;
+        align-items: center;
+        width: 16rem;
+      }
+    }
+    .foldBtn {
+      grid-column: 3;
+    }
   }
-  .foldBtn {
-    grid-column: 2;
-    grid-row: 2;
-  }
-  .foldUl {
+
+  .foldableUL {
     grid-row: 3;
     grid-column: 1 / 3;
 

@@ -10,7 +10,6 @@ const FoldBtn = styled(({ className, folded, onClick }) => (
   background: ${props => (props.folded ? theme.color.highlight : 'unset')};
   border: 1px solid ${props => (props.folded ? 'white' : theme.color.highlight)};
   font-size: 2rem;
-  text-align: center;
   color: ${props => (props.folded ? 'white' : theme.color.highlight)};
   transition: all 0.2s;
 
