@@ -10,7 +10,7 @@ const Settings = {
   ID: {
     mappingFn: uuidv4,
   },
-  graphqlApiURI: 'http://localhost:4000/graphql',
+  graphqlApiURI: 'https://codesquadapi.herokuapp.com/graphql',
 };
 
 export default Settings;
