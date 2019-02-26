@@ -2,13 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { DeleteIcon, CompleteIcon } from '../../lib/icons';
 
-// handleInputChange(evt) {
-//   const defaultSetup = { placeholder: this.props.placeholder, wrongInput: false };
-//   const newValue = evt.target.value;
-
-//   this.setState(() => ({ value: newValue, ...defaultSetup }));
-// }
-
 function TodoItem({
   todoTitle, className, onDelete, onStatusToggle, titleUpdator,
 }) {
@@ -61,7 +54,7 @@ const StyledTodoItem = styled(TodoItem)`
     background: none;
     font-size: 2rem;
     line-height: 100%;
-    border-radius: 50px;
+    border-radius: 5rem;
     transition: all 0.2s;
 
     svg {
@@ -85,7 +78,7 @@ const StyledTodoItem = styled(TodoItem)`
     background: none;
     font-size: 2rem;
     line-height: 100%;
-    border-radius: 50px;
+    border-radius: 5rem;
     transition: all 0.2s;
 
     stroke: ${({ status }) => (status === 'DONE' ? 'lightgray' : '#0aa')};

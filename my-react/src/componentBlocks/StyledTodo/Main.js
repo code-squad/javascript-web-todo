@@ -7,7 +7,7 @@ const StyledMain = styled.main`
   grid-template-rows: 10% 15% 15% 50% 10%;
 
   background-color: ${theme.color.background};
-  box-shadow: 24px 24px ${theme.color.boxShadow};
+  box-shadow: 2.5rem 2.5rem ${theme.color.boxShadow};
   position: absolute;
   left: 50%;
   transform: translate3d(-50%, 0, 0);

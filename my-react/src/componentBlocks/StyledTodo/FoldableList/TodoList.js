@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import FoldBtn from './FoldBtn';
-import FoldableUL from './FoldUl';
+import FoldableUL from './FoldableUL';
 import StatusCounterBoard from './StatusCounterBoard';
 
 class FoldableList extends React.Component {

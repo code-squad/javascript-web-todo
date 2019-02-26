@@ -6,7 +6,6 @@ import actions from './actions';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.apiURI = Settings.apiURI;
     this.deleteTodoItem = this.deleteTodoItem.bind(this);
     this.updateTodoItem = this.updateTodoItem.bind(this);
     this.addTodoItem = this.addTodoItem.bind(this);
@@ -31,7 +30,13 @@ class App extends React.Component {
       body: JSON.stringify({ query: actions.GET_DEFAULT }),
     });
 
-    const { data } = await fetch(request).then(res => res.json());
+    const errorHandler = (/* error */) => {
+      // Do proper action on error
+      // And dispatch error info to app
+    };
+    const { data } = await fetch(request)
+      .then(res => res.json())
+      .catch(errorHandler);
 
     this.setState({ todoData: Object.values(data.getDefaultTasks) });
   }
