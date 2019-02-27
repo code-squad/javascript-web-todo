@@ -1,21 +1,18 @@
 import React from 'react';
-import StyledTodo from './componentBlocks/StyledTodo';
-import { asyncGetJson } from './library/network';
+import StyledTodo from './componentBlocks';
+import Settings from './settings';
+import actions from './actions';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.apiURI = 'http://crong.codesquad.kr:8080/todo';
     this.deleteTodoItem = this.deleteTodoItem.bind(this);
+    this.updateTodoItem = this.updateTodoItem.bind(this);
     this.addTodoItem = this.addTodoItem.bind(this);
-    this.handleInputSubmit = this.handleInputSubmit.bind(this);
     this.state = {
       todoData: [
         // Default value before fetch completion
-        { localId: 1, title: 'Test Todo', type: 'todo' },
-        { localId: 2, title: 'Hi, there!', type: 'todo' },
-        { localId: 3, title: 'Try Add & Delete!', type: 'todo' },
-        { localId: 4, title: 'And also poke "Fold" button on the top-right!', type: 'todo' },
+        ...Settings.defaultTodoData,
       ],
     };
   }
@@ -25,31 +22,56 @@ class App extends React.Component {
   }
 
   async getTodoData() {
-    const assignID = (todoItem, idx) => Object.assign(todoItem, { localId: `${idx}${new Date().valueOf()}` });
-    const todoJson = await asyncGetJson(this.apiURI);
-    const todoDataWithID = todoJson.map(assignID);
+    const request = new Request(Settings.graphqlApiURI, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ query: actions.GET_DEFAULT }),
+    });
 
-    this.setState({ todoData: todoDataWithID });
-    return todoDataWithID;
+    const errorHandler = (/* error */) => {
+      // Do proper action on error
+      // And dispatch error info to app
+    };
+    const { data } = await fetch(request)
+      .then(res => res.json())
+      .catch(errorHandler);
+
+    this.setState({ todoData: Object.values(data.getDefaultTasks) });
   }
 
   deleteTodoItem(itemID) {
-    const { todoData } = this.state;
-    return () => this.setState({ todoData: todoData.filter(todo => todo.localId !== itemID) });
+    this.setState(prevState => ({
+      todoData: prevState.todoData.filter(todo => todo.id !== itemID),
+    }));
   }
 
   addTodoItem(todoTitle) {
-    const { todoData } = this.state;
-    const generateID = () => `${Math.floor(Math.random() * 999 + 1)}${new Date().valueOf()}`;
-    const newTodoItem = { localId: `${generateID()}`, title: todoTitle, status: 'todo' };
+    const newID = Settings.ID.mappingFn();
+    const newTodoItem = { id: `${newID}`, title: todoTitle, status: 'TODO' };
 
-    const newTodoData = [...todoData.map(todo => Object.assign({}, todo)), newTodoItem];
-
-    this.setState({ todoData: newTodoData });
+    this.setState(prevState => ({
+      todoData: [...prevState.todoData.map(todo => Object.assign({}, todo)), newTodoItem],
+    }));
   }
 
-  handleInputSubmit(inputVal) {
-    this.addTodoItem(inputVal);
+  updateTodoItem({ itemID, title, status }) {
+    const updatedTask = { id: `${itemID}` };
+
+    if (title) updatedTask.title = title;
+    if (status) updatedTask.status = status;
+
+    const stateUpdator = (prevState) => {
+      const updatedTodoData = prevState.todoData.map((task) => {
+        if (task.id !== itemID) return Object.assign({}, task);
+        return Object.assign(task, updatedTask);
+      });
+
+      return { todoData: updatedTodoData };
+    };
+
+    this.setState(stateUpdator);
   }
 
   render() {
@@ -61,11 +83,12 @@ class App extends React.Component {
           <h1>To-Do List</h1>
           <p>Every big dish starts with one small bite</p>
         </StyledTodo.Header>
-        <StyledTodo.Input placeholder="Hello, world!" onSubmit={this.handleInputSubmit} />
+        <StyledTodo.Input placeholder="Hello, world!" onSubmit={this.addTodoItem} />
         <StyledTodo.FoldableList
           ItemTemplate={StyledTodo.Item}
           todoData={todoData}
           onDelClick={this.deleteTodoItem}
+          updateFn={this.updateTodoItem}
         />
       </StyledTodo.Main>
     );

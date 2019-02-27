@@ -1,7 +1,7 @@
 import React from 'react';
 import 'styled-components/macro'; // CSS prop support
 import styled from 'styled-components';
-import theme from '../themePalette';
+import theme from '../../style/themePalette';
 
 class TodoInput extends React.Component {
   constructor(props) {
@@ -17,8 +17,9 @@ class TodoInput extends React.Component {
 
   handleInputChange(evt) {
     const defaultSetup = { placeholder: this.props.placeholder, wrongInput: false };
+    const newValue = evt.target.value;
 
-    this.setState({ value: evt.target.value, ...defaultSetup });
+    this.setState(() => ({ value: newValue, ...defaultSetup }));
   }
 
   handleInputSubmit(evt) {
