@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import FoldBtn from './FoldBtn';
 import StatusCounterBoard from './StatusCounterBoard';
 
 import RoutedHeaderTitle from './Routed/HeaderTitle';
 import RoutedFoldableUL from './Routed/FoldableUL';
+import RouterLinks from './Routed/RouterLinks';
 
 class FoldableList extends React.Component {
   constructor(props) {
@@ -45,29 +47,29 @@ class FoldableList extends React.Component {
     } = this.props;
 
     return (
-      <section className={className}>
-        <header className="listHeader">
-          <div className="titleAndCount">
-            <RoutedHeaderTitle />
-            <div className="statusCountWrapper">
-              <StatusCounterBoard todoData={todoData} className="statusCount" />
+      <Router>
+        <section className={className}>
+          <header className="listHeader">
+            <div className="titleAndCount">
+              <RoutedHeaderTitle />
+              <div className="statusCountWrapper">
+                <StatusCounterBoard todoData={todoData} className="statusCount" />
+              </div>
             </div>
-          </div>
-          <FoldBtn folded={folded} className="foldBtn" onClick={this.toggleFold} />
-        </header>
-        <RoutedFoldableUL folded={folded} className="foldableUL">
-          {todoData.map(item => (
-            <ItemTemplate
-              key={item.id}
-              todoTitle={item.title}
-              status={item.status}
-              onDelete={() => this.handleItemDelete(item.id)}
-              onStatusToggle={() => this.handleItemStatusToggle(item.id, item.status)}
-              titleUpdator={newTitle => updateFn({ itemID: item.id, title: newTitle })}
-            />
-          ))}
-        </RoutedFoldableUL>
-      </section>
+            <FoldBtn folded={folded} className="foldBtn" onClick={this.toggleFold} />
+          </header>
+          <RoutedFoldableUL
+            folded={folded}
+            className="foldableUL"
+            todoData={todoData}
+            ItemTemplate={ItemTemplate}
+            updateFn={updateFn}
+            handleDelete={this.handleItemDelete.bind(this)}
+            handleStatusToggle={this.handleItemStatusToggle.bind(this)}
+          />
+          <RouterLinks className="statusFilter" />
+        </section>
+      </Router>
     );
   }
 }
@@ -133,6 +135,22 @@ const StyledTodoList = styled(FoldableList)`
     border-bottom: 1px dotted black;
     width: 103%;
     overflow-y: scroll;
+  }
+
+  .statusFilter {
+    grid-row: 2;
+    grid-column: 1;
+
+    display: flex;
+
+    list-style: none;
+
+    li {
+      margin-right: 1rem;
+      a {
+        text-decoration: none;
+      }
+    }
   }
 `;
 
