@@ -142,13 +142,31 @@ const StyledTodoList = styled(FoldableList)`
     grid-column: 1;
 
     display: flex;
+    padding-left: 3.5rem;
 
     list-style: none;
 
     li {
       margin-right: 1rem;
+      
       a {
         text-decoration: none;
+        vertical-align: middle;
+        line-height: 3.2rem;
+
+        padding: 0 0.5rem;
+
+        color: #0aa;
+        background-color: white;
+
+        ::before {
+          content: ' || ';
+        }
+
+        &.selected {
+          color: white;
+          background-color: #0aa;
+        }
       }
     }
   }

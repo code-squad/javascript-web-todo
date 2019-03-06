@@ -5,13 +5,19 @@ function RouterLinks({ className }) {
   return (
     <ul className={className}>
       <li>
-        <NavLink to="/">All</NavLink>
+        <NavLink exact to="/" activeClassName="selected">
+          All
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/todo">Things to Do</NavLink>
+        <NavLink to="/todo" activeClassName="selected">
+          Doing
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/done">Completed</NavLink>
+        <NavLink to="/done" activeClassName="selected">
+          Completed
+        </NavLink>
       </li>
     </ul>
   );
