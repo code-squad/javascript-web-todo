@@ -1,7 +1,7 @@
 import React from 'react';
 import 'styled-components/macro'; // CSS prop support
 import styled from 'styled-components';
-import theme from '../../style/themePalette';
+import theme from 'style/themePalette';
 
 class TodoInput extends React.Component {
   constructor(props) {
