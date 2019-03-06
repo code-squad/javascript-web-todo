@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
 import FoldBtn from './FoldBtn';
-import FoldableUL from './FoldableUL';
 import StatusCounterBoard from './StatusCounterBoard';
+
+import RoutedHeaderTitle from './Routed/HeaderTitle';
+import RoutedFoldableUL from './Routed/FoldableUL';
 
 class FoldableList extends React.Component {
   constructor(props) {
@@ -45,14 +48,14 @@ class FoldableList extends React.Component {
       <section className={className}>
         <header className="listHeader">
           <div className="titleAndCount">
-            <h2 className="title">Things to Do</h2>
+            <RoutedHeaderTitle />
             <div className="statusCountWrapper">
               <StatusCounterBoard todoData={todoData} className="statusCount" />
             </div>
           </div>
           <FoldBtn folded={folded} className="foldBtn" onClick={this.toggleFold} />
         </header>
-        <FoldableUL folded={folded} className="foldableUL">
+        <RoutedFoldableUL folded={folded} className="foldableUL">
           {todoData.map(item => (
             <ItemTemplate
               key={item.id}
@@ -63,7 +66,7 @@ class FoldableList extends React.Component {
               titleUpdator={newTitle => updateFn({ itemID: item.id, title: newTitle })}
             />
           ))}
-        </FoldableUL>
+        </RoutedFoldableUL>
       </section>
     );
   }
