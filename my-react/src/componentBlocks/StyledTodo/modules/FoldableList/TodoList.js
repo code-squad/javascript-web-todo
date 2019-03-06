@@ -47,7 +47,7 @@ class FoldableList extends React.Component {
     } = this.props;
 
     return (
-      <Router>
+      <Router basename="/javascript-web-todo">
         <section className={className}>
           <header className="listHeader">
             <div className="titleAndCount">
@@ -148,7 +148,7 @@ const StyledTodoList = styled(FoldableList)`
 
     li {
       margin-right: 1rem;
-      
+
       a {
         text-decoration: none;
         vertical-align: middle;
