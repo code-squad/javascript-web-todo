@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import theme from '../../../style/themePalette';
+import theme from 'style/themePalette';
 
 const FoldBtn = styled(({ className, folded, onClick }) => (
   <button type="button" className={className} onClick={onClick}>
