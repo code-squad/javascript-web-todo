@@ -5,7 +5,7 @@ function MakeTaskDom(props) {
   return (
     <div className="task">
       {props.data.map((v, i) => {
-        return <div key={i} className="task-list">{v.title}</div>;
+        return <li key={i} className="task-list">{v.title}</li>;
       })}
     </div>
   );
