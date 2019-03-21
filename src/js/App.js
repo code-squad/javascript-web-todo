@@ -53,6 +53,7 @@ class App extends Component {
         </div>
         <div className="todo-list-container">
           해야할 일들
+          <button className="todo-list-hide-button">접기</button>
           <div className="todo-list">{this.renderTaskDom()}</div>
         </div>
       </div>
