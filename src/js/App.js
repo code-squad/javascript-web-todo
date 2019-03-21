@@ -1,36 +1,61 @@
 import React, { Component } from 'react';
 import '../scss/app.css';
 
+function MakeTaskDom(props) {
+  return (
+    <div className="task">
+      {props.data.map((v, i) => {
+        return <div key={i} className="task-list">{v.title}</div>;
+      })}
+    </div>
+  );
+}
 
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       task: null,
-    }
+    };
   }
 
   componentDidMount() {
-    this.getData('https://javascript-web-todo-server.herokuapp.com/')
+    this.getData('https://javascript-web-todo-server.herokuapp.com/');
   }
 
   getData(dataUrl) {
-    fetch(dataUrl).then(res => {
-      return res.json()
-    }).then(jsonData => {
-      this.handleData(jsonData);
-    }) 
+    fetch(dataUrl)
+      .then(res => {
+        return res.json();
+      })
+      .then(jsonData => {
+        this.handleData(jsonData);
+      });
   }
 
   handleData(jsonData) {
     this.setState({
-      task: jsonData
-    })
+      task: jsonData,
+    });
   }
-  
+
+  renderTaskDom() {
+    if (this.state.task === null) return;
+    return <MakeTaskDom data={this.state.task} />;
+  }
+
   render() {
     return (
-      <div className='todo-app'>{}</div>
+      <div className="todo-app-conatiner">
+        <div className="add-todo">
+          할일 입력: <input className="add-todo-inputer" />
+          <button className="add-todo-inputer-button">입력</button>
+        </div>
+        <div className="todo-list-container">
+          해야할 일들
+          <div className="todo-list">{this.renderTaskDom()}</div>
+        </div>
+      </div>
     );
   }
 }
