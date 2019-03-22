@@ -1,0 +1,46 @@
+.add-todo {
+  background-color:#3f82;
+  padding:3rem;
+  margin-bottom: 6rem;
+  &-inputer{
+    border: $black-border;
+    height:1.3rem;
+    &-button{
+      margin-left:1rem;
+      width:3rem;
+      height:1.3rem;
+      border: $black-border;
+      &:hover{
+        cursor: pointer;
+        background-color:#000;
+        color:#fff;
+      }
+    }
+  }
+}
+
+.todo-list {
+  padding:1rem;
+  &-container{
+    background-color:#3f85;
+    padding:1rem;
+  }
+  &-hide-button{
+    border: $black-border;
+    float:right;
+    &:hover{
+      cursor: pointer;
+      background-color:#000;
+      color:#fff;
+    }
+  }
+}
+.todo-app{
+  font-size: 10rem;
+  &-conatiner {
+    width: 30rem;
+    height: 100rem;
+    margin: auto;
+    margin-top: 5rem;
+  }
+}

@@ -1,0 +1,66 @@
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+button {
+  border: none;
+  padding: none;
+  outline: none;
+}
+
+input {
+  outline: none;
+  padding: 0;
+  border: none;
+}
+
+.add-todo {
+  background-color: #3f82;
+  padding: 3rem;
+  margin-bottom: 6rem;
+}
+.add-todo-inputer {
+  border: 1px solid #000;
+  height: 1.3rem;
+}
+.add-todo-inputer-button {
+  margin-left: 1rem;
+  width: 3rem;
+  height: 1.3rem;
+  border: 1px solid #000;
+}
+.add-todo-inputer-button:hover {
+  cursor: pointer;
+  background-color: #000;
+  color: #fff;
+}
+
+.todo-list {
+  padding: 1rem;
+}
+.todo-list-container {
+  background-color: #3f85;
+  padding: 1rem;
+}
+.todo-list-hide-button {
+  border: 1px solid #000;
+  float: right;
+}
+.todo-list-hide-button:hover {
+  cursor: pointer;
+  background-color: #000;
+  color: #fff;
+}
+
+.todo-app {
+  font-size: 10rem;
+}
+.todo-app-conatiner {
+  width: 30rem;
+  height: 100rem;
+  margin: auto;
+  margin-top: 5rem;
+}
+
+/*# sourceMappingURL=app.css.map */
