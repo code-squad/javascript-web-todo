@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class TodoList extends Component{
     constructor(props){
         super(props);
-        console.log(this.props)
+        this.toggleList = this.toggleList.bind(this);
         this.state={
             isOpend: true
         }
@@ -32,10 +32,8 @@ export default class TodoList extends Component{
         return (
             <div>
                 <h2>해야할 일들:</h2>
-                <button>{toggle?'접기':'열기'} </button>
-                <ul> 
-                    {listItems}
-                </ul>
+                <button onClick={this.toggleList}>{toggle?'접기':'열기'}</button>
+                {toggle? <ul>{listItems}</ul> :null}
             </div>
         );
     }
