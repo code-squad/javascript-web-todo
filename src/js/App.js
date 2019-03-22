@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../scss/app.css';
 
-function MakeTaskDom(props) {
+const MakeTaskDom = (props) => {
   return (
     <div className="task">
       {props.data.map((v, i) => {
@@ -23,14 +23,14 @@ class App extends Component {
     this.getData('https://javascript-web-todo-server.herokuapp.com/');
   }
 
-  getData(dataUrl) {
-    fetch(dataUrl)
-      .then(res => {
-        return res.json();
-      })
-      .then(jsonData => {
-        this.handleData(jsonData);
-      });
+  async getData(dataUrl) {
+    try {
+      const fetchedRes = await fetch(dataUrl)
+      const jsonData = await fetchedRes.json()
+      this.handleData(jsonData);
+    } catch (err){
+      console.log(err)
+    }
   }
 
   handleData(jsonData) {
