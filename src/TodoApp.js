@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TodoList from './TodoList';
 
 async function fetchData(url) {
   const fetchData = await fetch(url);
@@ -25,7 +26,7 @@ class TodoApp extends Component {
     const list = this.state.list;
     return(
       <div>
-        
+        <TodoList list={list} />
       </div>
     )
   }
