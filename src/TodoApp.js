@@ -13,9 +13,20 @@ class TodoApp extends Component {
       list: []
     }
   }
+  componentDidMount(){
+    const url = 'http://crong.codesquad.kr:8080/todo';
+    fetchData(url).then(res => {
+      this.setState({
+        list: [...res]
+      })
+    })
+  }
   render() {
+    const list = this.state.list;
     return(
-      <div></div>
+      <div>
+        
+      </div>
     )
   }
 }
