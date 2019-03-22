@@ -44,21 +44,26 @@ input {
   padding: 1rem;
 }
 .todo-list-hide-button {
+  background-color: #3f82;
   border: 1px solid #000;
+  border-radius: 1rem;
+  width: 2.5rem;
+  height: 1.2rem;
   float: right;
 }
 .todo-list-hide-button:hover {
   cursor: pointer;
-  background-color: #000;
-  color: #fff;
+  background-color: #3f89;
+  color: #000;
 }
 
 .task-list {
   margin: 0.5rem;
 }
 .task-list-button {
+  background-color: #3f82;
   border: 1px solid #000;
-  width: 2rem;
+  width: 2.5rem;
   height: 1.1rem;
   border-radius: 1rem;
   opacity: 0.3;

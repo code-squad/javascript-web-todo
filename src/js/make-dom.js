@@ -8,7 +8,7 @@ const MakeTaskDom = props => {
           <li key={i} className="task-list">
             {v.title}
             <button className='task-list-button'>
-            rm
+            제거
             </button>
           </li>
           

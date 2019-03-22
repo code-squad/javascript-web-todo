@@ -26,12 +26,17 @@
     padding: 1rem;
   }
   &-hide-button {
+    background-color: #3f82;
     border: $black-border;
+    border-radius: 1rem;
+    width: 2.5rem;
+    height: 1.2rem;
+
     float: right;
     &:hover {
       cursor: pointer;
-      background-color: #000;
-      color: #fff;
+      background-color: #3f89;
+      color: #000
     }
   }
 }
@@ -39,8 +44,9 @@
 .task-list {
   margin: 0.5rem;
   &-button {
+    background-color: #3f82;
     border: $black-border;
-    width: 2rem;
+    width: 2.5rem;
     height: 1.1rem;
     border-radius: 1rem;
     opacity: 0.3;
