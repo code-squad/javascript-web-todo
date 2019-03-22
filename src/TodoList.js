@@ -4,9 +4,8 @@ export default class TodoList extends Component{
     constructor(props){
         super(props);
         this.toggleList = this.toggleList.bind(this);
-        this.state={
-            isOpend: true
-        }
+        this.removeItem = this.removeItem.bind(this);
+        this.state={ isOpend: true }
     }
     componentDidMount(){
         this.createList(this.props);
@@ -14,9 +13,8 @@ export default class TodoList extends Component{
     createList({list}){
         if(toString.call(list) !== '[object Array]') return;
         const listItems = list.map(item => 
-            <li key={item.id}>
-                {item.title}
-                <button type="button">X</button>
+            <li key={item.id} onClick={this.removeItem}>
+                {item.title} <button type="button">X</button>
             </li>
         )
         return listItems;
@@ -25,6 +23,10 @@ export default class TodoList extends Component{
         this.setState(({isOpend}) => ({
             isOpend: isOpend? false: true
         }));
+    }
+    removeItem(e){
+        if(e.target.type !== 'button') return;
+        this.props.removeItem(e.currentTarget.firstChild.nodeValue);
     }
     render(){
         const listItems = this.createList(this.props);
