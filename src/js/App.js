@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import '../scss/app.css';
-import { MakeTaskDom, MakeLoadingDom } from './make-dom.js'
+import { MakeTaskDom, MakeLoadingDom } from './make-dom.js';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      IDNum: 0,
       task: null,
+      word: ''
     };
   }
 
@@ -16,31 +18,50 @@ class App extends Component {
 
   async getData(dataUrl) {
     try {
-      const fetchedRes = await fetch(dataUrl)
-      const jsonData = await fetchedRes.json()
+      const fetchedRes = await fetch(dataUrl);
+      const jsonData = await fetchedRes.json();
       this.handleData(jsonData);
-    } catch (err){
-      console.log(err)
+    } catch (err) {
+      console.log(err);
     }
   }
 
-  handleData(jsonData) {
+  handleData = (jsonData) => {
     this.setState({
       task: jsonData,
     });
   }
 
-  renderTaskDom() {
-    if (this.state.task === null) return <MakeLoadingDom className="loading"/>
+  renderTaskDom = () => {
+    if (this.state.task === null) return <MakeLoadingDom className="loading" />;
     return <MakeTaskDom data={this.state.task} />;
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      word: e.target.value
+    })
+  }
+
+  addTask = (e) => {
+    const task = this.state.task.slice();
+    let IDNumber = this.state.IDNum
+    task.push({ title: `${this.state.word}`, id: `${IDNumber}`, status: 'todo' })
+    
+    this.setState({
+      task: task,
+      IDNum: IDNumber++
+    })
   }
 
   render() {
     return (
       <div className="todo-app-conatiner">
         <div className="add-todo">
-          할일 입력: <input className="add-todo-inputer" />
-          <button className="add-todo-inputer-button">입력</button>
+          할일 입력: <input className="add-todo-inputer" onChange={this.handleChange} />
+          <button className="add-todo-inputer-button" onClick={this.addTask}>
+            입력
+          </button>
         </div>
         <div className="todo-list-container">
           해야할 일들
