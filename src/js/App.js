@@ -1,15 +1,6 @@
 import React, { Component } from 'react';
 import '../scss/app.css';
-
-const MakeTaskDom = (props) => {
-  return (
-    <div className="task">
-      {props.data.map((v, i) => {
-        return <li key={i} className="task-list">{v.title}</li>;
-      })}
-    </div>
-  );
-}
+import { MakeTaskDom, MakeLoadingDom } from './make-dom.js'
 
 class App extends Component {
   constructor(props) {
@@ -40,7 +31,7 @@ class App extends Component {
   }
 
   renderTaskDom() {
-    if (this.state.task === null) return;
+    if (this.state.task === null) return <MakeLoadingDom className="loading"/>
     return <MakeTaskDom data={this.state.task} />;
   }
 

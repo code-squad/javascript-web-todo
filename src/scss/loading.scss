@@ -1,0 +1,18 @@
+@keyframes loadAni {
+  0%{
+    transform: rotate(0deg)
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+
+.loading{
+  width: 2rem;
+  height:2rem;
+  background-image: url(./findfan.ico);
+  background-size: 2rem;
+  text-align:center;
+  animation: loadAni 2s infinite linear;
+  margin:auto;
+}
