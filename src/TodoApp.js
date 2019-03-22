@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import TodoList from './TodoList';
+import TodoInput from './TodoInput';
 
 async function fetchData(url) {
   const fetchData = await fetch(url);
   const jsonData = await fetchData.json();
-  return jsonData;
+  return jsonData.body;
 }
 
 class TodoApp extends Component {
@@ -15,7 +16,7 @@ class TodoApp extends Component {
     }
   }
   componentDidMount(){
-    const url = 'http://crong.codesquad.kr:8080/todo';
+    const url = 'https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/todolist';
     fetchData(url).then(res => {
       this.setState({
         list: [...res]
@@ -26,6 +27,7 @@ class TodoApp extends Component {
     const list = this.state.list;
     return(
       <div>
+        <TodoInput />
         <TodoList list={list} />
       </div>
     )
