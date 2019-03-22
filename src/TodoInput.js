@@ -27,7 +27,7 @@ export default class TodoInput extends React.Component{
 			<div className={this.props.className}>
 				<form onSubmit={this.handleSubmit}>
 					<label htmlFor="todoInput">할일 입력: </label>
-					<input id="todoInput" type="text" value={this.state.value} onChange={this.handleChange}/>
+					<StyledInput id="todoInput" type="text" value={this.state.value} onChange={this.handleChange}/>
 					<input type="submit" value="등록" />
 				</form>
 			</div>

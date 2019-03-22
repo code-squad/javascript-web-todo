@@ -19,9 +19,13 @@ const StyledTodoList = styled(TodoList)`
 `;
 
 async function fetchData(url) {
-  const fetchData = await fetch(url);
-  const jsonData = await fetchData.json();
-  return jsonData.body;
+  try{
+    const fetchData = await fetch(url);
+    const jsonData = await fetchData.json();
+    return jsonData.body;
+  } catch {
+    throw new Error('http 요청 실패');
+  }
 }
 
 class TodoApp extends Component {
@@ -41,6 +45,7 @@ class TodoApp extends Component {
     })
   }
   addItem(title){
+    if(this.state.list.some(v => v.title === title)) return;
     const newItem = {
       title: title,
       id: this.id++,
