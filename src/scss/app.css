@@ -53,6 +53,24 @@ input {
   color: #fff;
 }
 
+.task-list {
+  margin: 0.5rem;
+}
+.task-list-button {
+  border: 1px solid #000;
+  width: 2rem;
+  height: 1.1rem;
+  border-radius: 1rem;
+  opacity: 0.3;
+  float: right;
+  transition: opacity 0.3s;
+}
+.task-list-button:hover {
+  cursor: pointer;
+  transition: opacity 0.3s;
+  opacity: 1;
+}
+
 .todo-app {
   font-size: 10rem;
 }

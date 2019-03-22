@@ -7,7 +7,11 @@ const MakeTaskDom = props => {
         return (
           <li key={i} className="task-list">
             {v.title}
+            <button className='task-list-button'>
+            rm
+            </button>
           </li>
+          
         );
       })}
     </div>
