@@ -39,30 +39,21 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 개발환경
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+create react app을 사용하여 개발 환경을 구성하였습니다. webpack은 기존의 react-scripts를 사용하였고 추가적으로 styled component를 사용하기 위한 모듈을 추가하였습니다. 
 
-### Code Splitting
+## 설계
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Component는 세가지 있습니다. 
+- TodoApp: todo list를 state로 관리하여 해당 데이터를 직접 다루는 모든 작업이 이 컴포넌트에서 이루어집니다.
+- TodoInput: todo list에 새로운 item을 추가하는 작업을 위한 메서드들이 있습니다. 데이터를 직접 조작하는 것 외에 정보를 입력하고 비교하는 작업들이 포함되어있고 의존 되어있는 TodoApp에 메서드를 호출하여 데이터를 조작합니다.
+- TodoList: TodoApp으로부터 props로 todo list를 받고 엘리먼트를 추가하는 작업을 합니다. 추가적으로 영역을 토글하는 기능과 list item을 제거하는 로직이 있습니다. 
 
-### Analyzing the Bundle Size
+### 데이터 처리
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+fetch Api를 이용하여 데이터를 가져왔고 에러 핸들링을 하였습니다. 
 
-### Making a Progressive Web App
+### Style 적용
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+styled component를 사용하여 스타일 작업을 진행하였습니다. 설계가 컴포넌트 단위로 되어있고 그 컴포넌트에 필요한 스타일을 같은 장소에서 작성한다는 것이 좋았습니다. 컴포넌트 단위의 응집성이 높아진 것처럼 느껴졌습니다. 다만 코드의 수가 길어진다는 점이 조금 불편했습니다. 
