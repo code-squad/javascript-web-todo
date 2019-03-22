@@ -1,6 +1,22 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import TodoList from './TodoList';
 import TodoInput from './TodoInput';
+
+const StyledTodoContainer = styled.div`
+  margin: 10% auto 0;
+  width: 80%;
+`;
+
+const StyledTodoInput = styled(TodoInput)`
+  margin-bottom: 50px;
+  padding: 10px;
+  background-color: #adced2;
+`;
+const StyledTodoList = styled(TodoList)`
+  padding: 10px;
+  background-color: #adced2;
+`;
 
 async function fetchData(url) {
   const fetchData = await fetch(url);
@@ -21,9 +37,7 @@ class TodoApp extends Component {
   componentDidMount(){
     const url = 'https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/todolist';
     fetchData(url).then(res => {
-      this.setState({
-        list: [...res]
-      })
+      this.setState({ list: [...res] })
     })
   }
   addItem(title){
@@ -37,18 +51,22 @@ class TodoApp extends Component {
     }))
   }
   removeItem(item){
-
+    this.setState(({list}) => ({
+      list: list.filter(v => v.title !== item)
+    }))
   }
   render() {
     const list = this.state.list;
     return(
-      <div>
-        <TodoInput 
+      <StyledTodoContainer>
+        <StyledTodoInput 
+          className={StyledTodoInput}
           addItem={this.addItem} />
-        <TodoList 
+        <StyledTodoList 
+          className={StyledTodoList}
           removeItem={this.removeItem}
           list={list} />
-      </div>
+      </StyledTodoContainer>
     )
   }
 }
