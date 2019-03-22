@@ -7,7 +7,7 @@ class App extends Component {
     super(props);
     this.state = {
       IDNum: 0,
-      task: null,
+      tasks: null,
       word: ''
     };
   }
@@ -28,13 +28,13 @@ class App extends Component {
 
   handleData = (jsonData) => {
     this.setState({
-      task: jsonData,
+      tasks: jsonData,
     });
   }
 
   renderTaskDom = () => {
-    if (this.state.task === null) return <MakeLoadingDom className="loading" />;
-    return <MakeTaskDom data={this.state.task} />;
+    if (this.state.tasks === null) return <MakeLoadingDom className="loading" />;
+    return <MakeTaskDom data={this.state.tasks} removeTask={this.removeTask} />;
   }
 
   handleChange = (e) => {
@@ -44,13 +44,25 @@ class App extends Component {
   }
 
   addTask = (e) => {
-    const task = this.state.task.slice();
+    const tasks = this.state.tasks.slice();
     let IDNumber = this.state.IDNum
-    task.push({ title: `${this.state.word}`, id: `${IDNumber}`, status: 'todo' })
+    if(tasks.some(v => v.title === this.state.word)) return; 
+    tasks.push({ title: `${this.state.word}`, id: `${IDNumber}`, status: 'todo' })
     
     this.setState({
-      task: task,
+      tasks: tasks,
       IDNum: IDNumber++
+    })
+  }
+
+  removeTask = (e) => {
+    const tasks = this.state.tasks.slice()
+    const title = e.target.parentNode.innerText.split('\n')[0];
+    const removedTask = tasks.filter(task => {
+      return (!(task.title === title))
+    })
+    this.setState({
+      tasks: removedTask,
     })
   }
 
