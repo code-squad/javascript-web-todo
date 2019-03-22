@@ -16,30 +16,35 @@ input {
 }
 
 .add-todo {
+  border-radius: 1rem;
   background-color: #3f82;
   padding: 3rem;
   margin-bottom: 6rem;
 }
 .add-todo-inputer {
+  padding-left: 1rem;
   border: 1px solid #000;
   height: 1.3rem;
+  border-radius: 1rem;
 }
 .add-todo-inputer-button {
+  background-color: #3f82;
   margin-left: 1rem;
   width: 3rem;
   height: 1.3rem;
+  border-radius: 1rem;
   border: 1px solid #000;
 }
 .add-todo-inputer-button:hover {
   cursor: pointer;
-  background-color: #000;
-  color: #fff;
+  background-color: #3f79;
 }
 
 .todo-list {
   padding: 1rem;
 }
 .todo-list-container {
+  border-radius: 1rem;
   background-color: #3f85;
   padding: 1rem;
 }
@@ -54,7 +59,6 @@ input {
 .todo-list-hide-button:hover {
   cursor: pointer;
   background-color: #3f89;
-  color: #000;
 }
 
 .task-list {

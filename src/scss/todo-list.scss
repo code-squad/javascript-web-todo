@@ -1,19 +1,23 @@
 .add-todo {
+  border-radius: 1rem;
   background-color: #3f82;
   padding: 3rem;
   margin-bottom: 6rem;
   &-inputer {
+    padding-left:1rem;
     border: $black-border;
     height: 1.3rem;
+    border-radius: 1rem;
     &-button {
+      background-color: #3f82;
       margin-left: 1rem;
       width: 3rem;
       height: 1.3rem;
+      border-radius: 1rem;
       border: $black-border;
       &:hover {
         cursor: pointer;
-        background-color: #000;
-        color: #fff;
+        background-color: #3f79;
       }
     }
   }
@@ -22,6 +26,7 @@
 .todo-list {
   padding: 1rem;
   &-container {
+    border-radius: 1rem;
     background-color: #3f85;
     padding: 1rem;
   }
@@ -31,12 +36,10 @@
     border-radius: 1rem;
     width: 2.5rem;
     height: 1.2rem;
-
     float: right;
     &:hover {
       cursor: pointer;
       background-color: #3f89;
-      color: #000
     }
   }
 }
