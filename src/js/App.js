@@ -5,10 +5,11 @@ import { MakeTaskDom, MakeLoadingDom, MakeWarningDom } from './make-dom.js';
 class App extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       IDNum: 0,
       tasks: null,
-      word: ''
+      word: '',
     };
   }
 
@@ -26,61 +27,71 @@ class App extends Component {
     }
   }
 
-  handleData = (jsonData) => {
+  handleData = jsonData => {
     this.setState({
       tasks: jsonData,
     });
-  }
+  };
 
-  renderWarning = (tasks) => {
-    if(tasks === null) return (<div>잠시만 기다려주세요.</div>)
-    if(tasks.some(v => v.title === this.state.word)) return <MakeWarningDom />
+  renderWarning = tasks => {
+    if (tasks === null)
+      return <div className="warning">잠시만 기다려주세요.</div>;
+    if (tasks.some(v => v.title === this.state.word))
+      return <MakeWarningDom className="warning" />;
     return;
-  }
+  };
 
   renderTaskDom = () => {
-    if (this.state.tasks === null) return <MakeLoadingDom className="loading" />;
+    if (this.state.tasks === null)
+      return <MakeLoadingDom className="loading" />;
     return <MakeTaskDom data={this.state.tasks} removeTask={this.removeTask} />;
-  }
+  };
 
-  handleChange = (e) => { 
+  handleChange = e => {
     this.setState({
-      word: e.target.value
-    })
-  }
+      word: e.target.value,
+    });
+  };
 
-  addTask = (e) => {
+  addTask = e => {
     const tasks = this.state.tasks.slice();
-    let IDNumber = this.state.IDNum
-    if(tasks.some(v => v.title === this.state.word)) return; 
-    tasks.push({ title: `${this.state.word}`, id: `${IDNumber}`, status: 'todo' })
-    
-    this.setState({
-      tasks: tasks,
-      IDNum: IDNumber + 1
-    })
-  }
+    let IDNumber = this.state.IDNum;
+    if (tasks.some(v => v.title === this.state.word)) return;
+    tasks.push({
+      title: `${this.state.word}`,
+      id: `${IDNumber}`,
+      status: 'todo',
+    });
 
-  removeTask = (e) => {
-    const tasks = this.state.tasks.slice()
+    this.setState({
+      word: '',
+      tasks: tasks,
+      IDNum: IDNumber + 1,
+    });
+  };
+
+  removeTask = e => {
+    const tasks = this.state.tasks.slice();
     const title = e.target.parentNode.innerText.split('\n')[0];
     const removedTask = tasks.filter(task => {
-      return (!(task.title === title))
-    })
+      return !(task.title === title);
+    });
+
     this.setState({
       tasks: removedTask,
-    })
-  }
+    });
+  };
 
   render() {
     return (
       <div className="todo-app-conatiner">
         <div className="add-todo">
-          할일 입력: <input className="add-todo-inputer" onChange={this.handleChange} />
+          할일 입력:{' '}
+          <input className="add-todo-inputer" value={this.state.word} onChange={this.handleChange} />
           <button className="add-todo-inputer-button" onClick={this.addTask}>
             입력
           </button>
-          <div className='warning'>{this.renderWarning(this.state.tasks)}</div>
+          <div className="warning">{this.renderWarning(this.state.tasks)}</div>
         </div>
         <div className="todo-list-container">
           해야할 일들
