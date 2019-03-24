@@ -76,7 +76,8 @@ class App extends Component {
 
   removeTask = e => {
     const tasks = this.state.tasks.slice();
-    const title = e.target.parentNode.innerText.split('\n')[0];
+    let title = e.target.parentNode.innerText.split('\n')[0];
+    if(title === '제거') title = ''
     const removedTask = tasks.filter(task => {
       return !(task.title === title);
     });
