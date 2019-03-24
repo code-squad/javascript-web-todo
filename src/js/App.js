@@ -87,7 +87,11 @@ class App extends Component {
       <div className="todo-app-conatiner">
         <div className="add-todo">
           할일 입력:{' '}
-          <input className="add-todo-inputer" value={this.state.word} onChange={this.handleChange} />
+          <input
+            className="add-todo-inputer"
+            value={this.state.word}
+            onChange={this.handleChange}
+          />
           <button className="add-todo-inputer-button" onClick={this.addTask}>
             입력
           </button>
