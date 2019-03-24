@@ -108,4 +108,10 @@ input {
   margin: auto;
 }
 
+.warning {
+  height: 0;
+  color: #7bd7f8;
+  padding-top: 0.3rem;
+}
+
 /*# sourceMappingURL=app.css.map */
