@@ -1,12 +1,8 @@
 import React from 'react';
 
 const MakeWarningDom = props => {
-  return (
-    <div className='warning'>
-      같은 할 일은 보통 두번하지 않죠.
-    </div>
-  )
-}
+  return <div className={props.className}>같은 할 일은 보통 두번하지 않죠.</div>;
+};
 
 const MakeTaskDom = props => {
   return (
@@ -15,11 +11,10 @@ const MakeTaskDom = props => {
         return (
           <li key={i} className="task-list">
             {v.title}
-            <button className='task-list-button' onClick={props.removeTask}>
-            제거
+            <button className="task-list-button" onClick={props.removeTask}>
+              제거
             </button>
           </li>
-          
         );
       })}
     </div>
