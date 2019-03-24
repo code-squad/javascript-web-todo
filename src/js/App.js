@@ -47,6 +47,10 @@ class App extends Component {
     return <MakeTaskDom data={this.state.tasks} removeTask={this.removeTask} />;
   };
 
+  handleKeyPress = e => {
+    if (e.key === 'Enter') this.addTask(e);
+  };
+
   handleChange = e => {
     this.setState({
       word: e.target.value,
@@ -82,16 +86,16 @@ class App extends Component {
     });
   };
 
-  hideTask = (e) => {
-    const btnDom = e.target
-    if(btnDom.innerText === '접기') {
+  hideTask = e => {
+    const btnDom = e.target;
+    if (btnDom.innerText === '접기') {
       btnDom.innerText = '열기';
       btnDom.parentNode.classList.add('hide');
     } else {
-      btnDom.innerText = '접기'
+      btnDom.innerText = '접기';
       btnDom.parentNode.classList.remove('hide');
     }
-  }
+  };
 
   render() {
     return (
@@ -102,6 +106,7 @@ class App extends Component {
             className="add-todo-inputer"
             value={this.state.word}
             onChange={this.handleChange}
+            onKeyPress={this.handleKeyPress}
           />
           <button className="add-todo-inputer-button" onClick={this.addTask}>
             입력
@@ -110,7 +115,9 @@ class App extends Component {
         </div>
         <div className="todo-list-container">
           해야할 일들
-          <button className="todo-list-hide-button" onClick={this.hideTask}>접기</button>
+          <button className="todo-list-hide-button" onClick={this.hideTask}>
+            접기
+          </button>
           <div className="todo-list">{this.renderTaskDom()}</div>
         </div>
       </div>
