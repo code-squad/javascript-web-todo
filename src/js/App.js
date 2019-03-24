@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../scss/app.css';
-import { MakeTaskDom, MakeLoadingDom } from './make-dom.js';
+import { MakeTaskDom, MakeLoadingDom, MakeWarningDom } from './make-dom.js';
 
 class App extends Component {
   constructor(props) {
@@ -32,12 +32,18 @@ class App extends Component {
     });
   }
 
+  renderWarning = (tasks) => {
+    if(tasks === null) return (<div>잠시만 기다려주세요.</div>)
+    if(tasks.some(v => v.title === this.state.word)) return <MakeWarningDom />
+    return;
+  }
+
   renderTaskDom = () => {
     if (this.state.tasks === null) return <MakeLoadingDom className="loading" />;
     return <MakeTaskDom data={this.state.tasks} removeTask={this.removeTask} />;
   }
 
-  handleChange = (e) => {
+  handleChange = (e) => { 
     this.setState({
       word: e.target.value
     })
@@ -51,7 +57,7 @@ class App extends Component {
     
     this.setState({
       tasks: tasks,
-      IDNum: IDNumber++
+      IDNum: IDNumber + 1
     })
   }
 
@@ -74,6 +80,7 @@ class App extends Component {
           <button className="add-todo-inputer-button" onClick={this.addTask}>
             입력
           </button>
+          <div className='warning'>{this.renderWarning(this.state.tasks)}</div>
         </div>
         <div className="todo-list-container">
           해야할 일들
