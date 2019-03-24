@@ -1,6 +1,13 @@
-html, body {
+html::before, body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  opacity: 0.4;
+  z-index: -1;
+  background-image: linear-gradient(to right, #9dacf2, #9dacf3);
 }
 
 button {
@@ -85,7 +92,6 @@ input {
 }
 .todo-app-conatiner {
   width: 30rem;
-  height: 100rem;
   margin: auto;
   margin-top: 5rem;
 }
@@ -112,6 +118,27 @@ input {
   height: 0;
   color: #7bd7f8;
   padding-top: 0.3rem;
+}
+
+.hide {
+  height: 1rem;
+  overflow: hidden;
+  animation: hide 0.5s;
+}
+
+@keyframes hide {
+  30% {
+    transform: translateY(-1rem);
+  }
+  40% {
+    transform: scaleY(0.8);
+  }
+  60% {
+    transform: scaleY(1.1);
+  }
+  80% {
+    transform: scaleY(0.9);
+  }
 }
 
 /*# sourceMappingURL=app.css.map */
