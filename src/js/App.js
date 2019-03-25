@@ -4,6 +4,7 @@ import { MakeTaskDom, MakeLoadingDom, MakeAlarmDom } from './make-dom.js';
 import { getData, taskDataUrl } from './fetch-data.js';
 import Inputer from './inputer.js';
 import AddTask from './add-task.js';
+import FoldTask from './fold-task.js';
 
 class App extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class App extends Component {
       IDNum: 0,
       tasks: null,
       word: '',
+      bFolded: true,
     };
   }
 
@@ -38,24 +40,18 @@ class App extends Component {
     });
   };
 
-  handleChange = e => {
+  handleBFolded = e => {
+    let bFolded = this.state.bFolded;
     this.setState({
-      word: e.target.value,
+      bFolded: !bFolded,
     });
   };
 
-  hideTask = e => {
-    const btnDom = e.target;
-    if (btnDom.innerText === '접기') {
-      btnDom.innerText = '열기';
-      btnDom.parentNode.classList.add('hide');
-    } else {
-      btnDom.innerText = '접기';
-      btnDom.parentNode.classList.remove('hide');
-    }
-  };
-
   render() {
+    let hidingClass = ['todo-list-container'];
+    if (!this.state.bFolded) {
+      hidingClass = ['hide', 'todo-list-container'];
+    }
     return (
       <div className="todo-app-conatiner">
         <div className="add-todo">
@@ -71,18 +67,19 @@ class App extends Component {
             initTask={this.initTask}
             className="add-todo-inputer-button"
           />
-          <MakeAlarmDom className='alarm' state={this.state} />
+          <MakeAlarmDom className="alarm" state={this.state} />
         </div>
-        <div className="todo-list-container">
+        <div className={hidingClass.join(' ')}>
           해야할 일들
-          <button className="todo-list-hide-button" onClick={this.hideTask}>
-            접기
-          </button>
+          <FoldTask
+            className="todo-list-hide-button"
+            handleBFolded={this.handleBFolded}
+          />
           <div className="todo-list">
             {this.state.tasks === null ? (
               <MakeLoadingDom className="loading" />
             ) : (
-              <MakeTaskDom state={this.state} initTask={this.initTask}/>
+              <MakeTaskDom state={this.state} initTask={this.initTask} />
             )}
           </div>
         </div>
