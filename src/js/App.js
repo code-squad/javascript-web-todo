@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import '../scss/app.css';
 import { MakeTaskDom, MakeLoadingDom, MakeWarningDom } from './make-dom.js';
-import { getData, taskDataUrl } from './fetch-data.js'
+import { getData, taskDataUrl } from './fetch-data.js';
+import Inputer from './inputer.js';
+import AddTask from './add-task.js';
 
 class App extends Component {
   constructor(props) {
@@ -16,22 +18,25 @@ class App extends Component {
 
   componentDidMount() {
     const taskData = getData(taskDataUrl);
-    taskData.then((res) => {
-      this.loadTask(res)
-    })
+    taskData.then(res => {
+      this.initTask(res);
+    });
   }
 
-  loadTask(taskData) {
+  initTask = taskData => {
+    let idNum = this.state.IDNum;
     this.setState({
-      tasks: taskData
-    })
-  }
+      IDNum: idNum + 1,
+      tasks: taskData,
+      word: '',
+    });
+  };
 
-  handleChangeWord(word) {
+  handleChangeWord = word => {
     this.setState({
-      word: word 
-    })
-  }
+      word: word,
+    });
+  };
 
   renderWarning = tasks => {
     if (tasks === null)
@@ -47,37 +52,16 @@ class App extends Component {
     return <MakeTaskDom data={this.state.tasks} removeTask={this.removeTask} />;
   };
 
-  handleKeyPress = e => {
-    if (e.key === 'Enter') this.addTask(e);
-  };
-
   handleChange = e => {
     this.setState({
       word: e.target.value,
     });
   };
 
-  addTask = e => {
-    const tasks = this.state.tasks.slice();
-    let IDNumber = this.state.IDNum;
-    if (tasks.some(v => v.title === this.state.word)) return;
-    tasks.push({
-      title: `${this.state.word}`,
-      id: `${IDNumber}`,
-      status: 'todo',
-    });
-
-    this.setState({
-      word: '',
-      tasks: tasks,
-      IDNum: IDNumber + 1,
-    });
-  };
-
   removeTask = e => {
     const tasks = this.state.tasks.slice();
     let title = e.target.parentNode.innerText.split('\n')[0];
-    if(title === '제거') title = ''
+    if (title === '제거') title = '';
     const removedTask = tasks.filter(task => {
       return !(task.title === title);
     });
@@ -102,16 +86,17 @@ class App extends Component {
     return (
       <div className="todo-app-conatiner">
         <div className="add-todo">
-          할일 입력: 
-          <input
+          할일 입력:
+          <Inputer
+            word={this.state.word}
+            handleChangeWord={this.handleChangeWord}
             className="add-todo-inputer"
-            value={this.state.word}
-            onChange={this.handleChange}
-            onKeyPress={this.handleKeyPress}
           />
-          <button className="add-todo-inputer-button" onClick={this.addTask}>
-            입력
-          </button>
+          <AddTask
+            state={this.state}
+            initTask={this.initTask}
+            className="add-todo-inputer-button"
+          />
           <div className="warning">{this.renderWarning(this.state.tasks)}</div>
         </div>
         <div className="todo-list-container">
