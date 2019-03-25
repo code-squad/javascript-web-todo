@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import TodoList from './TodoList';
 import TodoInput from './TodoInput';
+import { default as Url } from "./UrlList";
+import { default as Type} from "./Type";
+import { fetchData } from "./Helpers";
+
 
 const StyledTodoContainer = styled.div`
   margin: 10% auto 0;
@@ -18,15 +22,7 @@ const StyledTodoList = styled(TodoList)`
   background-color: #adced2;
 `;
 
-async function fetchData(url) {
-  try{
-    const data = await fetch(url);
-    const jsonData = await data.json();
-    return jsonData.body;
-  } catch {
-    throw new Error('http 요청 실패');
-  }
-}
+
 
 class TodoApp extends Component {
   constructor(props){
@@ -34,11 +30,11 @@ class TodoApp extends Component {
     this.state = {
       todoList: [],
     }
+    this.todoUrl = Url.todoList;
     this.todoId = 0;
   }
   componentDidMount(){
-    const url = 'https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/todolist';
-    fetchData(url).then(res => {
+    fetchData(this.todoUrl).then(res => {
       this.setState({ todoList: [...res] })
     })
   }
@@ -68,7 +64,8 @@ class TodoApp extends Component {
         <StyledTodoList 
           className={StyledTodoList}
           removeItem={this.removeItem}
-          todoList={todoList} />
+          todoList={todoList}
+          Type={Type} />
       </StyledTodoContainer>
     )
   }
