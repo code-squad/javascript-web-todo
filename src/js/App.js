@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../scss/app.css';
 import { MakeTaskDom, MakeLoadingDom, MakeWarningDom } from './make-dom.js';
+import { getData, taskDataUrl } from './fetchData.js'
 
 class App extends Component {
   constructor(props) {
@@ -14,24 +15,18 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getData('https://javascript-web-todo-server.herokuapp.com/');
+    const taskData = getData(taskDataUrl);
+    taskData.then((res) => {
+      this.loadTask(res)
+    })
+    
   }
 
-  async getData(dataUrl) {
-    try {
-      const fetchedRes = await fetch(dataUrl);
-      const jsonData = await fetchedRes.json();
-      this.handleData(jsonData);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  handleData = jsonData => {
+  loadTask(taskData) {
     this.setState({
-      tasks: jsonData,
-    });
-  };
+      tasks: taskData
+    })
+  }
 
   renderWarning = tasks => {
     if (tasks === null)
