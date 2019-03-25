@@ -1,6 +1,8 @@
 import React from 'react';
-import styled, { css } from 'styled-components'
 import { styles } from './styles'
+
+// 하위 컴포넌트 임포트
+import { FoldButton } from './App_TodoListView_FoldButton'
 
 // TodoList View 컴포넌트
 class TodoListView extends React.Component {
@@ -40,35 +42,4 @@ class TodoListView extends React.Component {
     }
 }
 
-// 삭제 버튼 컴포넌트
-function DeleteTodoButton(props) {
-    function handleClick(event) {
-        event.preventDefault();
-        props.passTodoToBeRemoved(event);
-
-    }
-    return (
-        <styles.StyledButtonRemove id={props.id} onClick={handleClick}>
-            X
-        </styles.StyledButtonRemove>
-    );
-}
-
-// 접기 버튼 컴포넌트
-const FoldButton = function (props) {
-    function handleClickFolded(event) {
-        event.preventDefault();
-        props.handleClickFolded();
-    }
-    return (
-        <StyledFoldButton onClick={handleClickFolded}>
-            {props.children}
-        </StyledFoldButton>
-    );
-}
-
-const StyledFoldButton = styled(styles.StyledButton)`
-    margin-left : auto; 
-`
-
-export { TodoListView, DeleteTodoButton }
+export { TodoListView  }

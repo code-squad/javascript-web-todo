@@ -2,6 +2,10 @@ import React from 'react';
 import styled, { css } from 'styled-components'
 import { styles } from './styles'
 
+// 하위 컴포넌트 임포트
+import { InputAddTodo } from './App_AddTodo_InputAddTodo'
+import { AddTodoButton } from './App_AddTodo_AddTodoButton'
+
 // AddTodo 컴포넌트
 class AddTodo extends React.Component {
     constructor(props) {
@@ -33,33 +37,4 @@ class AddTodo extends React.Component {
 const StyledAddTodoDiv = styled(styles.StyledDiv)` 
     height: 50px;
 `
-
-// InputAddTodo 컴포넌트
-function InputAddTodo(props) {
-    function handleInputChange(event) {
-        props.passInputChange(event);
-    }
-
-    return (
-        <styles.StyledDivInputSection>
-            <label> 할일 입력:
-        <styles.StyledInput placeholder="입력해 주세요." onChange={handleInputChange} />
-            </label>
-        </styles.StyledDivInputSection>
-    )
-}
-
-// 등록 버튼 컴포넌트
-const AddTodoButton = function (props) {
-    function handleClick(event) {
-        event.preventDefault();
-        props.passNewTodo();
-    }
-    return (
-        <styles.StyledButton onClick={handleClick}>
-            {props.children}
-        </styles.StyledButton>
-    );
-}
-
 export { AddTodo };

@@ -1,8 +1,12 @@
 import React from 'react';
 import { styles } from './styles'
-import { AddTodo } from './App_AddTodo'
-import { TodoListView, DeleteTodoButton } from './App_TodoListView'
 import { requestUrl } from './request_url'
+
+// 하위 컴포넌트 임포트
+import { LiElement } from './App_TodoMain_LiElement'
+import { AddTodo } from './App_AddTodo'
+import { TodoListView } from './App_TodoListView'
+
 
 // TodoMain 컴포넌트
 class TodoMain extends React.Component {
@@ -78,19 +82,6 @@ class TodoMain extends React.Component {
             </styles.StyledDivTodoMain>
         );
     }
-}
-
-// 할일 리스트 li 컴포넌트
-function LiElement(props) {
-    function passTodoToBeRemoved(event) {
-        props.passTodoToBeRemoved(event);
-    }
-    return (
-        <li>
-            {props.children}
-            <DeleteTodoButton id={props.id} passTodoToBeRemoved={passTodoToBeRemoved} />
-        </li>
-    )
 }
 
 // fetch 요청
