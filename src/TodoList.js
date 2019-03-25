@@ -36,7 +36,7 @@ export default class TodoList extends Component{
 		this.createList(this.props);
 	}
 	createList({todoList, Type}){
-		if(Type.isArray(todoList)) return;
+		if(!Type.isArray(todoList)) return;
 		const listItems = todoList.map(item => 
 			<StyledLi key={item.id} onClick={this.removeItem}>
 				{item.title} <StyledRemoveBtn type="button">X</StyledRemoveBtn>

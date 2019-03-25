@@ -6,7 +6,7 @@ import { default as Url } from "./UrlList";
 import { default as Type} from "./Type";
 import { fetchData } from "./Helpers";
 
-
+console.log(Url.todoList);
 const StyledTodoContainer = styled.div`
   margin: 10% auto 0;
   width: 80%;
