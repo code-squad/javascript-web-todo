@@ -91,6 +91,7 @@ class App extends Component {
             word={this.state.word}
             handleChangeWord={this.handleChangeWord}
             className="add-todo-inputer"
+            onKeyPress={this.handleKeyPress}
           />
           <AddTask
             state={this.state}
