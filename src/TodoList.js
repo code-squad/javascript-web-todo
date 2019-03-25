@@ -30,28 +30,26 @@ const StyledRemoveBtn = styled.button`
 export default class TodoList extends Component{
 	constructor(props){
 		super(props);
-		this.toggleList = this.toggleList.bind(this);
-		this.removeItem = this.removeItem.bind(this);
 		this.state={ bOpend: true }
 	}
 	componentDidMount(){
 		this.createList(this.props);
 	}
-	createList({list}){
-		if(toString.call(list) !== '[object Array]') return;
-		const listItems = list.map(item => 
+	createList({todoList}){
+		if(toString.call(todoList) !== '[object Array]') return;
+		const listItems = todoList.map(item => 
 			<StyledLi key={item.id} onClick={this.removeItem}>
 				{item.title} <StyledRemoveBtn type="button">X</StyledRemoveBtn>
 			</StyledLi>
 		)
 		return listItems;
 	}
-	toggleList(){
+	toggleList = () => {
 		this.setState(({bOpend}) => ({
 			bOpend: bOpend? false: true
 		}));
 	}
-	removeItem(e){
+	removeItem = e =>{
 		if(e.target.type !== 'button') return;
 		this.props.removeItem(e.currentTarget.firstChild.nodeValue);
 	}

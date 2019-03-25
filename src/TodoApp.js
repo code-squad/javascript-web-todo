@@ -31,8 +31,6 @@ async function fetchData(url) {
 class TodoApp extends Component {
   constructor(props){
     super(props);
-    this.addItem = this.addItem.bind(this);
-    this.removeItem = this.removeItem.bind(this);
     this.state = {
       todoList: [],
     }
@@ -44,20 +42,20 @@ class TodoApp extends Component {
       this.setState({ todoList: [...res] })
     })
   }
-  addItem(title){
-    if(this.state.list.some(v => v.title === title)) return;
+  addItem = title => {
+    if(this.state.todoList.some(v => v.title === title)) return;
     const newItem = {
       title: title,
-      todoId: this.id++,
+      id: this.todoId++,
       status: 'todo'
     }
-    this.setState(({list}) => ({
-      todoList: [...list, newItem]
+    this.setState(({todoList}) => ({
+      todoList: [...todoList, newItem]
     }))
   }
-  removeItem(item){
-    this.setState(({list}) => ({
-      todoList: list.filter(v => v.title !== item)
+  removeItem = item => {
+    this.setState(({todoList}) => ({
+      todoList: todoList.filter(v => v.title !== item)
     }))
   }
   render() {
@@ -70,7 +68,7 @@ class TodoApp extends Component {
         <StyledTodoList 
           className={StyledTodoList}
           removeItem={this.removeItem}
-          list={todoList} />
+          todoList={todoList} />
       </StyledTodoContainer>
     )
   }

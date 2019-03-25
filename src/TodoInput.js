@@ -12,13 +12,13 @@ export default class TodoInput extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {value: ''};
-		this.handleChange = this.handleChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
+		// this.handleChange = this.handleChange.bind(this);
+		// this.handleSubmit = this.handleSubmit.bind(this);
 	}
-	handleChange(event) {
+	handleChange = event => {
 		this.setState({value: event.target.value});
 	}
-	handleSubmit(event) {
+	handleSubmit = event => {
 		event.preventDefault();
 		this.props.addItem(this.state.value);
 	}
