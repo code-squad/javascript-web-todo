@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import TodoCounter from "./TodoCounter";
 
+const StyledTodoCounter = styled(TodoCounter)`
+	padding: 20px;
+	border-radius: 50%;
+`;
 const StyledHeading2 = styled.h2`
     display: inline-block;
     margin: 0;
@@ -59,6 +64,7 @@ export default class TodoList extends Component{
 		return (
 			<div className={this.props.className}>
 				<StyledHeading2>해야할 일들:</StyledHeading2>
+				<StyledTodoCounter todoList={this.props.todoList}/>
 				<StyledCloseBtn onClick={this.toggleList}>{toggle?'접기':'열기'}</StyledCloseBtn>
 				{toggle? <ul>{listItems}</ul> :null}
 			</div>
