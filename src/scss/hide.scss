@@ -1,0 +1,20 @@
+.hide {
+  height: 1rem;
+  overflow: hidden;
+  animation: hide 0.5s;
+}
+
+@keyframes hide {
+  30% {
+    transform: translateY(-1rem)
+  }
+  40% {
+    transform: scaleY(0.8);
+  }
+  60% {
+    transform: scaleY(1.1);
+  }
+  80% {
+    transform: scaleY(0.9);
+  }
+}

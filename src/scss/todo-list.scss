@@ -1,45 +1,72 @@
 .add-todo {
-  background-color:#3f82;
-  padding:3rem;
-  margin-bottom: 6rem;
-  &-inputer{
+  border-radius: 1rem;
+  background-color: #3f82;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  &-inputer {
+    padding-left:1rem;
     border: $black-border;
-    height:1.3rem;
-    &-button{
-      margin-left:1rem;
-      width:3rem;
-      height:1.3rem;
+    height: 1.3rem;
+    border-radius: 1rem;
+    &-button {
+      background-color: #3f82;
+      margin-left: 1rem;
+      width: 3rem;
+      height: 1.3rem;
+      border-radius: 1rem;
       border: $black-border;
-      &:hover{
+      &:hover {
         cursor: pointer;
-        background-color:#000;
-        color:#fff;
+        background-color: #3f79;
       }
     }
   }
 }
 
 .todo-list {
-  padding:1rem;
-  &-container{
-    background-color:#3f85;
-    padding:1rem;
+  padding: 1rem;
+  &-container {
+    border-radius: 1rem;
+    background-color: #3f85;
+    padding: 1rem;
   }
-  &-hide-button{
+  &-hide-button {
+    background-color: #3f82;
     border: $black-border;
-    float:right;
-    &:hover{
+    border-radius: 1rem;
+    width: 2.5rem;
+    height: 1.2rem;
+    float: right;
+    &:hover {
       cursor: pointer;
-      background-color:#000;
-      color:#fff;
+      background-color: #3f89;
     }
   }
 }
-.todo-app{
+
+.task-list {
+  margin: 0.5rem;
+  &-button {
+    background-color: #3f82;
+    border: $black-border;
+    width: 2.5rem;
+    height: 1.1rem;
+    border-radius: 1rem;
+    opacity: 0.3;
+    float: right;
+    transition: opacity 0.3s;
+    &:hover {
+      cursor: pointer;
+      transition: opacity 0.3s;
+      opacity: 1;
+    }
+  }
+}
+
+.todo-app {
   font-size: 10rem;
   &-conatiner {
     width: 30rem;
-    height: 100rem;
     margin: auto;
     margin-top: 5rem;
   }

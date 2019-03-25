@@ -1,6 +1,13 @@
-html, body {
+html::before, body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  opacity: 0.4;
+  z-index: -1;
+  background-image: linear-gradient(to right, #9dacf2, #9dacf3);
 }
 
 button {
@@ -16,41 +23,68 @@ input {
 }
 
 .add-todo {
+  border-radius: 1rem;
   background-color: #3f82;
-  padding: 3rem;
-  margin-bottom: 6rem;
+  padding: 2rem;
+  margin-bottom: 3rem;
 }
 .add-todo-inputer {
+  padding-left: 1rem;
   border: 1px solid #000;
   height: 1.3rem;
+  border-radius: 1rem;
 }
 .add-todo-inputer-button {
+  background-color: #3f82;
   margin-left: 1rem;
   width: 3rem;
   height: 1.3rem;
+  border-radius: 1rem;
   border: 1px solid #000;
 }
 .add-todo-inputer-button:hover {
   cursor: pointer;
-  background-color: #000;
-  color: #fff;
+  background-color: #3f79;
 }
 
 .todo-list {
   padding: 1rem;
 }
 .todo-list-container {
+  border-radius: 1rem;
   background-color: #3f85;
   padding: 1rem;
 }
 .todo-list-hide-button {
+  background-color: #3f82;
   border: 1px solid #000;
+  border-radius: 1rem;
+  width: 2.5rem;
+  height: 1.2rem;
   float: right;
 }
 .todo-list-hide-button:hover {
   cursor: pointer;
-  background-color: #000;
-  color: #fff;
+  background-color: #3f89;
+}
+
+.task-list {
+  margin: 0.5rem;
+}
+.task-list-button {
+  background-color: #3f82;
+  border: 1px solid #000;
+  width: 2.5rem;
+  height: 1.1rem;
+  border-radius: 1rem;
+  opacity: 0.3;
+  float: right;
+  transition: opacity 0.3s;
+}
+.task-list-button:hover {
+  cursor: pointer;
+  transition: opacity 0.3s;
+  opacity: 1;
 }
 
 .todo-app {
@@ -58,9 +92,53 @@ input {
 }
 .todo-app-conatiner {
   width: 30rem;
-  height: 100rem;
   margin: auto;
   margin-top: 5rem;
+}
+
+@keyframes loadAni {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loading {
+  width: 2rem;
+  height: 2rem;
+  background-image: url(./findfan.ico);
+  background-size: 2rem;
+  text-align: center;
+  animation: loadAni 2s infinite linear;
+  margin: auto;
+}
+
+.warning {
+  height: 0;
+  color: #0084FF;
+  padding-top: 0.3rem;
+}
+
+.hide {
+  height: 1rem;
+  overflow: hidden;
+  animation: hide 0.5s;
+}
+
+@keyframes hide {
+  30% {
+    transform: translateY(-1rem);
+  }
+  40% {
+    transform: scaleY(0.8);
+  }
+  60% {
+    transform: scaleY(1.1);
+  }
+  80% {
+    transform: scaleY(0.9);
+  }
 }
 
 /*# sourceMappingURL=app.css.map */
