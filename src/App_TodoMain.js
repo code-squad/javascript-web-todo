@@ -18,7 +18,8 @@ class TodoMain extends React.Component {
             foldState: false,
             foldMsg: "리스트 숨기기"
         };
-        this.todoKey = 0;
+        this.todoKey = 1234;
+        this.todoId = 1234;
         this.tempTodoList = [];
         this.updateInputChange = this.updateInputChange.bind(this);
         this.updateNewTodo = this.updateNewTodo.bind(this);
@@ -33,23 +34,20 @@ class TodoMain extends React.Component {
 
     // setState : 할일 추가 업데이트
     updateNewTodo() {
-        const JSXLiList =
-            <LiElement id={++this.todoKey} key={this.todoKey} passTodoToBeRemoved={this.updateRemovedTodo}>
-                {this.state.inputValue}
-            </LiElement>
-        this.tempTodoList.unshift(JSXLiList);
+        const tempObj = { title : this.state.inputValue, id : ++this.todoId, status : "todo"};        
+        this.tempTodoList.unshift(tempObj);
         this.setState({ todoList: this.tempTodoList });
     }
 
     // setState : 할일 삭제 업데이트
     updateRemovedTodo(event) {
-        const id = event.target.id;
+        const id = event.target.id; // id는 문자열
         this.tempTodoList = this.tempTodoList.reduce((accumulator, todo) => {
-            if (todo.key !== id) {
+            if (todo.id.toString() !== id) {
                 accumulator.push(todo);
             }
             return accumulator;
-        }, []);
+        }, []);        
         this.setState({ todoList: this.tempTodoList })
     }
 
@@ -63,21 +61,23 @@ class TodoMain extends React.Component {
     // 최초 렌더링 후 fetch 요청
     componentDidMount() {
         requestFetch(requestUrl).then(response => {
-            return response.map(todoValue =>
-                <LiElement id={++this.todoKey} key={this.todoKey} passTodoToBeRemoved={this.updateRemovedTodo}>
-                    {todoValue['title']}
-                </LiElement>)
-        }).then(responseArr => {
-            responseArr.forEach(v => this.tempTodoList.unshift(v));
-            this.setState({ todoList: this.tempTodoList });
+            response.forEach(v => this.tempTodoList.push(v))
+            this.setState({todoList : this.tempTodoList})
         }).catch(err => new Error(`error ${err}`))
     }
 
     render() {
+        const tempArr =  this.state.todoList.map(v => 
+            <LiElement id={v.id} key={v.id} passTodoToBeRemoved={this.updateRemovedTodo}>
+                 {v.title}
+            </LiElement>
+            // v.id가 숫자라도 key는 문자열로 변환된다. id는 여전히 숫자
+        );
+    
         return (
             <styles.StyledDivTodoMain>
                 <AddTodo className="addTodo" passInputChange={this.updateInputChange} passNewTodo={this.updateNewTodo} />
-                <TodoListView className="todoList" todoList={this.state.todoList}
+                <TodoListView className="todoList" todoList={tempArr}
                     passFoldState={this.updateFoldState} foldState={this.state.foldState} foldMsg={this.state.foldMsg} />
             </styles.StyledDivTodoMain>
         );

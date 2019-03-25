@@ -8,6 +8,7 @@ function LiElement(props) {
     function passTodoToBeRemoved(event) {
         props.passTodoToBeRemoved(event);
     }
+    
     return (
         <li>
             {props.children}
