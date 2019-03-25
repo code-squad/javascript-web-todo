@@ -20,8 +20,8 @@ const StyledTodoList = styled(TodoList)`
 
 async function fetchData(url) {
   try{
-    const fetchData = await fetch(url);
-    const jsonData = await fetchData.json();
+    const data = await fetch(url);
+    const jsonData = await data.json();
     return jsonData.body;
   } catch {
     throw new Error('http 요청 실패');
@@ -34,34 +34,34 @@ class TodoApp extends Component {
     this.addItem = this.addItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
     this.state = {
-      list: [],
+      todoList: [],
     }
-    this.id = 0;
+    this.todoId = 0;
   }
   componentDidMount(){
     const url = 'https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/todolist';
     fetchData(url).then(res => {
-      this.setState({ list: [...res] })
+      this.setState({ todoList: [...res] })
     })
   }
   addItem(title){
     if(this.state.list.some(v => v.title === title)) return;
     const newItem = {
       title: title,
-      id: this.id++,
+      todoId: this.id++,
       status: 'todo'
     }
     this.setState(({list}) => ({
-      list: [...list, newItem]
+      todoList: [...list, newItem]
     }))
   }
   removeItem(item){
     this.setState(({list}) => ({
-      list: list.filter(v => v.title !== item)
+      todoList: list.filter(v => v.title !== item)
     }))
   }
   render() {
-    const list = this.state.list;
+    const todoList = this.state.todoList;
     return(
       <StyledTodoContainer>
         <StyledTodoInput 
@@ -70,7 +70,7 @@ class TodoApp extends Component {
         <StyledTodoList 
           className={StyledTodoList}
           removeItem={this.removeItem}
-          list={list} />
+          list={todoList} />
       </StyledTodoContainer>
     )
   }

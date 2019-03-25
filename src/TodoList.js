@@ -32,7 +32,7 @@ export default class TodoList extends Component{
 		super(props);
 		this.toggleList = this.toggleList.bind(this);
 		this.removeItem = this.removeItem.bind(this);
-		this.state={ isOpend: true }
+		this.state={ bOpend: true }
 	}
 	componentDidMount(){
 		this.createList(this.props);
@@ -47,8 +47,8 @@ export default class TodoList extends Component{
 		return listItems;
 	}
 	toggleList(){
-		this.setState(({isOpend}) => ({
-			isOpend: isOpend? false: true
+		this.setState(({bOpend}) => ({
+			bOpend: bOpend? false: true
 		}));
 	}
 	removeItem(e){
@@ -57,7 +57,7 @@ export default class TodoList extends Component{
 	}
 	render(){
 		const listItems = this.createList(this.props);
-		let toggle = this.state.isOpend;
+		let toggle = this.state.bOpend;
 		return (
 			<div className={this.props.className}>
 				<StyledHeading2>해야할 일들:</StyledHeading2>
