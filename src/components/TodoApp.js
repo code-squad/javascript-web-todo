@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import TodoList from './TodoList';
 import TodoInput from './TodoInput';
-import { default as Url } from "./UrlList";
-import { default as Type} from "./Type";
-import { fetchData } from "./Helpers";
+import { default as Url } from "../util/UrlList";
+import { default as Type} from "../util/Type";
+import { fetchData } from "../util/Helpers";
 
-console.log(Url.todoList);
 const StyledTodoContainer = styled.div`
   margin: 10% auto 0;
   width: 80%;
