@@ -4,6 +4,7 @@ import { MakeTaskDom, MakeLoadingDom, MakeWarningDom } from './make-dom.js';
 import { getData, taskDataUrl } from './fetch-data.js';
 import Inputer from './inputer.js';
 import AddTask from './add-task.js';
+import RemoveTask from './remove-task.js';
 
 class App extends Component {
   constructor(props) {
@@ -46,28 +47,15 @@ class App extends Component {
     return;
   };
 
-  renderTaskDom = () => {
-    if (this.state.tasks === null)
-      return <MakeLoadingDom className="loading" />;
-    return <MakeTaskDom data={this.state.tasks} removeTask={this.removeTask} />;
-  };
+  // renderTaskDom = () => {
+  //   if (this.state.tasks === null)
+  //     return <MakeLoadingDom className="loading" />;
+  //   return <MakeTaskDom data={this.state.tasks} removeTask={this.removeTask} />;
+  // };
 
   handleChange = e => {
     this.setState({
       word: e.target.value,
-    });
-  };
-
-  removeTask = e => {
-    const tasks = this.state.tasks.slice();
-    let title = e.target.parentNode.innerText.split('\n')[0];
-    if (title === '제거') title = '';
-    const removedTask = tasks.filter(task => {
-      return !(task.title === title);
-    });
-
-    this.setState({
-      tasks: removedTask,
     });
   };
 
@@ -105,7 +93,13 @@ class App extends Component {
           <button className="todo-list-hide-button" onClick={this.hideTask}>
             접기
           </button>
-          <div className="todo-list">{this.renderTaskDom()}</div>
+          <div className="todo-list">
+            {this.state.tasks === null ? (
+              <MakeLoadingDom className="loading" />
+            ) : (
+              <MakeTaskDom state={this.state} initTask={this.initTask}/>
+            )}
+          </div>
         </div>
       </div>
     );

@@ -15,7 +15,6 @@ class AddTask extends Component {
       id: `${IDNumber}`,
       status: 'todo',
     });
-  
     this.props.initTask(tasks);
   };
 
