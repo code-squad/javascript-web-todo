@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import '../scss/app.css';
-import { MakeTaskDom, MakeLoadingDom, MakeWarningDom } from './make-dom.js';
+import { MakeTaskDom, MakeLoadingDom, MakeAlarmDom } from './make-dom.js';
 import { getData, taskDataUrl } from './fetch-data.js';
 import Inputer from './inputer.js';
 import AddTask from './add-task.js';
-import RemoveTask from './remove-task.js';
 
 class App extends Component {
   constructor(props) {
@@ -39,20 +38,6 @@ class App extends Component {
     });
   };
 
-  renderWarning = tasks => {
-    if (tasks === null)
-      return <div className="warning">잠시만 기다려주세요.</div>;
-    if (tasks.some(v => v.title === this.state.word))
-      return <MakeWarningDom className="warning" />;
-    return;
-  };
-
-  // renderTaskDom = () => {
-  //   if (this.state.tasks === null)
-  //     return <MakeLoadingDom className="loading" />;
-  //   return <MakeTaskDom data={this.state.tasks} removeTask={this.removeTask} />;
-  // };
-
   handleChange = e => {
     this.setState({
       word: e.target.value,
@@ -86,7 +71,7 @@ class App extends Component {
             initTask={this.initTask}
             className="add-todo-inputer-button"
           />
-          <div className="warning">{this.renderWarning(this.state.tasks)}</div>
+          <MakeAlarmDom className='alarm' state={this.state} />
         </div>
         <div className="todo-list-container">
           해야할 일들
