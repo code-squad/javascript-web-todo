@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../scss/app.css';
 import { MakeTaskDom, MakeLoadingDom, MakeWarningDom } from './make-dom.js';
-import { getData, taskDataUrl } from './fetchData.js'
+import { getData, taskDataUrl } from './fetch-data.js'
 
 class App extends Component {
   constructor(props) {
@@ -19,12 +19,17 @@ class App extends Component {
     taskData.then((res) => {
       this.loadTask(res)
     })
-    
   }
 
   loadTask(taskData) {
     this.setState({
       tasks: taskData
+    })
+  }
+
+  handleChangeWord(word) {
+    this.setState({
+      word: word 
     })
   }
 
@@ -97,7 +102,7 @@ class App extends Component {
     return (
       <div className="todo-app-conatiner">
         <div className="add-todo">
-          할일 입력:{' '}
+          할일 입력: 
           <input
             className="add-todo-inputer"
             value={this.state.word}
