@@ -18,7 +18,7 @@ const StyledTodoCounter = styled(TodoCounter)`
 
 const StyledTodoContainer = styled.div`
   position: relative;
-  margin: 10% auto 0;
+  margin: 100px auto 0;
   width: 80%;
 `;
 

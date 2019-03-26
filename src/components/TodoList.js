@@ -8,7 +8,7 @@ const StyledHeading2 = styled.h2`
     font-size: 15px;
 `;
 const StyledLi = styled.li`
-    padding: 5px 0;
+	padding: 5px 0;
 `;
 const StyledCloseBtn = styled.button`
     float: right;
