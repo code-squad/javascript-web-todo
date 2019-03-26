@@ -9,8 +9,8 @@ class Inputer extends Component {
   }
 
   handleEnterKeyPress = e => {
-    if(e.key === 'Enter') this.addTask()
-  }
+    if (e.key === 'Enter') this.addTask();
+  };
 
   handleChange = e => {
     this.props.handleChangeWord(e.target.value);
