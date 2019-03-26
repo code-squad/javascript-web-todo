@@ -10,16 +10,12 @@ import { AddTodoButton } from './App_AddTodo_AddTodoButton'
 class AddTodo extends React.Component {
     constructor(props) {
         super(props);
-        this.passInputChange = this.passInputChange.bind(this);
-        this.passNewTodo = this.passNewTodo.bind(this);
-    }
 
-    passInputChange(event) {
-        this.props.passInputChange(event);
-    }
+        this.passInputChange = event => 
+            this.props.passInputChange(event);
 
-    passNewTodo() {
-        this.props.passNewTodo();
+        this.passNewTodo = () => 
+            this.props.passNewTodo();
     }
 
     render() {

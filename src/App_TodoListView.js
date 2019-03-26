@@ -8,11 +8,8 @@ import { FoldButton } from './App_TodoListView_FoldButton'
 class TodoListView extends React.Component {
     constructor(props) {
         super(props);
-        this.handleClickFolded = this.handleClickFolded.bind(this);
-    }
-
-    handleClickFolded() {
-        this.props.passFoldState()
+        this.handleClickFolded = () =>
+            this.props.passFoldState()
     }
 
     render() {
@@ -21,7 +18,7 @@ class TodoListView extends React.Component {
                 <styles.StyledDiv>
                     <p>
                         해야 할 일들
-                        </p>
+                    </p>
                     <FoldButton handleClickFolded={this.handleClickFolded}>
                         {this.props.foldMsg}
                     </FoldButton>
@@ -32,7 +29,10 @@ class TodoListView extends React.Component {
                     <styles.StyledDivTodoList>
                         <ul>
                             {this.props.todoList.length > 0 ?
-                                this.props.todoList :
+                                <div>
+                                    {this.props.todoList}
+                                </div>
+                                :
                                 <li>현재 등록한 할일이 없습니다.</li>}
                         </ul>
                     </styles.StyledDivTodoList>
@@ -42,4 +42,4 @@ class TodoListView extends React.Component {
     }
 }
 
-export { TodoListView  }
+export { TodoListView }

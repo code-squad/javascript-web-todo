@@ -1,18 +1,20 @@
 import React from 'react';
 
 // 하위 컴포넌트 임포트
-import { DeleteTodoButton } from './App_TodoListView_DeleteTodoButton'
+import { RemoveTodoButton } from './App_TodoListView_RemoveTodoButton'
+import { DoneTodoButton } from './App_TodoListView_DoneTodoButton'
 
 // 할일 리스트 li 컴포넌트
 function LiElement(props) {
-    function passTodoToBeRemoved(event) {
-        props.passTodoToBeRemoved(event);
+    function updateTodoStatus(event) {
+        props.updateTodoStatus(event);   
     }
-    
+
     return (
         <li>
             {props.children}
-            <DeleteTodoButton id={props.id} passTodoToBeRemoved={passTodoToBeRemoved} />
+            <DoneTodoButton id={props.id} passTodoToBeDone={updateTodoStatus} />
+            <RemoveTodoButton id={props.id} passTodoToBeRemoved={updateTodoStatus} />
         </li>
     )
 }
