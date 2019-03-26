@@ -7,7 +7,7 @@ class FoldTask extends Component {
   }
 
   foldTask = e => {
-    this.props.handleBFolded()
+    this.props.handleBFolded();
   };
 
   render() {
