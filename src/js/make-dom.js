@@ -1,5 +1,6 @@
 import React from 'react';
 import RemoveTask from './remove-task.js';
+import ChangeStatusTask from './change-status-task.js'
 
 const MakeAlarmDom = props => {
   if(props.state.tasks === null) {
@@ -17,13 +18,21 @@ const MakeAlarmDom = props => {
   );
 };
 
-const MakeTaskDom = props => {
+const MakeTodoDom = props => {
   return (
     <div className="task">
       {props.state.tasks.map((v, i) => {
+        if(v.status === 'done') return (
+          <span></span>
+        )
         return (
           <li key={i} className="task-list">
             {v.title}
+            <ChangeStatusTask 
+              title={v.title}
+              initTask={props.initTask}
+              state={props.state}
+            />
             <RemoveTask
               title={v.title}
               initTask={props.initTask}
@@ -36,8 +45,35 @@ const MakeTaskDom = props => {
   );
 };
 
+const MakeDoneDom = props => {
+  return (
+    <div className="task">
+      {props.state.tasks.map((v, i) => {
+        if(v.status === 'todo') return (
+          <span></span>
+        )
+        return (
+          <li key={i} className="task-list">
+            {v.title}
+            <ChangeStatusTask 
+              title={v.title}
+              initTask={props.initTask}
+              state={props.state}
+            />
+            <RemoveTask
+              title={v.title}
+              initTask={props.initTask}
+              state={props.state}
+            />
+          </li>
+        )
+      })}
+    </div>
+  )
+}
+
 const MakeLoadingDom = props => {
   return <div className={props.className} />;
 };
 
-export { MakeTaskDom, MakeLoadingDom, MakeAlarmDom };
+export { MakeTodoDom, MakeDoneDom, MakeLoadingDom, MakeAlarmDom };

@@ -55,6 +55,18 @@ input {
   background-color: #3f85;
   padding: 1rem;
 }
+.todo-list-nav-button {
+  background-color: #3f82;
+  border: 1px solid #000;
+  border-radius: 1rem;
+  width: 2.5rem;
+  height: 1.2rem;
+  float: right;
+}
+.todo-list-nav-button:hover {
+  cursor: pointer;
+  background-color: #3f89;
+}
 .todo-list-hide-button {
   background-color: #3f82;
   border: 1px solid #000;

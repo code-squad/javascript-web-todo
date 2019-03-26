@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../scss/app.css';
-import { MakeTaskDom, MakeLoadingDom, MakeAlarmDom } from './make-dom.js';
+import { MakeTodoDom, MakeDoneDom, MakeLoadingDom, MakeAlarmDom } from './make-dom.js';
 import { getData, taskDataUrl } from './fetch-data.js';
 import Inputer from './inputer.js';
 import FoldTask from './fold-task.js';
@@ -14,6 +14,7 @@ class App extends Component {
       tasks: null,
       word: '',
       bFolded: true,
+      bTodo: true,
     };
   }
 
@@ -26,6 +27,7 @@ class App extends Component {
 
   initTask = taskData => {
     let idNum = this.state.IDNum;
+    console.log(taskData)
     this.setState({
       IDNum: idNum + 1,
       tasks: taskData,
@@ -45,6 +47,13 @@ class App extends Component {
       bFolded: !bFolded,
     });
   };
+
+  handleBTodo = e => {
+    let bTodo = this.state.bTodo;
+    this.setState({
+      bTodo: !bTodo,
+    })
+  }
 
   render() {
     let inputerClass = ['add-todo-inputer', 'add-todo-inputer-button']
@@ -71,11 +80,14 @@ class App extends Component {
             className="todo-list-hide-button"
             handleBFolded={this.handleBFolded}
           />
+          <button className='todo-list-nav-button' onClick={this.handleBTodo}>할일</button>
           <div className="todo-list">
             {this.state.tasks === null ? (
               <MakeLoadingDom className="loading" />
+            ) : this.state.bTodo ? (
+              <MakeTodoDom state={this.state} initTask={this.initTask} />
             ) : (
-              <MakeTaskDom state={this.state} initTask={this.initTask} />
+              <MakeDoneDom state={this.state} initTask={this.initTask} />
             )}
           </div>
         </div>
