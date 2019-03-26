@@ -9,22 +9,18 @@ class ChangeStatusTask extends Component {
 
   changeStatus = e => {
     const tasks = this.props.state.tasks.map(v => v);
-    const bTodo = this.props.state.bTodo
+    const bTodo = this.props.state.bTodo;
     let title = this.props.title;
-    
+
     const changedTask = tasks.map(task => {
-      if(task.title === title) {
-        if(bTodo) {
-          task.status = 'done'
-        } else {
-          task.status = 'todo'
-        }
-        return task
+      if (task.title === title) {
+        bTodo ? (task.status = 'done') : (task.status = 'todo');
+        return task;
       }
-      return task
+      return task;
     });
     this.props.initTask(changedTask);
-  }
+  };
 
   render() {
     return (
