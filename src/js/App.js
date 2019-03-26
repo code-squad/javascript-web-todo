@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import '../scss/app.css';
-import { MakeTodoDom, MakeDoneDom, MakeLoadingDom, MakeAlarmDom } from './make-dom.js';
+import {
+  MakeTodoDom,
+  MakeDoneDom,
+  MakeLoadingDom,
+  MakeAlarmDom,
+} from './make-dom.js';
 import { getData, taskDataUrl } from './fetch-data.js';
 import Inputer from './inputer.js';
 import FoldTask from './fold-task.js';
@@ -27,7 +32,7 @@ class App extends Component {
 
   initTask = taskData => {
     let idNum = this.state.IDNum;
-    console.log(taskData)
+    console.log(taskData);
     this.setState({
       IDNum: idNum + 1,
       tasks: taskData,
@@ -52,11 +57,11 @@ class App extends Component {
     let bTodo = this.state.bTodo;
     this.setState({
       bTodo: !bTodo,
-    })
-  }
+    });
+  };
 
   render() {
-    let inputerClass = ['add-todo-inputer', 'add-todo-inputer-button']
+    let inputerClass = ['add-todo-inputer', 'add-todo-inputer-button'];
     let hidingClass = ['todo-list-container'];
     if (!this.state.bFolded) {
       hidingClass = ['hide', 'todo-list-container'];
@@ -80,7 +85,9 @@ class App extends Component {
             className="todo-list-hide-button"
             handleBFolded={this.handleBFolded}
           />
-          <button className='todo-list-nav-button' onClick={this.handleBTodo}>{this.state.bTodo ? '할 일':'한 일'}</button>
+          <button className="todo-list-nav-button" onClick={this.handleBTodo}>
+            {this.state.bTodo ? '할 일' : '한 일'}
+          </button>
           <div className="todo-list">
             {this.state.tasks === null ? (
               <MakeLoadingDom className="loading" />
