@@ -2,11 +2,22 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import TodoList from './TodoList';
 import TodoInput from './TodoInput';
+import TodoCounter from "./TodoCounter";
 import { default as Url } from "../util/UrlList";
 import { default as Type} from "../util/Type";
 import { fetchData } from "../util/Helpers";
 
+const StyledTodoCounter = styled(TodoCounter)`
+	display: flex;
+  position: absolute;
+  right: 0px;
+  transform: translateY(-100%);
+	padding: 20px;
+	border-radius: 50%;
+`;
+
 const StyledTodoContainer = styled.div`
+  position: relative;
   margin: 10% auto 0;
   width: 80%;
 `;
@@ -48,21 +59,26 @@ class TodoApp extends Component {
       todoList: [...todoList, newItem]
     }))
   }
-  removeItem = item => {
+  completeTodo = item => {
     this.setState(({todoList}) => ({
-      todoList: todoList.filter(v => v.title !== item)
+      todoList: todoList.map(o => {
+        let newObj = {...o};
+        if(o.title === item) newObj['status'] = 'done';
+        return newObj;
+      })
     }))
   }
   render() {
     const todoList = this.state.todoList;
     return(
       <StyledTodoContainer>
+        <StyledTodoCounter todoList={this.state.todoList} className={StyledTodoCounter}/>
         <StyledTodoInput 
           className={StyledTodoInput}
           addItem={this.addItem} />
         <StyledTodoList 
           className={StyledTodoList}
-          removeItem={this.removeItem}
+          completeTodo={this.completeTodo}
           todoList={todoList}
           Type={Type} />
       </StyledTodoContainer>
