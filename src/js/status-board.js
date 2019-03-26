@@ -16,10 +16,14 @@ class StatusBoard extends Component {
     return (
       <div className="status-board-container">
         <div className={this.props.className}>
-          {this.getTaskNum('todo', this.props.state.tasks)}
+          <span className="status-board-content">
+            할 일 : {this.getTaskNum('todo', this.props.state.tasks)}
+          </span>
         </div>
         <div className={this.props.className}>
-          {this.getTaskNum('done', this.props.state.tasks)}
+          <span className="status-board-content">
+            한 일 : {this.getTaskNum('done', this.props.state.tasks)}
+          </span>
         </div>
       </div>
     );

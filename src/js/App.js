@@ -70,7 +70,7 @@ class App extends Component {
 
     return (
       <div className="todo-app-conatiner">
-        <StatusBoard state={this.state} className='statue-board' />
+        <StatusBoard state={this.state} className='status-board' />
         <div className="add-todo">
           할일 입력:
           <Inputer
