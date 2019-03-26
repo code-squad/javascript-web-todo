@@ -9,6 +9,7 @@ import {
 import { getData, taskDataUrl } from './fetch-data.js';
 import Inputer from './inputer.js';
 import FoldTask from './fold-task.js';
+import StatusBoard from "./status-board.js";
 
 class App extends Component {
   constructor(props) {
@@ -69,6 +70,7 @@ class App extends Component {
 
     return (
       <div className="todo-app-conatiner">
+        <StatusBoard state={this.state} className='statue-board' />
         <div className="add-todo">
           할일 입력:
           <Inputer
