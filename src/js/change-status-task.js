@@ -19,7 +19,6 @@ class ChangeStatusTask extends Component {
         } else {
           task.status = 'todo'
         }
-        console.log(task);
         return task
       }
       return task
@@ -34,7 +33,7 @@ class ChangeStatusTask extends Component {
         title={this.props.title}
         onClick={this.changeStatus}
       >
-        {this.props.state.bTodo ? '할일로' : '한일로'}
+        {this.props.state.bTodo ? '->' : '<-'}
       </button>
     );
   }

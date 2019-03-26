@@ -23,7 +23,7 @@ const MakeTodoDom = props => {
     <div className="task">
       {props.state.tasks.map((v, i) => {
         if(v.status === 'done') return (
-          <span></span>
+          <div key={i}></div>
         )
         return (
           <li key={i} className="task-list">
@@ -50,7 +50,7 @@ const MakeDoneDom = props => {
     <div className="task">
       {props.state.tasks.map((v, i) => {
         if(v.status === 'todo') return (
-          <span></span>
+          <div key={i}></div>
         )
         return (
           <li key={i} className="task-list">

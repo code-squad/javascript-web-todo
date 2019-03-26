@@ -80,7 +80,7 @@ class App extends Component {
             className="todo-list-hide-button"
             handleBFolded={this.handleBFolded}
           />
-          <button className='todo-list-nav-button' onClick={this.handleBTodo}>할일</button>
+          <button className='todo-list-nav-button' onClick={this.handleBTodo}>{this.state.bTodo ? '할 일':'한 일'}</button>
           <div className="todo-list">
             {this.state.tasks === null ? (
               <MakeLoadingDom className="loading" />
