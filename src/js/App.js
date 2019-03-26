@@ -20,7 +20,7 @@ class App extends Component {
   componentDidMount() {
     const taskData = getData(taskDataUrl);
     taskData.then(res => {
-      this.initTask(res);
+      this.initTask(res.tasks);
     });
   }
 
