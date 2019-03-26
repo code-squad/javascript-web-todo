@@ -30,7 +30,7 @@ class Inputer extends Component {
 
   render() {
     return (
-      <div>
+      <span>
         <input
           className={this.props.className[0]}
           value={this.props.state.word}
@@ -40,7 +40,7 @@ class Inputer extends Component {
         <button className={this.props.className[1]} onClick={this.addTask}>
           입력
         </button>
-      </div>
+      </span>
     );
   }
 }
