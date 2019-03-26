@@ -3,7 +3,6 @@ import '../scss/app.css';
 import { MakeTaskDom, MakeLoadingDom, MakeAlarmDom } from './make-dom.js';
 import { getData, taskDataUrl } from './fetch-data.js';
 import Inputer from './inputer.js';
-import AddTask from './add-task.js';
 import FoldTask from './fold-task.js';
 
 class App extends Component {
@@ -48,24 +47,21 @@ class App extends Component {
   };
 
   render() {
+    let inputerClass = ['add-todo-inputer', 'add-todo-inputer-button']
     let hidingClass = ['todo-list-container'];
     if (!this.state.bFolded) {
       hidingClass = ['hide', 'todo-list-container'];
     }
+
     return (
       <div className="todo-app-conatiner">
         <div className="add-todo">
           할일 입력:
           <Inputer
-            word={this.state.word}
-            handleChangeWord={this.handleChangeWord}
-            className="add-todo-inputer"
-            onKeyPress={this.handleKeyPress}
-          />
-          <AddTask
             state={this.state}
             initTask={this.initTask}
-            className="add-todo-inputer-button"
+            handleChangeWord={this.handleChangeWord}
+            className={inputerClass}
           />
           <MakeAlarmDom className="alarm" state={this.state} />
         </div>
