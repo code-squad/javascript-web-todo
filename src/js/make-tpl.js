@@ -2,7 +2,7 @@ import React from 'react';
 import RemoveTask from './remove-task.js';
 import ChangeStatusTask from './change-status-task.js';
 
-const MakeAlarmDom = props => {
+const MakeAlarmTpl = props => {
   if (props.state.tasks === null) {
     return <div className={props.className}>잠시만 기다려주세요.</div>;
   }
@@ -14,7 +14,7 @@ const MakeAlarmDom = props => {
   return <div className={props.className} />;
 };
 
-const MakeTodoDom = props => {
+const MakeTodoTpl = props => {
   return (
     <div className="task">
       {props.state.tasks.map((v, i) => {
@@ -39,7 +39,7 @@ const MakeTodoDom = props => {
   );
 };
 
-const MakeDoneDom = props => {
+const MakeDoneTpl = props => {
   return (
     <div className="task">
       {props.state.tasks.map((v, i) => {
@@ -64,8 +64,8 @@ const MakeDoneDom = props => {
   );
 };
 
-const MakeLoadingDom = props => {
+const MakeLoadingTpl = props => {
   return <div className={props.className} />;
 };
 
-export { MakeTodoDom, MakeDoneDom, MakeLoadingDom, MakeAlarmDom };
+export { MakeTodoTpl, MakeDoneTpl, MakeLoadingTpl, MakeAlarmTpl };

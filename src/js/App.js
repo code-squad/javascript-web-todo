@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import '../scss/app.css';
 import {
-  MakeTodoDom,
-  MakeDoneDom,
-  MakeLoadingDom,
-  MakeAlarmDom,
-} from './make-dom.js';
+  MakeTodoTpl,
+  MakeDoneTpl,
+  MakeLoadingTpl,
+  MakeAlarmTpl,
+} from './make-tpl.js';
 import { getData, taskDataUrl } from './fetch-data.js';
 import Inputer from './inputer.js';
 import FoldTask from './fold-task.js';
@@ -79,7 +79,7 @@ class App extends Component {
             handleChangeWord={this.handleChangeWord}
             className={inputerClass}
           />
-          <MakeAlarmDom className="alarm" state={this.state} />
+          <MakeAlarmTpl className="alarm" state={this.state} />
         </div>
         <div className={hidingClass.join(' ')}>
           해야할 일들
@@ -92,11 +92,11 @@ class App extends Component {
           </button>
           <div className="todo-list">
             {this.state.tasks === null ? (
-              <MakeLoadingDom className="loading" />
+              <MakeLoadingTpl className="loading" />
             ) : this.state.bTodo ? (
-              <MakeTodoDom state={this.state} initTask={this.initTask} />
+              <MakeTodoTpl state={this.state} initTask={this.initTask} />
             ) : (
-              <MakeDoneDom state={this.state} initTask={this.initTask} />
+              <MakeDoneTpl state={this.state} initTask={this.initTask} />
             )}
           </div>
         </div>
