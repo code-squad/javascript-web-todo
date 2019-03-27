@@ -33,7 +33,7 @@ class App extends Component {
 
   initTask = taskData => {
     let idNum = this.state.IDNum;
-    console.log(taskData);
+    
     this.setState({
       IDNum: idNum + 1,
       tasks: taskData,
@@ -70,7 +70,7 @@ class App extends Component {
 
     return (
       <div className="todo-app-conatiner">
-        <StatusBoard state={this.state} className='status-board' />
+        <StatusBoard tasks={this.state.tasks} />
         <div className="add-todo">
           할일 입력:
           <Inputer
