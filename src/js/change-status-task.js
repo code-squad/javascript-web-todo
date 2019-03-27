@@ -8,8 +8,8 @@ class ChangeStatusTask extends Component {
   }
 
   changeStatus = e => {
-    const tasks = this.props.state.tasks.map(v => v);
-    const bTodo = this.props.state.bTodo;
+    const tasks = this.props.taskState.tasks.map(v => v);
+    const bTodo = this.props.taskState.bTodo;
     let title = this.props.title;
 
     const changedTask = tasks.map(task => {
@@ -29,7 +29,7 @@ class ChangeStatusTask extends Component {
         title={this.props.title}
         onClick={this.changeStatus}
       >
-        {this.props.state.bTodo ? '->' : '<-'}
+        {this.props.taskState.bTodo ? '->' : '<-'}
       </button>
     );
   }
