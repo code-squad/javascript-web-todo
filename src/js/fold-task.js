@@ -1,17 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class FoldTask extends Component {
-  foldTask = e => {
-    this.props.handleBFolded();
-  };
-
-  render() {
-    return (
-      <button className={this.props.className} onClick={this.foldTask}>
-        접기
-      </button>
-    );
-  }
-}
-
+const FoldTask = props => {
+  return (
+    <button className={props.className} onClick={props.handleBFolded}>
+      접기
+    </button>
+  );
+};
 export default FoldTask;
