@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
+
 const StyledHeading2 = styled.h2`
     display: inline-block;
     margin: 0;
     font-size: 15px;
 `;
 const StyledLi = styled.li`
-    padding: 5px 0;
+	padding: 5px 0;
 `;
 const StyledCloseBtn = styled.button`
     float: right;
@@ -30,34 +31,34 @@ const StyledRemoveBtn = styled.button`
 export default class TodoList extends Component{
 	constructor(props){
 		super(props);
-		this.toggleList = this.toggleList.bind(this);
-		this.removeItem = this.removeItem.bind(this);
-		this.state={ isOpend: true }
+		this.state={ bOpend: true }
 	}
 	componentDidMount(){
 		this.createList(this.props);
 	}
-	createList({list}){
-		if(toString.call(list) !== '[object Array]') return;
-		const listItems = list.map(item => 
-			<StyledLi key={item.id} onClick={this.removeItem}>
+	createList({todoList, Type}){
+		if(!Type.isArray(todoList)) return;
+		const listItems = todoList.map(item => {
+			if(item.status === 'done') return null;
+			return <StyledLi key={item.id} onClick={this.completeTodo}>
 				{item.title} <StyledRemoveBtn type="button">X</StyledRemoveBtn>
 			</StyledLi>
+			}
 		)
 		return listItems;
 	}
-	toggleList(){
-		this.setState(({isOpend}) => ({
-			isOpend: isOpend? false: true
+	toggleList = () => {
+		this.setState(({bOpend}) => ({
+			bOpend: !bOpend
 		}));
 	}
-	removeItem(e){
+	completeTodo = e =>{
 		if(e.target.type !== 'button') return;
-		this.props.removeItem(e.currentTarget.firstChild.nodeValue);
+		this.props.completeTodo(e.currentTarget.firstChild.nodeValue);
 	}
 	render(){
 		const listItems = this.createList(this.props);
-		let toggle = this.state.isOpend;
+		let toggle = this.state.bOpend;
 		return (
 			<div className={this.props.className}>
 				<StyledHeading2>해야할 일들:</StyledHeading2>
