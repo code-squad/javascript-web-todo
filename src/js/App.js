@@ -4,12 +4,11 @@ import {
   MakeTodoTpl,
   MakeDoneTpl,
   MakeLoadingTpl,
-  MakeAlarmTpl,
+  MakeAddTodoTpl,
 } from './make-tpl.js';
 import { getData, taskDataUrl } from './fetch-data.js';
-import Inputer from './inputer.js';
 import FoldTask from './fold-task.js';
-import StatusBoard from "./status-board.js";
+import StatusBoard from './status-board.js';
 
 class App extends Component {
   constructor(props) {
@@ -33,7 +32,7 @@ class App extends Component {
 
   initTask = taskData => {
     let idNum = this.state.IDNum;
-    
+
     this.setState({
       IDNum: idNum + 1,
       tasks: taskData,
@@ -61,8 +60,7 @@ class App extends Component {
     });
   };
 
-  render() {
-    let inputerClass = ['add-todo-inputer', 'add-todo-inputer-button'];
+  render() { 
     let hidingClass = ['todo-list-container'];
     if (!this.state.bFolded) {
       hidingClass = ['hide', 'todo-list-container'];
@@ -70,16 +68,11 @@ class App extends Component {
     return (
       <div className="todo-app-conatiner">
         <StatusBoard tasks={[...this.state.tasks]} />
-        <div className="add-todo">
-          할일 입력:
-          <Inputer
-            state={this.state}
-            initTask={this.initTask}
-            handleChangeWord={this.handleChangeWord}
-            className={inputerClass}
-          />
-          <MakeAlarmTpl className="alarm" state={this.state} />
-        </div>
+        <MakeAddTodoTpl
+          taskState={this.state}
+          initTask={this.initTask}
+          handleChangeWord={this.handleChangeWord}
+        />
         <div className={hidingClass.join(' ')}>
           해야할 일들
           <FoldTask
@@ -93,9 +86,9 @@ class App extends Component {
             {this.state.tasks === null ? (
               <MakeLoadingTpl className="loading" />
             ) : this.state.bTodo ? (
-              <MakeTodoTpl state={this.state} initTask={this.initTask} />
+              <MakeTodoTpl taskState={this.state} initTask={this.initTask} />
             ) : (
-              <MakeDoneTpl state={this.state} initTask={this.initTask} />
+              <MakeDoneTpl taskState={this.state} initTask={this.initTask} />
             )}
           </div>
         </div>

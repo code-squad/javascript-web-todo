@@ -17,11 +17,11 @@ class Inputer extends Component {
   };
 
   addTask = e => {
-    const tasks = this.props.state.tasks.map(v => v);
-    let IDNumber = this.props.state.IDNum;
-    if (tasks.some(v => v.title === this.props.state.word)) return;
+    const tasks = this.props.taskState.tasks.map(v => v);
+    let IDNumber = this.props.taskState.IDNum;
+    if (tasks.some(v => v.title === this.props.taskState.word)) return;
     tasks.push({
-      title: `${this.props.state.word}`,
+      title: `${this.props.taskState.word}`,
       id: `${IDNumber}`,
       status: 'todo',
     });
@@ -32,12 +32,12 @@ class Inputer extends Component {
     return (
       <span>
         <input
-          className={this.props.className[0]}
-          value={this.props.state.word}
+          className='add-todo-inputer'
+          value={this.props.taskState.word}
           onChange={this.handleChange}
           onKeyPress={this.handleEnterKeyPress}
         />
-        <button className={this.props.className[1]} onClick={this.addTask}>
+        <button className='add-todo-inputer-button' onClick={this.addTask}>
           입력
         </button>
       </span>
