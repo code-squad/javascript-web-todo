@@ -1,5 +1,5 @@
 import React from 'react';
-import { styles } from './styles'
+import { styles } from '../styles/styles'
 
 // InputAddTodo 컴포넌트
 function InputAddTodo(props) {

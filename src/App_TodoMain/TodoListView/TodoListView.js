@@ -1,8 +1,8 @@
 import React from 'react';
-import { styles } from './styles'
+import { styles } from '../styles/styles'
 
 // 하위 컴포넌트 임포트
-import { FoldButton } from './App_TodoListView_FoldButton'
+import { FoldButton } from './FoldButton'
 
 // TodoList View 컴포넌트
 class TodoListView extends React.Component {

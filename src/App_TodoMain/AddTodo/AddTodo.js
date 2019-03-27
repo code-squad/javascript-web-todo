@@ -1,10 +1,10 @@
 import React from 'react';
 import styled, { css } from 'styled-components'
-import { styles } from './styles'
+import { styles } from '../styles/styles'
 
 // 하위 컴포넌트 임포트
-import { InputAddTodo } from './App_AddTodo_InputAddTodo'
-import { AddTodoButton } from './App_AddTodo_AddTodoButton'
+import { InputAddTodo } from './InputAddTodo'
+import { AddTodoButton } from './AddTodoButton'
 
 // AddTodo 컴포넌트
 class AddTodo extends React.Component {

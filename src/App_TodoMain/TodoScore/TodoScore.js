@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components'
-import { styles } from './styles'
+import { styles } from '../styles/styles'
 
 function TodoScore(props) {
 
@@ -27,9 +27,9 @@ function TodoScore(props) {
 
     return (
         <ScoreIndicatorDiv>
-            todo <CircleDiv type="todo">{props.todoNumber}</CircleDiv>
-            done <CircleDiv type="done">{props.doneTodoNumber}</CircleDiv>
-            removed <CircleDiv type="removed">{props.removedTodoNumber}</CircleDiv>
+            todo <CircleDiv type="todo">{props.todoScore}</CircleDiv>
+            done <CircleDiv type="done">{props.doneScore}</CircleDiv>
+            removed <CircleDiv type="removed">{props.removedScore}</CircleDiv>
         </ScoreIndicatorDiv>
     );
 }

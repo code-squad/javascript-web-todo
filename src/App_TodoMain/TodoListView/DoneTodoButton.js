@@ -1,5 +1,5 @@
 import React from 'react';
-import { styles } from './styles'
+import { styles } from '../styles/styles'
 
 // 완료 버튼 컴포넌트
 function DoneTodoButton(props) {

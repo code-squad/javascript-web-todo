@@ -1,6 +1,5 @@
 import React from 'react';
-import { styles } from './styles'
-import { TodoMain } from './App_TodoMain'
+import { TodoMain } from './App_TodoMain/TodoMain'
 
 // TodoApp root 컴포넌트 
 

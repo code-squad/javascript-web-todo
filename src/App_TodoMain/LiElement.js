@@ -1,8 +1,8 @@
 import React from 'react';
 
 // 하위 컴포넌트 임포트
-import { RemoveTodoButton } from './App_TodoListView_RemoveTodoButton'
-import { DoneTodoButton } from './App_TodoListView_DoneTodoButton'
+import { RemoveTodoButton } from './TodoListView/RemoveTodoButton'
+import { DoneTodoButton } from './TodoListView/DoneTodoButton'
 
 // 할일 리스트 li 컴포넌트
 function LiElement(props) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components'
-import { styles } from './styles'
+import { styles } from '../styles/styles'
 
 // 접기 버튼 컴포넌트
 const FoldButton = function (props) {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { styles } from './styles'
+import { styles } from '../styles/styles'
 
 // 등록 버튼 컴포넌트
 const AddTodoButton = function (props) {
