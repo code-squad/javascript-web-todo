@@ -17,7 +17,7 @@ class Inputer extends Component {
   };
 
   addTask = e => {
-    const tasks = this.props.taskState.tasks.map(v => v);
+    const tasks = [...this.props.taskState.tasks]
     let IDNumber = this.props.taskState.IDNum;
     if (tasks.some(v => v.title === this.props.taskState.word)) return;
     tasks.push({

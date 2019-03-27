@@ -7,7 +7,7 @@ class RemoveTask extends Component {
   }
 
   removeTask = e => {
-    const tasks = this.props.taskState.tasks.map(v => v);
+    const tasks = [...this.props.taskState.tasks]
     let title = this.props.title;
     const removedTask = tasks.filter(task => {
       return !(task.title === title);

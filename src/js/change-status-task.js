@@ -8,7 +8,7 @@ class ChangeStatusTask extends Component {
   }
 
   changeStatus = e => {
-    const tasks = this.props.taskState.tasks.map(v => v);
+    const tasks = [...this.props.taskState.tasks]
     const bTodo = this.props.taskState.bTodo;
     let title = this.props.title;
 
