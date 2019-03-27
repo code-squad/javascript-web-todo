@@ -3,12 +3,10 @@ import React, { Component } from 'react';
 class StatusBoard extends Component {
   getTaskNum(status, tasks) {
     if (tasks === null) return;
-    let statusNum = 0;
-
-    tasks.forEach(v => {
-      if (v.status === status) statusNum++;
+    const filterdTask = tasks.filter(v => {
+      return (v.status === status)
     });
-    return statusNum;
+    return filterdTask.length;
   }
 
   render() {
