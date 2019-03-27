@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 
 class RemoveTask extends Component {
-  constructor(props) {
-    super(props);
-    this.removeTask = this.removeTask;
-  }
-
   removeTask = e => {
     const tasks = [...this.props.taskState.tasks]
     let title = this.props.title;

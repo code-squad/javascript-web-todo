@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 
 class FoldTask extends Component {
-  constructor(props) {
-    super(props);
-    this.foldTask = this.foldTask;
-  }
-
   foldTask = e => {
     this.props.handleBFolded();
   };

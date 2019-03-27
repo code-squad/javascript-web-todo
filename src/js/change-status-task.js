@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 
 class ChangeStatusTask extends Component {
-  constructor(props) {
-    super(props);
-    this.doneTask = this.doneTask;
-    this.todoTask = this.todoTask;
-  }
-
   changeStatus = e => {
     const tasks = [...this.props.taskState.tasks]
     const bTodo = this.props.taskState.bTodo;

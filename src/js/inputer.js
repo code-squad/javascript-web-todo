@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
 
 class Inputer extends Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange;
-    this.handleEnterKeyPress = this.handleEnterKeyPress;
-    this.addTask = this.addTask;
-  }
-
   handleEnterKeyPress = e => {
     if (e.key === 'Enter') this.addTask();
   };
