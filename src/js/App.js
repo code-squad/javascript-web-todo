@@ -17,7 +17,7 @@ class App extends Component {
 
     this.state = {
       IDNum: 0,
-      tasks: null,
+      tasks: [],
       word: '',
       bFolded: true,
       bTodo: true,
@@ -67,10 +67,9 @@ class App extends Component {
     if (!this.state.bFolded) {
       hidingClass = ['hide', 'todo-list-container'];
     }
-
     return (
       <div className="todo-app-conatiner">
-        <StatusBoard tasks={this.state.tasks} />
+        <StatusBoard tasks={[...this.state.tasks]} />
         <div className="add-todo">
           할일 입력:
           <Inputer
