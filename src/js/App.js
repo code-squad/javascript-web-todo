@@ -18,7 +18,6 @@ class App extends Component {
       tasks: [],
       word: '',
       bFolded: true,
-      bTodo: true,
       bLoading: true,
     };
   }
@@ -54,14 +53,6 @@ class App extends Component {
     });
   };
 
-  handleBTodo = e => {
-    let bTodo = this.state.bTodo;
-    
-    this.setState({
-      bTodo: !bTodo,
-    });
-  };
-
   render() {
     return (
       <div className="todo-app-conatiner">
@@ -74,7 +65,6 @@ class App extends Component {
         <TodoListContainerTpl
           taskState={this.state}
           handleBFolded={this.handleBFolded}
-          handleBTodo={this.handleBTodo}
           initTask={this.initTask}
         />
       </div>
