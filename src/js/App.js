@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import '../scss/app.css';
-import { MakeTaskDom, MakeLoadingDom, MakeWarningDom } from './make-dom.js';
+import { MakeAddTodoTpl, MakeTodoListContainerTpl } from './make-tpl.js';
+import { getData, taskDataUrl } from './fetch-data.js';
+import StatusBoard from './status-board.js';
 
 class App extends Component {
   constructor(props) {
@@ -8,119 +10,65 @@ class App extends Component {
 
     this.state = {
       IDNum: 0,
-      tasks: null,
+      tasks: [],
       word: '',
+      bFolded: true,
+      bTodo: true,
     };
   }
 
   componentDidMount() {
-    this.getData('https://javascript-web-todo-server.herokuapp.com/');
+    const taskData = getData(taskDataUrl);
+    taskData.then(res => {
+      this.initTask(res.tasks);
+    });
   }
 
-  async getData(dataUrl) {
-    try {
-      const fetchedRes = await fetch(dataUrl);
-      const jsonData = await fetchedRes.json();
-      this.handleData(jsonData);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  handleData = jsonData => {
-    this.setState({
-      tasks: jsonData,
-    });
-  };
-
-  renderWarning = tasks => {
-    if (tasks === null)
-      return <div className="warning">잠시만 기다려주세요.</div>;
-    if (tasks.some(v => v.title === this.state.word))
-      return <MakeWarningDom className="warning" />;
-    return;
-  };
-
-  renderTaskDom = () => {
-    if (this.state.tasks === null)
-      return <MakeLoadingDom className="loading" />;
-    return <MakeTaskDom data={this.state.tasks} removeTask={this.removeTask} />;
-  };
-
-  handleKeyPress = e => {
-    if (e.key === 'Enter') this.addTask(e);
-  };
-
-  handleChange = e => {
-    this.setState({
-      word: e.target.value,
-    });
-  };
-
-  addTask = e => {
-    const tasks = this.state.tasks.slice();
-    let IDNumber = this.state.IDNum;
-    if (tasks.some(v => v.title === this.state.word)) return;
-    tasks.push({
-      title: `${this.state.word}`,
-      id: `${IDNumber}`,
-      status: 'todo',
-    });
+  initTask = taskData => {
+    let idNum = this.state.IDNum;
 
     this.setState({
+      IDNum: idNum + 1,
+      tasks: taskData,
       word: '',
-      tasks: tasks,
-      IDNum: IDNumber + 1,
     });
   };
 
-  removeTask = e => {
-    const tasks = this.state.tasks.slice();
-    let title = e.target.parentNode.innerText.split('\n')[0];
-    if(title === '제거') title = ''
-    const removedTask = tasks.filter(task => {
-      return !(task.title === title);
-    });
-
+  handleChangeWord = word => {
     this.setState({
-      tasks: removedTask,
+      word: word,
     });
   };
 
-  hideTask = e => {
-    const btnDom = e.target;
-    if (btnDom.innerText === '접기') {
-      btnDom.innerText = '열기';
-      btnDom.parentNode.classList.add('hide');
-    } else {
-      btnDom.innerText = '접기';
-      btnDom.parentNode.classList.remove('hide');
-    }
+  handleBFolded = e => {
+    let bFolded = this.state.bFolded;
+    this.setState({
+      bFolded: !bFolded,
+    });
+  };
+
+  handleBTodo = e => {
+    let bTodo = this.state.bTodo;
+    this.setState({
+      bTodo: !bTodo,
+    });
   };
 
   render() {
     return (
       <div className="todo-app-conatiner">
-        <div className="add-todo">
-          할일 입력:{' '}
-          <input
-            className="add-todo-inputer"
-            value={this.state.word}
-            onChange={this.handleChange}
-            onKeyPress={this.handleKeyPress}
-          />
-          <button className="add-todo-inputer-button" onClick={this.addTask}>
-            입력
-          </button>
-          <div className="warning">{this.renderWarning(this.state.tasks)}</div>
-        </div>
-        <div className="todo-list-container">
-          해야할 일들
-          <button className="todo-list-hide-button" onClick={this.hideTask}>
-            접기
-          </button>
-          <div className="todo-list">{this.renderTaskDom()}</div>
-        </div>
+        <StatusBoard tasks={[...this.state.tasks]} />
+        <MakeAddTodoTpl
+          taskState={this.state}
+          initTask={this.initTask}
+          handleChangeWord={this.handleChangeWord}
+        />
+        <MakeTodoListContainerTpl
+          taskState={this.state}
+          handleBFolded={this.handleBFolded}
+          handleBTodo={this.handleBTodo}
+          initTask={this.initTask}
+        />
       </div>
     );
   }
