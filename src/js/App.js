@@ -19,6 +19,7 @@ class App extends Component {
       word: '',
       bFolded: true,
       bLoading: true,
+      bTodo: true,
     };
   }
 
@@ -53,6 +54,19 @@ class App extends Component {
     });
   };
 
+  handleBTodoToTrue = e => {
+    this.setState({
+      bTodo: true
+    })
+  }
+
+  handleBTodoToFalse = e => {
+    console.log('faslse')
+    this.setState({
+      bTodo: false
+    })
+  }
+
   render() {
     return (
       <div className="todo-app-conatiner">
@@ -66,6 +80,8 @@ class App extends Component {
           taskState={this.state}
           handleBFolded={this.handleBFolded}
           initTask={this.initTask}
+          handleBTodoToTrue={this.handleBTodoToTrue}
+          handleBTodoToFalse={this.handleBTodoToFalse}
         />
       </div>
     );

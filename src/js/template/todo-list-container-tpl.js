@@ -20,15 +20,16 @@ const TodoListContainerTpl = props => {
 
   return (
     <div className={hidingClass.join(' ')}>
-      해야할 일들
+      {props.taskState.bTodo ? '해야할 일들' : '한 일들'}
       <FoldBtnTpl
         className="todo-list-hide-button"
         handleBFolded={props.handleBFolded}
       />
       <Router>
         <NavBtnTpl
-          handleBTodo={props.handleBTodo}
           taskState={props.taskState}
+          handleBTodoToTrue={props.handleBTodoToTrue}
+          handleBTodoToFalse={props.handleBTodoToFalse}
         />
         <div className="todo-list">
           {props.taskState.bLoading === true ? (
