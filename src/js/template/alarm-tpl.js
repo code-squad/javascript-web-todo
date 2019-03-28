@@ -1,7 +1,7 @@
 import React from 'react';
 
 const AlarmTpl = props => {
-  if (props.taskState.tasks === null) {
+  if (props.taskState.bLoading === true) {
     return <div className="alarm">잠시만 기다려주세요.</div>;
   }
   if (props.taskState.tasks.some(v => v.title === props.taskState.word)) {

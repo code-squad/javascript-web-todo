@@ -19,6 +19,7 @@ class App extends Component {
       word: '',
       bFolded: true,
       bTodo: true,
+      bLoading: true,
     };
   }
 
@@ -36,6 +37,7 @@ class App extends Component {
       IDNum: idNum + 1,
       tasks: taskData,
       word: '',
+      bLoading: false,
     });
   };
 

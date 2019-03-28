@@ -22,7 +22,7 @@ const TodoListContainerTpl = props => {
         taskState={props.taskState}
       />
       <div className="todo-list">
-        {props.taskState.tasks === null ? (
+        {props.taskState.bLoading === true ? (
           <LoadingTpl />
         ) : props.taskState.bTodo ? (
           <TodoListTpl
