@@ -5,6 +5,7 @@
   "dependencies": {
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-router-dom": "latest",
     "react-scripts": "2.1.8",
     "sass": "^1.17.3"
   },
