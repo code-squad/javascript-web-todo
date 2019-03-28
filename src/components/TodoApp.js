@@ -45,7 +45,7 @@ class TodoApp extends Component {
   }
   componentDidMount(){
     fetchData(this.todoUrl).then(res => {
-      this.setState({ todoList: [...res] })
+      this.setState({ todoList: [...res.body] })
     })
   }
   addItem = title => {
