@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import TodoList from './TodoList';
 import TodoInput from './TodoInput';
 import TodoCounter from "./TodoCounter";
+import TodoTabs from './TodoTabs';
 import { default as Url } from "../util/UrlList";
 import { default as Type} from "../util/Type";
 import { fetchData } from "../util/Helpers";
+
+const StyledTodoTabs = styled(TodoTabs)`
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  justify-content: flex-end;
+`;
 
 const StyledTodoCounter = styled(TodoCounter)`
 	display: flex;
@@ -27,18 +35,13 @@ const StyledTodoInput = styled(TodoInput)`
   padding: 10px;
   background-color: #adced2;
 `;
-const StyledTodoList = styled(TodoList)`
-  padding: 10px;
-  background-color: #adced2;
-`;
-
-
 
 class TodoApp extends Component {
   constructor(props){
     super(props);
     this.state = {
       todoList: [],
+      currentStatus: ''
     }
     this.todoUrl = Url.todoList;
     this.todoId = 0;
@@ -63,24 +66,27 @@ class TodoApp extends Component {
     this.setState(({todoList}) => ({
       todoList: todoList.map(o => {
         let newObj = {...o};
-        if(o.title === item) newObj['status'] = 'done';
+        if(o.title === item) newObj['status'] = 'complete';
         return newObj;
       })
     }))
   }
   render() {
     const todoList = this.state.todoList;
+    const currentStatus = this.state.currentStatus;
     return(
       <StyledTodoContainer>
         <StyledTodoCounter todoList={this.state.todoList} className={StyledTodoCounter}/>
         <StyledTodoInput 
           className={StyledTodoInput}
           addItem={this.addItem} />
-        <StyledTodoList 
-          className={StyledTodoList}
+        <StyledTodoTabs 
+          className={StyledTodoTabs}
           completeTodo={this.completeTodo}
           todoList={todoList}
-          Type={Type} />
+          Type={Type}
+          currentStatus={currentStatus}
+        />
       </StyledTodoContainer>
     )
   }

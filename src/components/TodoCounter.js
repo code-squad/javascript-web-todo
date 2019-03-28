@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const TodoNumContainer = styled.div`
@@ -9,22 +9,20 @@ const TodoNumContainer = styled.div`
     border-radius: 50%;
     color: white;
     font-size: 20px;
-    text-decoration: ${props => props.status === 'done'? 'line-through': 'none'} ;
+    text-decoration: ${props => props.status === 'complete'? 'line-through': 'none'} ;
     background-color: ${props => props.status === 'todo'? 'green' :
-                                 props.status === 'done'? '#bbb'  : '#fff'};
+                                 props.status === 'complete'? '#bbb'  : '#fff'};
 `;
 
-export default class TodoCounter extends Component{
-	render(){
-        const num = {
-            todo : this.props.todoList.filter(v => v.status === 'todo').length,
-            done : this.props.todoList.filter(v => v.status === 'done').length
-        }
-		return (
-			<div className={this.props.className}>
-                <TodoNumContainer status="todo">{num.todo}</TodoNumContainer>
-                <TodoNumContainer status="done">{num.done}</TodoNumContainer>
-            </div>
-		);
-	}
+export default function TodoCounter(props){
+    const num = {
+        todo : props.todoList.filter(v => v.status === 'todo').length,
+        complete : props.todoList.filter(v => v.status === 'complete').length
+    }
+    return (
+        <div className={props.className}>
+            <TodoNumContainer status="todo">{num.todo}</TodoNumContainer>
+            <TodoNumContainer status="complete">{num.complete}</TodoNumContainer>
+        </div>
+    );
 }
