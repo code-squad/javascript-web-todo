@@ -1,11 +1,18 @@
 import React from 'react';
 
+import { BrowserRouter as Router, Link } from 'react-router-dom';
+
 const NavBtnTpl = props => {
   return (
-    <button className="todo-list-nav-button" onClick={props.handleBTodo}>
-      {props.taskState.bTodo ? '할 일' : '한 일'}
-    </button>
+    <span>
+      <Link to="/todo" className="todo-list-nav-button">
+        할 일
+      </Link>
+      <Link to="/done" className="todo-list-nav-button">
+        한 일
+      </Link>
+    </span>
   );
 };
 
-export default NavBtnTpl
+export default NavBtnTpl;

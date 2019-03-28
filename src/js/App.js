@@ -56,6 +56,7 @@ class App extends Component {
 
   handleBTodo = e => {
     let bTodo = this.state.bTodo;
+    
     this.setState({
       bTodo: !bTodo,
     });

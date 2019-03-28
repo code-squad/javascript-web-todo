@@ -14,6 +14,7 @@ const TodoListTpl = props => {
               title={v.title}
               initTask={props.initTask}
               taskState={props.taskState}
+              status={v.status}
             />
             <RemoveTask
               title={v.title}
@@ -39,6 +40,7 @@ const DoneListTpl = props => {
               title={v.title}
               initTask={props.initTask}
               taskState={props.taskState}
+              status={v.status}
             />
             <RemoveTask
               title={v.title}
