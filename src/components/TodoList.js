@@ -37,15 +37,14 @@ export default class TodoList extends Component{
 	}
 	createList({todoList, Type}){
 		if(!Type.isArray(todoList)) return;
-		const listItems = todoList.map(item => {
-			if(item.status === this.props.currentStatus) {
-				return <StyledLi key={item.id} onClick={this.completeTodo}>
+		const listItems = todoList.map(item => 
+			(item.status === this.props.currentStatus)?
+				(<StyledLi key={item.id} onClick={this.completeTodo}>
 					{item.title} 
 					{this.props.currentStatus === 'todo' &&
 					<StyledCompleteBtn type="button">X</StyledCompleteBtn>}
-				</StyledLi>
-			}	
-		})
+				</StyledLi>): null
+		)
 		return listItems;
 	}
 	toggleList = () => {

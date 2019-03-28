@@ -8,5 +8,5 @@ app.all('/*', function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     next();
 });
-app.get('/', (req, res) => res.json(data))
+app.get('/todolist', (req, res) => res.json(data))
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
