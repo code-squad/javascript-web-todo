@@ -1,5 +1,6 @@
 import React from 'react';
-import { styles } from '../styles/styles'
+import { styles } from '../../styles/styles'
+const { StyledButtonUpdate } = styles;
 
 // 완료 버튼 컴포넌트
 function DoneTodoButton(props) {
@@ -9,9 +10,9 @@ function DoneTodoButton(props) {
     }
 
     return (
-        <styles.StyledButtonUpdate id={props.id} name="done" onClick={handleClick} >
+        <StyledButtonUpdate id={props.id} name="done" onClick={handleClick} >
             V
-        </styles.StyledButtonUpdate>
+        </StyledButtonUpdate>
     );
 }
 

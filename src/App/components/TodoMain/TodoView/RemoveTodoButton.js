@@ -1,5 +1,6 @@
 import React from 'react';
-import { styles } from '../styles/styles'
+import { styles } from '../../styles/styles'
+const { StyledButtonUpdate } = styles;
 
 
 // 삭제 버튼 컴포넌트
@@ -9,9 +10,9 @@ function RemoveTodoButton(props) {
         props.passTodoToBeRemoved(event);
     }
     return (
-        <styles.StyledButtonUpdate id={props.id} name="remove" onClick={handleClick} >
+        <StyledButtonUpdate id={props.id} name="remove" onClick={handleClick} >
             X
-        </styles.StyledButtonUpdate>
+        </StyledButtonUpdate>
     );
 }
 

@@ -1,11 +1,13 @@
 import React from 'react';
-import { styles } from '../styles/styles'
 
 // 하위 컴포넌트 임포트
 import { FoldButton } from './FoldButton'
+import { styles } from '../../styles/styles'
+const { StyledDivListView, StyledDiv, StyledDivTodoList } = styles; 
+
 
 // TodoList View 컴포넌트
-class TodoListView extends React.Component {
+class TodoView extends React.Component {
     constructor(props) {
         super(props);
         this.handleClickFolded = () =>
@@ -14,19 +16,19 @@ class TodoListView extends React.Component {
 
     render() {
         return (
-            <styles.StyledDivListView>
-                <styles.StyledDiv>
+            <StyledDivListView>
+                <StyledDiv>
                     <p>
                         해야 할 일들
                     </p>
                     <FoldButton handleClickFolded={this.handleClickFolded}>
                         {this.props.foldMsg}
                     </FoldButton>
-                </styles.StyledDiv>
+                </StyledDiv>
 
                 {this.props.foldState ?
                     "" :
-                    <styles.StyledDivTodoList>
+                    <StyledDivTodoList>
                         <ul>
                             {this.props.todoList.length > 0 ?
                                 <div>
@@ -35,11 +37,11 @@ class TodoListView extends React.Component {
                                 :
                                 <li>현재 등록한 할일이 없습니다.</li>}
                         </ul>
-                    </styles.StyledDivTodoList>
+                    </StyledDivTodoList>
                 }
-            </styles.StyledDivListView>
+            </StyledDivListView>
         );
     }
 }
 
-export { TodoListView }
+export { TodoView }

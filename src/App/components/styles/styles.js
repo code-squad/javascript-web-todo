@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 const styles = {
   StyledDivTodoMain: styled.div`
@@ -76,4 +76,7 @@ const styles = {
 `
 }
 
+const hobby = { name : 'photo'};
+
 export { styles }
+export default hobby;

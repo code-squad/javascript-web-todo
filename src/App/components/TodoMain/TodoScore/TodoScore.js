@@ -1,9 +1,9 @@
 import React from 'react';
-import styled, { css } from 'styled-components'
-import { styles } from '../styles/styles'
+import styled from 'styled-components'
+import { styles } from '../../styles/styles'
+const { StyledDiv } = styles;
 
 function TodoScore(props) {
-
     const CircleDiv = styled.div`
         width:40px;
         height:40px;
@@ -20,7 +20,7 @@ function TodoScore(props) {
         font-weight: bold;
         color: white;
     `
-    const ScoreIndicatorDiv = styled(styles.StyledDiv)`
+    const ScoreIndicatorDiv = styled(StyledDiv)`
         justify-content: flex-end;
         background: white; 
     `

@@ -1,12 +1,14 @@
 import React from 'react';
-import { styles } from './styles/styles'
-import { requestUrl } from '../request_url'
+import { requestUrl } from '../../../request_url'
 
 // 하위 컴포넌트 임포트
 import { TodoScore } from './TodoScore/TodoScore'
-import { AddTodo } from './AddTodo/AddTodo'
-import { TodoListView } from './TodoListView/TodoListView'
-import { LiElement } from './LiElement'
+import { TodoInput } from './TodoInput/TodoInput'
+import { TodoView } from './TodoView/TodoView'
+import { TodoList } from './TodoList'
+import { styles } from '../styles/styles'
+
+const { StyledDivTodoMain } = styles;
 
 // TodoMain 컴포넌트
 class TodoMain extends React.Component {
@@ -23,9 +25,11 @@ class TodoMain extends React.Component {
         };
 
         // setState : input 값 업데이트
-        this.updateInputChange = event =>
-            this.setState({ inputValue: event.target.value });
-
+        this.updateInputChange = event => {
+            const inputValue = event.target.value;
+            this.setState(state =>
+                ({ inputValue: inputValue }));
+        }
 
         // setState : 할일 등록 업데이트
         this.updateNewTodo = () => {
@@ -86,9 +90,9 @@ class TodoMain extends React.Component {
         // 실제 할일만 렌더링 
         const todoLiElement = this.state.todoList.reduce((accumulator, todo) => {
             if (todo.status === "todo") {
-                const todoList = <LiElement id={todo.id} key={todo.id} updateTodoStatus={this.updateTodo}>
+                const todoList = <TodoList id={todo.id} key={todo.id} updateTodoStatus={this.updateTodo}>
                     {todo.title}
-                </LiElement>
+                </TodoList>
                 accumulator.push(todoList);
             }
             return accumulator;
@@ -97,12 +101,12 @@ class TodoMain extends React.Component {
         this.updateTodoScore();
 
         return (
-            <styles.StyledDivTodoMain>
+            <StyledDivTodoMain>
                 <TodoScore className="todoScore" todoScore={this.score.todo} doneScore={this.score.done} removedScore={this.score.remove} />
-                <AddTodo className="addTodo" passInputChange={this.updateInputChange} passNewTodo={this.updateNewTodo} />
-                <TodoListView className="todoList" todoList={todoLiElement}
+                <TodoInput className="todoInput" passInputChange={this.updateInputChange} passNewTodo={this.updateNewTodo} />
+                <TodoView className="todoView" todoList={todoLiElement}
                     passFoldState={this.updateFoldState} foldState={this.state.foldState} foldMsg={this.state.foldMsg} />
-            </styles.StyledDivTodoMain>
+            </StyledDivTodoMain>
         );
     }
 }

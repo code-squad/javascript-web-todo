@@ -1,13 +1,13 @@
 import React from 'react';
-import styled, { css } from 'styled-components'
-import { styles } from '../styles/styles'
+import styled from 'styled-components'
+import { styles } from '../../styles/styles'
 
 // 하위 컴포넌트 임포트
-import { InputAddTodo } from './InputAddTodo'
-import { AddTodoButton } from './AddTodoButton'
+import { InputText } from './InputText'
+import { AddButton } from './AddButton'
 
 // AddTodo 컴포넌트
-class AddTodo extends React.Component {
+class TodoInput extends React.Component {
     constructor(props) {
         super(props);
 
@@ -21,10 +21,10 @@ class AddTodo extends React.Component {
     render() {
         return (
             <StyledAddTodoDiv>
-                <InputAddTodo passInputChange={this.passInputChange} />
-                <AddTodoButton passNewTodo={this.passNewTodo} >
+                <InputText passInputChange={this.passInputChange} />
+                <AddButton passNewTodo={this.passNewTodo} >
                     등록
-                 </AddTodoButton>
+                 </AddButton>
             </StyledAddTodoDiv>
         );
     }
@@ -33,4 +33,4 @@ class AddTodo extends React.Component {
 const StyledAddTodoDiv = styled(styles.StyledDiv)` 
     height: 50px;
 `
-export { AddTodo };
+export { TodoInput };

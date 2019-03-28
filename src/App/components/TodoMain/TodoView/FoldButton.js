@@ -1,6 +1,7 @@
 import React from 'react';
-import styled, { css } from 'styled-components'
-import { styles } from '../styles/styles'
+import styled from 'styled-components'
+import { styles } from '../../styles/styles'
+const { StyledButton } = styles; 
 
 // 접기 버튼 컴포넌트
 const FoldButton = function (props) {
@@ -9,7 +10,7 @@ const FoldButton = function (props) {
         props.handleClickFolded();
     }
 
-    const StyledFoldButton = styled(styles.StyledButton)`
+    const StyledFoldButton = styled(StyledButton)`
         margin-left : auto; 
     `
 

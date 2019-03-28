@@ -1,17 +1,18 @@
 import React from 'react';
-import { styles } from '../styles/styles'
+import { styles } from '../../styles/styles'
+const { StyledButton } = styles;
 
 // 등록 버튼 컴포넌트
-const AddTodoButton = function (props) {
+const AddButton = function (props) {
     function handleClick(event) {
         event.preventDefault();
         props.passNewTodo();
     }
     return (
-        <styles.StyledButton onClick={handleClick}>
+        <StyledButton onClick={handleClick}>
             {props.children}
-        </styles.StyledButton>
+        </StyledButton>
     );
 }
 
-export { AddTodoButton };
+export { AddButton };
