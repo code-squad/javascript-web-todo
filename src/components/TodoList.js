@@ -41,7 +41,8 @@ export default class TodoList extends Component{
 			if(item.status === this.props.currentStatus) {
 				return <StyledLi key={item.id} onClick={this.completeTodo}>
 					{item.title} 
-					<StyledCompleteBtn type="button">X</StyledCompleteBtn>
+					{this.props.currentStatus === 'todo' &&
+					<StyledCompleteBtn type="button">X</StyledCompleteBtn>}
 				</StyledLi>
 			}	
 		})
