@@ -7,11 +7,10 @@ function InputText(props) {
     function handleInputChange(event) {
         props.passInputChange(event);
     }
-
     return (
         <StyledDivInputSection>
             <label> 할일 입력:
-        <StyledInput placeholder="입력해 주세요." onChange={handleInputChange} />
+        <StyledInput placeholder="입력해 주세요." onChange={handleInputChange} value={props.inputValue} />
             </label>
         </StyledDivInputSection>
     )

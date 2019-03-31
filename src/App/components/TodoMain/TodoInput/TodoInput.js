@@ -21,7 +21,7 @@ class TodoInput extends React.Component {
     render() {
         return (
             <StyledAddTodoDiv>
-                <InputText passInputChange={this.passInputChange} />
+                <InputText passInputChange={this.passInputChange} inputValue={this.props.inputValue} />
                 <AddButton passNewTodo={this.passNewTodo} >
                     등록
                  </AddButton>

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from "react-router-dom";
 
 const styles = {
   StyledDivTodoMain: styled.div`
@@ -6,7 +7,7 @@ const styles = {
     flex-direction: column; 
     justify-content: space-around;
     align-items: center;
-    width: 550px;
+    width: 700px;
     height: 450px; 
     border: lightgoldenrodyellow solid 4px; 
 `,
@@ -21,7 +22,7 @@ const styles = {
     font-size: 20px; 
     color: palevioletred;
     background: papayawhip;
-    width: 500px;
+    width: 600px;
     height: 50px; 
 `,
 
@@ -40,8 +41,8 @@ const styles = {
     width:19px;
     height:19px;
     background: ${
-      props => props.name === "remove" ? "lightsteelblue" : 
-              props.name === "done" ? "orange" : null  
+    props => props.name === "remove" ? "lightsteelblue" :
+      props.name === "done" ? "orange" : null
     };
     border-radius: 50%;
     color: white;
@@ -55,7 +56,7 @@ const styles = {
 
   StyledDivListView: styled.div`
     height: 300px;
-    width: 500px;
+    width: 600px;
     background: papayawhip;;
 `,
 
@@ -73,10 +74,33 @@ const styles = {
     display: inline-block;
     height: 20px;
     margin-left: 10px;
+`,
+
+  StyledDivTabMenu : styled.div`
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-around; 
+`,
+
+  StyledLink : styled(Link)`
+    text-decoration : none; 
+    &:focus, &:visited, &:link, &:active {
+      text-decoration : none; 
+    }
+    &:hover {
+      background: lightgray;
+    }
+    display : inline-block; 
+    height: 20px;
+    padding: 5px;
+    margin: 5px 5px;  
+    border-radius:7px;
+    line-height: 20px; 
+    text-align: center; 
+    color: white;
+    background : lightsteelblue;
 `
+
 }
 
-const hobby = { name : 'photo'};
-
 export { styles }
-export default hobby;
