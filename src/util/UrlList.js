@@ -1,4 +1,3 @@
 export default {
-    todoList: 'http://localhost:8000/'
+    todoList: 'http://localhost:8000/todolist'
 };
-

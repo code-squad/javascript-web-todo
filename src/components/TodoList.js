@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-
 const StyledHeading2 = styled.h2`
     display: inline-block;
     margin: 0;
@@ -18,7 +17,7 @@ const StyledCloseBtn = styled.button`
     outline: none;
     cursor: pointer;
 `;
-const StyledRemoveBtn = styled.button`
+const StyledCompleteBtn = styled.button`
     width: 20px;
     height: 20px;
     margin-left: 5px;
@@ -38,12 +37,13 @@ export default class TodoList extends Component{
 	}
 	createList({todoList, Type}){
 		if(!Type.isArray(todoList)) return;
-		const listItems = todoList.map(item => {
-			if(item.status === 'done') return null;
-			return <StyledLi key={item.id} onClick={this.completeTodo}>
-				{item.title} <StyledRemoveBtn type="button">X</StyledRemoveBtn>
-			</StyledLi>
-			}
+		const listItems = todoList.map(item => 
+			(item.status === this.props.currentStatus)?
+				(<StyledLi key={item.id} onClick={this.completeTodo}>
+					{item.title} 
+					{this.props.currentStatus === 'todo' &&
+					<StyledCompleteBtn type="button">X</StyledCompleteBtn>}
+				</StyledLi>): null
 		)
 		return listItems;
 	}
