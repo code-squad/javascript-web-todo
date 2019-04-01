@@ -8,7 +8,6 @@ function DoneTodoButton(props) {
         event.preventDefault();
         props.passTodoToBeDone(event);
     }
-
     return (
         <StyledButtonUpdate id={props.id} name="done" onClick={handleClick} >
             V

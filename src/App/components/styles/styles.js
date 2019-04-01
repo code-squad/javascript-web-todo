@@ -76,19 +76,20 @@ const styles = {
     margin-left: 10px;
 `,
 
-  StyledDivTabMenu : styled.div`
+  StyledDivTabMenu: styled.div`
     display: flex; 
     flex-direction: row; 
     justify-content: space-around; 
 `,
 
-  StyledLink : styled(Link)`
+  StyledLink: styled(Link).attrs(({ background }) =>
+    ({ background: background }))`
     text-decoration : none; 
     &:focus, &:visited, &:link, &:active {
       text-decoration : none; 
     }
     &:hover {
-      background: lightgray;
+      background: lightsalmon;
     }
     display : inline-block; 
     height: 20px;
@@ -98,7 +99,7 @@ const styles = {
     line-height: 20px; 
     text-align: center; 
     color: white;
-    background : lightsteelblue;
+    background : ${props => props.background}
 `
 
 }

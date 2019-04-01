@@ -28,10 +28,17 @@ class TodoMain extends React.Component {
         };
 
         // setState : input 값 업데이트
-        this.updateInputChange = event => {
-            const inputValue = event.target.value;
+        this.updateInputChange = inputValue => {  
             this.setState(state =>
-                ({ inputValue: inputValue}));
+                ({ inputValue: inputValue }));
+            
+        }
+
+        // enter 키로 할일 등록
+        this.checkKeyUp = keyCode => {
+            if(keyCode === 13) {
+                this.updateNewTodo(); 
+            }
         }
 
         // setState : 할일 등록 업데이트
@@ -43,7 +50,7 @@ class TodoMain extends React.Component {
         }
 
         // setSate : 할일 상태 업데이트
-        this.updateTodo = event => {
+        this.updateTodoStatus = event => {
             const id = Number(event.target.id);
             const status = event.target.name;
             const todoList = this.state.todoList.reduce((accumulator, todo) => {
@@ -75,12 +82,7 @@ class TodoMain extends React.Component {
             this.setState({ foldState: !this.state.foldState })
             this.state.foldState === true ? this.setState({ foldMsg: "리스트 숨기기" }) :
                 this.setState({ foldMsg: "리스트 펼치기" });
-        }
 
-        this.updateViewState = () => {
-            const viewState = this.state.viewState;
-            viewState === true ? this.setState((state) => ({ viewState: !viewState, viewMsg: "할일만 보기" })) :
-                this.setState((state) => ({ viewState: !viewState, viewMsg: "완료된 일만 보기" }));
         }
     }
 
@@ -98,7 +100,7 @@ class TodoMain extends React.Component {
 
     render() {
         const todoLiElement = this.state.todoList.map(todo =>
-            <TodoList id={todo.id} key={todo.id} status={todo.status} updateTodoStatus={this.updateTodo}>
+            <TodoList id={todo.id} key={todo.id} status={todo.status} updateTodoStatus={this.updateTodoStatus}>
                 {todo.title}
             </TodoList>
         );
@@ -108,16 +110,17 @@ class TodoMain extends React.Component {
         return (
             <Router>
                 <StyledDivTodoMain>
-                    <TodoScore className="todoScore" todoScore={this.score.todo} 
+                    <TodoScore className="todoScore" todoScore={this.score.todo}
                         doneScore={this.score.done} removedScore={this.score.remove}
                     />
                     <TodoInput className="todoInput" inputValue={this.state.inputValue}
-                        passInputChange={this.updateInputChange} passNewTodo={this.updateNewTodo}
+                        passInputChange={this.updateInputChange} passKeyUp={this.checkKeyUp}
+                         passNewTodo={this.updateNewTodo}
                     />
                     <TodoView className="todoView" todoList={todoLiElement}
                         passFoldState={this.updateFoldState} foldState={this.state.foldState}
                         foldMsg={this.state.foldMsg} handleClick={this.updateViewState}
-                        viewMsg={this.state.viewMsg} updateTodo={this.updateTodo}
+                        viewMsg={this.state.viewMsg} updateTodoStatus={this.updateTodoStatus}
                     />
                 </StyledDivTodoMain>
             </Router>
