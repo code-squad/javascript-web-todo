@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+
 import '../scss/app.css';
-import { MakeAddTodoTpl, MakeTodoListContainerTpl } from './make-tpl.js';
-import { getData, taskDataUrl } from './fetch-data.js';
+
+import AddTodoTpl from './template/add-todo-tpl';
+import TodoListContainerTpl from './template/todo-list-container-tpl.js'
 import StatusBoard from './status-board.js';
+
+import { getData, taskDataUrl } from './fetch-data.js';
+
 
 class App extends Component {
   constructor(props) {
@@ -13,6 +18,7 @@ class App extends Component {
       tasks: [],
       word: '',
       bFolded: true,
+      bLoading: true,
       bTodo: true,
     };
   }
@@ -31,6 +37,7 @@ class App extends Component {
       IDNum: idNum + 1,
       tasks: taskData,
       word: '',
+      bLoading: false,
     });
   };
 
@@ -47,27 +54,34 @@ class App extends Component {
     });
   };
 
-  handleBTodo = e => {
-    let bTodo = this.state.bTodo;
+  handleBTodoToTrue = e => {
     this.setState({
-      bTodo: !bTodo,
-    });
-  };
+      bTodo: true
+    })
+  }
+
+  handleBTodoToFalse = e => {
+    console.log('faslse')
+    this.setState({
+      bTodo: false
+    })
+  }
 
   render() {
     return (
       <div className="todo-app-conatiner">
         <StatusBoard tasks={[...this.state.tasks]} />
-        <MakeAddTodoTpl
+        <AddTodoTpl
           taskState={this.state}
           initTask={this.initTask}
           handleChangeWord={this.handleChangeWord}
         />
-        <MakeTodoListContainerTpl
+        <TodoListContainerTpl
           taskState={this.state}
           handleBFolded={this.handleBFolded}
-          handleBTodo={this.handleBTodo}
           initTask={this.initTask}
+          handleBTodoToTrue={this.handleBTodoToTrue}
+          handleBTodoToFalse={this.handleBTodoToFalse}
         />
       </div>
     );

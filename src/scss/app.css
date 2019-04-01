@@ -56,12 +56,18 @@ input {
   padding: 1rem;
 }
 .todo-list-nav-button {
+  color: #000;
+  font-size: 13px;
+  text-decoration: none;
+  padding: 1px 2px;
+  text-align: center;
   background-color: #3f82;
   border: 1px solid #000;
   border-radius: 1rem;
-  width: 2.5rem;
-  height: 1.2rem;
+  width: 2.5em;
+  height: 1.2em;
   float: right;
+  margin-right: 2px;
 }
 .todo-list-nav-button:hover {
   cursor: pointer;

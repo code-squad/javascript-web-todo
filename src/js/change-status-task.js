@@ -3,16 +3,16 @@ import React, { Component } from 'react';
 class ChangeStatusTask extends Component {
   changeStatus = e => {
     const tasks = [...this.props.taskState.tasks]
-    const bTodo = this.props.taskState.bTodo;
     let title = this.props.title;
 
     const changedTask = tasks.map(task => {
       if (task.title === title) {
-        bTodo ? (task.status = 'done') : (task.status = 'todo');
+        task.status === 'todo' ? (task.status = 'done') : (task.status = 'todo');
         return task;
       }
       return task;
     });
+
     this.props.initTask(changedTask);
   };
 
@@ -23,7 +23,7 @@ class ChangeStatusTask extends Component {
         title={this.props.title}
         onClick={this.changeStatus}
       >
-        {this.props.taskState.bTodo ? '->' : '<-'}
+        {this.props.status === "todo" ? '끝!' : '다시'}
       </button>
     );
   }
