@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 const styles = {
   StyledDivTodoMain: styled.div`
@@ -7,7 +7,7 @@ const styles = {
     justify-content: space-around;
     align-items: center;
     width: 550px;
-    height: 380px; 
+    height: 450px; 
     border: lightgoldenrodyellow solid 4px; 
 `,
 
@@ -18,6 +18,7 @@ const styles = {
     padding-right: 20px;
     flex-direction: row;
     align-items: center;
+    font-size: 20px; 
     color: palevioletred;
     background: papayawhip;
     width: 500px;
@@ -26,19 +27,30 @@ const styles = {
 
   StyledButton: styled.button`
     border-radius: 3px;
-    color: orangered;
-    background: lightskyblue;
+    color: white;
+    font-size: 15px;
+    font-weight: bold; 
+    background: lightcoral;
     padding: 3px 10px 3px 10px;
+    border: none;
 `,
 
-  StyledButtonRemove: styled.button`
+  StyledButtonUpdate: styled.button`
     margin-left: 10px;
     width:19px;
     height:19px;
-    background: lightsteelblue;
-    border-radius: 100px;
+    background: ${
+      props => props.name === "remove" ? "lightsteelblue" : 
+              props.name === "done" ? "orange" : null  
+    };
+    border-radius: 50%;
     color: white;
-    font-size:10px;
+    font-weight: bold; 
+    font-size:5px;
+    text-align: center;
+    line-height:18px;
+    cursor: pointer;
+    border: none;
 `,
 
   StyledDivListView: styled.div`
@@ -49,6 +61,7 @@ const styles = {
 
   StyledDivTodoList: styled.div`
     color: lightsalmon;
+    font-size: 20px; 
 `,
 
   StyledDivInputSection: styled.div`
@@ -63,4 +76,7 @@ const styles = {
 `
 }
 
+const hobby = { name : 'photo'};
+
 export { styles }
+export default hobby;
