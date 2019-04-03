@@ -11,8 +11,12 @@ class TodoInput extends React.Component {
     constructor(props) {
         super(props);
 
-        this.passInputChange = event => 
-            this.props.passInputChange(event);
+        this.passInputChange = inputValue => 
+            this.props.passInputChange(inputValue);
+
+        this.passKeyUp = keyCode => { 
+            this.props.passKeyUp(keyCode); 
+        }
 
         this.passNewTodo = () => 
             this.props.passNewTodo();
@@ -21,8 +25,8 @@ class TodoInput extends React.Component {
     render() {
         return (
             <StyledAddTodoDiv>
-                <InputText passInputChange={this.passInputChange} />
-                <AddButton passNewTodo={this.passNewTodo} >
+                <InputText passInputChange={this.passInputChange} passKeyUp={this.passKeyUp} inputValue={this.props.inputValue} />
+                <AddButton passNewTodo={this.passNewTodo}  >
                     등록
                  </AddButton>
             </StyledAddTodoDiv>

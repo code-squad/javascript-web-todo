@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router } from "react-router-dom";
 import { requestUrl } from '../../../request_url'
 
 // 하위 컴포넌트 임포트
@@ -21,25 +22,35 @@ class TodoMain extends React.Component {
             inputValue: "",
             todoList: [],
             foldState: false,
-            foldMsg: "리스트 숨기기"
+            foldMsg: "리스트 숨기기",
+            viewState: false,
+            viewMsg: "완료된 일만 보기"
         };
 
         // setState : input 값 업데이트
-        this.updateInputChange = event => {
-            const inputValue = event.target.value;
+        this.updateInputChange = inputValue => {  
             this.setState(state =>
                 ({ inputValue: inputValue }));
+            
+        }
+
+        // enter 키로 할일 등록
+        this.checkKeyUp = keyCode => {
+            if(keyCode === 13) {
+                this.updateNewTodo(); 
+            }
         }
 
         // setState : 할일 등록 업데이트
         this.updateNewTodo = () => {
+            if (this.state.inputValue === '') return;
             const todoList = [...this.state.todoList]; // 새로운 객체 생성           
-            todoList.unshift({ id: ++this.todoId, title: this.state.inputValue, status: "todo" });
-            this.setState((state) => ({ todoList: todoList }));
+            todoList.unshift({ id: ++this.todoId, title: this.state.inputValue.trim(), status: "todo" });
+            this.setState((state) => ({ todoList: todoList, inputValue: '' }));
         }
 
         // setSate : 할일 상태 업데이트
-        this.updateTodo = event => {
+        this.updateTodoStatus = event => {
             const id = Number(event.target.id);
             const status = event.target.name;
             const todoList = this.state.todoList.reduce((accumulator, todo) => {
@@ -71,6 +82,7 @@ class TodoMain extends React.Component {
             this.setState({ foldState: !this.state.foldState })
             this.state.foldState === true ? this.setState({ foldMsg: "리스트 숨기기" }) :
                 this.setState({ foldMsg: "리스트 펼치기" });
+
         }
     }
 
@@ -87,26 +99,31 @@ class TodoMain extends React.Component {
     }
 
     render() {
-        // 실제 할일만 렌더링 
-        const todoLiElement = this.state.todoList.reduce((accumulator, todo) => {
-            if (todo.status === "todo") {
-                const todoList = <TodoList id={todo.id} key={todo.id} updateTodoStatus={this.updateTodo}>
-                    {todo.title}
-                </TodoList>
-                accumulator.push(todoList);
-            }
-            return accumulator;
-        }, []);
+        const todoLiElement = this.state.todoList.map(todo =>
+            <TodoList id={todo.id} key={todo.id} status={todo.status} updateTodoStatus={this.updateTodoStatus}>
+                {todo.title}
+            </TodoList>
+        );
 
         this.updateTodoScore();
 
         return (
-            <StyledDivTodoMain>
-                <TodoScore className="todoScore" todoScore={this.score.todo} doneScore={this.score.done} removedScore={this.score.remove} />
-                <TodoInput className="todoInput" passInputChange={this.updateInputChange} passNewTodo={this.updateNewTodo} />
-                <TodoView className="todoView" todoList={todoLiElement}
-                    passFoldState={this.updateFoldState} foldState={this.state.foldState} foldMsg={this.state.foldMsg} />
-            </StyledDivTodoMain>
+            <Router>
+                <StyledDivTodoMain>
+                    <TodoScore className="todoScore" todoScore={this.score.todo}
+                        doneScore={this.score.done} removedScore={this.score.remove}
+                    />
+                    <TodoInput className="todoInput" inputValue={this.state.inputValue}
+                        passInputChange={this.updateInputChange} passKeyUp={this.checkKeyUp}
+                         passNewTodo={this.updateNewTodo}
+                    />
+                    <TodoView className="todoView" todoList={todoLiElement}
+                        passFoldState={this.updateFoldState} foldState={this.state.foldState}
+                        foldMsg={this.state.foldMsg} handleClick={this.updateViewState}
+                        viewMsg={this.state.viewMsg} updateTodoStatus={this.updateTodoStatus}
+                    />
+                </StyledDivTodoMain>
+            </Router>
         );
     }
 }
