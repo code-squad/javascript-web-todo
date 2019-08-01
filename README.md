@@ -1,6 +1,17 @@
 # React based todo application
 
-## Supported browser list (query : > 0.25%, not dead)
+---
+
+## Component naming convention
+
+[Context][component][Type]
+
+참고 : [React components naming convention ⚛️
+](https://medium.com/@wittydeveloper/react-components-naming-convention-%EF%B8%8F-b50303551505)
+
+---
+
+## Supports the following browsers: (query : > 0.25%, not dead)
 
 - and_chr 75
 - and_uc 12.12
