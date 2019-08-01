@@ -12,7 +12,8 @@ module.exports = function (api) {
 
   const plugins = [
     'babel-plugin-styled-components',
-    'react-hot-loader/babel'
+    'react-hot-loader/babel',
+    ["@babel/plugin-proposal-class-properties", { "loose": true }]
   ]
 
   return {

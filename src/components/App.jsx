@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
+  state = {
+    title: "Hello Allen"
+  };
 
   render() {
     return (
       <>
-        <h1>Hello Allen!</h1>
+        <h1>{this.state.title}</h1>
       </>
     );
   }
