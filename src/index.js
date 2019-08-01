@@ -1,5 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './components/App.jsx'
+import { hot } from 'react-hot-loader/root'
 
-ReactDOM.render(<App />, document.querySelector('#root'));
+const Hot = hot(App);
+
+ReactDOM.render(<Hot />, document.querySelector('#root'));
