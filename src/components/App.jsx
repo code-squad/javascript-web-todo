@@ -1,14 +1,41 @@
 import React, { Component } from "react";
+import styled, { createGlobalStyle } from "styled-components";
+import TodoInput from "./TodoInput.jsx";
+
+const GlobalStyle = createGlobalStyle`
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 10px;
+  }
+`;
+
+const Title = styled.h1`
+  font-size: 5rem;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin: 0 auto;
+`;
 
 class App extends Component {
   state = {
-    title: "Hello Allen"
+    title: "Todo App"
   };
 
   render() {
     return (
       <>
-        <h1>{this.state.title}</h1>
+        <GlobalStyle />
+        <Wrapper>
+          <Title>{this.state.title}</Title>
+          <TodoInput />
+        </Wrapper>
       </>
     );
   }
