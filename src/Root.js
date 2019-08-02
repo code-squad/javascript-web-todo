@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 import TodoAdd from "./components/TodoAdd";
+import TodoContent from "./components/TodoContent";
 
 const StyledRoot = styled.div`
   width: 50%;
@@ -19,6 +20,7 @@ class Root extends Component {
     return (
       <StyledRoot>
         <TodoAdd />
+        <TodoContent />
       </StyledRoot>
     );
   }
