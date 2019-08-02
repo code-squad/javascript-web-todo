@@ -1,5 +1,5 @@
-const React = require("react");
-const ReactDOM = require("react-dom");
-const ToDoApp = require("./ToDoApp.jsx");
+import React from "react";
+import ReactDOM from "react-dom";
+import ToDoApp from "./components/ToDoApp";
 
 ReactDOM.render(<ToDoApp />, document.querySelector("#root"));
