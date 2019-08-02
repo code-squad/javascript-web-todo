@@ -1,5 +1,5 @@
-const React = require("react");
-const { Component } = React;
+import React, { Component } from "react";
+import styled, { css } from "styled-components";
 
 class AddTodo extends Component {
   constructor(props) {
@@ -9,12 +9,40 @@ class AddTodo extends Component {
   render() {
     return (
       <form action="">
-        <label htmlFor="">할 일 입력 : </label>
-        <input type="text" />
-        <input type="submit" />
+        <Header>what is your One Small Step? </Header>
+        <Input type="text" />
+        <Button>등록</Button>
       </form>
     );
   }
 }
 
-module.exports = AddTodo;
+export default AddTodo;
+
+const Header = styled.h1`
+  font-family: Monospace;
+  text-align: center;
+  font-weight: 100;
+`;
+
+const Input = styled.input`
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid black;
+  width: 800px;
+  height: 60px;
+  text-align: center;
+  font-size: 20px;
+`;
+
+const Button = styled.button`
+  background-color: #fbd14b;
+  border-radius: 3px;
+  border: 2px solid black;
+  color: black;
+  width: 100px;
+  height: 30px;
+  position: relative;
+  left: 350px;
+  top: 40px;
+`;
