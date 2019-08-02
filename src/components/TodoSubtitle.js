@@ -1,5 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
+
+const Subtitle = styled.h4`
+  color: gray;
+`;
 
 class TodoSubtitle extends Component {
   constructor(props) {
@@ -7,7 +12,7 @@ class TodoSubtitle extends Component {
   }
 
   render() {
-    return <h5>{this.props.subtitle}</h5>;
+    return <Subtitle>{this.props.subtitle}</Subtitle>;
   }
 }
 
