@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-const SButton = styled.button`
+const StyledButton = styled.button`
   background: transparent;
   border-radius: 3px;
   border: 2px solid palevioletred;
@@ -19,7 +19,8 @@ const SButton = styled.button`
 `;
 class Button extends Component {
   render() {
-    return <SButton>{this.props.text}</SButton>;
+    const { className, children } = this.props;
+    return <StyledButton className={className}>{children}</StyledButton>;
   }
 }
 

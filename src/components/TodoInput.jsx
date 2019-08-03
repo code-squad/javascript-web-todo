@@ -13,7 +13,7 @@ class TodoInput extends Component {
       <>
         <Form action="/">
           <Input type="text" placeholder="할일을 적어주세요" />
-          <Button text="입력" />
+          <Button>입력</Button>
         </Form>
       </>
     );
