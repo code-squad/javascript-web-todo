@@ -7,6 +7,7 @@ import { display } from "@material-ui/system";
 class ShowTodo extends Component {
   constructor(props) {
     super(props);
+    console.log("ShowTodo 생성자");
   }
 
   makeLi(todos) {
@@ -18,18 +19,25 @@ class ShowTodo extends Component {
   }
 
   render() {
+    console.log("ShowTodo 렌더링");
     const todos = this.props.data;
-    return (
-      <>
-        {todos.length > 0 && (
-          <DIV>
-            <HEADER>해야할 일</HEADER>
-            <Button color="secondary">접기</Button>
-            <ul>{this.makeLi(todos)}</ul>
-          </DIV>
-        )}
-      </>
-    );
+    console.log(todos, todos.length);
+    const correct = todos.length > 0 ? true : false;
+    let test;
+
+    if (correct) {
+      test = (
+        <DIV>
+          <HEADER>해야할 일</HEADER>
+          <Button color="secondary">접기</Button>
+          <ul>{this.makeLi(todos)}</ul>
+        </DIV>
+      );
+    } else {
+      test = <DIV />;
+    }
+
+    return <>{test}</>;
   }
 }
 

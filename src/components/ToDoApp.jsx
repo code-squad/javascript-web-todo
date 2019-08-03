@@ -7,39 +7,35 @@ class ToDoApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true,
-      users: [],
       todoData: [],
       doingData: [],
-      doneData: [],
-      error: null
+      doneData: []
     };
+    console.log("ToDoApp 생성자");
   }
 
   componentDidMount() {
-    this.fetchTodoData();
+    console.log("DidMount 실행 ");
+    const data = this.fetchTodoData();
   }
 
-  fetchTodoData() {
-    fetch(
+  async fetchTodoData() {
+    console.log("fetch시작");
+    const response = await fetch(
       `https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/todolist`
-    )
-      .then(response => response.json())
-      .then(data =>
-        this.setState({
-          todoData: data.body,
-          isLoading: false
-        })
-      )
-      .catch(error => this.setState({ error, isLoading: false }));
+    );
+    const jsonData = await response.json();
+    this.setState({ todoData: jsonData.body });
+    return jsonData;
   }
 
   render() {
-    const { isLoading, todoData, error } = this.state;
+    const { todoData } = this.state;
+    console.log("ToDoApp 렌더링");
+
     return (
       <>
         <GlobalStyle />
-        {error ? <p>{error.message}</p> : null}
         <AddTodo />
         <ShowTodo data={todoData} />
       </>
