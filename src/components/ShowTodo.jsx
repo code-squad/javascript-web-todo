@@ -1,47 +1,62 @@
 import React, { Component } from "react";
 import styled, { css } from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
 import { display } from "@material-ui/system";
+import Button from "@material-ui/core/Button";
+import { IconButton } from "@material-ui/core";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 class ShowTodo extends Component {
   constructor(props) {
     super(props);
-    console.log("ShowTodo 생성자");
   }
 
   makeLi(todos) {
     const arr = todos.map(data => {
-      return <LI key={data.id}>{data.title}</LI>;
+      return (
+        <LI key={data.id}>
+          {data.title}
+          <IconButton aria-label="delete">
+            <DeleteIcon fontSize="small" />
+          </IconButton>
+        </LI>
+      );
     });
 
     return arr;
   }
 
   render() {
-    console.log("ShowTodo 렌더링");
     const todos = this.props.data;
-    console.log(todos, todos.length);
-    const correct = todos.length > 0 ? true : false;
-    let test;
+    const error = this.props.error;
+    const isEmpty = todos.length === 0 ? true : false;
+    let result;
 
-    if (correct) {
-      test = (
-        <DIV>
-          <HEADER>해야할 일</HEADER>
-          <Button color="secondary">접기</Button>
-          <ul>{this.makeLi(todos)}</ul>
-        </DIV>
+    if (error) {
+      result = (
+        <ul>
+          <li>데이터 요청 실패</li>
+        </ul>
       );
+    } else if (!isEmpty) {
+      result = <ul>{this.makeLi(todos)}</ul>;
     } else {
-      test = <DIV />;
+      result = (
+        <ul>
+          <li>없음</li>
+        </ul>
+      );
     }
 
-    return <>{test}</>;
+    return (
+      <DIV>
+        <HEADER>해야할 일</HEADER>
+        <Button color="secondary">접기</Button>
+        {result}
+      </DIV>
+    );
   }
 }
-
-export default ShowTodo;
 
 const DIV = styled.div`
   width: 400px;
@@ -64,3 +79,5 @@ const HEADER = styled.h3`
   font-size: 20px;
   padding-top: 10px;
 `;
+
+export default ShowTodo;

@@ -4,11 +4,9 @@ import styled, { css } from "styled-components";
 class AddTodo extends Component {
   constructor(props) {
     super(props);
-    console.log("AddTodo 생성자");
   }
 
   render() {
-    console.log("AddTodo 렌더링");
     return (
       <form action="">
         <Header>what is your One Small Step? </Header>
@@ -18,8 +16,6 @@ class AddTodo extends Component {
     );
   }
 }
-
-export default AddTodo;
 
 const Header = styled.h1`
   font-family: Monospace;
@@ -48,3 +44,5 @@ const Button = styled.button`
   left: 350px;
   top: 40px;
 `;
+
+export default AddTodo;
