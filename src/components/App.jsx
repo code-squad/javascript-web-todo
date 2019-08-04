@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import TodoInput from "./TodoInput.jsx";
+import TodoLists from "./TodoLists.jsx";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -35,6 +36,7 @@ class App extends Component {
         <Wrapper>
           <Title>{this.state.title}</Title>
           <TodoInput />
+          <TodoLists />
         </Wrapper>
       </>
     );
