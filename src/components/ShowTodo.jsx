@@ -11,7 +11,7 @@ class ShowTodo extends Component {
     super(props);
   }
 
-  makeLi(todos) {
+  makeLiData(todos) {
     const arr = todos.map(data => {
       return (
         <LI key={data.id}>
@@ -26,9 +26,9 @@ class ShowTodo extends Component {
     return arr;
   }
 
-  render() {
-    const todos = this.props.data;
-    const error = this.props.error;
+  makeLiComponent(obj) {
+    const todos = obj.data;
+    const error = obj.error;
     const isEmpty = todos.length === 0 ? true : false;
     let result;
 
@@ -39,7 +39,7 @@ class ShowTodo extends Component {
         </ul>
       );
     } else if (!isEmpty) {
-      result = <ul>{this.makeLi(todos)}</ul>;
+      result = <ul>{this.makeLiData(todos)}</ul>;
     } else {
       result = (
         <ul>
@@ -48,6 +48,11 @@ class ShowTodo extends Component {
       );
     }
 
+    return result;
+  }
+
+  render() {
+    const result = this.makeLiComponent(this.props);
     return (
       <DIV>
         <HEADER>해야할 일</HEADER>

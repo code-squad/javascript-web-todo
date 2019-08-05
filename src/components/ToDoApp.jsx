@@ -14,24 +14,19 @@ class ToDoApp extends Component {
     };
   }
 
-  componentDidMount() {
-    this.fetchTodoData()
-      .then(data => this.setState({ todoData: data.body, error: false }))
-      .catch(error => {
-        console.log(error); // error의 status에 따라 분기 처리 필요 -> 어떻게 확인 하지?
-        this.setState({ todoData: [], error: true });
-      });
-  }
-
-  async fetchTodoData() {
-    const response = await fetch(
-      `https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/todolist`
-    );
-    if (response.ok) {
-      if (response.status === 200) return await response.json();
-      else throw new Error(response); // response.ok가 true지만 404, 500 Error등
+  async componentDidMount() {
+    try {
+      const response = await fetch(
+        `https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/todolistt`
+      );
+      if (!response.ok) throw new Error(response.status); //resolved지만 404, 500..인 경우
+      if (response === undefined) throw new Error("undefined"); // Promise(rejected)인 경우
+      const data = await response.json();
+      this.setState({ todoData: data.body, error: false });
+    } catch (error) {
+      console.log(error.message);
+      this.setState({ todoData: [], error: true });
     }
-    throw new Error(response); // reject인 경우
   }
 
   render() {
