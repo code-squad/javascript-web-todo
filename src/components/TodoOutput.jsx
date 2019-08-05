@@ -35,6 +35,7 @@ class TodoOutput extends Component {
     try {
       const res = await fetch(CONFIGS.url);
       if (!res.ok) throw Error(`STATUS CODE : ${res.status}`);
+      if (res instanceof Promise) throw Error("REQUEST FAILED");
       const data = await res.json();
       this.setState({ todos: data.body });
     } catch (err) {
