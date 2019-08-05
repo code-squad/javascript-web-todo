@@ -24,7 +24,7 @@ const ToggleButton = styled(Button)`
   right: 2rem;
 `;
 
-class TodoLists extends Component {
+class TodoOutput extends Component {
   state = {
     btnText: "접기",
     todos: [],
@@ -34,7 +34,7 @@ class TodoLists extends Component {
   async componentDidMount() {
     try {
       const res = await fetch(CONFIGS.url);
-      if (!res.ok) throw Error(`status code : ${res.status}`);
+      if (!res.ok) throw Error(`STATUS CODE : ${res.status}`);
       const data = await res.json();
       this.setState({ todos: data.body });
     } catch (err) {
@@ -44,16 +44,16 @@ class TodoLists extends Component {
   }
 
   render() {
-    const { warningVisibility } = this.state;
+    const { todos, btnText, warningVisibility } = this.state;
     return (
       <Wrapper>
         <Div>할 일 목록</Div>
-        <UL contents={this.state.todos} contentKey="title" />
-        <ToggleButton>{this.state.btnText}</ToggleButton>
+        <UL contents={todos} contentKey="title" />
+        <ToggleButton>{btnText}</ToggleButton>
         <WarningModal visible={warningVisibility}>네트워크 에러가 발생했습니다</WarningModal>
       </Wrapper>
     );
   }
 }
 
-export default TodoLists;
+export default TodoOutput;
