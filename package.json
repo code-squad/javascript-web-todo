@@ -8,7 +8,6 @@
     "build": "webpack",
     "start": "webpack-dev-server --hot"
   },
-  "browserslist": "> 0.25%, not dead",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fed-gren/javascript-web-todo.git"
