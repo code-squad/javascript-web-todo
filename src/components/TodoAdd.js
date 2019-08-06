@@ -7,6 +7,10 @@ import TodoButton from "./TodoButton";
 
 const Add = styled.div`
   display: flex;
+  background-color: papayawhip;
+  position: relative;
+  align-items: center;
+  justify-content: space-around;
 `;
 
 class TodoAdd extends Component {

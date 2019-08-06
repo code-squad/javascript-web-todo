@@ -1,4 +1,10 @@
 import React, { Component } from "react";
+import styled from "styled-components";
+
+const AddInput = styled.input`
+  width: 50%;
+  height: 1.4rem;
+`;
 
 class TodoAddInput extends Component {
   constructor() {
@@ -6,7 +12,7 @@ class TodoAddInput extends Component {
   }
 
   render() {
-    return <input />;
+    return <AddInput />;
   }
 }
 

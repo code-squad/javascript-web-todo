@@ -5,8 +5,7 @@ import TodoAdd from "./components/TodoAdd";
 import TodoContent from "./components/TodoContent";
 
 const StyledRoot = styled.div`
-  width: 50%;
-  min-width: 300px;
+  width: 480px;
   margin: 0 auto;
   border: 1px dotted red;
 `;
