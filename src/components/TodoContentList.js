@@ -6,17 +6,20 @@ import RemoveButton from "./TodoButton";
 import Loader from "./Loader";
 
 const ContentUl = styled.ul`
-  margin: 0;
+  margin: 1rem 0;
   padding: 0;
 `;
 
 const ContentList = styled.li`
   list-style: none;
-  border: 1px dotted blue;
   padding: 0.5rem;
+  width: 94%;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 300;
 
   &:hover {
-    background-color: #eee;
+    background-color: #eaf5fd;
   }
 `;
 
@@ -39,9 +42,19 @@ class TodoContentList extends Component {
     return (
       <ContentUl>
         {this.state.data.map(list => {
-          return <ContentList key={list.id}>{list.title}</ContentList>;
+          return (
+            <ContentList key={list.id}>
+              {list.title}
+              <RemoveButton
+                // name="&#10060;"
+                name="X"
+                width="1rem"
+                height="1rem"
+                borderRadius="50%"
+              />
+            </ContentList>
+          );
         })}
-        {/* <RemoveButton name="&#10060;" /> */}
       </ContentUl>
     );
   }

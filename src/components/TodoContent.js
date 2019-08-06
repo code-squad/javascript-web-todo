@@ -8,9 +8,12 @@ import TodoButton from "./TodoButton";
 
 const Content = styled.div`
   width: 100%;
-  background-color: papayawhip;
+  min-height: 200px;
   margin-top: 2rem;
   position: relative;
+  padding: 0.5rem 0.3rem;
+  display: flex;
+  flex-direction: column;
 `;
 
 class TodoContent extends Component {
@@ -31,6 +34,8 @@ class TodoContent extends Component {
           name="접기"
           clickHandler={this.buttonClickHandler}
           absolute={true}
+          width="4rem"
+          height="2rem"
         />
       </Content>
     );

@@ -7,10 +7,10 @@ import TodoButton from "./TodoButton";
 
 const Add = styled.div`
   display: flex;
-  background-color: papayawhip;
   position: relative;
   align-items: center;
   justify-content: space-around;
+  padding: 0.5rem 0.3rem;
 `;
 
 class TodoAdd extends Component {
@@ -19,7 +19,7 @@ class TodoAdd extends Component {
   }
 
   buttonClickHandler() {
-    console.log("click");
+    console.log("등록");
   }
 
   render() {
@@ -27,7 +27,12 @@ class TodoAdd extends Component {
       <Add className="todo-add">
         <TodoSubtitle subtitle="할 일 입력" />
         <TodoAddInput />
-        <TodoButton name="등록" clickHandler={this.buttonClickHandler} />
+        <TodoButton
+          name="등록"
+          clickHandler={this.buttonClickHandler}
+          width="4rem"
+          height="2rem"
+        />
       </Add>
     );
   }

@@ -1,8 +1,18 @@
 import React, { Component } from "react";
+import styled from "styled-components";
+
+const LoaderText = styled.h3`
+  font-weight: 300;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 class Loader extends Component {
   render() {
-    return <h3>Loading...</h3>;
+    return <LoaderText>Loading...</LoaderText>;
   }
 }
 
