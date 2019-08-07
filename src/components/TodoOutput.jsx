@@ -25,7 +25,7 @@ const ToggleButton = styled(Button)`
 `;
 
 const TodoOutput = () => {
-  const [btnText, setBtnText] = useState("접기");
+  const [listVisible, setListVisible] = useState(true);
   const [todos, setTodos] = useState([]);
   const [warningVisibility, setWarningVisibility] = useState(false);
 
@@ -44,11 +44,15 @@ const TodoOutput = () => {
     })();
   }, []);
 
+  const toggleLists = () => {
+    setListVisible(!listVisible);
+  };
+
   return (
     <Wrapper>
       <Div>할 일 목록</Div>
-      <UL contents={todos} contentKey="title" />
-      <ToggleButton>{btnText}</ToggleButton>
+      <UL contents={todos} contentKey="title" opacity={listVisible ? 1 : 0} />
+      <ToggleButton onClick={toggleLists}>{listVisible ? "접기" : "펼치기"}</ToggleButton>
       <WarningModal visible={warningVisibility}>네트워크 에러가 발생했습니다</WarningModal>
     </Wrapper>
   );

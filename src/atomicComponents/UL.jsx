@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const StyledUL = styled.ul`
   padding-left: 2rem;
+  opacity: ${props => props.opacity};
 `;
 
 const Li = styled.li`
@@ -18,13 +19,12 @@ const Li = styled.li`
     content: "❌";
   }
 `;
-const getLists = (contents, contentKey) => {
+const getLists = ({ contents, contentKey }) => {
   return contents.map((v, i) => <Li key={v.id || i}>{v[contentKey] || v.title}</Li>);
 };
 
 const UL = props => {
-  const { contents, contentKey } = props;
-  return <StyledUL>{getLists(contents, contentKey)}</StyledUL>;
+  return <StyledUL {...props}>{getLists(props)}</StyledUL>;
 };
 
 export default UL;
