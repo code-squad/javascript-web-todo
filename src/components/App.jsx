@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import TodoInput from "./TodoInput.jsx";
 import TodoOutput from "./TodoOutput.jsx";
@@ -24,23 +24,17 @@ const Wrapper = styled.div`
   margin: 0 auto;
 `;
 
-class App extends Component {
-  state = {
-    title: "Todo App"
-  };
-
-  render() {
-    return (
-      <>
-        <GlobalStyle />
-        <Wrapper>
-          <Title>{this.state.title}</Title>
-          <TodoInput />
-          <TodoOutput />
-        </Wrapper>
-      </>
-    );
-  }
-}
+const App = () => {
+  return (
+    <>
+      <GlobalStyle />
+      <Wrapper>
+        <Title>Todo App</Title>
+        <TodoInput />
+        <TodoOutput />
+      </Wrapper>
+    </>
+  );
+};
 
 export default App;
