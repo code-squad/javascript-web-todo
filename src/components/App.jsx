@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import TodoInput from "./TodoInput.jsx";
 import TodoOutput from "./TodoOutput.jsx";
@@ -25,12 +25,19 @@ const Wrapper = styled.div`
 `;
 
 const App = () => {
+  const [newTodo, setNewTodo] = useState();
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    setNewTodo(e.target.todoInput.value);
+  };
+
   return (
     <>
       <GlobalStyle />
       <Wrapper>
         <Title>Todo App</Title>
-        <TodoInput />
+        <TodoInput onSubmit={handleSubmit} />
         <TodoOutput />
       </Wrapper>
     </>
