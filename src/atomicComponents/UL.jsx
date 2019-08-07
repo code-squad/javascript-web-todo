@@ -18,16 +18,13 @@ const Li = styled.li`
     content: "❌";
   }
 `;
+const getLists = (contents, contentKey) => {
+  return contents.map((v, i) => <Li key={v.id || i}>{v[contentKey] || v.title}</Li>);
+};
 
-class UL extends Component {
-  getLists = (contents, contentKey) => {
-    return contents.map((v, i) => <Li key={v.id || i}>{v[contentKey] || v.title}</Li>);
-  };
-
-  render() {
-    const { contents, contentKey } = this.props;
-    return <StyledUL>{this.getLists(contents, contentKey)}</StyledUL>;
-  }
-}
+const UL = props => {
+  const { contents, contentKey } = props;
+  return <StyledUL>{getLists(contents, contentKey)}</StyledUL>;
+};
 
 export default UL;

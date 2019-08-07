@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const Div = styled.div`
@@ -7,13 +7,11 @@ const Div = styled.div`
   font-size: 2rem;
 `;
 
-class WarningModal extends Component {
-  render() {
-    if (this.props.visible) {
-      return <Div>{this.props.children}</Div>;
-    }
-    return null;
+const WarningModal = props => {
+  if (props.visible) {
+    return <Div>{props.children}</Div>;
   }
-}
+  return null;
+};
 
 export default WarningModal;

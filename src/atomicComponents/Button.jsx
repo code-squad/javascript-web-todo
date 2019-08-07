@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const StyledButton = styled.button`
@@ -17,11 +17,9 @@ const StyledButton = styled.button`
     color: white;
   }
 `;
-class Button extends Component {
-  render() {
-    const { className, children } = this.props;
-    return <StyledButton className={className}>{children}</StyledButton>;
-  }
-}
+
+const Button = props => {
+  return <StyledButton {...props}>{props.children}</StyledButton>;
+};
 
 export default Button;
