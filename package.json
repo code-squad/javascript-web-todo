@@ -4,7 +4,7 @@
   "description": "React based todo application",
   "main": "index.js",
   "scripts": {
-    "webpack": "webpack"
+    "dev": "webpack-dev-server --hot"
   },
   "repository": {
     "type": "git",
@@ -26,7 +26,9 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
+    "react-hot-loader": "^4.12.10",
     "webpack": "^4.39.1",
-    "webpack-cli": "^3.3.6"
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.7.2"
   }
 }

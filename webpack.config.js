@@ -27,8 +27,18 @@ module.exports = {
 
             // 해당 모듈의 옵션이 있다면 설정한다.
             options: {
-                presets: ['@babel/preset-env', '@babel/preset-react'],
-                plugins: ['@babel/plugin-proposal-class-properties']
+                presets: [
+                    ['@babel/preset-env', {
+                        targets: {
+                            browsers: ['> 1% in KR']
+                        }
+                    }], 
+                    '@babel/preset-react'
+                ],
+                plugins: [
+                    '@babel/plugin-proposal-class-properties',
+                    'react-hot-loader/babel'
+                ]
             }
         }]
     },
@@ -38,6 +48,7 @@ module.exports = {
         // 완성된 번들 파일을 저장할 경로를 지정한다.
         path: path.join(__dirname, 'dist'),
         // 최종 완성될 번들 파일의 이름을 설정한다.
-        filename: 'app.js'
+        filename: 'app.js',
+        publicPath: '/dist/'
     }
 }

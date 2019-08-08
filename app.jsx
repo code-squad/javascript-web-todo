@@ -1,5 +1,8 @@
-const React = require('react');
-const ReactDOM = require('React-dom');
-const ToDo = require('./todo');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ToDo from './todo';
+import { hot } from 'react-hot-loader/root';
 
-ReactDOM.render(<ToDo />, document.querySelector('#root'));
+const Hot = hot(ToDo);
+
+ReactDOM.render(<Hot />, document.querySelector('#root'));

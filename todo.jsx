@@ -1,9 +1,8 @@
-const React = require('react');
-const { Component } = React;
+import React, { Component } from 'react';
 
 class ToDo extends Component {
     state = {
-        name: 'koon'
+        name: 'koon!!!'
     };
 
     render() {
@@ -11,4 +10,4 @@ class ToDo extends Component {
     }
 }
 
-module.exports = ToDo;
+export default ToDo;
