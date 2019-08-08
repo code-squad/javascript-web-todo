@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
+import ToDoInput from './todo_input';
+import ToDoList from './todo_list';
+
 
 class ToDo extends Component {
     state = {
-        name: 'koon!!!'
+        name: 'koon'
     };
 
     render() {
-        return <h1>{this.state.name}</h1>;
+        return (
+            <div className="koon-todo">
+                <ToDoInput />
+                <ToDoList />
+            </div>
+        )
     }
 }
 
