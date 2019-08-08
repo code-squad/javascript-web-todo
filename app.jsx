@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ToDo from './todo';
+import Index from './index';
 import { hot } from 'react-hot-loader/root';
 
-const Hot = hot(ToDo);
+const Hot = hot(Index);
 
 ReactDOM.render(<Hot />, document.querySelector('#root'));
