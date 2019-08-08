@@ -47,9 +47,9 @@ class InputBar extends Component {
 
 class OutputTable extends Component {
   render() {
-    const todoList = this.props.todoList.map(todoItem=>
-      <OutputRow todoItem={todoItem}/>
-    );
+    const todoList = this.props.todoList.map(todoItem => (
+      <OutputRow key={todoItem.id} title={todoItem.title} />
+    ));
     return (
       <>
         {/* 중앙정렬 하는법 flex  */}
@@ -65,10 +65,7 @@ class OutputTable extends Component {
 
 class OutputRow extends Component {
   render() {
-    const {title} = this.props.todoItem;
-    return(
-      <li>{title}</li>
-    )
-    
+    const { title } = this.props;
+    return <li>{title}</li>;
   }
 }
