@@ -18,6 +18,8 @@ const Li = styled.li`
 const CancelButton = styled.span`
     position: absolute;
     right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
     cursor: pointer;
     font-size: 15px;
 `
@@ -30,7 +32,7 @@ class ToDoListLi extends Component {
     render() {
         return (
             <Li>
-                {this.state.value}
+                <p>{this.props.value}</p>
                 <CancelButton>
                     <FontAwesomeIcon icon={faTimesCircle} color="#5a61ff" />
                 </CancelButton>            

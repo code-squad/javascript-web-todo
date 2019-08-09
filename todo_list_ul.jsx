@@ -23,12 +23,6 @@ const ToggleButton = styled.span`
     transform: translate(-50%, -50%);
     cursor: pointer;
 `
-const CancelButton = styled.span`
-    position: absolute;
-    right: 15px;
-    cursor: pointer;
-    font-size: 15px;
-`
 const H3 = styled.h3`
     margin-bottom: 20px;
     font-family: 'Beth Ellen', cursive;
@@ -38,7 +32,19 @@ const H3 = styled.h3`
 
 class ToDoListUl extends Component {
     state = {
-        value: 0
+        apiInfo: []
+    }
+
+    async componentDidMount() {
+        try {
+            const reqData = await fetch("https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/todolist");
+            const resData = await reqData.json();
+            this.setState({ apiInfo: resData.body });
+
+        } catch (e) {
+            console.log(e);
+            return;
+        }
     }
 
     render() {
@@ -49,7 +55,11 @@ class ToDoListUl extends Component {
                 </ToggleButton>
                 <H3>&#60; List /&#62;</H3>
                 <ul>
-                    <ToDoListLi />
+                    {this.state.apiInfo.map((v) => {
+                        return (
+                            <ToDoListLi key={v.id} value={v.title} />
+                        )
+                    })}
                 </ul>
             </Wrap>
         )
