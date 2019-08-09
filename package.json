@@ -17,8 +17,12 @@
   },
   "homepage": "https://github.com/kkw10/javascript-web-todo#readme",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.21",
+    "@fortawesome/free-solid-svg-icons": "^5.10.1",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-google-font-loader": "^1.0.5",
     "styled-components": "^4.3.2",
     "styled-reset": "^3.0.0"
   },
