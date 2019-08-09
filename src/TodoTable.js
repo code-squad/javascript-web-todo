@@ -1,4 +1,6 @@
 import React, { Component, PureComponent } from "react";
+import OutputTable from './OutputTable';
+import InputBar from './InputBar';
 
 export default class TodoTable extends Component {
   constructor(props) {
@@ -38,41 +40,5 @@ export default class TodoTable extends Component {
   }
 }
 
-class InputBar extends PureComponent {
-  render() {
-    console.log("inputBar is render...");
-    return (
-      <form>
-        <label>할일 입력 : </label>
-        <input />
-        <button>등록</button>
-      </form>
-    );
-  }
-}
 
-class OutputTable extends Component {
-  render() {
-    console.log("OutputTable is render...");
-    const todoList = this.props.todoList.map(todoItem => (
-      <OutputRow key={todoItem.id} title={todoItem.title} />
-    ));
-    return (
-      <>
-        {/* 중앙정렬 하는법 flex  */}
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <h3>해야할 일들</h3>
-          <button>접기</button>
-        </div>
-        <ul>{todoList}</ul>
-      </>
-    );
-  }
-}
 
-class OutputRow extends Component {
-  render() {
-    const { title } = this.props;
-    return <li>{title}</li>;
-  }
-}
