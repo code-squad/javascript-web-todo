@@ -17,16 +17,23 @@ class ToDoApp extends Component {
   async componentDidMount() {
     try {
       const response = await fetch(
-        `https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/todolistt`
+        `https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/todolist`
       );
       if (!response.ok) throw new Error(response.status); //resolved지만 404, 500..인 경우
       if (response === undefined) throw new Error("undefined"); // Promise(rejected)인 경우
       const data = await response.json();
       this.setState({ todoData: data.body, error: false });
+      console.log(this.state);
     } catch (error) {
       console.log(error.message);
       this.setState({ todoData: [], error: true });
     }
+  }
+
+  submitHandler(newTodo) {
+    const todos = [...this.state.todoData];
+    todos.push({ title: newTodo, id: 1111, status: "todo" });
+    this.setState({ todoData: todos });
   }
 
   render() {
@@ -35,7 +42,7 @@ class ToDoApp extends Component {
     return (
       <>
         <GlobalStyle />
-        <AddTodo />
+        <AddTodo onSubmit={this.submitHandler.bind(this)} />
         <ShowTodo data={todoData} error={error} />
       </>
     );

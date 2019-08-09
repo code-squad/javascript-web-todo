@@ -15,6 +15,7 @@ class ShowTodo extends Component {
     const arr = todos.map(data => {
       return (
         <LI key={data.id}>
+          {console.log(data.id)}
           {data.title}
           <IconButton aria-label="delete">
             <DeleteIcon fontSize="small" />

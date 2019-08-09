@@ -4,13 +4,27 @@ import styled, { css } from "styled-components";
 class AddTodo extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      inputValue: ""
+    };
+  }
+
+  onChangeHandler(e) {
+    this.setState({
+      inputValue: e.target.value
+    });
   }
 
   render() {
     return (
-      <form action="">
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          this.props.onSubmit(this.state.inputValue);
+        }}
+      >
         <Header>what is your One Small Step? </Header>
-        <Input type="text" />
+        <Input onChange={this.onChangeHandler.bind(this)} type="text" />
         <Button>등록</Button>
       </form>
     );
