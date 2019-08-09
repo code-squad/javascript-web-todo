@@ -51,7 +51,7 @@ class ToDoInput extends Component {
     render() {
         return (
             <Wrap>
-                <H3>To Do</H3>
+                <H3>&#60; Input /&#62;</H3>
                 <InnerWrap>
                     <Input type="text" placeholder="what to do...?" />
                     <Button>

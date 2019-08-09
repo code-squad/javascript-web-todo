@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ToDoInput from './todo_input';
-import ToDoList from './todo_list';
+import ToDoList from './todo_list_ul';
 import styled from 'styled-components';
 
 const ToDoApp = styled.div`
