@@ -22,7 +22,7 @@ class AddBtn extends Component {
   render() {
     return (
       <Div>
-        <Button>Add</Button>
+        <Button type='submit'>Add</Button>
       </Div>
     )
   }

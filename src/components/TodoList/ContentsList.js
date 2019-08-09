@@ -23,11 +23,12 @@ const Span = styled.span`
 
 class ContentsList extends Component {
   render() {
+    const { title, status } = this.props;
     return (
       <Li>
         <Div>
-          <Span>{this.props.title}</Span>
-          <Span>{this.props.status}</Span>
+          <Span>{ title }</Span>
+          <Span>{ status }</Span>
         </Div>
         <RemoveBtn />
       </Li>

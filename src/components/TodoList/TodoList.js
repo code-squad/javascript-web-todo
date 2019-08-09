@@ -12,9 +12,10 @@ const Div = styled.div`
 
 class TodoList extends Component {
   render() {
+    const { myTodo } = this.props
     return (
       <Div>
-        <Contents myTodo={this.props.myTodo} />
+        <Contents myTodo={myTodo} />
       </Div>
     );
   }

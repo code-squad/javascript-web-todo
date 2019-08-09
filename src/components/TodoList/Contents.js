@@ -26,12 +26,13 @@ class Contents extends Component {
   }
 
   render() {
-    const todoList = this.props.myTodo.map( ({ title, key, status }) => {
+    const { myTodo } = this.props;
+    const todoList = myTodo.map( ({ title, id, status }) => {
       return (
         <ContentsList 
           title={title} 
           status={status.toUpperCase()} 
-          key={key}
+          key={id}
         />
       )
     })

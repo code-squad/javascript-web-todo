@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Input from './Input/Input';
+import InputBar from './Input/InputBar';
 import TodoList from './TodoList/TodoList';
 import ShowContentsBtn from './ShowButton/ShowContentsBtn';
 import styled from 'styled-components';
@@ -19,9 +19,16 @@ class App extends Component {
   }
 
   async fetchMyTodoList()  {
-    const myTodoList = await todoApi.get('/develop/todolist').then(res => res.data.body)
-    this.setState({ todo: myTodoList });
-    console.log(this.state);
+    await todoApi.get('/develop/todolist')
+      .then(res => {
+        if(res.status === 200) {
+          const myTodoList = res.data.body;
+          this.setState({ todo: myTodoList });
+        } else {
+          return Promise.reject(res.status);
+        }
+      })
+      .catch(reason => console.log(reason.message));
   }
 
   componentDidMount() {
@@ -31,8 +38,8 @@ class App extends Component {
   render() {
     return(
       <Div>
-        <Input />
-        <TodoList myTodo={this.state.todo} />
+        <InputBar onTermSubmit={ this.onTermSubmit } />
+        <TodoList myTodo={ this.state.todo } />
         <ShowContentsBtn />
       </Div>
     )

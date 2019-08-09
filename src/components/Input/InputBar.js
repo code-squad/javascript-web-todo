@@ -1,30 +1,52 @@
 import React, {Component} from 'react';
+import AddBtn from './AddButton';
 import styled from 'styled-components';
 
-const Div = styled.div`
-  width: 60%;
+const Form = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 5rem;
+  margin-bottom: 50px;
+  background-color: #8ee4af;
+  color: #05386b;
+  font-weight: bold;
+  vertical-align: middle;
+  border-radius: 5px;
+`
+
+const Label = styled.label`
   align-items: center;
   margin-left: 10px;
-  margin-right: 30px;
   background-color: transparent;
 `
 
 const Input = styled.input`
-  width: 100%;
+  width: 60%;
   height: 2rem;
   border: none;
   border-radius: 5px;
   font-size: 15px;
   padding-left: 10px;
-`;
+  margin-left: 10px;
+`
 
 class InputBar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      term: ''
+    };
+  }
+
   render() {
-    return(
-      <Div>
-        <Input type="text"/>
-      </Div>
+    return (
+      <Form>
+        <Label>할일입력: </Label>
+        <Input type="text" />
+        <AddBtn />
+      </Form>
     )
   }
 }
