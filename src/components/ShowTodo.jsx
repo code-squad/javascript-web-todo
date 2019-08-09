@@ -11,7 +11,7 @@ class ShowTodo extends Component {
     super(props);
   }
 
-  makeLiData(todos) {
+  makeLiData = todos => {
     const arr = todos.map(data => {
       return (
         <LI key={data.id}>
@@ -32,9 +32,9 @@ class ShowTodo extends Component {
     });
 
     return arr;
-  }
+  };
 
-  makeLiComponent(obj) {
+  makeLiComponent = obj => {
     const todos = obj.data;
     const error = obj.error;
     const isEmpty = todos.length === 0 ? true : false;
@@ -57,7 +57,7 @@ class ShowTodo extends Component {
     }
 
     return result;
-  }
+  };
 
   render() {
     const result = this.makeLiComponent(this.props);

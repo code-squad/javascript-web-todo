@@ -30,7 +30,7 @@ class ToDoApp extends Component {
     }
   }
 
-  countIf(randomId) {
+  countIf = randomId => {
     const todos = [...this.state.todoData];
 
     todos.forEach(todo => {
@@ -40,9 +40,9 @@ class ToDoApp extends Component {
     });
 
     return false;
-  }
+  };
 
-  randomIdGenerator() {
+  randomIdGenerator = () => {
     const digit1 = Math.ceil(Math.random() * 9);
     const digit10 = Math.ceil(Math.random() * 9) * 10;
     const digit100 = Math.ceil(Math.random() * 9) * 100;
@@ -52,9 +52,9 @@ class ToDoApp extends Component {
 
     if (this.countIf()) return this.randomIdGenerator();
     return randomId;
-  }
+  };
 
-  submitTodoHandler(newTodo) {
+  submitTodoHandler = newTodo => {
     const todos = [...this.state.todoData];
     todos.push({
       title: newTodo,
@@ -62,13 +62,13 @@ class ToDoApp extends Component {
       status: "todo"
     });
     this.setState({ todoData: todos });
-  }
+  };
 
-  deleteTodoHandler(deletedId) {
+  deleteTodoHandler = deletedId => {
     const todos = [...this.state.todoData];
     const filteredTodos = todos.filter(todo => todo.id !== Number(deletedId));
     this.setState({ todoData: filteredTodos });
-  }
+  };
 
   render() {
     const { todoData, error } = this.state;
@@ -76,11 +76,11 @@ class ToDoApp extends Component {
     return (
       <>
         <GlobalStyle />
-        <AddTodo onSubmit={this.submitTodoHandler.bind(this)} />
+        <AddTodo onSubmit={this.submitTodoHandler} />
         <ShowTodo
           data={todoData}
           error={error}
-          onDelete={this.deleteTodoHandler.bind(this)}
+          onDelete={this.deleteTodoHandler}
         />
       </>
     );

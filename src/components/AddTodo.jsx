@@ -4,16 +4,17 @@ import styled, { css } from "styled-components";
 class AddTodo extends Component {
   constructor(props) {
     super(props);
+    this.myRef = React.createRef();
     this.state = {
       inputValue: ""
     };
   }
 
-  onChangeHandler(e) {
+  onChangeHandler = e => {
     this.setState({
       inputValue: e.target.value
     });
-  }
+  };
 
   render() {
     return (
@@ -21,10 +22,15 @@ class AddTodo extends Component {
         onSubmit={e => {
           e.preventDefault();
           this.props.onSubmit(this.state.inputValue);
+          this.myRef.value = "";
         }}
       >
         <Header>what is your One Small Step? </Header>
-        <Input onChange={this.onChangeHandler.bind(this)} type="text" />
+        <Input
+          ref={input => (this.myRef = input)}
+          onChange={this.onChangeHandler}
+          type="text"
+        />
         <Button>등록</Button>
       </form>
     );
