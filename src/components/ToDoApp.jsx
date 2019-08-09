@@ -30,15 +30,37 @@ class ToDoApp extends Component {
     }
   }
 
-  findTargetTodo(deletedId) {
+  countIf(randomId) {
     const todos = [...this.state.todoData];
-    const targetTodo = todos.filter(todo => todo.id === Number(deletedId));
-    return targetTodo[0];
+
+    todos.forEach(todo => {
+      if (todo.id === randomId) {
+        return true;
+      }
+    });
+
+    return false;
   }
 
-  submitHandler(newTodo) {
+  randomIdGenerator() {
+    const digit1 = Math.ceil(Math.random() * 9);
+    const digit10 = Math.ceil(Math.random() * 9) * 10;
+    const digit100 = Math.ceil(Math.random() * 9) * 100;
+    const digit1000 = Math.ceil(Math.random() * 9) * 1000;
+
+    const randomId = digit1 + digit10 + digit100 + digit1000;
+
+    if (this.countIf()) return this.randomIdGenerator();
+    return randomId;
+  }
+
+  submitTodoHandler(newTodo) {
     const todos = [...this.state.todoData];
-    todos.push({ title: newTodo, id: 1111, status: "todo" });
+    todos.push({
+      title: newTodo,
+      id: this.randomIdGenerator(),
+      status: "todo"
+    });
     this.setState({ todoData: todos });
   }
 
@@ -54,7 +76,7 @@ class ToDoApp extends Component {
     return (
       <>
         <GlobalStyle />
-        <AddTodo onSubmit={this.submitHandler.bind(this)} />
+        <AddTodo onSubmit={this.submitTodoHandler.bind(this)} />
         <ShowTodo
           data={todoData}
           error={error}
