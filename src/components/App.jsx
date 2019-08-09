@@ -38,7 +38,7 @@ const App = () => {
       <Wrapper>
         <Title>Todo App</Title>
         <TodoInput onSubmit={handleSubmit} />
-        <TodoOutput />
+        <TodoOutput newTodo={newTodo} />
       </Wrapper>
     </>
   );

@@ -24,7 +24,7 @@ const ToggleButton = styled(Button)`
   right: 2rem;
 `;
 
-const TodoOutput = () => {
+const TodoOutput = props => {
   const [listVisible, setListVisible] = useState(true);
   const [todos, setTodos] = useState([]);
   const [warningVisibility, setWarningVisibility] = useState(false);
@@ -43,6 +43,12 @@ const TodoOutput = () => {
       }
     })();
   }, []);
+
+  useEffect(() => {
+    const id = 0 | (Math.random() * 9000 + 1000);
+    const newTodo = { title: props.newTodo, id, status: "todo" };
+    setTodos([...todos, newTodo]);
+  }, [props.newTodo]);
 
   const toggleLists = () => {
     setListVisible(!listVisible);
