@@ -17,7 +17,14 @@ class ShowTodo extends Component {
         <LI key={data.id}>
           {console.log(data.id)}
           {data.title}
-          <IconButton aria-label="delete">
+          <IconButton
+            aria-label="delete"
+            id={data.id}
+            onClick={() => {
+              console.log(`delete-btn click! target: ${data.id}`);
+              this.props.onDelete(data.id);
+            }}
+          >
             <DeleteIcon fontSize="small" />
           </IconButton>
         </LI>

@@ -30,10 +30,22 @@ class ToDoApp extends Component {
     }
   }
 
+  findTargetTodo(deletedId) {
+    const todos = [...this.state.todoData];
+    const targetTodo = todos.filter(todo => todo.id === Number(deletedId));
+    return targetTodo[0];
+  }
+
   submitHandler(newTodo) {
     const todos = [...this.state.todoData];
     todos.push({ title: newTodo, id: 1111, status: "todo" });
     this.setState({ todoData: todos });
+  }
+
+  deleteTodoHandler(deletedId) {
+    const todos = [...this.state.todoData];
+    const filteredTodos = todos.filter(todo => todo.id !== Number(deletedId));
+    this.setState({ todoData: filteredTodos });
   }
 
   render() {
@@ -43,7 +55,11 @@ class ToDoApp extends Component {
       <>
         <GlobalStyle />
         <AddTodo onSubmit={this.submitHandler.bind(this)} />
-        <ShowTodo data={todoData} error={error} />
+        <ShowTodo
+          data={todoData}
+          error={error}
+          onDelete={this.deleteTodoHandler.bind(this)}
+        />
       </>
     );
   }
