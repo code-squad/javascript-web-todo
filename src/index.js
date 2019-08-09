@@ -1,12 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TodoTable from './TodoTable';
+import App from './App';
+import { Normalize } from 'styled-normalize';
 
 
 
-ReactDOM.render(
-  <TodoTable />,
-  document.getElementById('root')
-);
+const Root = () => (
+  <>
+    <Normalize />
+    <App />
+  </>
+)
 
-
+ReactDOM.render(<Root />, document.querySelector('#root'))
+// ReactDOM.render(
+//   <StyledComponent />,
+//   document.getElementById('root')
+// );

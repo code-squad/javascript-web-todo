@@ -1,5 +1,16 @@
 import React, { Component } from 'react';
 import OutputRow from './OutputRow';
+import styled from 'styled-components';
+
+const Background = styled.div`
+  background: #a6d0d1;
+`
+const Table = styled.div`
+  display : flex;
+  align-items : center;
+  justify-content: space-between;
+`
+
 
 export default class OutputTable extends Component {
   render() {
@@ -8,14 +19,13 @@ export default class OutputTable extends Component {
       <OutputRow key={todoItem.id} title={todoItem.title} />
     ));
     return (
-      <>
-        {/* 중앙정렬 하는법 flex  */}
-        <div style={{ display: "flex", alignItems: "center" }}>
+      <Background>
+        <Table >
           <h3>해야할 일들</h3>
           <button>접기</button>
-        </div>
+        </Table>
         <ul>{todoList}</ul>
-      </>
+      </Background>
     );
   }
 }

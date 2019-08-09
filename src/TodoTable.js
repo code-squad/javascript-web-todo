@@ -1,4 +1,4 @@
-import React, { Component, PureComponent } from "react";
+import React, { Component } from "react";
 import OutputTable from './OutputTable';
 import InputBar from './InputBar';
 
