@@ -6,29 +6,17 @@ import Button from "@material-ui/core/Button";
 import { IconButton } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-class ShowTodo extends Component {
+class ShowDone extends Component {
   constructor(props) {
     super(props);
   }
 
-  makeLiData = todos => {
-    const arr = todos.map(data => {
+  makeLiData = dones => {
+    const arr = dones.map(data => {
       return (
-        <LI
-          onClick={() => {
-            this.props.onChange(data);
-          }}
-          key={data.id}
-          clicked="false"
-        >
-          {data.title}
-          <IconButton
-            aria-label="delete"
-            id={data.id}
-            onClick={() => {
-              this.props.onDelete(data.id);
-            }}
-          >
+        <LI key={data.id}>
+          <del>{data.title}</del>
+          <IconButton id={data.id}>
             <DeleteIcon fontSize="small" />
           </IconButton>
         </LI>
@@ -38,36 +26,23 @@ class ShowTodo extends Component {
     return arr;
   };
 
-  makeLiComponent = obj => {
-    const todos = obj.data;
-    const error = obj.error;
-    const isEmpty = todos.length === 0 ? true : false;
+  makeLiComponent = dones => {
+    const isEmpty = dones.length === 0 ? true : false;
     let result;
 
-    if (error) {
-      result = (
-        <ul>
-          <li>데이터 요청 실패</li>
-        </ul>
-      );
-    } else if (!isEmpty) {
-      result = <ul>{this.makeLiData(todos)}</ul>;
-    } else {
-      result = (
-        <ul>
-          <li>없음</li>
-        </ul>
-      );
-    }
-
-    return result;
+    if (!isEmpty) return (result = <ul>{this.makeLiData(dones)}</ul>);
+    return (result = (
+      <ul>
+        <li>없음</li>
+      </ul>
+    ));
   };
 
   render() {
-    const result = this.makeLiComponent(this.props);
+    const result = this.makeLiComponent(this.props.data);
     return (
       <DIV>
-        <HEADER customAttr="test">해야할 일</HEADER>
+        <HEADER>완료한 일</HEADER>
         <Button color="secondary">접기</Button>
         {result}
       </DIV>
@@ -97,4 +72,4 @@ const HEADER = styled.h3`
   padding-top: 10px;
 `;
 
-export default ShowTodo;
+export default ShowDone;

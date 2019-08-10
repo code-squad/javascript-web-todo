@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import styled, { createGlobalStyle } from "styled-components";
-import ShowTodo from "./ShowTodo";
 import AddTodo from "./AddTodo";
+import ShowTodo from "./ShowTodo";
+import ShowDone from "./ShowDone";
 
 class ToDoApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
       todoData: [],
-      doingData: [],
       doneData: [],
       error: null
     };
@@ -70,8 +70,16 @@ class ToDoApp extends Component {
     this.setState({ todoData: filteredTodos });
   };
 
+  changeDoneHandler = changeTodo => {
+    changeTodo.status = "done";
+    this.deleteTodoHandler(changeTodo.id); // todoData에서 해당하는 todo를 삭제하고,
+    const dones = [...this.state.doneData];
+    dones.push(changeTodo);
+    this.setState({ doneData: dones });
+  };
+
   render() {
-    const { todoData, error } = this.state;
+    const { todoData, doneData, error } = this.state;
 
     return (
       <>
@@ -81,7 +89,9 @@ class ToDoApp extends Component {
           data={todoData}
           error={error}
           onDelete={this.deleteTodoHandler}
+          onChange={this.changeDoneHandler}
         />
+        <ShowDone data={doneData} />
       </>
     );
   }
