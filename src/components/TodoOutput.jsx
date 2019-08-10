@@ -60,12 +60,18 @@ const TodoOutput = props => {
     setListVisible(!listVisible);
   };
 
+  const deleteTodo = ({ target }) => {
+    const targetId = Number(target.closest("li").dataset.id);
+    const newTodos = todos.filter(el => el.id !== targetId);
+    setTodos(newTodos);
+  };
+
   return (
     <Wrapper>
       <Div>할 일 목록</Div>
       <Ul opacity={listVisible ? 1 : 0}>
         <Li contents={todos} contentKey="title">
-          <XButton />
+          <XButton onClick={deleteTodo} />
         </Li>
       </Ul>
       <ToggleButton onClick={toggleLists}>{listVisible ? "접기" : "펼치기"}</ToggleButton>
