@@ -9,6 +9,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 class ShowDone extends Component {
   constructor(props) {
     super(props);
+    this.doneRef = React.createRef();
   }
 
   makeLiData = dones => {
@@ -41,17 +42,26 @@ class ShowDone extends Component {
     const isEmpty = dones.length === 0 ? true : false;
     let result;
 
-    if (!isEmpty) return (result = <ul>{this.makeLiData(dones)}</ul>);
+    if (!isEmpty)
+      return (result = (
+        <ul ref={ul => (this.doneRef = ul)}>{this.makeLiData(dones)}</ul>
+      ));
     return (result = (
-      <ul>
+      <ul ref={ul => (this.doneRef = ul)}>
         <li>없음</li>
       </ul>
     ));
   };
 
   ModulateContent = e => {
-    if (e.target.innerHTML === "접기") e.target.innerHTML = "펼치기";
-    else e.target.innerHTML = "접기";
+    console.log(this.doneRef);
+    if (e.target.innerHTML === "접기") {
+      e.target.innerHTML = "펼치기";
+      this.doneRef.style.display = "none";
+    } else {
+      e.target.innerHTML = "접기";
+      this.doneRef.style.display = "block";
+    }
   };
 
   render() {
