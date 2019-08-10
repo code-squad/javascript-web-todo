@@ -65,7 +65,6 @@ class ToDoApp extends Component {
   };
 
   deleteItemHandler = deletedItem => {
-    console.log(deletedItem);
     const deletedId = deletedItem.id;
     const deletedStatus = deletedItem.status;
 
@@ -75,9 +74,7 @@ class ToDoApp extends Component {
       this.setState({ todoData: filteredTodos });
     } else if (deletedStatus === "done") {
       const dones = [...this.state.doneData];
-      console.log(dones);
       const filteredDones = dones.filter(done => done.id !== Number(deletedId));
-      console.log(filteredDones);
       this.setState({ doneData: filteredDones });
     }
   };
@@ -107,21 +104,28 @@ class ToDoApp extends Component {
       <>
         <GlobalStyle />
         <AddTodo onSubmit={this.submitTodoHandler} />
-        <ShowTodo
-          data={todoData}
-          error={error}
-          onDelete={this.deleteItemHandler}
-          onChange={this.changeItemHandler}
-        />
-        <ShowDone
-          data={doneData}
-          onDelete={this.deleteItemHandler}
-          onChange={this.changeItemHandler}
-        />
+        <DIV>
+          <ShowTodo
+            data={todoData}
+            error={error}
+            onDelete={this.deleteItemHandler}
+            onChange={this.changeItemHandler}
+          />
+          <ShowDone
+            data={doneData}
+            onDelete={this.deleteItemHandler}
+            onChange={this.changeItemHandler}
+          />
+        </DIV>
       </>
     );
   }
 }
+
+const DIV = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
 
 const GlobalStyle = createGlobalStyle`
   body {

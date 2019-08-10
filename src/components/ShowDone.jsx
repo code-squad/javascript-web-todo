@@ -49,12 +49,24 @@ class ShowDone extends Component {
     ));
   };
 
+  ModulateContent = e => {
+    if (e.target.innerHTML === "접기") e.target.innerHTML = "펼치기";
+    else e.target.innerHTML = "접기";
+  };
+
   render() {
     const result = this.makeLiComponent(this.props.data);
     return (
       <DIV>
         <HEADER>완료한 일</HEADER>
-        <Button color="secondary">접기</Button>
+        <Button
+          color="secondary"
+          onClick={e => {
+            this.ModulateContent(e);
+          }}
+        >
+          접기
+        </Button>
         {result}
       </DIV>
     );
@@ -62,25 +74,25 @@ class ShowDone extends Component {
 }
 
 const DIV = styled.div`
-  width: 400px;
-  background-color: #dedcee;
-  border-radius: 30px;
-  margin-top: 80px;
-`;
-
-const LI = styled.li`
-  font-family: Monospace;
-  font-size: 18px;
-  font-weight: 100;
-  height: 40px;
+  width: 45%;
+  background-color: #fd999a;
+  border-radius: 20px;
+  margin-top: 4em;
 `;
 
 const HEADER = styled.h3`
   font-family: Monospace;
   text-align: center;
   font-weight: 400;
-  font-size: 20px;
-  padding-top: 10px;
+  font-size: 1.4em;
+  padding-top: 0.5em;
+`;
+
+const LI = styled.li`
+  font-family: Monospace;
+  font-size: 1.4em;
+  font-weight: 100;
+  height: 2.4em;
 `;
 
 export default ShowDone;
