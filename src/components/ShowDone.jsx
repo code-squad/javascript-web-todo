@@ -14,9 +14,20 @@ class ShowDone extends Component {
   makeLiData = dones => {
     const arr = dones.map(data => {
       return (
-        <LI key={data.id}>
+        <LI
+          key={data.id}
+          onClick={() => {
+            this.props.onChange(data);
+          }}
+        >
           <del>{data.title}</del>
-          <IconButton id={data.id}>
+          <IconButton
+            id={data.id}
+            onClick={e => {
+              e.stopPropagation();
+              this.props.onDelete(data);
+            }}
+          >
             <DeleteIcon fontSize="small" />
           </IconButton>
         </LI>

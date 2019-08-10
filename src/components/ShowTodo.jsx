@@ -19,14 +19,13 @@ class ShowTodo extends Component {
             this.props.onChange(data);
           }}
           key={data.id}
-          clicked="false"
         >
           {data.title}
           <IconButton
-            aria-label="delete"
             id={data.id}
-            onClick={() => {
-              this.props.onDelete(data.id);
+            onClick={e => {
+              e.stopPropagation();
+              this.props.onDelete(data);
             }}
           >
             <DeleteIcon fontSize="small" />

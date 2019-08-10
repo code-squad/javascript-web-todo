@@ -64,18 +64,40 @@ class ToDoApp extends Component {
     this.setState({ todoData: todos });
   };
 
-  deleteTodoHandler = deletedId => {
-    const todos = [...this.state.todoData];
-    const filteredTodos = todos.filter(todo => todo.id !== Number(deletedId));
-    this.setState({ todoData: filteredTodos });
+  deleteItemHandler = deletedItem => {
+    console.log(deletedItem);
+    const deletedId = deletedItem.id;
+    const deletedStatus = deletedItem.status;
+
+    if (deletedStatus === "todo") {
+      const todos = [...this.state.todoData];
+      const filteredTodos = todos.filter(todo => todo.id !== Number(deletedId));
+      this.setState({ todoData: filteredTodos });
+    } else if (deletedStatus === "done") {
+      const dones = [...this.state.doneData];
+      console.log(dones);
+      const filteredDones = dones.filter(done => done.id !== Number(deletedId));
+      console.log(filteredDones);
+      this.setState({ doneData: filteredDones });
+    }
   };
 
-  changeDoneHandler = changeTodo => {
-    changeTodo.status = "done";
-    this.deleteTodoHandler(changeTodo.id); // todoData에서 해당하는 todo를 삭제하고,
-    const dones = [...this.state.doneData];
-    dones.push(changeTodo);
-    this.setState({ doneData: dones });
+  changeItemHandler = changedItem => {
+    let changedStatus = changedItem.status;
+
+    if (changedStatus === "todo") {
+      this.deleteItemHandler(changedItem);
+      changedItem.status = "done";
+      const dones = [...this.state.doneData];
+      dones.push(changedItem);
+      this.setState({ doneData: dones });
+    } else if (changedStatus === "done") {
+      this.deleteItemHandler(changedItem);
+      changedItem.status = "todo";
+      const todos = [...this.state.todoData];
+      todos.push(changedItem);
+      this.setState({ todoData: todos });
+    }
   };
 
   render() {
@@ -88,10 +110,14 @@ class ToDoApp extends Component {
         <ShowTodo
           data={todoData}
           error={error}
-          onDelete={this.deleteTodoHandler}
-          onChange={this.changeDoneHandler}
+          onDelete={this.deleteItemHandler}
+          onChange={this.changeItemHandler}
         />
-        <ShowDone data={doneData} />
+        <ShowDone
+          data={doneData}
+          onDelete={this.deleteItemHandler}
+          onChange={this.changeItemHandler}
+        />
       </>
     );
   }
