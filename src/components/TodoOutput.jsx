@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import CONFIGS from "../configs/configs.js";
 import Button from "../atomicComponents/Button.jsx";
-import UL from "../atomicComponents/UL.jsx";
+import Li from "../atomicComponents/Li.jsx";
 import WarningModal from "../atomicComponents/WarningModal.jsx";
+import XButton from "../atomicComponents/XButton.jsx";
 
 const Wrapper = styled.div`
   position: relative;
@@ -16,6 +17,11 @@ const Div = styled.div`
   color: palevioletred;
   font-size: 2rem;
   font-weight: bold;
+`;
+
+const Ul = styled.ul`
+  padding-left: 2rem;
+  opacity: ${props => props.opacity};
 `;
 
 const ToggleButton = styled(Button)`
@@ -57,7 +63,11 @@ const TodoOutput = props => {
   return (
     <Wrapper>
       <Div>할 일 목록</Div>
-      <UL contents={todos} contentKey="title" opacity={listVisible ? 1 : 0} />
+      <Ul opacity={listVisible ? 1 : 0}>
+        <Li contents={todos} contentKey="title">
+          <XButton />
+        </Li>
+      </Ul>
       <ToggleButton onClick={toggleLists}>{listVisible ? "접기" : "펼치기"}</ToggleButton>
       <WarningModal visible={warningVisibility}>네트워크 에러가 발생했습니다</WarningModal>
     </Wrapper>
