@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import TodoAdd from "./components/TodoAdd";
@@ -12,19 +12,13 @@ const StyledRoot = styled.div`
   padding: 1rem;
 `;
 
-class Root extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <StyledRoot>
-        <TodoAdd />
-        <TodoContent />
-      </StyledRoot>
-    );
-  }
-}
+const Root = _ => {
+  return (
+    <StyledRoot>
+      <TodoAdd />
+      <TodoContent />
+    </StyledRoot>
+  );
+};
 
 export default Root;

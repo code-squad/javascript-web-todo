@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const LoaderText = styled.h3`
@@ -10,10 +10,6 @@ const LoaderText = styled.h3`
   align-items: center;
 `;
 
-class Loader extends Component {
-  render() {
-    return <LoaderText>Loading...</LoaderText>;
-  }
-}
+const Loader = _ => <LoaderText>Loading...</LoaderText>;
 
 export default Loader;

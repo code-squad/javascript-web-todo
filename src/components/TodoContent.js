@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 import config from "../config";
 
@@ -16,30 +16,22 @@ const Content = styled.div`
   flex-direction: column;
 `;
 
-class TodoContent extends Component {
-  constructor() {
-    super();
-  }
+const TodoContent = _ => {
+  const buttonClickHandler = _ => console.log("접기");
 
-  buttonClickHandler() {
-    console.log("접기");
-  }
-
-  render() {
-    return (
-      <Content>
-        <TodoSubtitle subtitle="할 일 목록" />
-        <TodoContentList todosUrl={config.todosUrl} />
-        <TodoButton
-          name="접기"
-          clickHandler={this.buttonClickHandler}
-          absolute={true}
-          width="4rem"
-          height="2rem"
-        />
-      </Content>
-    );
-  }
-}
+  return (
+    <Content>
+      <TodoSubtitle subtitle="할 일 목록" />
+      <TodoContentList todosUrl={config.todosUrl} />
+      <TodoButton
+        name="접기"
+        clickHandler={buttonClickHandler}
+        absolute={true}
+        width="4rem"
+        height="2rem"
+      />
+    </Content>
+  );
+};
 
 export default TodoContent;

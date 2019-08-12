@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const AddInput = styled.input`
@@ -6,14 +6,6 @@ const AddInput = styled.input`
   height: 1.4rem;
 `;
 
-class TodoAddInput extends Component {
-  constructor() {
-    super();
-  }
-
-  render() {
-    return <AddInput />;
-  }
-}
+const TodoAddInput = _ => <AddInput />;
 
 export default TodoAddInput;

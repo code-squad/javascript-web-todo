@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -23,42 +23,39 @@ const ContentList = styled.li`
   }
 `;
 
-class TodoContentList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { data: [1, 2, 3, 4], dataLoaded: false };
-  }
+const TodoContentList = props => {
+  const [todos, setTodos] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
-  componentDidMount() {
-    fetch(this.props.todosUrl)
+  useEffect(() => {
+    fetch(props.todosUrl)
       .then(data => data.json())
       .then(data => {
-        this.setState({ data: data.body, dataLoaded: true });
+        setTodos(data.body);
+        setLoaded(true);
       });
-  }
-
-  render() {
-    if (!this.state.dataLoaded) return <Loader />;
-    return (
-      <ContentUl>
-        {this.state.data.map(list => {
-          return (
-            <ContentList key={list.id}>
-              {list.title}
-              <RemoveButton
-                // name="&#10060;"
-                name="X"
-                width="1rem"
-                height="1rem"
-                borderRadius="50%"
-              />
-            </ContentList>
-          );
-        })}
-      </ContentUl>
-    );
-  }
-}
+  }, []);
+  return loaded ? (
+    <ContentUl>
+      {todos.map(todo => {
+        return (
+          <ContentList key={todo.id}>
+            {todo.title}
+            <RemoveButton
+              // name="&#10060;"
+              name="X"
+              width="1rem"
+              height="1rem"
+              borderRadius="50%"
+            />
+          </ContentList>
+        );
+      })}
+    </ContentUl>
+  ) : (
+    <Loader />
+  );
+};
 
 TodoContentList.propTypes = {
   fetchUrl: PropTypes.string

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import TodoSubtitle from "./TodoSubtitle";
@@ -13,29 +13,21 @@ const Add = styled.div`
   padding: 0.5rem 0.3rem;
 `;
 
-class TodoAdd extends Component {
-  constructor() {
-    super();
-  }
+const TodoAdd = _ => {
+  const buttonClickHandler = _ => console.log("등록");
 
-  buttonClickHandler() {
-    console.log("등록");
-  }
-
-  render() {
-    return (
-      <Add className="todo-add">
-        <TodoSubtitle subtitle="할 일 입력" />
-        <TodoAddInput />
-        <TodoButton
-          name="등록"
-          clickHandler={this.buttonClickHandler}
-          width="4rem"
-          height="2rem"
-        />
-      </Add>
-    );
-  }
-}
+  return (
+    <Add className="todo-add">
+      <TodoSubtitle subtitle="할 일 입력" />
+      <TodoAddInput />
+      <TodoButton
+        name="등록"
+        clickHandler={buttonClickHandler}
+        width="4rem"
+        height="2rem"
+      />
+    </Add>
+  );
+};
 
 export default TodoAdd;
