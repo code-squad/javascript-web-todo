@@ -60,6 +60,16 @@ const TodoOutput = props => {
     setListVisible(!listVisible);
   };
 
+  const setStatusDone = ({ target }) => {
+    if (target.tagName !== "LI") return;
+    const targetId = Number(target.dataset.id);
+    const newTodos = todos.map(el => {
+      if (el.id === targetId) return { ...el, status: "done" };
+      return el;
+    });
+    setTodos(newTodos);
+  };
+
   const deleteTodo = ({ target }) => {
     const targetId = Number(target.closest("li").dataset.id);
     const newTodos = todos.filter(el => el.id !== targetId);
@@ -70,7 +80,7 @@ const TodoOutput = props => {
     <Wrapper>
       <Div>할 일 목록</Div>
       <Ul opacity={listVisible ? 1 : 0}>
-        <Li contents={todos} contentKey="title">
+        <Li contents={todos} contentKey="title" onClick={setStatusDone}>
           <XButton onClick={deleteTodo} />
         </Li>
       </Ul>

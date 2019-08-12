@@ -9,12 +9,14 @@ const StyledLi = styled.li`
   font-size: 1.5rem;
   font-weight: bold;
   color: palevioletred;
+  text-decoration: ${props => (props.textDeco === "done" ? "line-through" : "none")};
+  text-decoration-color: black;
 `;
 
 const Li = props => {
-  const { contents, contentKey } = props;
+  const { contents, contentKey, ...restProps } = props;
   return contents.map((v, i) => (
-    <StyledLi key={v.id || i} data-id={v.id || i}>
+    <StyledLi {...restProps} textDeco={v.status} key={v.id || i} data-id={v.id || i}>
       {v[contentKey] || v.title}
       {props.children}
     </StyledLi>
