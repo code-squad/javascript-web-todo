@@ -1,0 +1,42 @@
+{
+  "name": "javascript-web-todo",
+  "version": "1.0.0",
+  "description": "React based todo application",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --hot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kkw10/javascript-web-todo.git"
+  },
+  "author": "koon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kkw10/javascript-web-todo/issues"
+  },
+  "homepage": "https://github.com/kkw10/javascript-web-todo#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.21",
+    "@fortawesome/free-solid-svg-icons": "^5.10.1",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-google-font-loader": "^1.0.5",
+    "styled-components": "^4.3.2",
+    "styled-reset": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/runtime": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "react-hot-loader": "^4.12.10",
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.7.2"
+  }
+}
