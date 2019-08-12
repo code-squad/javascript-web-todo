@@ -1,7 +1,7 @@
 {
   "name": "javascript-web-todo",
   "version": "1.0.0",
-  "main": "build/index.html",
+  "main": "src/index.js",
   "repository": "https://github.com/park78951/javascript-web-todo.git",
   "scripts": {
     "dev": "webpack-dev-server --hot",
@@ -9,7 +9,6 @@
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://park78951.github.io/codesquad-Q/",
   "author": "Sangkyu <park78951@gmail.com>",
   "license": "MIT",
   "dependencies": {
