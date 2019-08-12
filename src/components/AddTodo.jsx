@@ -1,41 +1,28 @@
-import React, { Component } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled, { css } from "styled-components";
 
-class AddTodo extends Component {
-  constructor(props) {
-    super(props);
-    this.myRef = React.createRef();
-    this.state = {
-      inputValue: ""
-    };
-  }
+const AddTodo = props => {
+  const [inputValue, setInputValue] = useState("");
+  const myRef = useRef(null);
 
-  onChangeHandler = e => {
-    this.setState({
-      inputValue: e.target.value
-    });
+  const onChangeHandler = e => {
+    setInputValue(e.target.value);
   };
 
-  render() {
-    return (
-      <form
-        onSubmit={e => {
-          e.preventDefault();
-          this.props.onSubmit(this.state.inputValue);
-          this.myRef.value = "";
-        }}
-      >
-        <Header>what is your One Small Step? </Header>
-        <Input
-          ref={input => (this.myRef = input)}
-          onChange={this.onChangeHandler}
-          type="text"
-        />
-        <Button>등록</Button>
-      </form>
-    );
-  }
-}
+  return (
+    <form
+      onSubmit={e => {
+        e.preventDefault();
+        props.onSubmit(inputValue);
+        // myRef.value = "";
+      }}
+    >
+      <Header>what is your One Small Step? </Header>
+      <Input ref={myRef} onChange={onChangeHandler} type="text" />
+      <Button>등록</Button>
+    </form>
+  );
+};
 
 const Header = styled.h1`
   font-family: Monospace;

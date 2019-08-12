@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled, { css } from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
 import { display } from "@material-ui/system";
@@ -6,18 +6,15 @@ import Button from "@material-ui/core/Button";
 import { IconButton } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-class ShowTodo extends Component {
-  constructor(props) {
-    super(props);
-    this.todoRef = React.createRef();
-  }
+const ShowTodo = props => {
+  const todoRef = useRef(null);
 
-  makeLiData = todos => {
+  const makeLiData = todos => {
     const arr = todos.map(data => {
       return (
         <LI
           onClick={() => {
-            this.props.onChange(data);
+            props.onChange(data);
           }}
           key={data.id}
         >
@@ -26,7 +23,7 @@ class ShowTodo extends Component {
             id={data.id}
             onClick={e => {
               e.stopPropagation();
-              this.props.onDelete(data);
+              props.onDelete(data);
             }}
           >
             <DeleteIcon fontSize="small" />
@@ -38,22 +35,20 @@ class ShowTodo extends Component {
     return arr;
   };
 
-  makeLiComponent = obj => {
+  const makeLiComponent = obj => {
     const todos = obj.data;
     const error = obj.error;
-    const isEmpty = todos.length === 0 ? true : false;
+    const isEmpty = !todos.length;
     let result;
 
     if (error) {
       result = (
-        <ul ref={ul => (this.todoRef = ul)}>
+        <ul ref={todoRef}>
           <li>데이터 요청 실패</li>
         </ul>
       );
     } else if (!isEmpty) {
-      result = (
-        <ul ref={ul => (this.todoRef = ul)}>{this.makeLiData(todos)}</ul>
-      );
+      result = <ul ref={todoRef}>{makeLiData(todos)}</ul>;
     } else {
       result = (
         <ul>
@@ -65,35 +60,31 @@ class ShowTodo extends Component {
     return result;
   };
 
-  ModulateContent = e => {
-    console.log(this.todoRef);
+  const ModulateContent = e => {
     if (e.target.innerHTML === "접기") {
       e.target.innerHTML = "펼치기";
-      this.todoRef.style.display = "none";
+      todoRef.style.display = "none";
     } else {
       e.target.innerHTML = "접기";
-      this.todoRef.style.display = "block";
+      todoRef.style.display = "block";
     }
   };
 
-  render() {
-    const result = this.makeLiComponent(this.props);
-    return (
-      <DIV>
-        <HEADER customAttr="test">해야할 일</HEADER>
-        <Button
-          color="secondary"
-          onClick={e => {
-            this.ModulateContent(e);
-          }}
-        >
-          접기
-        </Button>
-        {result}
-      </DIV>
-    );
-  }
-}
+  return (
+    <DIV>
+      <HEADER customAttr="test">해야할 일</HEADER>
+      <Button
+        color="secondary"
+        onClick={e => {
+          ModulateContent(e);
+        }}
+      >
+        접기
+      </Button>
+      {makeLiComponent(props)}
+    </DIV>
+  );
+};
 
 const DIV = styled.div`
   width: 45%;

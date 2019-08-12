@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled, { css } from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
 import { display } from "@material-ui/system";
@@ -6,19 +6,16 @@ import Button from "@material-ui/core/Button";
 import { IconButton } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-class ShowDone extends Component {
-  constructor(props) {
-    super(props);
-    this.doneRef = React.createRef();
-  }
+const ShowDone = props => {
+  const doneRef = useRef(null);
 
-  makeLiData = dones => {
+  const makeLiData = dones => {
     const arr = dones.map(data => {
       return (
         <LI
           key={data.id}
           onClick={() => {
-            this.props.onChange(data);
+            props.onChange(data);
           }}
         >
           <del>{data.title}</del>
@@ -26,7 +23,7 @@ class ShowDone extends Component {
             id={data.id}
             onClick={e => {
               e.stopPropagation();
-              this.props.onDelete(data);
+              props.onDelete(data);
             }}
           >
             <DeleteIcon fontSize="small" />
@@ -38,50 +35,43 @@ class ShowDone extends Component {
     return arr;
   };
 
-  makeLiComponent = dones => {
-    const isEmpty = dones.length === 0 ? true : false;
+  const makeLiComponent = dones => {
+    const isEmpty = !dones.length;
     let result;
 
-    if (!isEmpty)
-      return (result = (
-        <ul ref={ul => (this.doneRef = ul)}>{this.makeLiData(dones)}</ul>
-      ));
+    if (!isEmpty) return (result = <ul ref={doneRef}>{makeLiData(dones)}</ul>);
     return (result = (
-      <ul ref={ul => (this.doneRef = ul)}>
+      <ul ref={doneRef}>
         <li>없음</li>
       </ul>
     ));
   };
 
-  ModulateContent = e => {
-    console.log(this.doneRef);
+  const ModulateContent = e => {
     if (e.target.innerHTML === "접기") {
       e.target.innerHTML = "펼치기";
-      this.doneRef.style.display = "none";
+      doneRef.style.display = "none";
     } else {
       e.target.innerHTML = "접기";
-      this.doneRef.style.display = "block";
+      doneRef.style.display = "block";
     }
   };
 
-  render() {
-    const result = this.makeLiComponent(this.props.data);
-    return (
-      <DIV>
-        <HEADER>완료한 일</HEADER>
-        <Button
-          color="secondary"
-          onClick={e => {
-            this.ModulateContent(e);
-          }}
-        >
-          접기
-        </Button>
-        {result}
-      </DIV>
-    );
-  }
-}
+  return (
+    <DIV>
+      <HEADER>완료한 일</HEADER>
+      <Button
+        color="secondary"
+        onClick={e => {
+          ModulateContent(e);
+        }}
+      >
+        접기
+      </Button>
+      {makeLiComponent(props.data)}
+    </DIV>
+  );
+};
 
 const DIV = styled.div`
   width: 45%;
