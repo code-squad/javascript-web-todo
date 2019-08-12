@@ -36,7 +36,7 @@ class App extends Component {
     return(
       <Div>
         <Input />
-        <TodoList />
+        <TodoList myTodo={ this.state.todo } />
         <ShowContentsBtn />
       </Div>
     )
