@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import InputBar from './Input/InputBar';
+import Input from './Input/Input';
 import TodoList from './TodoList/TodoList';
 import ShowContentsBtn from './ShowButton/ShowContentsBtn';
 import styled from 'styled-components';
@@ -35,8 +35,8 @@ class App extends Component {
   render() {
     return(
       <Div>
-        <InputBar onTermSubmit={ this.onTermSubmit } />
-        <TodoList myTodo={ this.state.todo } />
+        <Input />
+        <TodoList />
         <ShowContentsBtn />
       </Div>
     )
