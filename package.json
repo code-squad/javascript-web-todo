@@ -1,7 +1,7 @@
 {
   "name": "javascript-web-todo",
   "version": "1.0.0",
-  "main": "src/index.js",
+  "main": "build/index.html",
   "repository": "https://github.com/park78951/javascript-web-todo.git",
   "scripts": {
     "dev": "webpack-dev-server --hot",
