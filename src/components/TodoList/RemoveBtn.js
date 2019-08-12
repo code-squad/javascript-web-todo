@@ -10,6 +10,7 @@ const Button = styled.button`
   width: 1.5rem;
   height: 1.5rem;
   margin-left: 10px;
+  cursor: pointer;
 `
 
 class RemoveBtn extends Component {

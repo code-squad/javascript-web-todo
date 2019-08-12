@@ -7,15 +7,12 @@ import todoApi from '../Apis/todoApi';
 
 const Div = styled.div`
   margin: 50px auto;
-  width: 80%;
+  width: 50%;
 `
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      todo: []
-    }
+  state = {
+    todo: []
   }
 
   async fetchMyTodoList()  {

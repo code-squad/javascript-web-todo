@@ -33,12 +33,9 @@ const Input = styled.input`
 `
 
 class InputBar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      term: ''
-    };
-  }
+  state = {
+    term: ''
+  };
 
   render() {
     return (

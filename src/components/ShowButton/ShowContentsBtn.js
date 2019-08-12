@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 const Div = styled.div`
   position: absolute;
-  top: 26%;
-  right: 13%;
+  top: 27%;
+  right: 27%;
 `
 
 const Button = styled.button`
@@ -15,6 +15,7 @@ const Button = styled.button`
   background-color: transparent;
   font-weight: bold;
   color: #05386b;
+  cursor: pointer;
 `
 
 

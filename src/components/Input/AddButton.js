@@ -16,6 +16,7 @@ const Button = styled.button`
   background-color: transparent;
   font-weight: bold;
   color: #05386b;
+  cursor: pointer;
 `
 
 class AddBtn extends Component {
