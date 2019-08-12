@@ -7,6 +7,7 @@
     "dev": "webpack-dev-server --hot",
     "build": "webpack"
   },
+  "homepage": "https://park78951.github.io/codesquad-Q/",
   "author": "Sangkyu <park78951@gmail.com>",
   "license": "MIT",
   "dependencies": {
@@ -24,6 +25,7 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-styled-components": "^1.10.6",
+    "gh-pages": "^2.1.1",
     "html-webpack-plugin": "^3.2.0",
     "react-hot-loader": "^4.12.10",
     "webpack": "^4.39.1",
