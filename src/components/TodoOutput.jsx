@@ -35,7 +35,6 @@ const TodoOutput = ({ todos, setTodos }) => {
   };
 
   const setStatusDone = ({ target }) => {
-    if (target.tagName !== "LI") return;
     const targetId = Number(target.dataset.id);
     const newTodos = todos.map(el => {
       if (el.id === targetId) return { ...el, status: "done" };
@@ -44,8 +43,9 @@ const TodoOutput = ({ todos, setTodos }) => {
     setTodos(newTodos);
   };
 
-  const deleteTodo = ({ target }) => {
-    const targetId = Number(target.closest("li").dataset.id);
+  const deleteTodo = e => {
+    e.stopPropagation();
+    const targetId = Number(e.target.closest("li").dataset.id);
     const newTodos = todos.filter(el => el.id !== targetId);
     setTodos(newTodos);
   };
