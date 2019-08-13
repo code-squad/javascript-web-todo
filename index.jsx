@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import ToDo from './todo';
+import ToDo from './component/todo/todo';
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
