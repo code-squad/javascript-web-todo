@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ToDoCheckBox from './todo_checkbox';
+import ToDoListLiP from './todo_list_li_p';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
@@ -17,10 +18,6 @@ const Li = styled.li`
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
 `
-const Content = styled.p`
-    
-`
-// text-decoration: ${props => (checked ? 'line-through' : 'none')}
 
 const CancelButton = styled.span`
     position: absolute;
@@ -31,7 +28,7 @@ const CancelButton = styled.span`
     font-size: 15px;
 `
 
-const Label = styled.label`
+const CheckboxLabel = styled.label`
     position: absolute;
     left: 18px;
     top: 50%;
@@ -48,10 +45,10 @@ const ToDoListLi = (props) => {
 
     return (
         <Li>
-            <Label>
+            <CheckboxLabel>
                 <ToDoCheckBox checked={checked} onChange={handleCheckboxState} />
-            </Label>
-            <Content>{props.value}</Content>
+            </CheckboxLabel>
+            <ToDoListLiP checked={checked} value={props.value}></ToDoListLiP>
             <CancelButton>
                 <FontAwesomeIcon icon={faTimesCircle} color="#5a61ff" />
             </CancelButton>            
