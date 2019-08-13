@@ -36,7 +36,7 @@ const ToDoListUl = () => {
     useEffect(() => {
         async function fetchAPI() {
             try {
-                const reqData = await fetch("https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/todolist");
+                const reqData = await fetch("http://ec2-52-79-184-85.ap-northeast-2.compute.amazonaws.com/todoAPI");
                 const resData = await reqData.json();
                 setApiInfo(resData.body);
     
