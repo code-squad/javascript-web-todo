@@ -8,7 +8,8 @@
     "build": "webpack",
     "start": "webpack-dev-server --hot",
     "predeploy": "yarn build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "server": "cd server && node app"
   },
   "repository": {
     "type": "git",
