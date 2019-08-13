@@ -7,13 +7,13 @@ import TodoContentList from "./TodoContentList";
 import TodoButton from "./TodoButton";
 
 const Content = styled.div`
-  width: 100%;
   min-height: 200px;
   margin-top: 2rem;
   position: relative;
   padding: 0.5rem 0.3rem;
   display: flex;
   flex-direction: column;
+  font-weight: 300;
 `;
 
 const TodoContent = _ => {

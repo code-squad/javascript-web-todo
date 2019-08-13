@@ -2,14 +2,16 @@ import React from "react";
 import styled from "styled-components";
 
 const LoaderText = styled.h3`
-  font-weight: 300;
   width: 100%;
-  height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  position: absolute;
+  top: calc(50% - 1rem);
+  font-size: 1.2rem;
+  color: red;
+  font-weight: 300;
 `;
 
-const Loader = _ => <LoaderText>Loading...</LoaderText>;
+const Loader = props => <LoaderText>{props.message}</LoaderText>;
 
 export default Loader;

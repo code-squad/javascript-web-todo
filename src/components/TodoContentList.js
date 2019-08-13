@@ -26,6 +26,8 @@ const ContentList = styled.li`
 const TodoContentList = props => {
   const [todos, setTodos] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [errorFlag, setErrorFlag] = useState(false);
 
   useEffect(() => {
     fetch(props.todosUrl)
@@ -33,8 +35,13 @@ const TodoContentList = props => {
       .then(data => {
         setTodos(data.body);
         setLoaded(true);
+      })
+      .catch(err => {
+        setErrorFlag(true);
+        setErrorMessage("서버에서 데이터를 가져오지 못했습니다. :(");
       });
   }, []);
+
   return loaded ? (
     <ContentUl>
       {todos.map(todo => {
@@ -42,7 +49,6 @@ const TodoContentList = props => {
           <ContentList key={todo.id}>
             {todo.title}
             <RemoveButton
-              // name="&#10060;"
               name="X"
               width="1rem"
               height="1rem"
@@ -52,8 +58,10 @@ const TodoContentList = props => {
         );
       })}
     </ContentUl>
+  ) : errorFlag ? (
+    <Loader message={errorMessage} />
   ) : (
-    <Loader />
+    <Loader message="Loading..." />
   );
 };
 
