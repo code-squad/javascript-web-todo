@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
 import ToDo from './component/todo/todo';
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
@@ -20,15 +20,13 @@ const GlobalStyles = createGlobalStyle`
     }
 `
 
-class Index extends Component {
-    render() {
-        return (
-            <Fragment>
-                <GlobalStyles />               
-                <ToDo />
-            </Fragment>
-        )
-    }
+const Index = () => {
+    return (
+        <>
+            <GlobalStyles />               
+            <ToDo />
+        </>
+    )
 }
 
 export default Index;

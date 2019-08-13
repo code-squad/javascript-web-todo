@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -43,24 +43,19 @@ const Button = styled.button`
     cursor: pointer;
 `
 
-class ToDoInput extends Component {
-    state = {
-        value: 0
-    }
+const ToDoInput = () => {
 
-    render() {
-        return (
-            <Wrap>
-                <H3>&#60; Input /&#62;</H3>
-                <InnerWrap>
-                    <Input type="text" placeholder="what to do...?" />
-                    <Button>
-                        <FontAwesomeIcon icon={faPlus} color="#fff" />
-                    </Button>
-                </InnerWrap>
-            </Wrap>
-        )
-    }
+    return (
+        <Wrap>
+            <H3>&#60; Input /&#62;</H3>
+            <InnerWrap>
+                <Input type="text" placeholder="what to do...?" />
+                <Button>
+                    <FontAwesomeIcon icon={faPlus} color="#fff" />
+                </Button>
+            </InnerWrap>
+        </Wrap>
+    )
 }
 
 export default ToDoInput;

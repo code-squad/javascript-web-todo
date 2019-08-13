@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ToDoInput from './todo_input';
 import ToDoList from './todo_list_ul';
 import styled from 'styled-components';
@@ -16,19 +16,13 @@ const ToDoApp = styled.div`
     padding: 20px;
 `
 
-class ToDo extends Component {
-    state = {
-        name: 'koon'
-    };
-
-    render() {
-        return (
-            <ToDoApp>
-                <ToDoInput />
-                <ToDoList />
-            </ToDoApp>
-        )
-    }
+const ToDo = () => {
+    return (
+        <ToDoApp>
+            <ToDoInput />
+            <ToDoList />
+        </ToDoApp>
+    )
 }
 
 export default ToDo;

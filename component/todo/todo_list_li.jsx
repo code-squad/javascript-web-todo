@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
@@ -24,21 +24,15 @@ const CancelButton = styled.span`
     font-size: 15px;
 `
 
-class ToDoListLi extends Component {
-    state = {
-        value: 'React study!!!',
-    }
-
-    render() {
-        return (
-            <Li>
-                <p>{this.props.value}</p>
-                <CancelButton>
-                    <FontAwesomeIcon icon={faTimesCircle} color="#5a61ff" />
-                </CancelButton>            
-            </Li>
-        )
-    }
+const ToDoListLi = (props) => {
+    return (
+        <Li>
+            <p>{props.value}</p>
+            <CancelButton>
+                <FontAwesomeIcon icon={faTimesCircle} color="#5a61ff" />
+            </CancelButton>            
+        </Li>
+    )
 }
 
 export default ToDoListLi;

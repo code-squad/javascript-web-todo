@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import ToDoListLi from './todo_list_li';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -30,40 +30,40 @@ const H3 = styled.h3`
     text-indent: 5px;
 `
 
-class ToDoListUl extends Component {
-    state = {
-        apiInfo: []
-    }
+const ToDoListUl = () => {
+    const [apiInfo, setApiInfo] = useState([]);
 
-    async componentDidMount() {
-        try {
-            const reqData = await fetch("https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/todolist");
-            const resData = await reqData.json();
-            this.setState({ apiInfo: resData.body });
-
-        } catch (e) {
-            console.log(e);
-            return;
+    useEffect(() => {
+        async function fetchAPI() {
+            try {
+                const reqData = await fetch("https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/todolist");
+                const resData = await reqData.json();
+                setApiInfo(resData.body);
+    
+            } catch (e) {
+                console.log(e);
+                return;
+            }
         }
-    }
 
-    render() {
-        return (
-            <Wrap>
-                <ToggleButton>
-                    <FontAwesomeIcon icon={faSortDown} color="#fff" />
-                </ToggleButton>
-                <H3>&#60; List /&#62;</H3>
-                <ul>
-                    {this.state.apiInfo.map((v) => {
-                        return (
-                            <ToDoListLi key={v.id} value={v.title} />
-                        )
-                    })}
-                </ul>
-            </Wrap>
-        )
-    }
+        fetchAPI();
+    })
+
+    return (
+        <Wrap>
+            <ToggleButton>
+                <FontAwesomeIcon icon={faSortDown} color="#fff" />
+            </ToggleButton>
+            <H3>&#60; List /&#62;</H3>
+            <ul>
+                {apiInfo.map((v) => {
+                    return (
+                        <ToDoListLi key={v.id} value={v.title} />
+                    )
+                })}
+            </ul>
+        </Wrap>
+    )
 }
 
 export default ToDoListUl;
