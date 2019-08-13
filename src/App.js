@@ -1,12 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import TodoTable from "./TodoTable";
 
-export default class App extends Component {
-  render() {
-    return (
-      <div>
-        <TodoTable />
-      </div>
-    );
-  }
+export default function App() {
+  return (
+    <>
+      <TodoTable />
+    </>
+  );
 }
