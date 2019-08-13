@@ -7,10 +7,10 @@ const Form = styled.form`
   display: flex;
 `;
 
-const TodoInput = props => {
+const TodoInput = ({ newTodo, onChange, onSubmit }) => {
   return (
-    <Form {...props} action="/">
-      <Input name="todoInput" type="text" placeholder="할일을 적어주세요" />
+    <Form onSubmit={onSubmit} action="/">
+      <Input placeholder="할일을 적어주세요" value={newTodo} onChange={onChange} />
       <Button>입력</Button>
     </Form>
   );

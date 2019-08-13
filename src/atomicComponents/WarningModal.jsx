@@ -8,10 +8,7 @@ const Div = styled.div`
 `;
 
 const WarningModal = props => {
-  if (props.visible) {
-    return <Div>{props.children}</Div>;
-  }
-  return null;
+  return <Div>{props.children}</Div>;
 };
 
 export default WarningModal;
