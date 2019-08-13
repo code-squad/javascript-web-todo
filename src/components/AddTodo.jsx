@@ -3,7 +3,6 @@ import styled, { css } from "styled-components";
 
 const AddTodo = props => {
   const [inputValue, setInputValue] = useState("");
-  const myRef = useRef(null);
 
   const onChangeHandler = e => {
     setInputValue(e.target.value);
@@ -14,11 +13,11 @@ const AddTodo = props => {
       onSubmit={e => {
         e.preventDefault();
         props.onSubmit(inputValue);
-        // myRef.value = "";
+        setInputValue("");
       }}
     >
       <Header>what is your One Small Step? </Header>
-      <Input ref={myRef} onChange={onChangeHandler} type="text" />
+      <Input value={inputValue} onChange={onChangeHandler} type="text" />
       <Button>등록</Button>
     </form>
   );

@@ -2,12 +2,12 @@ import React, { Component, useState, useEffect, useRef } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import AddTodo from "./AddTodo";
 import ShowTodo from "./ShowTodo";
-import ShowDone from "./ShowDone";
+import useFetch from "./useFetch";
 
 const ToDoApp = props => {
   const [todoData, setTodoData] = useState([]);
-  const [doneData, setDoneData] = useState([]);
   const [error, setError] = useState(null);
+  const [fetchData, setFetchData] = useFetch();
 
   useEffect(() => {
     async function fetchData() {
@@ -28,6 +28,18 @@ const ToDoApp = props => {
     }
   }, []);
 
+  // useEffect(() => {
+  //   console.log("useEffect");
+  //   const result = setFetchData(
+  //     `https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/todolist`
+  //   );
+
+  //   // console.log(result);
+  //   // console.log(fetchData);
+
+  //   // 받은 결과로 error 처리하거나 todoData로 setState해야함.
+  // }, []);
+
   const countIf = randomId => {
     const todos = [...todoData];
 
@@ -41,12 +53,7 @@ const ToDoApp = props => {
   };
 
   const randomIdGenerator = () => {
-    const digit1 = Math.ceil(Math.random() * 9);
-    const digit10 = Math.ceil(Math.random() * 9) * 10;
-    const digit100 = Math.ceil(Math.random() * 9) * 100;
-    const digit1000 = Math.ceil(Math.random() * 9) * 1000;
-
-    const randomId = digit1 + digit10 + digit100 + digit1000;
+    const randomId = Math.floor(Math.random() * 9999) + 1;
 
     if (countIf()) return randomIdGenerator();
     return randomId;
@@ -65,35 +72,21 @@ const ToDoApp = props => {
 
   const deleteItemHandler = deletedItem => {
     const deletedId = deletedItem.id;
-    const deletedStatus = deletedItem.status;
+    const todos = [...todoData];
+    const filteredTodos = todos.filter(todo => todo.id !== Number(deletedId));
 
-    if (deletedStatus === "todo") {
-      const todos = [...todoData];
-      const filteredTodos = todos.filter(todo => todo.id !== Number(deletedId));
-      setTodoData(filteredTodos);
-    } else if (deletedStatus === "done") {
-      const dones = [...doneData];
-      const filteredDones = dones.filter(done => done.id !== Number(deletedId));
-      setDoneData(filteredDones);
-    }
+    setTodoData(filteredTodos);
   };
 
   const changeItemHandler = changedItem => {
-    let changedStatus = changedItem.status;
+    const beforeStatus = changedItem.status;
+    const afterStatus = beforeStatus === "todo" ? "done" : "todo";
 
-    if (changedStatus === "todo") {
-      deleteItemHandler(changedItem);
-      changedItem.status = "done";
-      const dones = [...doneData];
-      dones.push(changedItem);
-      setDoneData(dones);
-    } else if (changedStatus === "done") {
-      deleteItemHandler(changedItem);
-      changedItem.status = "todo";
-      const todos = [...todoData];
-      todos.push(changedItem);
-      setTodoData(todos);
-    }
+    let todos = [...todoData];
+    let target = todos.filter(todo => todo.id === changedItem.id);
+    target[0].status = afterStatus;
+
+    setTodoData(todos);
   };
 
   return (
@@ -104,11 +97,6 @@ const ToDoApp = props => {
         <ShowTodo
           data={todoData}
           error={error}
-          onDelete={deleteItemHandler}
-          onChange={changeItemHandler}
-        />
-        <ShowDone
-          data={doneData}
           onDelete={deleteItemHandler}
           onChange={changeItemHandler}
         />

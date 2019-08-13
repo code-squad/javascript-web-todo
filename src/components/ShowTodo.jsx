@@ -7,7 +7,7 @@ import { IconButton } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 const ShowTodo = props => {
-  const todoRef = useRef(null);
+  const [toggle, setToggle] = useState(true);
 
   const makeLiData = todos => {
     const arr = todos.map(data => {
@@ -18,7 +18,7 @@ const ShowTodo = props => {
           }}
           key={data.id}
         >
-          {data.title}
+          {data.status === "todo" ? data.title : <del>{data.title}</del>}
           <IconButton
             id={data.id}
             onClick={e => {
@@ -42,46 +42,28 @@ const ShowTodo = props => {
     let result;
 
     if (error) {
-      result = (
-        <ul ref={todoRef}>
-          <li>데이터 요청 실패</li>
-        </ul>
-      );
+      result = <li>데이터 요청 실패</li>;
     } else if (!isEmpty) {
-      result = <ul ref={todoRef}>{makeLiData(todos)}</ul>;
+      result = makeLiData(todos);
     } else {
-      result = (
-        <ul>
-          <li>없음</li>
-        </ul>
-      );
+      result = <li>없음</li>;
     }
 
     return result;
   };
 
-  const ModulateContent = e => {
-    if (e.target.innerHTML === "접기") {
-      e.target.innerHTML = "펼치기";
-      todoRef.style.display = "none";
-    } else {
-      e.target.innerHTML = "접기";
-      todoRef.style.display = "block";
-    }
+  const ModulateWindow = e => {
+    toggle ? setToggle(false) : setToggle(true);
   };
-
   return (
     <DIV>
       <HEADER customAttr="test">해야할 일</HEADER>
-      <Button
-        color="secondary"
-        onClick={e => {
-          ModulateContent(e);
-        }}
-      >
-        접기
+      <Button color="secondary" onClick={e => ModulateWindow(e)}>
+        {toggle ? "접기" : "펼치기"}
       </Button>
-      {makeLiComponent(props)}
+      <ul style={{ display: toggle ? "block" : "none" }}>
+        {makeLiComponent(props)}
+      </ul>
     </DIV>
   );
 };
