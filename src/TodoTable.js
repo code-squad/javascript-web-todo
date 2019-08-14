@@ -29,8 +29,7 @@ export default function TodoTable() {
     setNewTodo(value);
   };
 
-  const addTodo = (title,id) => {
-
+  const addTodo = (title, id) => {
     const newTodoObj = {
       title,
       id,
@@ -41,13 +40,13 @@ export default function TodoTable() {
     setNewTodo("");
   };
 
-  const deleteTodo = (id) => {
-    // console.log('넘겨 받은 ID값은:',id);
-
-    const remaindedTodo = todos.filter(todo=>todo.id !== id);
+  const deleteTodo = id => {
+    // filter가 best practice일까?
+    const remaindedTodo = todos.filter(todo => todo.id !== id);
     setTodos(remaindedTodo);
-
   };
+
+  
 
   console.log("TodoTable is render...", todos);
   return (

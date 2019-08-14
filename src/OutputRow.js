@@ -1,11 +1,20 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
+import styled, { css } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const Li = styled.li`
   height: 2rem;
   line-height: 2rem;
+  &:hover {
+    background: rgba(255, 255, 255, 0.9);
+  }
+  ${props =>
+    props.isClicked &&
+    css`
+      text-decoration: line-through;
+      color: #adb5bd;
+    `}
 `;
 
 const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
@@ -13,16 +22,22 @@ const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
 `;
 
 export default function OutputRow(props) {
-  // 그래도 넘겨주는건 다 props로 넘어온다.
   const { id, title, deleteTodo } = props;
-  
+  const [isClicked, setIsClicked] = useState(false);
+
   const handleDeleteTodo = () => {
     deleteTodo(id);
-  }
+  };
+
+  const handleClick = () => {
+    // toggle
+    setIsClicked(!isClicked);
+  };
+
 
   return (
     <>
-      <Li>
+      <Li onClick={handleClick} isClicked={isClicked}>
         <span>{title}</span>
         <StyledFontAwesomeIcon icon={faTimes} onClick={handleDeleteTodo} />
       </Li>
