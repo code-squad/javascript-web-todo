@@ -4,8 +4,8 @@ import OutputTable from "./OutputTable";
 import InputBar from "./InputBar";
 
 export default function TodoTable() {
-  // useState([]) 아무것도 안들어가있어도 array형은 명시가 되어야함.
   const [todos, setTodos] = useState([]);
+  const [newTodo, setNewTodo] = useState();
 
   useEffect(() => {
     fetchInitialData(
@@ -25,25 +25,26 @@ export default function TodoTable() {
     }
   };
 
-  const [newTodo, setNewTodo] = useState();
-
-  // onChange 이벤트에 걸리는 핸들러함수, newTodo의 값을 바꿈.
   const changeInputData = ({ target: { value } }) => {
-    // 여기서 newTodo를 타이틀 값이 아니라 객체로 만들어서 보내면 안되서
-    // addTodo에서 보낸 타이틀 기준으로 만드는것으로 변경
     setNewTodo(value);
   };
-  const addTodo = e => {
-    e.preventDefault();
+
+  const addTodo = (title,id) => {
 
     const newTodoObj = {
-      title: newTodo,
-      id: e.target.dataset.id,
+      title,
+      id,
       status: "todo"
     };
 
     setTodos([...todos, newTodoObj]);
     setNewTodo("");
+  };
+
+  const deleteTodo = (id) => {
+    // 이벤트를 넘기는게 아니라 props로 전달한 값을 넘겨주는 방식 
+    console.log('넘겨 받은 ID값은:',id);
+
   };
 
   console.log("TodoTable is render...", todos);
@@ -54,7 +55,7 @@ export default function TodoTable() {
         addTodo={addTodo}
         changeInputData={changeInputData}
       />
-      <OutputTable todoList={todos} />
+      <OutputTable todoList={todos} deleteTodo={deleteTodo} />
     </div>
   );
 }

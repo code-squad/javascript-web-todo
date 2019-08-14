@@ -12,11 +12,14 @@ const Table = styled.div`
 `;
 
 export default function OutputTable(props) {
-  console.log("OutputTable is render...");
-  // class형에서 함수형으로 컴포넌트를 짜면 this.props는 이제 없어짐
+  
+  const {deleteTodo} = props;
+  
   const todoList = props.todoList.map(todoItem => (
-    <OutputRow key={todoItem.id} title={todoItem.title} />
+    <OutputRow key={todoItem.id} id={todoItem.id} title={todoItem.title} deleteTodo={deleteTodo} />
   ));
+
+  console.log("OutputTable is render...");
   return (
     <Background>
       <Table>

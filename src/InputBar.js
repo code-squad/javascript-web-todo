@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import nextId from "react-id-generator";
 
-
 const Form = styled.form`
   background: #a6d0d1;
   height: 4em;
@@ -19,11 +18,16 @@ export default function InputBar(props) {
 
   const { newTodo, changeInputData, addTodo } = props;
 
+  const handleAddtodo = e => {
+    e.preventDefault();
+    addTodo(newTodo, id);
+  };
+
   return (
     <Form>
       <label>할일 입력 : </label>
       <input value={newTodo} onChange={changeInputData} />
-      <button onClick={addTodo} data-id={id} >등록</button>
+      <button onClick={handleAddtodo}>등록</button>
     </Form>
   );
 }
