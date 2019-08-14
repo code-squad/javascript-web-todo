@@ -22,33 +22,17 @@ const ToggleButton = styled(Button)`
   right: 2rem;
 `;
 
-const TodoOutput = ({ todos, setTodos }) => {
+const TodoOutput = () => {
   const [listVisible, setListVisible] = useState(true);
 
   const toggleLists = () => {
     setListVisible(!listVisible);
   };
 
-  const updateStatus = ({ target }) => {
-    const targetId = Number(target.dataset.id);
-    const newTodos = todos.map(el => {
-      const status = el.status === "todo" ? "done" : "todo";
-      return el.id === targetId ? { ...el, status } : el;
-    });
-    setTodos(newTodos);
-  };
-
-  const deleteTodo = e => {
-    e.stopPropagation();
-    const targetId = Number(e.target.closest("li").dataset.id);
-    const newTodos = todos.filter(el => el.id !== targetId);
-    setTodos(newTodos);
-  };
-
   return (
     <Wrapper>
       <Div>할 일 목록</Div>
-      {listVisible && <TodoList contents={todos} updateStatus={updateStatus} deleteTodo={deleteTodo} />}
+      {listVisible && <TodoList />}
       <ToggleButton onClick={toggleLists}>{listVisible ? "접기" : "펼치기"}</ToggleButton>
     </Wrapper>
   );

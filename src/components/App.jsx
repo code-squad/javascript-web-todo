@@ -4,6 +4,7 @@ import CONFIGS from "../configs/configs.js";
 import TodoInput from "./TodoInput.jsx";
 import TodoOutput from "./TodoOutput.jsx";
 import WarningModal from "../atomicComponents/WarningModal.jsx";
+import TodoContext from "./TodoContext.jsx";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -56,13 +57,31 @@ const App = () => {
     setNewTodo(target.value);
   };
 
+  const updateStatus = ({ target }) => {
+    const targetId = Number(target.dataset.id);
+    const newTodos = todos.map(el => {
+      const status = el.status === "todo" ? "done" : "todo";
+      return el.id === targetId ? { ...el, status } : el;
+    });
+    setTodos(newTodos);
+  };
+
+  const deleteTodo = e => {
+    e.stopPropagation();
+    const targetId = Number(e.target.closest("li").dataset.id);
+    const newTodos = todos.filter(el => el.id !== targetId);
+    setTodos(newTodos);
+  };
+
   return (
     <>
       <GlobalStyle />
       <Wrapper>
         <Title>Todo App</Title>
-        <TodoInput newTodo={newTodo} onChange={handleChange} onSubmit={handleSubmit} />
-        <TodoOutput todos={todos} setTodos={setTodos} />
+        <TodoContext.Provider value={{ todos, updateStatus, deleteTodo }}>
+          <TodoInput newTodo={newTodo} onChange={handleChange} onSubmit={handleSubmit} />
+          <TodoOutput />
+        </TodoContext.Provider>
         {warningVisible && <WarningModal>네트워크 에러가 발생했습니다</WarningModal>}
       </Wrapper>
     </>
