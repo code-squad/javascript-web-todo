@@ -1,6 +1,5 @@
 module.exports = {
   todos: {
-    statusCode: 200,
     body: [
       {
         title: "공부하기",

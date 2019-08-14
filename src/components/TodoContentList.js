@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import useFetch from "../hooks/useFetch";
 
-import RemoveButton from "./TodoButton";
+import TodoButton from "./TodoButton";
 import Loader from "./Loader";
 
 const ContentUl = styled.ul`
@@ -24,31 +25,19 @@ const ContentList = styled.li`
 `;
 
 const TodoContentList = props => {
-  const [todos, setTodos] = useState([]);
-  const [loaded, setLoaded] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [errorFlag, setErrorFlag] = useState(false);
+  const fetchOptions = {
+    url: props.todosUrl
+  };
 
-  useEffect(() => {
-    fetch(props.todosUrl)
-      .then(data => data.json())
-      .then(data => {
-        setTodos(data.body);
-        setLoaded(true);
-      })
-      .catch(err => {
-        setErrorFlag(true);
-        setErrorMessage("서버에서 데이터를 가져오지 못했습니다. :(");
-      });
-  }, []);
+  const { data, error, refetch } = useFetch(fetchOptions);
 
-  return loaded ? (
+  return data ? (
     <ContentUl>
-      {todos.map(todo => {
+      {data.map(todo => {
         return (
           <ContentList key={todo.id}>
             {todo.title}
-            <RemoveButton
+            <TodoButton
               name="X"
               width="1rem"
               height="1rem"
@@ -58,8 +47,16 @@ const TodoContentList = props => {
         );
       })}
     </ContentUl>
-  ) : errorFlag ? (
-    <Loader message={errorMessage} />
+  ) : error ? (
+    <>
+      <Loader message={error.message} />
+      <TodoButton
+        clickHandler={refetch}
+        name="Refetch"
+        width="4rem"
+        height="2rem"
+      />
+    </>
   ) : (
     <Loader message="Loading..." />
   );
