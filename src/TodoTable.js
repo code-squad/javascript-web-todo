@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-import OutputTable from "./OutputTable";
-import InputBar from "./InputBar";
+import OutputTable from "./Output/OutputTable";
+import InputBar from "./Header/InputBar";
 import Loader from "./Loader";
+import ResultBar from "./Header/ResultBar";
 
 export default function TodoTable() {
   const [todos, setTodos] = useState([]);
@@ -14,7 +15,6 @@ export default function TodoTable() {
     );
   }, []);
 
-  // async , await 떼면 오류. 전혀 이점이 없음. 콜백으로 구현해야해서 더 불편할듯
   const fetchInitialData = async url => {
     try {
       const response = await fetch(url);
@@ -51,6 +51,7 @@ export default function TodoTable() {
   console.log("TodoTable is render...", todos);
   return (
     <div>
+      <ResultBar/>
       <InputBar
         newTodo={newTodo}
         addTodo={addTodo}
