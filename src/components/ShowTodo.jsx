@@ -9,6 +9,8 @@ import DeleteIcon from "@material-ui/icons/Delete";
 const ShowTodo = props => {
   const [toggle, setToggle] = useState(true);
 
+  console.log("ShowTodo렌더링");
+
   const makeLiData = todos => {
     const arr = todos.map(data => {
       return (
@@ -35,26 +37,27 @@ const ShowTodo = props => {
     return arr;
   };
 
-  const makeLiComponent = obj => {
-    const todos = obj.data;
-    const error = obj.error;
+  const makeLiComponent = data => {
+    const todos = data;
     const isEmpty = !todos.length;
     let result;
 
-    if (error) {
-      result = <li>데이터 요청 실패</li>;
-    } else if (!isEmpty) {
+    if (!isEmpty) {
       result = makeLiData(todos);
     } else {
       result = <li>없음</li>;
     }
-
     return result;
+  };
+
+  const makeStatusComponent = statusMsg => {
+    if (statusMsg === "loading") return <li>로딩중...</li>;
   };
 
   const ModulateWindow = e => {
     toggle ? setToggle(false) : setToggle(true);
   };
+
   return (
     <DIV>
       <HEADER customAttr="test">해야할 일</HEADER>
@@ -62,7 +65,10 @@ const ShowTodo = props => {
         {toggle ? "접기" : "펼치기"}
       </Button>
       <ul style={{ display: toggle ? "block" : "none" }}>
-        {makeLiComponent(props)}
+        {props.error && <li>네트워크 요청 실패</li>}
+        {props.loading
+          ? makeStatusComponent("loading")
+          : makeLiComponent(props.data)}
       </ul>
     </DIV>
   );

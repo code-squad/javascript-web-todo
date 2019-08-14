@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import AddTodo from "./AddTodo";
 import ShowTodo from "./ShowTodo";
@@ -7,38 +7,18 @@ import useFetch from "./useFetch";
 const ToDoApp = props => {
   const [todoData, setTodoData] = useState([]);
   const [error, setError] = useState(null);
-  const [fetchData, setFetchData] = useFetch();
+  const [fetchObj, setFetchObj] = useFetch(null);
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(
-        `https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/todolist`
-      );
-      if (!response.ok) throw new Error(response.status); //resolved지만 404, 500..인 경우
-      if (response === undefined) throw new Error("undefined"); // Promise(rejected)인 경우
-      const data = await response.json();
-      setTodoData(data.body);
-    }
-    try {
-      fetchData();
-    } catch (error) {
-      console.log(error.message);
-      setTodoData([]);
-      setError(true);
-    }
+    setFetchObj(
+      setTodoData,
+      `https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/todolist`,
+      error => {
+        console.log(error);
+        setError(true);
+      }
+    );
   }, []);
-
-  // useEffect(() => {
-  //   console.log("useEffect");
-  //   const result = setFetchData(
-  //     `https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/todolist`
-  //   );
-
-  //   // console.log(result);
-  //   // console.log(fetchData);
-
-  //   // 받은 결과로 error 처리하거나 todoData로 setState해야함.
-  // }, []);
 
   const countIf = randomId => {
     const todos = [...todoData];
@@ -89,14 +69,18 @@ const ToDoApp = props => {
     setTodoData(todos);
   };
 
+  console.dir(`TodoApp렌더링`);
+  console.log(fetchObj);
+
   return (
     <>
       <GlobalStyle />
       <AddTodo onSubmit={submitTodoHandler} />
       <DIV>
         <ShowTodo
-          data={todoData}
           error={error}
+          loading={fetchObj.loading}
+          data={todoData}
           onDelete={deleteItemHandler}
           onChange={changeItemHandler}
         />
