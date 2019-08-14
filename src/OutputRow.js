@@ -24,7 +24,6 @@ export default function OutputRow(props) {
     <>
       <Li>
         <span>{title}</span>
-        {/* dataset-value로 등록하면 자식컴포넌트에 value가 전달되지 않는다. */}
         <StyledFontAwesomeIcon icon={faTimes} onClick={handleDeleteTodo} />
       </Li>
     </>

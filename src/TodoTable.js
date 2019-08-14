@@ -42,8 +42,10 @@ export default function TodoTable() {
   };
 
   const deleteTodo = (id) => {
-    // 이벤트를 넘기는게 아니라 props로 전달한 값을 넘겨주는 방식 
-    console.log('넘겨 받은 ID값은:',id);
+    // console.log('넘겨 받은 ID값은:',id);
+
+    const remaindedTodo = todos.filter(todo=>todo.id !== id);
+    setTodos(remaindedTodo);
 
   };
 
