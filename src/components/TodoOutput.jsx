@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "../atomicComponents/Button.jsx";
-import Li from "../atomicComponents/Li.jsx";
-import XButton from "../atomicComponents/XButton.jsx";
+import TodoList from "./TodoList.jsx";
 
 const Wrapper = styled.div`
   position: relative;
@@ -15,10 +14,6 @@ const Div = styled.div`
   color: palevioletred;
   font-size: 2rem;
   font-weight: bold;
-`;
-
-const Ul = styled.ul`
-  padding-left: 2rem;
 `;
 
 const ToggleButton = styled(Button)`
@@ -53,13 +48,7 @@ const TodoOutput = ({ todos, setTodos }) => {
   return (
     <Wrapper>
       <Div>할 일 목록</Div>
-      <Ul>
-        {listVisible && (
-          <Li contents={todos} contentKey="title" onClick={setStatusDone}>
-            <XButton onClick={deleteTodo} />
-          </Li>
-        )}
-      </Ul>
+      {listVisible && <TodoList contents={todos} setStatusDone={setStatusDone} deleteTodo={deleteTodo} />}
       <ToggleButton onClick={toggleLists}>{listVisible ? "접기" : "펼치기"}</ToggleButton>
     </Wrapper>
   );
