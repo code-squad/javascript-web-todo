@@ -1,69 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import ToDoListLi from './todo_list_li';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSortDown } from "@fortawesome/free-solid-svg-icons";
 
 const Wrap = styled.div`
-    border-top: 1px solid #2c2c47;
-    margin-top: 10px;
-    padding-top 30px;
-    position: relative;
-`
-const ToggleButton = styled.span`
-    width: 23px;
-    height: 23px;
-    text-align: center;
-    display: inline-block;
-    background: #5a61ff;
-    border-radius: 50%;
-    position: absolute; 
-    left: 50%;
-    top: 0;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-`
-const H3 = styled.h3`
-    margin-bottom: 20px;
-    font-family: 'Beth Ellen', cursive;
-    font-size: 12px;
-    text-indent: 5px;
+    display: ${props => (props.display ? 'block' : 'none')}
 `
 
-const ToDoListUl = () => {
+const Ul = styled.ul`
+    transition: all 0.2s ease-out;    
+    opacity: ${props => (props.toggle ? '1' : '0')}
+    display: ${props => (props.toggle ? 'block' : 'none')}
+`
+
+const ToDoListUl = ({ toggle }) => {
     const [apiInfo, setApiInfo] = useState([]);
 
-    useEffect(() => {
-        const fetchAPI = async () => {
-            try {
-                const reqData = await fetch("http://ec2-13-125-97-75.ap-northeast-2.compute.amazonaws.com/todoAPI");
-                const resData = await reqData.json();
-                setApiInfo(resData.body);
-    
-            } catch (e) {
-                console.log(e);
-                return;
-            }
-        }
+    const fetchAPI = async () => {
+        try {
+            const reqData = await fetch("http://ec2-13-125-97-75.ap-northeast-2.compute.amazonaws.com/todoAPI");
+            const resData = await reqData.json();
+            setApiInfo(resData.body);
 
+        } catch (e) {
+            console.log(e);
+            return;
+        }
+    }
+
+    useEffect(() => {
         fetchAPI();
     }, [])
 
-    return (
-        <Wrap>
-            <ToggleButton>
-                <FontAwesomeIcon icon={faSortDown} color="#fff" />
-            </ToggleButton>
-            <H3>&#60; List /&#62;</H3>
-            <ul>
-                {apiInfo.map((v) => {
-                    console.log(v);
-                    return (
-                        <ToDoListLi key={v.id} value={v.title} />
-                    )
-                })}
-            </ul>
-        </Wrap>
+    return (        
+        <Ul toggle={toggle}>
+            <ToDoListLi key={'0000'} value={'Study react.'} />
+            {apiInfo.map((v) => {
+                console.log(v);
+                return (
+                    <ToDoListLi key={v.id} value={v.title} />
+                )
+            })}
+        </Ul>        
     )
 }
 

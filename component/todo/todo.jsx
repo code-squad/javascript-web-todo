@@ -1,11 +1,10 @@
 import React from 'react';
 import ToDoInput from './todo_input';
-import ToDoList from './todo_list_ul';
+import ToDoList from './todo_list';
 import styled from 'styled-components';
 
 const ToDoApp = styled.div`
     max-width: 768px;
-    min-height: 500px;
     border-radius: 10px;
     background: #11111d;
     margin: 0 auto;    

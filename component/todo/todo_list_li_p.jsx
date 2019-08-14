@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const Content = styled.p`
     text-decoration: ${props => (props.checked ? 'line-through' : 'none')}
+    color: ${props => (props.checked ? '#8e8eb8' : 'white')}
 `
 
 const ToDoListLiP = ({ checked, value }) => {
-    console.log(checked);
     return (
         <Content checked={checked}>
             {value}
