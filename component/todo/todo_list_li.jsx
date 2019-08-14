@@ -49,7 +49,7 @@ const ToDoListLi = (props) => {
                 <ToDoCheckBox checked={checked} onChange={handleCheckboxState} />
             </CheckboxLabel>
             <ToDoListLiP checked={checked} value={props.value}></ToDoListLiP>
-            <CancelButton>
+            <CancelButton onClick={() => {props.handler(props.id)}}>
                 <FontAwesomeIcon icon={faTimesCircle} color="#5a61ff" />
             </CancelButton>            
         </Li>

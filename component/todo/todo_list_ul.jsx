@@ -27,15 +27,26 @@ const ToDoListUl = ({ toggle }) => {
         }
     }
 
+    const deleteItem = (target) => {
+        setApiInfo((prevInfo) => {
+            const result = prevInfo.filter((v) => v.id !== target);
+            return result
+        })
+    }
+
     const renderList = () => {
         return apiInfo.length === 0
             ? <div>loading...</div>
             : <Ul toggle={toggle}>
                 <ToDoListLi key={'0000'} value={'Study react.'} />
                 {apiInfo.map((v) => {
-                    console.log(v);
                     return (
-                        <ToDoListLi key={v.id} value={v.title} />
+                        <ToDoListLi 
+                            handler={deleteItem} 
+                            key={v.id} 
+                            id={v.id} 
+                            value={v.title} 
+                        />
                     )
                 })}
             </Ul>              
@@ -44,7 +55,7 @@ const ToDoListUl = ({ toggle }) => {
     useEffect(() => {
         setTimeout(() => {
             fetchAPI();
-        }, 4000)
+        }, 1000)
     }, [])
 
     return (        
