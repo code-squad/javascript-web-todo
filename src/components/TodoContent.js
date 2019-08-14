@@ -29,6 +29,8 @@ const TodoContent = _ => {
         absolute={true}
         width="4rem"
         height="2rem"
+        top="0.2rem"
+        right="1rem"
       />
     </Content>
   );

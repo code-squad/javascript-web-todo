@@ -22,8 +22,8 @@ const Button = styled.button`
   cursor: pointer;
   color: #428eda;
   position: ${props => (props.absolute ? "absolute" : "static")};
-  top: 0.2rem;
-  right: 1rem;
+  top: ${props => (props.absolute ? props.top : "0")};
+  right: ${props => (props.absolute ? props.right : "0")};
 
   &:active {
     background-color: #579bde;
@@ -34,6 +34,8 @@ const TodoButton = props => (
   <Button
     onClick={props.clickHandler}
     absolute={props.absolute}
+    top={props.top}
+    right={props.right}
     width={props.width}
     height={props.height}
     borderRadius={props.borderRadius}

@@ -55,6 +55,8 @@ const TodoContentList = props => {
         name="Refetch"
         width="4rem"
         height="2rem"
+        absolute={true}
+        top="3rem"
       />
     </>
   ) : (
