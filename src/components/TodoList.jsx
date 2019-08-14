@@ -12,11 +12,11 @@ const Ul = styled.ul`
   padding-left: 2rem;
 `;
 
-const TodoList = ({ contents, setStatusDone, deleteTodo }) => {
+const TodoList = ({ contents, updateStatus, deleteTodo }) => {
   return (
     <Ul>
       {contents.map(v => (
-        <StyledLi textDeco={v.status} key={v.id} data-id={v.id} onClick={setStatusDone}>
+        <StyledLi textDeco={v.status} key={v.id} data-id={v.id} onClick={updateStatus}>
           {v.title}
           <XButton onClick={deleteTodo} />
         </StyledLi>

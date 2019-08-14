@@ -29,11 +29,11 @@ const TodoOutput = ({ todos, setTodos }) => {
     setListVisible(!listVisible);
   };
 
-  const setStatusDone = ({ target }) => {
+  const updateStatus = ({ target }) => {
     const targetId = Number(target.dataset.id);
     const newTodos = todos.map(el => {
-      if (el.id === targetId) return { ...el, status: "done" };
-      return el;
+      const status = el.status === "todo" ? "done" : "todo";
+      return el.id === targetId ? { ...el, status } : el;
     });
     setTodos(newTodos);
   };
@@ -48,7 +48,7 @@ const TodoOutput = ({ todos, setTodos }) => {
   return (
     <Wrapper>
       <Div>할 일 목록</Div>
-      {listVisible && <TodoList contents={todos} setStatusDone={setStatusDone} deleteTodo={deleteTodo} />}
+      {listVisible && <TodoList contents={todos} updateStatus={updateStatus} deleteTodo={deleteTodo} />}
       <ToggleButton onClick={toggleLists}>{listVisible ? "접기" : "펼치기"}</ToggleButton>
     </Wrapper>
   );
