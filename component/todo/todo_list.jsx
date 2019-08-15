@@ -31,7 +31,7 @@ const H3 = styled.h3`
     text-indent: 5px;
 `
 
-const ToDoList = () => {
+const ToDoList = (props) => {
     const [toggle, setToggle] = useState(true)
 
     const listToggling = () => {
@@ -49,7 +49,7 @@ const ToDoList = () => {
                 <FontAwesomeIcon icon={faSortDown} color="#fff" />
             </ToggleButton>
             <H3>&#60; List /&#62;</H3>
-            <ToDoListUl toggle={toggle}></ToDoListUl>
+            <ToDoListUl newValue={props.newValue} toggle={toggle}></ToDoListUl>
         </Wrap>
     )
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -43,14 +43,23 @@ const Button = styled.button`
     cursor: pointer;
 `
 
-const ToDoInput = () => {
+const ToDoInput = (props) => {
+    const [inputValue, setInputValue] = useState('')
+
+    const handleChange = (e) => {
+        setInputValue(e.target.value);
+    }
 
     return (
         <Wrap>
             <H3>&#60; Input /&#62;</H3>
             <InnerWrap>
-                <Input type="text" placeholder="what to do...?" />
-                <Button>
+                <Input 
+                    type="text"
+                    onChange={handleChange} 
+                    placeholder="what to do...?" 
+                />
+                <Button onClick={() => {props.handler(inputValue)}}>
                     <FontAwesomeIcon icon={faPlus} color="#fff" />
                 </Button>
             </InnerWrap>

@@ -12,8 +12,18 @@ const Ul = styled.ul`
     display: ${props => (props.toggle ? 'block' : 'none')}
 `
 
-const ToDoListUl = ({ toggle }) => {
+function random4Digit(){
+    return shuffle( "0123456789".split('') ).join('').substring(0,4);
+}
+  
+function shuffle(o){
+    for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+}
+
+const ToDoListUl = ({ newValue, toggle }) => {
     const [apiInfo, setApiInfo] = useState([]);
+    const [addValue, setAddValue] = useState(newValue);
 
     const fetchAPI = async () => {
         try {
@@ -57,6 +67,23 @@ const ToDoListUl = ({ toggle }) => {
             fetchAPI();
         }, 1000)
     }, [])
+
+    useEffect(() => {
+        
+        if(newValue) {
+            let data = {
+                "title": newValue,
+                "id": random4Digit(),
+                "status": "todo"
+            }
+
+            setApiInfo((prevInfo) => {
+                const result = [...prevInfo, data]
+                return result
+            })
+        }
+
+    }, [newValue])
 
     return (        
         <Wrap>
