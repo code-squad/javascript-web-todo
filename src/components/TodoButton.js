@@ -17,10 +17,10 @@ const Button = styled.button`
       : config.buttonDefaultStyle.borderRadius};
   font-family: inherit;
   padding: 0;
-  border: 1px solid #428eda;
+  border: 1px solid ${config.themeColor};
   outline: none;
   cursor: pointer;
-  color: #428eda;
+  color: ${config.themeColor};
   position: ${props => (props.absolute ? "absolute" : "static")};
   top: ${props => (props.absolute ? props.top : "0")};
   right: ${props => (props.absolute ? props.right : "0")};

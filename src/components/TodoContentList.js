@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { TodoContext } from "./TodoContext";
+import config from "../config";
 
 import TodoButton from "./TodoButton";
 import Loader from "./Loader";
@@ -21,26 +22,49 @@ const ContentList = styled.li`
 
   &:hover {
     background-color: #eaf5fd;
+    cursor: pointer;
   }
+
+  color: ${props =>
+    props.todoStatus === "done"
+      ? config.doneStatusColor
+      : config.todoStatusColor};
+  text-decoration: ${props =>
+    props.todoStatus === "done"
+      ? config.doneTextDecoration
+      : config.todoTextDecoration};
 `;
 
 const TodoContentList = _ => {
   const { todos, setTodos, fetchError, refetch } = useContext(TodoContext);
 
   const removeTodoById = id => setTodos(todos.filter(todo => todo.id !== id));
+  const toggleTodoStatus = ({ evt, id }) => {
+    if (evt.target.tagName !== "LI") return;
+    todos.map(todo => {
+      if (todo.id === id)
+        todo.status = todo.status === "todo" ? "done" : "todo";
+      return todo;
+    });
+    setTodos([...todos]);
+  };
 
   return todos ? (
     <ContentUl>
       {todos.map(todo => {
         return (
-          <ContentList key={todo.id}>
+          <ContentList
+            key={todo.id}
+            onClick={evt => toggleTodoStatus({ evt, id: todo.id })}
+            todoStatus={todo.status}
+          >
             {todo.title}
             <TodoButton
               name="X"
               width="1rem"
               height="1rem"
               borderRadius="50%"
-              clickHandler={() => removeTodoById(todo.id)}
+              clickHandler={_ => removeTodoById(todo.id)}
             />
           </ContentList>
         );
