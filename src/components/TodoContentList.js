@@ -24,8 +24,10 @@ const ContentList = styled.li`
   }
 `;
 
-const TodoContentList = __assign => {
-  const { todos, fetchError, refetch } = useContext(TodoContext);
+const TodoContentList = _ => {
+  const { todos, setTodos, fetchError, refetch } = useContext(TodoContext);
+
+  const removeTodoById = id => setTodos(todos.filter(todo => todo.id !== id));
 
   return todos ? (
     <ContentUl>
@@ -38,6 +40,7 @@ const TodoContentList = __assign => {
               width="1rem"
               height="1rem"
               borderRadius="50%"
+              clickHandler={() => removeTodoById(todo.id)}
             />
           </ContentList>
         );
