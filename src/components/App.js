@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Input from './Input/Input';
+import InputBar from './InputBar/InputBar';
 import TodoList from './TodoList/TodoList';
-import ShowContentsBtn from './ShowButton/ShowContentsBtn';
+import ContentsBtn from './ContentsBtn/ContentsBtn';
 import styled from 'styled-components';
 import todoApi from '../apis/todoApi';
 import { INVALID_DATA, NETWORK_ERROR } from '../message/error';
@@ -34,9 +34,9 @@ class App extends Component {
   render() {
     return(
       <Div>
-        <Input />
+        <InputBar />
         <TodoList myTodo={ this.state.todo } />
-        <ShowContentsBtn />
+        <ContentsBtn />
       </Div>
     )
   }

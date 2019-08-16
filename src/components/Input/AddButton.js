@@ -6,24 +6,24 @@ const Div = styled.div`
   align-items: center;
   margin: 0 10px;
   background-color: transparent;
-`
 
-const Button = styled.button`
-  border-radius: 6px;
-  border: 2px solid #05386b;
-  width: 4rem;
-  height: 2rem;
-  background-color: transparent;
-  font-weight: bold;
-  color: #05386b;
-  cursor: pointer;
+  button {
+    border-radius: 6px;
+    border: 2px solid #05386b;
+    width: 4rem;
+    height: 2rem;
+    background-color: transparent;
+    font-weight: bold;
+    color: #05386b;
+    cursor: pointer;  
+  }
 `
 
 class AddBtn extends Component {
   render() {
     return (
       <Div>
-        <Button type='submit'>Add</Button>
+        <button type='submit'>Add</button>
       </Div>
     )
   }

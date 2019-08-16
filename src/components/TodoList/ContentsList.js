@@ -9,16 +9,16 @@ const Li = styled.li`
   padding-bottom: 4px;
   border-bottom: 2px solid #05386b;
   margin-bottom: 5px;
-`
 
-const Div = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 80%;
-`
+  div {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
 
-const Span = styled.span`
-  font-weight: 550;
+    span {
+      font-weight: 550;
+    }
+  }
 `
 
 class ContentsList extends Component {
@@ -26,10 +26,10 @@ class ContentsList extends Component {
     const { title, status } = this.props;
     return (
       <Li>
-        <Div>
-          <Span>{ title }</Span>
-          <Span>{ status }</Span>
-        </Div>
+        <div>
+          <span>{ title }</span>
+          <span>{ status }</span>
+        </div>
         <RemoveBtn />
       </Li>
     );

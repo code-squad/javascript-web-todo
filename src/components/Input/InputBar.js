@@ -14,22 +14,22 @@ const Form = styled.div`
   font-weight: bold;
   vertical-align: middle;
   border-radius: 5px;
-`
 
-const Label = styled.label`
-  align-items: center;
-  margin-left: 10px;
-  background-color: transparent;
-`
+  label {
+    align-items: center;
+    margin-left: 10px;
+    background-color: transparent;
+  }
 
-const Input = styled.input`
-  width: 60%;
-  height: 2rem;
-  border: none;
-  border-radius: 5px;
-  font-size: 15px;
-  padding-left: 10px;
-  margin-left: 10px;
+  input {
+    width: 60%;
+    height: 2rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    padding-left: 10px;
+    margin-left: 10px;
+  }
 `
 
 class InputBar extends Component {
@@ -40,8 +40,8 @@ class InputBar extends Component {
   render() {
     return (
       <Form>
-        <Label>할일입력: </Label>
-        <Input type="text" />
+        <label>할일입력: </label>
+        <input type="text" />
         <AddBtn />
       </Form>
     )

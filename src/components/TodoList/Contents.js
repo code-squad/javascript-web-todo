@@ -6,17 +6,17 @@ const Div = styled.div`
   width: 85%;
   margin: 0 auto;
   color: #05386b;
-`
 
-const Ul = styled.ul`
-  list-style: none;
-  padding: 0;
-`
+  p {
+    font-weight: bold;
+    font-size: 1.8rem;
+    margin: 0;
+  }
 
-const P = styled.p`
-  font-weight: bold;
-  font-size: 1.8rem;
-  margin: 0;
+  ul {
+    list-style: none;
+    padding: 0;
+  }
 `
 
 class Contents extends Component {
@@ -38,10 +38,10 @@ class Contents extends Component {
     })
     return (
       <Div>
-        <P>Todo</P>
-        <Ul>
+        <p>Todo</p>
+        <ul>
           {todoList}
-        </Ul>
+        </ul>
       </Div>
     )
   }
