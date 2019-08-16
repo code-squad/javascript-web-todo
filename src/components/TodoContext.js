@@ -7,12 +7,13 @@ export const TodoContext = createContext();
 export const TodoProvider = props => {
   const [todos, setTodos] = useState(null);
   const [fetchError, setError] = useState(null);
+  const [todosShowFlag, setShowFlag] = useState(true);
 
   const fetchOptions = {
     url: config.todosUrl
   };
 
-  const { data, error, refetch, loading } = useFetch(fetchOptions);
+  const { data, error, refetch } = useFetch(fetchOptions);
 
   useEffect(() => {
     setTodos(data);
@@ -24,7 +25,14 @@ export const TodoProvider = props => {
 
   return (
     <TodoContext.Provider
-      value={{ todos, setTodos, fetchError, refetch, loading }}
+      value={{
+        todos,
+        setTodos,
+        fetchError,
+        refetch,
+        todosShowFlag,
+        setShowFlag
+      }}
     >
       {props.children}
     </TodoContext.Provider>

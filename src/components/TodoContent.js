@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 
 import TodoSubtitle from "./TodoSubtitle";
 import TodoContentList from "./TodoContentList";
 import TodoButton from "./TodoButton";
+import { TodoContext } from "./TodoContext";
 
 const Content = styled.div`
   min-height: 200px;
@@ -16,14 +17,15 @@ const Content = styled.div`
 `;
 
 const TodoContent = _ => {
-  const buttonClickHandler = _ => console.log("접기");
+  const { todosShowFlag, setShowFlag } = useContext(TodoContext);
+  const buttonClickHandler = _ => setShowFlag(!todosShowFlag);
 
   return (
     <Content>
       <TodoSubtitle subtitle="할 일 목록" />
-      <TodoContentList />
+      {todosShowFlag && <TodoContentList />}
       <TodoButton
-        name="접기"
+        name={todosShowFlag ? "숨기기" : "보이기"}
         clickHandler={buttonClickHandler}
         absolute={true}
         width="4rem"
