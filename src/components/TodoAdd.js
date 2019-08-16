@@ -20,10 +20,7 @@ const TodoAdd = _ => {
   const [inputVal, setInputVal] = useState("");
 
   const getNewTodoObj = title => ({ title, id: Date.now(), status: "todo" });
-
-  const buttonClickHandler = _ => {
-    console.log(getNewTodoObj(inputVal));
-  };
+  const buttonClickHandler = _ => setTodos([...todos, getNewTodoObj(inputVal)]);
 
   return (
     <Add className="todo-add">
