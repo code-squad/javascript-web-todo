@@ -6,6 +6,6 @@ const AddInput = styled.input`
   height: 1.4rem;
 `;
 
-const TodoAddInput = _ => <AddInput />;
+const TodoAddInput = props => <AddInput onChange={props.onChange} />;
 
 export default TodoAddInput;

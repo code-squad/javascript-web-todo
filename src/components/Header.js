@@ -3,8 +3,11 @@ import styled from "styled-components";
 import { TodoContext } from "./TodoContext";
 
 const HeaderWrapper = styled.div`
-  h1 {
+  & > * {
     font-weight: 300;
+  }
+
+  h1 {
     text-align: center;
   }
 
@@ -12,7 +15,7 @@ const HeaderWrapper = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    border-bottom: 1px solid blueviolet;
+    border-bottom: 1px solid #3498db;
     height: 2rem;
   }
 `;

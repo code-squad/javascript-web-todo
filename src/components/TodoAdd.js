@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 
 import TodoSubtitle from "./TodoSubtitle";
 import TodoAddInput from "./TodoAddInput";
 import TodoButton from "./TodoButton";
+import { TodoContext } from "./TodoContext";
+import { useInput } from "../hooks/useInput";
 
 const Add = styled.div`
   display: flex;
@@ -14,12 +16,19 @@ const Add = styled.div`
 `;
 
 const TodoAdd = _ => {
-  const buttonClickHandler = _ => console.log("등록");
+  const { todos, setTodos } = useContext(TodoContext);
+  const [inputVal, setInputVal] = useState("");
+
+  const getNewTodoObj = title => ({ title, id: Date.now(), status: "todo" });
+
+  const buttonClickHandler = _ => {
+    console.log(getNewTodoObj(inputVal));
+  };
 
   return (
     <Add className="todo-add">
       <TodoSubtitle subtitle="할 일 입력" />
-      <TodoAddInput />
+      <TodoAddInput {...useInput(setInputVal)} />
       <TodoButton
         name="등록"
         clickHandler={buttonClickHandler}
