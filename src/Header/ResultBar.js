@@ -10,7 +10,11 @@ const Div = styled.div`
 export default function ResultBar() {
   return (
     <Div>
-      <RadiusDisplayer status={"todos"} display={6} />
+      <RadiusDisplayer
+        color={"rgb(71, 58, 210)"}
+        status={"todos"}
+        display={6}
+      />
       <RadiusDisplayer status={"done"} display={3} />
     </Div>
   );

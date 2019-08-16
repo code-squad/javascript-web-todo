@@ -9,8 +9,8 @@ const Li = styled.li`
   &:hover {
     background: rgba(255, 255, 255, 0.9);
   }
-  ${props =>
-    props.isClicked &&
+  ${({ isClicked }) =>
+    isClicked &&
     css`
       text-decoration: line-through;
       color: #adb5bd;
@@ -33,7 +33,6 @@ export default function OutputRow(props) {
     // toggle
     setIsClicked(!isClicked);
   };
-
 
   return (
     <>
