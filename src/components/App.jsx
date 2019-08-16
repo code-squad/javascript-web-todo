@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import CONFIGS from "../configs/configs.js";
 import TodoInput from "./TodoInput.jsx";
 import TodoOutput from "./TodoOutput.jsx";
 import WarningModal from "../atomicComponents/WarningModal.jsx";
 import TodoContext from "./TodoContext.jsx";
+import reducer from "./Reducer.js";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -28,10 +29,11 @@ const Wrapper = styled.div`
 `;
 
 const App = () => {
-  const [todos, setTodos] = useState([]);
-  const [newTodo, setNewTodo] = useState();
   const [warningVisible, setWarningVisible] = useState(false);
+  //TODO: Context 컴포넌트로 분리하기
+  const [todos, dispatch] = useReducer(reducer, []);
 
+  //TODO: useFetch hook으로 바꾸기
   useEffect(() => {
     (async () => {
       try {
@@ -39,7 +41,7 @@ const App = () => {
         if (!res.ok) throw Error(`STATUS CODE : ${res.status}`);
         if (res instanceof Promise) throw Error("REQUEST FAILED");
         const data = await res.json();
-        setTodos(data.body);
+        dispatch({ type: "INIT", payload: data.body });
       } catch (err) {
         console.error(err);
         setWarningVisible(true);
@@ -47,39 +49,13 @@ const App = () => {
     })();
   }, []);
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const id = 0 | (Math.random() * 9000 + 1000);
-    setTodos([...todos, { title: newTodo, id, status: "todo" }]);
-  };
-
-  const handleChange = ({ target }) => {
-    setNewTodo(target.value);
-  };
-
-  const updateStatus = ({ target }) => {
-    const targetId = Number(target.dataset.id);
-    const newTodos = todos.map(el => {
-      const status = el.status === "todo" ? "done" : "todo";
-      return el.id === targetId ? { ...el, status } : el;
-    });
-    setTodos(newTodos);
-  };
-
-  const deleteTodo = e => {
-    e.stopPropagation();
-    const targetId = Number(e.target.closest("li").dataset.id);
-    const newTodos = todos.filter(el => el.id !== targetId);
-    setTodos(newTodos);
-  };
-
   return (
     <>
       <GlobalStyle />
       <Wrapper>
         <Title>Todo App</Title>
-        <TodoContext.Provider value={{ todos, updateStatus, deleteTodo }}>
-          <TodoInput newTodo={newTodo} onChange={handleChange} onSubmit={handleSubmit} />
+        <TodoContext.Provider value={{ todos, dispatch }}>
+          <TodoInput />
           <TodoOutput />
         </TodoContext.Provider>
         {warningVisible && <WarningModal>네트워크 에러가 발생했습니다</WarningModal>}
