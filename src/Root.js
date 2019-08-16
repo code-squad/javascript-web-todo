@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 import TodoAdd from "./components/TodoAdd";
 import TodoContent from "./components/TodoContent";
+import { TodoProvider } from "./components/TodoContext";
+import Header from "./components/Header";
 
 const StyledRoot = styled.div`
   width: 480px;
@@ -14,10 +16,13 @@ const StyledRoot = styled.div`
 
 const Root = _ => {
   return (
-    <StyledRoot>
-      <TodoAdd />
-      <TodoContent />
-    </StyledRoot>
+    <TodoProvider>
+      <StyledRoot>
+        <Header />
+        <TodoAdd />
+        <TodoContent />
+      </StyledRoot>
+    </TodoProvider>
   );
 };
 
