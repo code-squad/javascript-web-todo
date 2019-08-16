@@ -20,7 +20,10 @@ const TodoAdd = _ => {
   const [inputVal, setInputVal] = useState("");
 
   const getNewTodoObj = title => ({ title, id: Date.now(), status: "todo" });
-  const buttonClickHandler = _ => setTodos([...todos, getNewTodoObj(inputVal)]);
+  const setNewTodo = _ => {
+    if (inputVal === "") return;
+    setTodos([...todos, getNewTodoObj(inputVal)]);
+  };
 
   return (
     <Add className="todo-add">
@@ -28,7 +31,7 @@ const TodoAdd = _ => {
       <TodoAddInput {...useInput(setInputVal)} />
       <TodoButton
         name="등록"
-        clickHandler={buttonClickHandler}
+        clickHandler={setNewTodo}
         width="4rem"
         height="2rem"
       />
