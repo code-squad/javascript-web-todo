@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Button from "../atomicComponents/Button.jsx";
-import TodoList from "./TodoList.jsx";
+import Button from "../atomicComponents/Button";
+import TodoList from "./TodoList";
 
 const Wrapper = styled.div`
   position: relative;

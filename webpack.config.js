@@ -3,6 +3,10 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
+  devtool: 'eval',
+  resolve: {
+    extensions: ['.js', '.json', '.jsx', '.css'],
+  },
 
   entry: './src/index.js',
 

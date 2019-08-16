@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import Li from "../atomicComponents/Li.jsx";
-import XButton from "../atomicComponents/XButton.jsx";
-import TodoContext from "./TodoContext.jsx";
+import Li from "../atomicComponents/Li";
+import XButton from "../atomicComponents/XButton";
+import TodoContext from "./TodoContext";
 
 const StyledLi = styled(Li)`
   text-decoration: ${({ textDeco }) => (textDeco === "done" ? "line-through" : "none")};

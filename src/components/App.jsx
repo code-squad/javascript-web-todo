@@ -1,12 +1,12 @@
 import React, { useState, useReducer } from "react";
 import styled, { createGlobalStyle } from "styled-components";
-import CONFIGS from "../configs/configs.js";
-import TodoInput from "./TodoInput.jsx";
-import TodoOutput from "./TodoOutput.jsx";
-import WarningModal from "../atomicComponents/WarningModal.jsx";
-import TodoContext from "./TodoContext.jsx";
-import reducer from "./Reducer.js";
-import useFetch from "./useFetch.jsx";
+import CONFIGS from "../configs/configs";
+import TodoInput from "./TodoInput";
+import TodoOutput from "./TodoOutput";
+import WarningModal from "../atomicComponents/WarningModal";
+import TodoContext from "./TodoContext";
+import reducer from "./Reducer";
+import useFetch from "./useFetch";
 
 const GlobalStyle = createGlobalStyle`
   * {
