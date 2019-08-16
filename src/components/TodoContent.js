@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import config from "../config";
+import useFetch from "../hooks/useFetch";
 
 import TodoSubtitle from "./TodoSubtitle";
 import TodoContentList from "./TodoContentList";
@@ -17,6 +18,12 @@ const Content = styled.div`
 `;
 
 const TodoContent = _ => {
+  const fetchOptions = {
+    url: config.todosUrl
+  };
+
+  const { data, error, refetch } = useFetch(fetchOptions);
+  console.log(data, error);
   const buttonClickHandler = _ => console.log("접기");
 
   return (

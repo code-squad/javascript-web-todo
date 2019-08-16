@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import useFetch from "../hooks/useFetch";
@@ -30,6 +30,10 @@ const TodoContentList = props => {
   };
 
   const { data, error, refetch } = useFetch(fetchOptions);
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   return data ? (
     <ContentUl>
