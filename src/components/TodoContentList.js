@@ -41,10 +41,9 @@ const TodoContentList = _ => {
   const removeTodoById = id => setTodos(todos.filter(todo => todo.id !== id));
   const toggleTodoStatus = ({ evt, id }) => {
     if (evt.target.tagName !== "LI") return;
-    todos.map(todo => {
+    todos.forEach(todo => {
       if (todo.id === id)
         todo.status = todo.status === "todo" ? "done" : "todo";
-      return todo;
     });
     setTodos([...todos]);
   };
