@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import useFetch from "../hooks/useFetch";
+import { TodoContext } from "./TodoContext";
 
 import TodoButton from "./TodoButton";
 import Loader from "./Loader";
@@ -24,20 +24,12 @@ const ContentList = styled.li`
   }
 `;
 
-const TodoContentList = props => {
-  const fetchOptions = {
-    url: props.todosUrl
-  };
+const TodoContentList = __assign => {
+  const { todos, fetchError, refetch } = useContext(TodoContext);
 
-  const { data, error, refetch } = useFetch(fetchOptions);
-
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
-  return data ? (
+  return todos ? (
     <ContentUl>
-      {data.map(todo => {
+      {todos.map(todo => {
         return (
           <ContentList key={todo.id}>
             {todo.title}
@@ -51,9 +43,9 @@ const TodoContentList = props => {
         );
       })}
     </ContentUl>
-  ) : error ? (
+  ) : fetchError ? (
     <>
-      <Loader message={error.message} />
+      <Loader message={fetchError.message} />
       <TodoButton
         clickHandler={refetch}
         name="Refetch"

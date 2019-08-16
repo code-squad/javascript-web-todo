@@ -17,10 +17,8 @@ const HeaderWrapper = styled.div`
   }
 `;
 
-// const
-
 const Header = _ => {
-  const [todos] = useContext(TodoContext);
+  const { todos } = useContext(TodoContext);
 
   const getNumOfTodosByStatus = (todos, status) =>
     todos ? todos.filter(todo => todo.status === status).length : 0;
