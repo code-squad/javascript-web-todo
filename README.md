@@ -9,6 +9,9 @@
 
 ### 2. 구조 
 - TodoTable
+    - ResultBar
+        -RadiusDisplayer (todos)
+        -RadiusDisplayer (done)
     - InputBar
     - OutputTable
         - OutputRow
