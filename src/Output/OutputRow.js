@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useStateValue } from "../state";
 
-const Li = styled.li`
+const Span = styled.span`
   height: 2rem;
   line-height: 2rem;
   &:hover {
@@ -33,17 +33,16 @@ export default function OutputRow(props) {
   };
 
   const handleClick = () => {
-    // toggle
     setIsClicked(!isClicked);
     dispatch({ type: "changeStatus", id });
   };
 
   return (
     <>
-      <Li onClick={handleClick} isClicked={isClicked}>
-        <span>{title}</span>
+      <li >
+        <Span onClick={handleClick} isClicked={isClicked}>{title}</Span>
         <StyledFontAwesomeIcon icon={faTimes} onClick={handleDeleteTodo} />
-      </Li>
+      </li>
     </>
   );
 }
