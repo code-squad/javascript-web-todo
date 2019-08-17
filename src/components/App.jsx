@@ -4,6 +4,7 @@ import TodoInput from "./TodoInput";
 import TodoOutput from "./TodoOutput";
 import TodoContextProvider from "./TodoContextProvider";
 import Information from "./Information";
+import TodoCounter from "./TodoCounter";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -33,6 +34,7 @@ const App = () => {
       <Wrapper>
         <Title>Todo App</Title>
         <TodoContextProvider>
+          <TodoCounter />
           <TodoInput />
           <TodoOutput />
           <Information />
