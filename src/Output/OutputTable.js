@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import OutputRow from "./OutputRow";
 import styled, { css } from "styled-components";
-import {useStateValue} from "../state";
+import { useStateValue } from "../state";
 
 const Background = styled.div`
   background: #a6d0d1;
@@ -13,29 +13,24 @@ const Table = styled.div`
 `;
 
 const Ul = styled.ul`
-  ${props => !props.isOpened && css`
-    display:none;
-  `}
+  ${props =>
+    !props.isOpened &&
+    css`
+      display: none;
+    `}
 `;
 
 export default function OutputTable(props) {
-  // const { deleteTodo } = props;
-  const [{todos,newTodo},dispatch] = useStateValue();
+  const [{ todos },] = useStateValue();
   const [isOpened, setIsOpened] = useState(true);
 
   const handleClick = () => {
     setIsOpened(!isOpened);
   };
 
-  const todoList = todos.map((todo,idx) => (
-    <OutputRow
-      idx={idx}
-      // key={todoItem.id}
-      // id={todoItem.id}
-      // title={todoItem.title}
-      // deleteTodo={deleteTodo}
-    />
-  ));
+  const todoList = todos.map((todo, idx) => {
+    return <OutputRow idx={idx} key={todo.id} />;
+  });
 
   console.log("OutputTable is render...");
   return (

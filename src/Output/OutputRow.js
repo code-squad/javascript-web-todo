@@ -23,16 +23,12 @@ const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
 `;
 
 export default function OutputRow(props) {
-  // const { id, title, deleteTodo } = props;
   const [{ todos }, dispatch] = useStateValue();
   const [isClicked, setIsClicked] = useState(false);
 
-  // const [{title,id}] = todos.filter((todo,idx)=>props.idx === idx);
-  const {title,id} = todos.find((todo,idx)=>idx=== props.idx);
-
+  const { title, id } = todos.find((todo, idx) => idx === props.idx);
 
   const handleDeleteTodo = () => {
-    // deleteTodo(id);
     dispatch({ type: "delete", id });
   };
 

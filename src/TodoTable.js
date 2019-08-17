@@ -33,12 +33,12 @@ export default function TodoTable() {
         status: "todo"
       }
     ],
-    newTodo:""
+    newTodo: ""
   };
-  console.log("initialState", initialState);
 
   const todosReducer = (state, action) => {
-    console.log("dispatch로 넘겨받은 state,action", state, action);
+    // console.log("state & action", state, action);
+
     switch (action.type) {
       case "add":
         const newTodoObj = {
@@ -53,6 +53,7 @@ export default function TodoTable() {
       case "delete":
         const remaindedTodo = state.todos.filter(todo => todo.id !== action.id);
         return {
+          ...state,
           todos: remaindedTodo
         };
       case "handleChange":
@@ -83,37 +84,11 @@ export default function TodoTable() {
   //   }
   // };
 
-  // const changeInputData = ({ target: { value } }) => {
-  //   setNewTodo(value);
-  // };
-
-  // const addTodo = (title, id) => {
-  //   const newTodoObj = {
-  //     title,
-  //     id,
-  //     status: "todo"
-  //   };
-
-  //   setTodos([...todos, newTodoObj]);
-  //   setNewTodo("");
-  // };
-
-  // const deleteTodo = id => {
-  //   // filter가 best practice일까?
-  //   const remaindedTodo = todos.filter(todo => todo.id !== id);
-  //   setTodos(remaindedTodo);
-  // };
-
-  console.log("TodoTable is render...", initialState.todos);
-  console.log("======TodoTable===========");
   return (
     <StateProvider initialState={initialState} reducer={todosReducer}>
       <ResultBar />
-      <InputBar
-      // newTodo={newTodo}
-      // addTodo={addTodo}
-      // changeInputData={changeInputData}
-      />
+      <InputBar />
+      <OutputTable />
       {/* {todos.length === 0 && <Loader />} */}
       {/* {todos.length !== 0 && (
         <OutputTable
@@ -121,10 +96,6 @@ export default function TodoTable() {
           // deleteTodo={deleteTodo}
         />
       )} */}
-      <OutputTable
-        // todoList={initialState.todos}
-        // deleteTodo={deleteTodo}
-      />
     </StateProvider>
   );
 }

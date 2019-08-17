@@ -16,11 +16,8 @@ const Form = styled.form`
 export default function InputBar(props) {
   // {useId} , nextId 차이를 모르겠음.
   const id = nextId();
-  // const {changeInputData,newTodo,addTodo } = props;
-  // const { changeInputData } = props;
-  const [{ todos, newTodo }, dispatch] = useStateValue();
-  console.log("useStateValue훅으로 넘겨받은 todos , newTodo", todos, newTodo);
-  console.log("=======InputBar=======");
+
+  const [{ newTodo }, dispatch] = useStateValue();
 
   const handleChangeInput = ({ target: { value } }) => {
     dispatch({
@@ -31,8 +28,6 @@ export default function InputBar(props) {
 
   const handleAddtodo = e => {
     e.preventDefault();
-    // addTodo(newTodo, id);
-    console.log("dispatch로 보낼 newTodo", newTodo);
     dispatch({
       type: "add",
       title: newTodo,

@@ -10,7 +10,6 @@ import { Normalize } from 'styled-normalize';
 const Root = () => (
   <>
     <Normalize />
-    {/* <NewApp /> */}
     <App />
   </>
 )
