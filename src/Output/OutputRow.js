@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { useStateValue } from "../state";
 
 const Li = styled.li`
   height: 2rem;
@@ -22,11 +23,17 @@ const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
 `;
 
 export default function OutputRow(props) {
-  const { id, title, deleteTodo } = props;
+  // const { id, title, deleteTodo } = props;
+  const [{ todos }, dispatch] = useStateValue();
   const [isClicked, setIsClicked] = useState(false);
 
+  // const [{title,id}] = todos.filter((todo,idx)=>props.idx === idx);
+  const {title,id} = todos.find((todo,idx)=>idx=== props.idx);
+
+
   const handleDeleteTodo = () => {
-    deleteTodo(id);
+    // deleteTodo(id);
+    dispatch({ type: "delete", id });
   };
 
   const handleClick = () => {

@@ -51,7 +51,7 @@ export default function TodoTable() {
           newTodo: ""
         };
       case "delete":
-        const remaindedTodo = state.filter(todo => todo.id !== action.id);
+        const remaindedTodo = state.todos.filter(todo => todo.id !== action.id);
         return {
           todos: remaindedTodo
         };
@@ -122,7 +122,7 @@ export default function TodoTable() {
         />
       )} */}
       <OutputTable
-        todoList={initialState.todos}
+        // todoList={initialState.todos}
         // deleteTodo={deleteTodo}
       />
     </StateProvider>
