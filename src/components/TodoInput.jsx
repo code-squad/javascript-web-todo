@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import Button from "../atomicComponents/Button";
 import Input from "../atomicComponents/Input";
-import TodoContext from "./TodoContext";
+import { TodoContext } from "./TodoContextProvider";
 
 const Form = styled.form`
   display: flex;

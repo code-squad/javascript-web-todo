@@ -32,8 +32,8 @@ const TodoOutput = () => {
   return (
     <Wrapper>
       <Div>할 일 목록</Div>
-      {listVisible && <TodoList />}
       <ToggleButton onClick={toggleLists}>{listVisible ? "접기" : "펼치기"}</ToggleButton>
+      {listVisible && <TodoList />}
     </Wrapper>
   );
 };

@@ -1,12 +1,9 @@
-import React, { useState, useReducer } from "react";
+import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
-import CONFIGS from "../configs/configs";
 import TodoInput from "./TodoInput";
 import TodoOutput from "./TodoOutput";
-import WarningModal from "../atomicComponents/WarningModal";
-import TodoContext from "./TodoContext";
-import reducer from "./Reducer";
-import useFetch from "./useFetch";
+import TodoContextProvider from "./TodoContextProvider";
+import Information from "./Information";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -22,10 +19,6 @@ const Title = styled.h1`
   font-size: 5rem;
 `;
 
-const Typography = styled.div`
-  font-size: 2rem;
-`;
-
 const Wrapper = styled.div`
   display: flex;
   flex-flow: column;
@@ -34,24 +27,16 @@ const Wrapper = styled.div`
 `;
 
 const App = () => {
-  const [warningVisible, setWarningVisible] = useState(false);
-  //TODO: Context 컴포넌트로 분리하기
-  //why? todos를 context컴포넌트로 분리함으로써 context가 store의 역할을 하도록. 지금은 store와 view가 혼재된 느낌
-  const [todos, dispatch] = useReducer(reducer, []);
-
-  const loading = useFetch(CONFIGS.url, arg => dispatch({ type: "INIT", payload: arg }), () => setWarningVisible(true));
-
   return (
     <>
       <GlobalStyle />
       <Wrapper>
         <Title>Todo App</Title>
-        <TodoContext.Provider value={{ todos, dispatch }}>
+        <TodoContextProvider>
           <TodoInput />
           <TodoOutput />
-        </TodoContext.Provider>
-        {loading && <Typography>로딩중..</Typography>}
-        {warningVisible && <WarningModal>네트워크 에러가 발생했습니다</WarningModal>}
+          <Information />
+        </TodoContextProvider>
       </Wrapper>
     </>
   );
