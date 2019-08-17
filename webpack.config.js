@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  devtool: 'eval',
+  devtool: 'source-map',
   resolve: {
     extensions: ['.js', '.json', '.jsx', '.css'],
   },
