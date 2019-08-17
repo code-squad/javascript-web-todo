@@ -1,6 +1,7 @@
 import React from "react";
 import RadiusDisplayer from "../components/RadiusDisplayer";
 import styled from "styled-components";
+import { useStateValue } from "../state";
 
 const Div = styled.div`
   display: flex;
@@ -8,14 +9,18 @@ const Div = styled.div`
 `;
 
 export default function ResultBar() {
+  const [{ todos }, dispatch] = useStateValue();
+  const doneCount = todos.filter(todo => todo.status === "done").length;
+  const todoCount = todos.filter(todo => todo.status === "todo").length;
+
   return (
     <Div>
       <RadiusDisplayer
         color={"rgb(71, 58, 210)"}
         status={"todos"}
-        display={6}
+        display={todoCount}
       />
-      <RadiusDisplayer status={"done"} display={3} />
+      <RadiusDisplayer status={"done"} display={doneCount} />
     </Div>
   );
 }

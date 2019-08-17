@@ -35,6 +35,7 @@ export default function OutputRow(props) {
   const handleClick = () => {
     // toggle
     setIsClicked(!isClicked);
+    dispatch({ type: "changeStatus", id });
   };
 
   return (

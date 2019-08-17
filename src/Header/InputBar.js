@@ -21,7 +21,7 @@ export default function InputBar(props) {
 
   const handleChangeInput = ({ target: { value } }) => {
     dispatch({
-      type: "handleChange",
+      type: "changeInput",
       newTodo: value
     });
   };
