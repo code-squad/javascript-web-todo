@@ -8,6 +8,11 @@ export const TodoProvider = props => {
   const [todos, setTodos] = useState(null);
   const [fetchError, setError] = useState(null);
   const [todosShowFlag, setShowFlag] = useState(true);
+  const [numOfTodo, setNumOfTodo] = useState(0);
+  const [numOfDone, setNumOfDone] = useState(0);
+
+  const getNumOfTodosByStatus = (todos, status) =>
+    todos ? todos.filter(todo => todo.status === status).length : 0;
 
   const fetchOptions = {
     url: config.todosUrl
@@ -23,6 +28,11 @@ export const TodoProvider = props => {
     setError(error);
   }, [error]);
 
+  useEffect(() => {
+    setNumOfTodo(getNumOfTodosByStatus(todos, "todo"));
+    setNumOfDone(getNumOfTodosByStatus(todos, "done"));
+  }, [todos]);
+
   return (
     <TodoContext.Provider
       value={{
@@ -31,7 +41,9 @@ export const TodoProvider = props => {
         fetchError,
         refetch,
         todosShowFlag,
-        setShowFlag
+        setShowFlag,
+        numOfTodo,
+        numOfDone
       }}
     >
       {props.children}
