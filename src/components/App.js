@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import InputBar from './InputBar/InputBar';
+import InputBar from './Input/InputBar';
 import TodoList from './TodoList/TodoList';
 import ContentsBtn from './ContentsBtn/ContentsBtn';
 import styled from 'styled-components';
