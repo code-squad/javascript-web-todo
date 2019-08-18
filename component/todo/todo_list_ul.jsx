@@ -24,16 +24,13 @@ function shuffle(o){
 
 const ToDoListUl = ({ toggle }) => {
     const { inputValue } = useContext(AddListContext);
-    const [apiInfo, setApiInfo] = useState([]);
-    //const [addValue, setAddValue] = useState(inputValue);
-
-    
+    const [listData, setListData] = useState([]);
 
     const fetchAPI = async () => {
         try {
-            const reqData = await fetch("http://ec2-15-164-215-124.ap-northeast-2.compute.amazonaws.com/todoAPI");
+            const reqData = await fetch("http://ec2-13-124-158-185.ap-northeast-2.compute.amazonaws.com/todoAPI");
             const resData = await reqData.json();
-            setApiInfo(resData.body);
+            await setListData(resData.body);
             
         } catch (e) {
             console.log(e);
@@ -42,18 +39,55 @@ const ToDoListUl = ({ toggle }) => {
     }
 
     const deleteItem = (target) => {
-        setApiInfo((prevInfo) => {
-            const result = prevInfo.filter((v) => v.id !== target);
+        setListData((prevData) => {
+            const result = prevData.filter((v) => v.id !== target);
             return result
         })
     }
 
+    useEffect(() => { // compoenetDidMount
+        if(localStorage.myTodoList) {
+            const savedData = JSON.parse(localStorage.myTodoList);
+            setListData(savedData);
+
+            return;
+        }
+
+        // setTimeout(() => {
+        //     fetchAPI();
+        // }, 1000)
+        fetchAPI();
+
+    }, [])
+
+    useEffect(() => { // listData => localStorage
+        if(listData.length === 0) return
+
+        const jsonAPI = JSON.stringify(listData);
+        localStorage.myTodoList = jsonAPI;
+
+    }, [listData])
+
+    useEffect(() => { // input 으로 추가 한 값 관련
+        if(inputValue) {
+            let newData = {
+                "title": inputValue,
+                "id": random4Digit(),
+                "status": "todo"
+            }
+
+            setListData((prevData) => {
+                return [...prevData, newData]
+            })
+        }
+
+    }, [inputValue])
+
     const renderList = () => {
-        return apiInfo.length === 0
+        return listData.length === 0
             ? <div>loading...</div>
             : <Ul toggle={toggle}>
-                <ToDoListLi key={'0000'} value={'Study react.'} />
-                {apiInfo.map((v) => {
+                {listData.map((v) => {
                     return (
                         <ToDoListLi 
                             handler={deleteItem} 
@@ -65,28 +99,6 @@ const ToDoListUl = ({ toggle }) => {
                 })}
             </Ul>              
     }
-
-    useEffect(() => {
-        setTimeout(() => {
-            fetchAPI();
-        }, 1000)
-    }, [])
-
-    useEffect(() => {
-        if(inputValue) {
-            let data = {
-                "title": inputValue,
-                "id": random4Digit(),
-                "status": "todo"
-            }
-
-            setApiInfo((prevInfo) => {
-                const result = [...prevInfo, data]
-                return result
-            })
-        }
-
-    }, [inputValue])
 
     return (        
         <Wrap>
