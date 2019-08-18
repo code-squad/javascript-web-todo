@@ -18,14 +18,14 @@ const Div = styled.div`
   }
 `
 
-class ShowContentsBtn extends Component {
+class ContentsBtn extends Component {
   render() {
     return (
       <Div>
-        <Button>Show</Button>
+        <button>Show</button>
       </Div>
     )
   }
 }
 
-export default ShowContentsBtn;
+export default ContentsBtn;
