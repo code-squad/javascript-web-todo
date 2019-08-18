@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   name: "todo-setting",
   mode: "development",
-  devtool: "eval",
+  devtool: "inline-source-map", //sourcemap
   resolve: {
     extensions: [".js", ".jsx"]
   },

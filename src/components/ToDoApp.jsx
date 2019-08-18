@@ -3,6 +3,9 @@ import styled, { createGlobalStyle } from "styled-components";
 import AddTodo from "./AddTodo";
 import ShowTodo from "./ShowTodo";
 import useFetch from "./useFetch";
+import Counter from "./Counter";
+
+export const ToDoContext = React.createContext();
 
 const ToDoApp = props => {
   const [todoData, setTodoData] = useState([]);
@@ -10,6 +13,7 @@ const ToDoApp = props => {
   const [fetchObj, setFetchObj] = useFetch(null);
 
   useEffect(() => {
+    console.log("useEffect");
     setFetchObj(
       setTodoData,
       `https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/todolist`,
@@ -69,22 +73,27 @@ const ToDoApp = props => {
     setTodoData(todos);
   };
 
-  console.dir(`TodoApp렌더링`);
+  console.log(`TodoApp렌더링`);
   console.log(fetchObj);
 
   return (
     <>
       <GlobalStyle />
-      <AddTodo onSubmit={submitTodoHandler} />
-      <DIV>
-        <ShowTodo
-          error={error}
-          loading={fetchObj.loading}
-          data={todoData}
-          onDelete={deleteItemHandler}
-          onChange={changeItemHandler}
-        />
-      </DIV>
+      <ToDoContext.Provider
+        value={{
+          todoData,
+          error,
+          deleteItemHandler,
+          changeItemHandler,
+          submitTodoHandler
+        }}
+      >
+        <AddTodo />
+        <DIV>
+          <ShowTodo loading={fetchObj.loading} />
+        </DIV>
+        <Counter />
+      </ToDoContext.Provider>
     </>
   );
 };

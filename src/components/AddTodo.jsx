@@ -1,8 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { ToDoContext } from "./ToDoApp";
 import styled, { css } from "styled-components";
 
 const AddTodo = props => {
   const [inputValue, setInputValue] = useState("");
+  const { submitTodoHandler } = useContext(ToDoContext);
 
   const onChangeHandler = e => {
     setInputValue(e.target.value);
@@ -12,7 +14,7 @@ const AddTodo = props => {
     <form
       onSubmit={e => {
         e.preventDefault();
-        props.onSubmit(inputValue);
+        submitTodoHandler(inputValue);
         setInputValue("");
       }}
     >

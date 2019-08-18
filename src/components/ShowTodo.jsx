@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { ToDoContext } from "./ToDoApp";
+
 import styled, { css } from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
 import { display } from "@material-ui/system";
@@ -8,6 +10,9 @@ import DeleteIcon from "@material-ui/icons/Delete";
 
 const ShowTodo = props => {
   const [toggle, setToggle] = useState(true);
+  const { todoData, error, deleteItemHandler, changeItemHandler } = useContext(
+    ToDoContext
+  );
 
   console.log("ShowTodo렌더링");
 
@@ -16,7 +21,7 @@ const ShowTodo = props => {
       return (
         <LI
           onClick={() => {
-            props.onChange(data);
+            changeItemHandler(data);
           }}
           key={data.id}
         >
@@ -25,7 +30,7 @@ const ShowTodo = props => {
             id={data.id}
             onClick={e => {
               e.stopPropagation();
-              props.onDelete(data);
+              deleteItemHandler(data);
             }}
           >
             <DeleteIcon fontSize="small" />
@@ -50,10 +55,6 @@ const ShowTodo = props => {
     return result;
   };
 
-  const makeStatusComponent = statusMsg => {
-    if (statusMsg === "loading") return <li>로딩중...</li>;
-  };
-
   const ModulateWindow = e => {
     toggle ? setToggle(false) : setToggle(true);
   };
@@ -65,10 +66,8 @@ const ShowTodo = props => {
         {toggle ? "접기" : "펼치기"}
       </Button>
       <ul style={{ display: toggle ? "block" : "none" }}>
-        {props.error && <li>네트워크 요청 실패</li>}
-        {props.loading
-          ? makeStatusComponent("loading")
-          : makeLiComponent(props.data)}
+        {error && <li>네트워크 요청 실패</li>}
+        {props.loading ? <li>로딩중...</li> : makeLiComponent(todoData)}
       </ul>
     </DIV>
   );
