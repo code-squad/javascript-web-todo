@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ToDoListLi from './todo_list_li';
+import { AddListContext } from './context/addListContext';
 import styled from 'styled-components';
 
 const Wrap = styled.div`
@@ -21,9 +22,12 @@ function shuffle(o){
     return o;
 }
 
-const ToDoListUl = ({ newValue, toggle }) => {
+const ToDoListUl = ({ toggle }) => {
+    const { inputValue } = useContext(AddListContext);
     const [apiInfo, setApiInfo] = useState([]);
-    const [addValue, setAddValue] = useState(newValue);
+    //const [addValue, setAddValue] = useState(inputValue);
+
+    
 
     const fetchAPI = async () => {
         try {
@@ -69,10 +73,9 @@ const ToDoListUl = ({ newValue, toggle }) => {
     }, [])
 
     useEffect(() => {
-        
-        if(newValue) {
+        if(inputValue) {
             let data = {
-                "title": newValue,
+                "title": inputValue,
                 "id": random4Digit(),
                 "status": "todo"
             }
@@ -83,7 +86,7 @@ const ToDoListUl = ({ newValue, toggle }) => {
             })
         }
 
-    }, [newValue])
+    }, [inputValue])
 
     return (        
         <Wrap>

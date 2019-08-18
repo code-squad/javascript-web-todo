@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ToDoInput from './todo_input';
 import ToDoStatus from './todo_status';
 import ToDoList from './todo_list';
+import { AddListContext } from './context/addListContext';
 import styled from 'styled-components';
 
 const ToDoApp = styled.div`
@@ -19,17 +20,20 @@ const ToDoApp = styled.div`
 const ToDo = () => {
     const [inputValue, setInputValue] = useState('');
 
+    const contextValue = { inputValue }
+
     const inputHandler = (value) => {
-        console.log('input handler value passed')
         setInputValue(value);
     }
 
     return (
-        <ToDoApp>
-            <ToDoInput handler={inputHandler} />
-            <ToDoStatus />
-            <ToDoList newValue={inputValue} />
-        </ToDoApp>
+        <AddListContext.Provider value={contextValue}> 
+            <ToDoApp>
+                <ToDoInput handler={inputHandler} />
+                <ToDoStatus />
+                <ToDoList newValue={inputValue} />
+            </ToDoApp>
+        </AddListContext.Provider>
     )
 }
 
