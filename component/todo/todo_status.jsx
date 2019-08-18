@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const Wrap = styled.div`
@@ -40,22 +40,53 @@ const DoneBlock = styled.div`
     background: #5a61ff;
 ` 
 
-const ToDoStatus = () => {
+const ToDoStatus = ({ listState }) => {
+    const [listData, setListData] = useState([]);
+    const [todoCount, setTodoCount] = useState(0);
+    const [doingCount, setDoingCount] = useState(0);
+    const [doneCount, setDoneCount] = useState(0);
+    
+    const dataCount = () => {
+
+        let todoNumber = 0;
+        let doingNumber = 0;
+        let doneNumber = 0;
+
+        listData.map((v) => {
+            if(v.status === 'todo') {
+                todoNumber++
+            } else if(v.status === 'doing') {
+                doingNumber++
+            } else {
+                doneNumber++
+            }
+        })
+
+        setTodoCount(todoNumber);
+        setDoingCount(doingNumber);
+        setDoneCount(doneNumber);
+    }
+
+    useEffect(() => {
+        setListData(listState);
+        dataCount();
+    }) 
+
     return (
         <Wrap>
             <ToDoBlock>
                 <h4>
-                    To-do : <span>10</span>
+                    To-do : <span>{todoCount}</span>
                 </h4>
             </ToDoBlock>
             <DoingBlock>
                 <h4>
-                    Doing : <span>20</span>
+                    Doing : <span>{doingCount}</span>
                 </h4>
             </DoingBlock>
             <DoneBlock>
                 <h4>
-                    Done : <span>5</span>
+                    Done : <span>{doneCount}</span>
                 </h4>
             </DoneBlock>
         </Wrap>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ToDoInput from './todo_input';
 import ToDoStatus from './todo_status';
 import ToDoList from './todo_list';
@@ -19,18 +19,23 @@ const ToDoApp = styled.div`
 
 const ToDo = () => {
     const [inputValue, setInputValue] = useState('');
-
-    const contextValue = { inputValue }
+    const [listState, setListState] = useState([])
 
     const inputHandler = (value) => {
         setInputValue(value);
     }
 
+    const getListStatus = (data) => {
+        setListState(data);
+    }
+
+    const contextValue = { inputValue, getListStatus }
+
     return (
         <AddListContext.Provider value={contextValue}> 
             <ToDoApp>
                 <ToDoInput handler={inputHandler} />
-                <ToDoStatus />
+                <ToDoStatus listState={listState} />
                 <ToDoList newValue={inputValue} />
             </ToDoApp>
         </AddListContext.Provider>

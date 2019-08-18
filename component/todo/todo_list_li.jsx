@@ -7,7 +7,7 @@ import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
 const Li = styled.li`
     padding: 15px;
-    padding-left: 50px;
+    padding-left: 55px;
     background: #191933;
     border-radius: 7px;
     margin-bottom: 15px;
@@ -17,6 +17,17 @@ const Li = styled.li`
     color: #fff;
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
+    overflow: hidden;
+`
+
+const Status = styled.span`
+    display: inline-block;
+    width: 10px;
+    height: 100%;
+    background: #9b62e7;
+    position: absolute;
+    left: 0;
+    top: 0;
 `
 
 const CancelButton = styled.span`
@@ -30,7 +41,7 @@ const CancelButton = styled.span`
 
 const CheckboxLabel = styled.label`
     position: absolute;
-    left: 18px;
+    left: 25px;
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
@@ -45,6 +56,7 @@ const ToDoListLi = (props) => {
 
     return (
         <Li>
+            <Status></Status>
             <CheckboxLabel>
                 <ToDoCheckBox checked={checked} onChange={handleCheckboxState} />
             </CheckboxLabel>

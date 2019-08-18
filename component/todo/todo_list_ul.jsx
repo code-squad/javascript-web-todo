@@ -23,7 +23,7 @@ function shuffle(o){
 }
 
 const ToDoListUl = ({ toggle }) => {
-    const { inputValue } = useContext(AddListContext);
+    const { inputValue, getListStatus } = useContext(AddListContext);
     const [listData, setListData] = useState([]);
 
     const fetchAPI = async () => {
@@ -49,7 +49,8 @@ const ToDoListUl = ({ toggle }) => {
         if(localStorage.myTodoList) {
             const savedData = JSON.parse(localStorage.myTodoList);
             setListData(savedData);
-
+            getListStatus(savedData);
+            
             return;
         }
 
@@ -57,7 +58,7 @@ const ToDoListUl = ({ toggle }) => {
         //     fetchAPI();
         // }, 1000)
         fetchAPI();
-
+        getListStatus(listData);
     }, [])
 
     useEffect(() => { // listData => localStorage
@@ -66,6 +67,7 @@ const ToDoListUl = ({ toggle }) => {
         const jsonAPI = JSON.stringify(listData);
         localStorage.myTodoList = jsonAPI;
 
+        getListStatus(listData);
     }, [listData])
 
     useEffect(() => { // input 으로 추가 한 값 관련
@@ -80,7 +82,6 @@ const ToDoListUl = ({ toggle }) => {
                 return [...prevData, newData]
             })
         }
-
     }, [inputValue])
 
     const renderList = () => {
