@@ -1,6 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { TodoContext } from "./TodoContextProvider";
+import CONFIGS from "../configs/configs";
+import { makeDelay } from "../utils/myUtils";
+
+const { ANIMATE_DURATION } = CONFIGS;
 
 const Wrapper = styled.div`
   display: flex;
@@ -28,12 +32,14 @@ const Circle = styled.div`
   border: 2px solid palevioletred;
   width: 5rem;
   height: 5rem;
-  font-size: 2rem;
+  font-size: ${props => (props.emphasize === true ? "4rem" : "2rem")};
+  transition: all ${ANIMATE_DURATION}ms;
 `;
 
 const TodoCounter = () => {
   const { todos } = useContext(TodoContext);
   const [counts, setCounts] = useState({});
+  const [emphasize, setEmphasize] = useState(false);
   const { todoCount, doneCount } = counts;
 
   const updateCount = todos => {
@@ -43,18 +49,23 @@ const TodoCounter = () => {
   };
 
   useEffect(() => {
-    updateCount(todos);
+    (async () => {
+      setEmphasize(true);
+      updateCount(todos);
+      await makeDelay(ANIMATE_DURATION);
+      setEmphasize(false);
+    })();
   }, [todos]);
 
   return (
     <Wrapper>
       <Box>
         <Typography>Todo: </Typography>
-        <Circle>{todoCount}</Circle>
+        <Circle emphasize={emphasize}>{todoCount}</Circle>
       </Box>
       <Box>
         <Typography>Done: </Typography>
-        <Circle>{doneCount}</Circle>
+        <Circle emphasize={emphasize}>{doneCount}</Circle>
       </Box>
     </Wrapper>
   );

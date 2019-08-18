@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
+import CONFIGS from "../configs/configs";
+import { makeDelay } from "../utils/myUtils";
 
-const LOADING_DELAY = 1000;
-
-const makeDelay = timeInMs => {
-  return new Promise(res => setTimeout(res, timeInMs));
-};
+const { LOADING_DELAY } = CONFIGS;
 
 const useFetch = (url, callback, errorHandler = () => {}) => {
   const [loading, setLoading] = useState(false);

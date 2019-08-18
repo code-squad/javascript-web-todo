@@ -1,6 +1,9 @@
 const CONFIGS = {
-  // url: "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/todolist"
-  url: 'https://allen-webtodo.herokuapp.com/todos'
+  url: 'https://allen-webtodo.herokuapp.com/todos',
+
+  ANIMATE_DURATION: 500,
+
+  LOADING_DELAY: 500
 }
 
 export default CONFIGS;
