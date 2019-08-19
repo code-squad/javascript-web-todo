@@ -1,5 +1,5 @@
 const config = {
-  todosUrl: "http://localhost:3000/api/todos",
+  todosUrl: "https://react-web-todo.herokuapp.com/api/todos",
   buttonDefaultStyle: {
     width: "2rem",
     height: "1rem",
