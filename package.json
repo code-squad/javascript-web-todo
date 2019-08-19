@@ -5,7 +5,8 @@
   "repository": "https://github.com/park78951/javascript-web-todo.git",
   "scripts": {
     "dev": "webpack-dev-server --hot",
-    "build": "webpack"
+    "build": "webpack",
+    "server": "nodemon ./src/server/App.js"
   },
   "author": "Sangkyu <park78951@gmail.com>",
   "license": "MIT",

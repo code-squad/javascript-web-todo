@@ -16,7 +16,7 @@ const App = () => {
 
   const fetchMyTodoList = async (todoItems) => {
     try {
-      const todoJson = await todoApi.get('/develop/todolist');
+      const todoJson = await todoApi.get('/api');
       const myTodoList = todoJson.data.body;
       setTodoItems([...todoItems, ...myTodoList]);
     } catch(err) {
