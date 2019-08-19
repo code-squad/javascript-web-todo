@@ -1,7 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
-import TodoInput from "./TodoInput.jsx";
-import TodoOutput from "./TodoOutput.jsx";
+import TodoInput from "./TodoInput";
+import TodoOutput from "./TodoOutput";
+import TodoContextProvider from "./TodoContextProvider";
+import Information from "./Information";
+import TodoCounter from "./TodoCounter";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -24,23 +27,21 @@ const Wrapper = styled.div`
   margin: 0 auto;
 `;
 
-class App extends Component {
-  state = {
-    title: "Todo App"
-  };
-
-  render() {
-    return (
-      <>
-        <GlobalStyle />
-        <Wrapper>
-          <Title>{this.state.title}</Title>
+const App = () => {
+  return (
+    <>
+      <GlobalStyle />
+      <Wrapper>
+        <Title>Todo App</Title>
+        <TodoContextProvider>
+          <TodoCounter />
           <TodoInput />
           <TodoOutput />
-        </Wrapper>
-      </>
-    );
-  }
-}
+          <Information />
+        </TodoContextProvider>
+      </Wrapper>
+    </>
+  );
+};
 
 export default App;

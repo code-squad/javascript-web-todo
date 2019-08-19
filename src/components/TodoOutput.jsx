@@ -1,9 +1,7 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import CONFIGS from "../configs/configs.js";
-import Button from "../atomicComponents/Button.jsx";
-import UL from "../atomicComponents/UL.jsx";
-import WarningModal from "../atomicComponents/WarningModal.jsx";
+import Button from "../atomicComponents/Button";
+import TodoList from "./TodoList";
 
 const Wrapper = styled.div`
   position: relative;
@@ -24,37 +22,20 @@ const ToggleButton = styled(Button)`
   right: 2rem;
 `;
 
-class TodoOutput extends Component {
-  state = {
-    btnText: "접기",
-    todos: [],
-    warningVisibility: false
+const TodoOutput = () => {
+  const [listVisible, setListVisible] = useState(true);
+
+  const toggleLists = () => {
+    setListVisible(!listVisible);
   };
 
-  async componentDidMount() {
-    try {
-      const res = await fetch(CONFIGS.url);
-      if (!res.ok) throw Error(`STATUS CODE : ${res.status}`);
-      if (res instanceof Promise) throw Error("REQUEST FAILED");
-      const data = await res.json();
-      this.setState({ todos: data.body });
-    } catch (err) {
-      console.error(err);
-      this.setState({ warningVisibility: true });
-    }
-  }
-
-  render() {
-    const { todos, btnText, warningVisibility } = this.state;
-    return (
-      <Wrapper>
-        <Div>할 일 목록</Div>
-        <UL contents={todos} contentKey="title" />
-        <ToggleButton>{btnText}</ToggleButton>
-        <WarningModal visible={warningVisibility}>네트워크 에러가 발생했습니다</WarningModal>
-      </Wrapper>
-    );
-  }
-}
+  return (
+    <Wrapper>
+      <Div>할 일 목록</Div>
+      <ToggleButton onClick={toggleLists}>{listVisible ? "접기" : "펼치기"}</ToggleButton>
+      {listVisible && <TodoList />}
+    </Wrapper>
+  );
+};
 
 export default TodoOutput;

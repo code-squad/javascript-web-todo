@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const SInput = styled.input`
@@ -12,10 +12,8 @@ const SInput = styled.input`
   height: 3.5rem;
 `;
 
-class Input extends Component {
-  render() {
-    return <SInput type={this.props.type} placeholder={this.props.placeholder} />;
-  }
-}
+const Input = props => {
+  return <SInput {...props} />;
+};
 
 export default Input;
