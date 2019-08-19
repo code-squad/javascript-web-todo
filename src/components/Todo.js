@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const Button = styled.button`
@@ -11,12 +11,17 @@ const Button = styled.button`
   border: 1px solid #ee5253;
   border-radius: 15px;
 
+  &:hover {
+    cursor: pointer;
+    background-color: #ff2121;
+  }
+
   &:focus {
     outline: none;
   }
 `;
 
-const Li = styled.li`
+const Item = styled.li`
   display: flex;
   align-items: center;
   width: 100%;
@@ -26,22 +31,32 @@ const Li = styled.li`
   border: 0.1px solid #cfd6ee;
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
+
+  &:hover {
+    background-color: #f1f3f5;
+    cursor: pointer;
+  }
 `;
 
-class Todo extends Component {
-  constructor(props) {
-    super(props);
-  }
+const TodoTitle = styled.p`
+  text-decoration: ${props => (props.status === 'done' ? 'line-through' : 'none')};
+`;
 
-  render() {
-    const { title, id, status } = this.props;
-    return (
-      <Li data-id={id}>
-        {title}
-        <Button>x</Button>
-      </Li>
-    );
-  }
-}
+const Todo = ({ title, id, status, onRemoveClick, toggleStatus }) => {
+  const confirmDelete = ({ e, title, id }) => {
+    e.stopPropagation();
+
+    if (confirm(`${title}을 정말로 삭제하시겠습니까?`)) {
+      onRemoveClick(id);
+    }
+  };
+
+  return (
+    <Item data-id={id} onClick={toggleStatus}>
+      <TodoTitle status={status}>{title}</TodoTitle>
+      <Button onClick={e => confirmDelete({ e, title, id })}>x</Button>
+    </Item>
+  );
+};
 
 export default Todo;

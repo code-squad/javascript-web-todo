@@ -22,6 +22,7 @@
     "@babel/runtime": "^7.5.5",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "simple-util-js": "^1.0.7",
     "styled-components": "^4.3.2",
     "styled-normalize": "^8.0.6"
   },

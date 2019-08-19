@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 
+import { TodoContext } from '../store/TodoStore';
 import Button from './BasicButton';
 
 const Form = styled.form`
@@ -36,22 +37,35 @@ const Label = styled.label`
   line-height: 1.6;
 `;
 
-class TodoForm extends Component {
-  constructor(props) {
-    super(props);
-  }
+const TodoForm = () => {
+  const [newTodo, setNewTodo] = useState('');
+  const { dispatch } = useContext(TodoContext);
 
-  render() {
-    return (
-      <Form>
-        <Label htmlFor="todo">할 일</Label>
-        <InputWrapper>
-          <Input name="todo" id="todo" />
-          <Button onClick={e => e.preventDefault()}>등록</Button>
-        </InputWrapper>
-      </Form>
-    );
-  }
-}
+  const changeNewTodo = ({ target: { value } }) => {
+    setNewTodo(value);
+  };
+
+  const addTodo = e => {
+    if (!newTodo) {
+      e.preventDefault();
+      return;
+    }
+
+    dispatch({ type: 'ADD', payload: newTodo });
+
+    setNewTodo('');
+    e.preventDefault();
+  };
+
+  return (
+    <Form>
+      <Label htmlFor="todo">할 일</Label>
+      <InputWrapper>
+        <Input name="todo" id="todo" onChange={e => changeNewTodo(e)} value={newTodo} />
+        <Button onClick={e => addTodo(e)}>등록</Button>
+      </InputWrapper>
+    </Form>
+  );
+};
 
 export default TodoForm;

@@ -20,19 +20,12 @@ const Button = styled.button`
   }
 `;
 
-class BasicButton extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const { height } = this.props;
-    return (
-      <Button height={height} onClick={this.props.onClick}>
-        {this.props.children}
-      </Button>
-    );
-  }
-}
+const BasicButton = ({ children, height, onClick }) => {
+  return (
+    <Button height={height} onClick={onClick}>
+      {children}
+    </Button>
+  );
+};
 
 export default BasicButton;
