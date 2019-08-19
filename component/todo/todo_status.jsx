@@ -44,28 +44,27 @@ const DoneBlock = styled.div`
 const ToDoStatus = ({ listState }) => {
     const [listData, setListData] = useState([]);
     const [todoCount, setTodoCount] = useState(0);
-    const [doingCount, setDoingCount] = useState(0);
+    const [allCount, setAllCount] = useState(0);
     const [doneCount, setDoneCount] = useState(0);
     
     const dataCount = () => {
 
         let todoNumber = 0;
-        let doingNumber = 0;
+        let allNumber = 0;
         let doneNumber = 0;
 
         listData.map((v) => {
+            allNumber++
             if(v.status === 'todo') {
                 todoNumber++
-            } else if(v.status === 'doing') {
-                doingNumber++
-            } else {
+            } else if(v.status === 'done') {
                 doneNumber++
             }
         })
 
         setTodoCount(todoNumber);
-        setDoingCount(doingNumber);
         setDoneCount(doneNumber);
+        setAllCount(allNumber);
     }
 
     useEffect(() => {
@@ -75,16 +74,16 @@ const ToDoStatus = ({ listState }) => {
 
     return (
         <Wrap>
+            <DoingBlock>
+                <h4>
+                    All : <span>{allCount}</span>
+                </h4>
+            </DoingBlock>            
             <ToDoBlock>
                 <h4>
                     To-do : <span>{todoCount}</span>
                 </h4>
             </ToDoBlock>
-            <DoingBlock>
-                <h4>
-                    Doing : <span>{doingCount}</span>
-                </h4>
-            </DoingBlock>
             <DoneBlock>
                 <h4>
                     Done : <span>{doneCount}</span>

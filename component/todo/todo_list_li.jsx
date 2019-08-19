@@ -24,10 +24,12 @@ const Status = styled.span`
     display: inline-block;
     width: 10px;
     height: 100%;
-    background: #9b62e7;
+    background: ;
+    background: ${props => (props.background ? '#5a61ff' : '#9b62e7')}
     position: absolute;
     left: 0;
     top: 0;
+    transition: all 0.2s ease-out; 
 `
 
 const CancelButton = styled.span`
@@ -63,7 +65,7 @@ const ToDoListLi = (props) => {
 
     return (
         <Li>
-            <Status></Status>
+            <Status background={checked}></Status>
             <CheckboxLabel>
                 <ToDoCheckBox checked={checked} onChange={handleCheckboxState} />
             </CheckboxLabel>
