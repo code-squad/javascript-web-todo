@@ -7,14 +7,21 @@ import Counter from "./Counter";
 
 export const ToDoContext = React.createContext();
 
+let count = 0;
+
 const ToDoApp = props => {
+  console.log("AppCount: ", ++count);
+
   const [todoData, setTodoData] = useState([]);
   const [error, setError] = useState(null);
-  const [fetchObj, setFetchObj] = useFetch(null);
+  const [fetchObj, fetchInitialData] = useFetch(null); // 매번 호출하고 매번 리턴. useFetch에 있는 fetchObj와 같은 것.
+  //fetchObj에 대한 소유권은 생성한 ToDoApp이 가지고 있음. 따라서 useFetch에서 setFetchObj해도.. ToDoApp이 먼저 실행됨
+
+  console.log(fetchObj);
 
   useEffect(() => {
     console.log("useEffect");
-    setFetchObj(
+    fetchInitialData(
       setTodoData,
       `https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/todolist`,
       error => {
@@ -72,9 +79,6 @@ const ToDoApp = props => {
 
     setTodoData(todos);
   };
-
-  console.log(`TodoApp렌더링`);
-  console.log(fetchObj);
 
   return (
     <>

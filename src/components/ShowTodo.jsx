@@ -14,8 +14,6 @@ const ShowTodo = props => {
     ToDoContext
   );
 
-  console.log("ShowTodo렌더링");
-
   const makeLiData = todos => {
     const arr = todos.map(data => {
       return (

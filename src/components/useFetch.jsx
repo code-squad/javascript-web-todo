@@ -6,9 +6,6 @@ const useFetch = () => {
     loading: false
   });
 
-  console.log(`useFetch 내부`);
-  console.log(fetchObj);
-
   const fetchInitialData = async (cbFunc, url, errorHandler) => {
     let newFetchObj = {
       result: [],
@@ -17,9 +14,7 @@ const useFetch = () => {
 
     try {
       newFetchObj.loading = true;
-      console.log("setState Before");
       setFetchObj(newFetchObj);
-      console.log("setState After");
 
       const response = await fetch(url);
 
@@ -31,12 +26,8 @@ const useFetch = () => {
       newFetchObj.result = jsonData.body;
       newFetchObj.loading = false;
 
-      console.log("setState Before");
       setFetchObj(newFetchObj);
-      console.log("setState After");
-      console.log("cbFunc Before");
       cbFunc(newFetchObj.result);
-      console.log("cbFunc After");
     } catch (errorMsg) {
       errorHandler(errorMsg);
     }
