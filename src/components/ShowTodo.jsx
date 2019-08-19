@@ -79,7 +79,7 @@ const DIV = styled.div`
   width: 45%;
   background-color: #dedcee;
   border-radius: 20px;
-  margin-top: 4em;
+  margin-top: 3em;
 `;
 
 const HEADER = styled.h3`

@@ -24,8 +24,8 @@ const Counter = () => {
 
   return (
     <React.Fragment>
-      할 일 : <Fab color="primary">{todoCnt}</Fab>
-      남은 일 : <Fab color="secondary">{doneCnt}</Fab>
+      진행 중 :<Fab color="primary">{todoCnt}</Fab>
+      완료 : <Fab color="secondary">{doneCnt}</Fab>
     </React.Fragment>
   );
 };

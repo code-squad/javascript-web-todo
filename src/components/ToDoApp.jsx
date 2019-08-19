@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import AddTodo from "./AddTodo";
 import ShowTodo from "./ShowTodo";
-import useFetch from "./useFetch";
+import useFetch from "../customHooks/useFetch";
 import Counter from "./Counter";
 
 export const ToDoContext = React.createContext();
@@ -84,19 +84,16 @@ const ToDoApp = () => {
         }}
       >
         <AddTodo />
-        <DIV>
+        <CounterDIV>
+          <Counter />
+        </CounterDIV>
+        <ShowDIV>
           <ShowTodo />
-        </DIV>
-        <Counter />
+        </ShowDIV>
       </ToDoContext.Provider>
     </>
   );
 };
-
-const DIV = styled.div`
-  display: flex;
-  justify-content: space-around;
-`;
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -104,6 +101,18 @@ const GlobalStyle = createGlobalStyle`
     max-width: 800px;
     margin: 0 auto;
   }
+`;
+
+const CounterDIV = styled.div`
+  font-family: Monospace;
+  font-weight: 300;
+  margin-top: 4em;
+  text-align: right;
+`;
+
+const ShowDIV = styled.div`
+  display: flex;
+  justify-content: space-around;
 `;
 
 export default ToDoApp;
