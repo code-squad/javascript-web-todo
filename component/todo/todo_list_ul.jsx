@@ -45,6 +45,22 @@ const ToDoListUl = ({ toggle }) => {
         })
     }
 
+    const changeItem = (target, state) => {
+        if(state) {
+            state = 'todo'
+        } else {
+            state = 'done'
+        }
+
+        setListData((prevData) => {
+            const result = prevData.map((v) => {
+                if(v.id === target) v.status = state;
+                return v;
+            });
+            return result;
+        })
+    }
+
     useEffect(() => { // compoenetDidMount
         if(localStorage.myTodoList) {
             const savedData = JSON.parse(localStorage.myTodoList);
@@ -91,10 +107,12 @@ const ToDoListUl = ({ toggle }) => {
                 {listData.map((v) => {
                     return (
                         <ToDoListLi 
-                            handler={deleteItem} 
+                            deleteHandler={deleteItem} 
+                            changeHandler={changeItem}
                             key={v.id} 
                             id={v.id} 
-                            value={v.title} 
+                            value={v.title}
+                            status={v.status} 
                         />
                     )
                 })}

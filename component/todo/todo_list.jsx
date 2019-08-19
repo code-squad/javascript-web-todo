@@ -26,7 +26,7 @@ const ToggleButton = styled.span`
 `
 const H3 = styled.h3`
     margin-bottom: 20px;
-    font-family: 'Beth Ellen', cursive;
+    font-family: 'Roboto', sans-serif;
     font-size: 12px;
     text-indent: 5px;
 `

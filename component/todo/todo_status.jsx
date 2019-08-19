@@ -13,7 +13,8 @@ const Wrap = styled.div`
         border-radius: 10px;
         padding: 15px;
         margin: 0 10px;
-        font-family: 'Beth Ellen', cursive;
+        font-family: 'Roboto', sans-serif;
+        font-weight: bold;
         text-align: center;
         
         > h4 {

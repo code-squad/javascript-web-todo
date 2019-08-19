@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ToDoCheckBox from './todo_checkbox';
 import ToDoListLiP from './todo_list_li_p';
 import styled from 'styled-components';
@@ -50,8 +50,15 @@ const CheckboxLabel = styled.label`
 const ToDoListLi = (props) => {
     const [checked, setChecked] = useState(false);
 
+    useEffect(() => {
+        if(props.status === 'done') {
+            setChecked(true)
+        }
+    }, [])
+
     const handleCheckboxState = (evt) => {
-        setChecked(evt.target.checked)
+        setChecked(evt.target.checked);
+        props.changeHandler(props.id, checked);
     }
 
     return (
@@ -61,7 +68,7 @@ const ToDoListLi = (props) => {
                 <ToDoCheckBox checked={checked} onChange={handleCheckboxState} />
             </CheckboxLabel>
             <ToDoListLiP checked={checked} value={props.value}></ToDoListLiP>
-            <CancelButton onClick={() => {props.handler(props.id)}}>
+            <CancelButton onClick={() => {props.deleteHandler(props.id)}}>
                 <FontAwesomeIcon icon={faTimesCircle} color="#5a61ff" />
             </CancelButton>            
         </Li>
