@@ -10,9 +10,13 @@ import DeleteIcon from "@material-ui/icons/Delete";
 
 const ShowTodo = props => {
   const [toggle, setToggle] = useState(true);
-  const { todoData, error, deleteItemHandler, changeItemHandler } = useContext(
-    ToDoContext
-  );
+  const {
+    todoData,
+    error,
+    loading,
+    deleteItemHandler,
+    changeItemHandler
+  } = useContext(ToDoContext);
 
   const makeLiData = todos => {
     const arr = todos.map(data => {
@@ -65,7 +69,7 @@ const ShowTodo = props => {
       </Button>
       <ul style={{ display: toggle ? "block" : "none" }}>
         {error && <li>네트워크 요청 실패</li>}
-        {props.loading ? <li>로딩중...</li> : makeLiComponent(todoData)}
+        {loading ? <li>로딩중...</li> : makeLiComponent(todoData)}
       </ul>
     </DIV>
   );

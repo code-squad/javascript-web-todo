@@ -1,20 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const useFetch = () => {
-  const [fetchObj, setFetchObj] = useState({
-    result: [],
-    loading: false
-  });
+const useFetch = (cbFunc, url) => {
+  const [loading, setLoading] = useState(false);
 
   const fetchInitialData = async (cbFunc, url, errorHandler) => {
-    let newFetchObj = {
-      result: [],
-      loading: false
-    };
-
     try {
-      newFetchObj.loading = true;
-      setFetchObj(newFetchObj);
+      setLoading(true);
 
       const response = await fetch(url);
 
@@ -23,17 +14,18 @@ const useFetch = () => {
 
       const jsonData = await response.json();
 
-      newFetchObj.result = jsonData.body;
-      newFetchObj.loading = false;
-
-      setFetchObj(newFetchObj);
-      cbFunc(newFetchObj.result);
+      setLoading(false);
+      cbFunc(jsonData.body);
     } catch (errorMsg) {
       errorHandler(errorMsg);
     }
   };
 
-  return [fetchObj, fetchInitialData];
+  useEffect(() => {
+    fetchInitialData(cbFunc, url);
+  }, []);
+
+  return loading;
 };
 
 export default useFetch;

@@ -9,7 +9,7 @@ const Counter = () => {
 
   const classify = data => {
     const rawData = data;
-    if (rawData.length !== 0) {
+    if (!!rawData.length) {
       const todoArr = rawData.filter(v => v.status === "todo");
       const doneArr = rawData.filter(v => v.status === "done");
 
@@ -24,8 +24,8 @@ const Counter = () => {
 
   return (
     <React.Fragment>
-      <Fab color="primary">{todoCnt}</Fab>
-      <Fab color="secondary">{doneCnt}</Fab>
+      할 일 : <Fab color="primary">{todoCnt}</Fab>
+      남은 일 : <Fab color="secondary">{doneCnt}</Fab>
     </React.Fragment>
   );
 };

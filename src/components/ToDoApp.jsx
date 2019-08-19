@@ -7,29 +7,19 @@ import Counter from "./Counter";
 
 export const ToDoContext = React.createContext();
 
-let count = 0;
-
-const ToDoApp = props => {
-  console.log("AppCount: ", ++count);
-
+const ToDoApp = () => {
   const [todoData, setTodoData] = useState([]);
   const [error, setError] = useState(null);
-  const [fetchObj, fetchInitialData] = useFetch(null); // 매번 호출하고 매번 리턴. useFetch에 있는 fetchObj와 같은 것.
-  //fetchObj에 대한 소유권은 생성한 ToDoApp이 가지고 있음. 따라서 useFetch에서 setFetchObj해도.. ToDoApp이 먼저 실행됨
+  const loading = useFetch(
+    setTodoData,
+    `https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/todolist`,
+    errorHandler
+  );
 
-  console.log(fetchObj);
-
-  useEffect(() => {
-    console.log("useEffect");
-    fetchInitialData(
-      setTodoData,
-      `https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/todolist`,
-      error => {
-        console.log(error);
-        setError(true);
-      }
-    );
-  }, []);
+  const errorHandler = e => {
+    console.log(e);
+    setError(true);
+  };
 
   const countIf = randomId => {
     const todos = [...todoData];
@@ -87,6 +77,7 @@ const ToDoApp = props => {
         value={{
           todoData,
           error,
+          loading,
           deleteItemHandler,
           changeItemHandler,
           submitTodoHandler
@@ -94,7 +85,7 @@ const ToDoApp = props => {
       >
         <AddTodo />
         <DIV>
-          <ShowTodo loading={fetchObj.loading} />
+          <ShowTodo />
         </DIV>
         <Counter />
       </ToDoContext.Provider>
