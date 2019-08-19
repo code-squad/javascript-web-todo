@@ -21,14 +21,20 @@ const Li = styled.li`
   }
 `
 
-const ContentsList = ({ title, status }) => {
+const ContentsList = ({ title, status, removeTodo, id }) => {
+
+  const removeHandler = (e) => {
+    e.preventDefault();
+    removeTodo(id);
+  }
+
   return (
     <Li>
       <div>
         <span>{ title }</span>
         <span>{ status }</span>
       </div>
-      <RemoveBtn />
+      <RemoveBtn removeHandler={ removeHandler } />
     </Li>
   );
 }

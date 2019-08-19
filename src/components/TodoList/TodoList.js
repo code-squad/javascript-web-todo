@@ -1,19 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Contents from './Contents';
 import styled from 'styled-components';
 
 const Div = styled.div`
   background-color: #8ee4af;
   border-radius: 5px;
-  height: 400px;
+  min-height: 400px;
   padding-top: 2rem;
+  padding-bottom: 1rem;
   font-size: 1.2rem;
 `
 
-const TodoList = ({ myTodo }) => {
+const TodoList = ({ myTodo, removeTodo }) => {
   return (
     <Div>
-      <Contents myTodo={ myTodo } />
+      <Contents myTodo={ myTodo } removeTodo={ removeTodo } />
     </Div>
   );
 }

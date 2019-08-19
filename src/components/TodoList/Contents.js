@@ -19,7 +19,7 @@ const Div = styled.div`
   }
 `
 
-const Contents = ({ myTodo }) => {
+const Contents = ({ myTodo, removeTodo }) => {
 
   // const [todo, setTodoList] = useState([]);
 
@@ -29,9 +29,11 @@ const Contents = ({ myTodo }) => {
         title={title} 
         status={status.toUpperCase()} 
         key={id}
+        id={id}
+        removeTodo={ removeTodo }
       />
     )
-  })
+  });
   return (
     <Div>
       <p>Todo</p>

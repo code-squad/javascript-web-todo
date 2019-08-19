@@ -13,8 +13,8 @@ const Button = styled.button`
   cursor: pointer;
 `
 
-const RemoveBtn = () => {
-  return <Button>X</Button>
+const RemoveBtn = ({ removeHandler }) => {
+  return <Button onClick={ removeHandler } >X</Button>
 }
 
 export default RemoveBtn;

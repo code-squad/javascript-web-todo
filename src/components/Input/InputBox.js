@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import AddBtn from './AddButton';
 import styled from 'styled-components';
 
-const Form = styled.div`
+const Form = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,17 +32,27 @@ const Form = styled.div`
   }
 `
 
-const InputBar = () => {
+const InputBox = ({ addTodo }) => {
 
   const [term, setTerm] = useState('');
 
+  const setCurVal = ({target}) => {
+    const { value } = target;
+    setTerm(value);
+  }
+
+  const submitHandler = e => {
+    e.preventDefault();
+    addTodo(term);
+  }
+
   return (
-    <Form>
+    <Form onSubmit={ submitHandler }>
       <label>할일입력: </label>
-      <input type="text" />
+      <input type="text" onChange={ setCurVal } value={ term } />
       <AddBtn />
     </Form>
   )
 }
 
-export default InputBar;
+export default InputBox;

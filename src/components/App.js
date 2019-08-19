@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import InputBar from './Input/InputBar';
+import InputBox from './Input/InputBox';
 import TodoList from './TodoList/TodoList';
 import ContentsBtn from './ContentsBtn/ContentsBtn';
 import styled from 'styled-components';
@@ -25,14 +25,35 @@ const App = () => {
     }
   }
 
+  const addTodo = value => {
+    setTodoItems(
+      [
+        ...todoItems, 
+        {
+          "title": value,
+          "id": Date.now(),
+          "status": "todo"
+        }
+      ]
+    )
+  }
+
+  const removeTodo = id => {
+    const todoDuplicate = [...todoItems]
+    const [matchedItem] = todoDuplicate.filter( item => id === item.id );
+    const matchedIdx = todoDuplicate.indexOf(matchedItem);
+    todoDuplicate.splice(matchedIdx, 1)
+    setTodoItems(todoDuplicate);
+  }
+
   useEffect( () => {
     fetchMyTodoList(todoItems);
   }, [])
 
   return(
     <Div>
-      <InputBar />
-      <TodoList myTodo={ todoItems } />
+      <InputBox addTodo={ addTodo } />
+      <TodoList myTodo={ todoItems } removeTodo={ removeTodo } />
       <ContentsBtn />
     </Div>
   )
