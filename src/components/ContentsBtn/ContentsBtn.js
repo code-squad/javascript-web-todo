@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components';
 
 const Div = styled.div`
@@ -18,14 +18,12 @@ const Div = styled.div`
   }
 `
 
-class ContentsBtn extends Component {
-  render() {
-    return (
-      <Div>
-        <button>Show</button>
-      </Div>
-    )
-  }
+const ContentsBtn = () => {
+  return (
+    <Div>
+      <button>Show</button>
+    </Div>
+  )
 }
 
 export default ContentsBtn;

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const Div = styled.div`
@@ -19,14 +19,12 @@ const Div = styled.div`
   }
 `
 
-class AddBtn extends Component {
-  render() {
-    return (
-      <Div>
-        <button type='submit'>Add</button>
-      </Div>
-    )
-  }
+const AddBtn = () => {
+  return (
+    <Div>
+      <button type='submit'>Add</button>
+    </Div>
+  )
 }
 
 export default AddBtn;

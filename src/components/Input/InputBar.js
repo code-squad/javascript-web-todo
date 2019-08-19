@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { useState } from 'react';
 import AddBtn from './AddButton';
 import styled from 'styled-components';
 
@@ -32,20 +32,17 @@ const Form = styled.div`
   }
 `
 
-class InputBar extends Component {
-  state = {
-    term: ''
-  };
+const InputBar = () => {
 
-  render() {
-    return (
-      <Form>
-        <label>할일입력: </label>
-        <input type="text" />
-        <AddBtn />
-      </Form>
-    )
-  }
+  const [term, setTerm] = useState('');
+
+  return (
+    <Form>
+      <label>할일입력: </label>
+      <input type="text" />
+      <AddBtn />
+    </Form>
+  )
 }
 
 export default InputBar;

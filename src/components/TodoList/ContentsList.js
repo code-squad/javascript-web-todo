@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import RemoveBtn from './RemoveBtn';
 import styled from 'styled-components'
 
@@ -21,19 +21,16 @@ const Li = styled.li`
   }
 `
 
-class ContentsList extends Component {
-  render() {
-    const { title, status } = this.props;
-    return (
-      <Li>
-        <div>
-          <span>{ title }</span>
-          <span>{ status }</span>
-        </div>
-        <RemoveBtn />
-      </Li>
-    );
-  }
+const ContentsList = ({ title, status }) => {
+  return (
+    <Li>
+      <div>
+        <span>{ title }</span>
+        <span>{ status }</span>
+      </div>
+      <RemoveBtn />
+    </Li>
+  );
 }
 
 export default ContentsList;

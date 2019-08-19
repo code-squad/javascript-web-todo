@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components';
 
 const Button = styled.button`
@@ -13,10 +13,8 @@ const Button = styled.button`
   cursor: pointer;
 `
 
-class RemoveBtn extends Component {
-  render() {
-    return <Button>X</Button>
-  }
+const RemoveBtn = () => {
+  return <Button>X</Button>
 }
 
 export default RemoveBtn;

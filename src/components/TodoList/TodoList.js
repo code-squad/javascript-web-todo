@@ -10,15 +10,12 @@ const Div = styled.div`
   font-size: 1.2rem;
 `
 
-class TodoList extends Component {
-  render() {
-    const { myTodo } = this.props
-    return (
-      <Div>
-        <Contents myTodo={myTodo} />
-      </Div>
-    );
-  }
+const TodoList = ({ myTodo }) => {
+  return (
+    <Div>
+      <Contents myTodo={ myTodo } />
+    </Div>
+  );
 }
 
 export default TodoList;

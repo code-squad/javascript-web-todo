@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import ContentsList from './ContentsList';
 import styled from 'styled-components';
 
@@ -19,32 +19,27 @@ const Div = styled.div`
   }
 `
 
-class Contents extends Component {
+const Contents = ({ myTodo }) => {
 
-  state = {
-    todo: []
-  }
+  // const [todo, setTodoList] = useState([]);
 
-  render() {
-    const { myTodo } = this.props;
-    const todoList = myTodo.map( ({ title, id, status }) => {
-      return (
-        <ContentsList 
-          title={title} 
-          status={status.toUpperCase()} 
-          key={id}
-        />
-      )
-    })
+  const todoList = myTodo.map( ({ title, id, status }) => {
     return (
-      <Div>
-        <p>Todo</p>
-        <ul>
-          {todoList}
-        </ul>
-      </Div>
+      <ContentsList 
+        title={title} 
+        status={status.toUpperCase()} 
+        key={id}
+      />
     )
-  }
+  })
+  return (
+    <Div>
+      <p>Todo</p>
+      <ul>
+        {myTodo ? todoList : 'Loading....'}
+      </ul>
+    </Div>
+  )
 }
 
 export default Contents;

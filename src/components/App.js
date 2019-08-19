@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { useState, useEffect } from 'react';
 import InputBar from './Input/InputBar';
 import TodoList from './TodoList/TodoList';
 import ContentsBtn from './ContentsBtn/ContentsBtn';
@@ -11,35 +11,31 @@ const Div = styled.div`
   width: 50%;
 `
 
-class App extends Component {
-  state = {
-    todo: []
-  }
+const App = () => {
+  const [todoItems, setTodoItems] = useState([]);
 
-  async fetchMyTodoList()  {
+  const fetchMyTodoList = async (todoItems) => {
     try {
       const todoJson = await todoApi.get('/develop/todolist');
       const myTodoList = todoJson.data.body;
-      this.setState({ todo: myTodoList });
+      setTodoItems([...todoItems, myTodoList]);
     } catch(err) {
       if(err.name === 'typeError') console.log(INVALID_DATA);
       if(err.message === 'Network Error') console.log(NETWORK_ERROR);
     }
   }
 
-  componentDidMount() {
-    this.fetchMyTodoList();
-  }
+  useEffect( () => {
+    fetchMyTodoList(todoItems);
+  }, [])
 
-  render() {
-    return(
-      <Div>
-        <InputBar />
-        <TodoList myTodo={ this.state.todo } />
-        <ContentsBtn />
-      </Div>
-    )
-  }
+  return(
+    <Div>
+      <InputBar />
+      <TodoList myTodo={ todoItems } />
+      <ContentsBtn />
+    </Div>
+  )
 }
 
 export default App;
