@@ -51,19 +51,28 @@ const ToDoInput = (props) => {
         setInputValue(e.target.value);
     }
 
+    const handleClick = (e) => {
+        e.preventDefault();
+        props.handler(inputValue);
+        setInputValue('');
+    }
+
     return (
         <Wrap>
             <H3>&#60; Input /&#62;</H3>
-            <InnerWrap>
-                <Input 
-                    type="text"
-                    onChange={handleChange} 
-                    placeholder="what to do...?" 
-                />
-                <Button onClick={() => {props.handler(inputValue)}}>
-                    <FontAwesomeIcon icon={faPlus} color="#fff" />
-                </Button>
-            </InnerWrap>
+            <form action="">
+                <InnerWrap>
+                    <Input 
+                        type="text"
+                        onChange={ handleChange } 
+                        value={ inputValue }
+                        placeholder="what to do...?" 
+                    />
+                    <Button onClick={ handleClick }>
+                        <FontAwesomeIcon icon={ faPlus } color="#fff" />
+                    </Button>
+                </InnerWrap>                
+            </form>
         </Wrap>
     )
 }
