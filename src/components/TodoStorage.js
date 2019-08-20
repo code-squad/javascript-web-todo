@@ -7,12 +7,12 @@ export const TodoContext = React.createContext();
 const TodoStorage = ({ children }) => {
   const [todoItems, dispatch] = useReducer(todoReducer, []);
   const [showingBtnTitle, setShowingBtnTitle] = useState('Hide');
-
-  const isFetched = useFetch(setInitTodoData);
   
   const setInitTodoData = initData => {
-    dispatch({type: "INIT", payload: initData})
+    dispatch({ type: "INIT", payload: initData })
   }
+
+  const isFetched = useFetch(setInitTodoData);
   
   const changeShowBtnTitle = showingBtnTitle => {
     showingBtnTitle === 'Show' 
