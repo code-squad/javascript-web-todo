@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ContentsList from './ContentsList';
 import styled from 'styled-components';
 
@@ -21,8 +21,6 @@ const Div = styled.div`
 
 const Contents = ({ myTodo, removeTodo }) => {
 
-  // const [todo, setTodoList] = useState([]);
-
   const todoList = myTodo.map( ({ title, id, status }) => {
     return (
       <ContentsList 
@@ -34,6 +32,7 @@ const Contents = ({ myTodo, removeTodo }) => {
       />
     )
   });
+
   return (
     <Div>
       <p>Todo</p>
