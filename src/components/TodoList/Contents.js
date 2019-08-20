@@ -1,6 +1,7 @@
 import React from 'react';
 import ContentsList from './ContentsList';
 import styled from 'styled-components';
+import { LOADING, EMPTY_LIST } from '../../message/message';
 
 const Div = styled.div`
   width: 85%;
@@ -20,7 +21,7 @@ const Div = styled.div`
   }
 `
 
-const Contents = ({ myTodo, removeTodo }) => {
+const Contents = ({ myTodo, removeTodo, isFetched }) => {
 
   const todoList = myTodo.map( ({ title, id, status }) => {
     return (
@@ -34,11 +35,13 @@ const Contents = ({ myTodo, removeTodo }) => {
     )
   });
 
+  const ifEmpty = isFetched ? EMPTY_LIST : LOADING;
+
   return (
     <Div>
       <p>Todo</p>
       <ul>
-        {myTodo.length ? todoList : 'Loading....'}
+        {myTodo.length ? todoList : ifEmpty}
       </ul>
     </Div>
   )

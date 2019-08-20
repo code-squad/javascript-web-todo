@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import RemoveBtn from './RemoveBtn';
-import styled from 'styled-components'
+import styled from 'styled-components';
+import { TodoContext } from '../TodoStorage';
 
 const Li = styled.li`
   display: flex;
@@ -28,12 +29,13 @@ const Li = styled.li`
   }
 `
 
-const ContentsList = ({ title, status, removeTodo, id }) => {
+const ContentsList = ({ title, status, id }) => {
 
-  const [todoStatus, setTodoStatus] = useState(status);
+  const { dispatch } = useContext(TodoContext);
 
   const removeHandler = (e) => {
-    removeTodo(id);
+    e.preventDefault();
+    dispatch({ type: 'DELETE', payload: id });
   }
 
   const completeTodo = (e) => {
@@ -41,18 +43,14 @@ const ContentsList = ({ title, status, removeTodo, id }) => {
     
     const lineThroughList = e.target.closest('li div');
     lineThroughList.classList.toggle('line-through');
-    changeStatus(todoStatus);
-  }
-
-  const changeStatus = (curStatus) => {
-    curStatus === 'TODO' ? setTodoStatus('DONE') : setTodoStatus('TODO');
+    dispatch({ type: 'UPDATE', payload: id })
   }
 
   return (
     <Li onClick={completeTodo} >
       <div>
         <span>{ title }</span>
-        <span>{ todoStatus }</span>
+        <span>{ status }</span>
       </div>
       <RemoveBtn removeHandler={ removeHandler } />
     </Li>

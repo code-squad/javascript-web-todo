@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import AddBtn from './AddButton';
 import styled from 'styled-components';
+import { TodoContext } from '../TodoStorage';
 
 const Form = styled.form`
   position: relative;
@@ -32,8 +33,9 @@ const Form = styled.form`
   }
 `
 
-const InputBox = ({ addTodo }) => {
+const InputBox = () => {
 
+  const { dispatch } = useContext(TodoContext);
   const [term, setTerm] = useState('');
 
   const setCurVal = ({target}) => {
@@ -43,7 +45,7 @@ const InputBox = ({ addTodo }) => {
 
   const submitHandler = e => {
     e.preventDefault();
-    addTodo(term);
+    dispatch({type: 'ADD', payload: term})
     setTerm('');
   }
 

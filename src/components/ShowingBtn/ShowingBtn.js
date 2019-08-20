@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components';
+import { TodoContext } from '../TodoStorage';
 
 const Div = styled.div`
   position: relative;
@@ -13,19 +14,18 @@ const Div = styled.div`
     height: 2rem;
     background-color: ${({ btnTitle }) => btnTitle === 'Hide' ? 'transparent' : '#05386b'};
     font-weight: bold;
-    color: ${({ btnTitle }) => btnTitle === 'Hide' ? '#05386b' : 'white'};
+    color: ${ ({ btnTitle }) => btnTitle === 'Hide' ? '#05386b' : '#8ee4af'};
     cursor: pointer;
   }
 `
 
-const ShowingBtn = ({ btnTitle, clickHandler }) => {
-  debugger;
+const ShowingBtn = () => {
+  const { showingBtnTitle, showContents } = useContext(TodoContext);
+
   return (
-    <Div btnTitle={ btnTitle }>
-      <button 
-        onClick={ clickHandler }
-      >
-        { btnTitle } 
+    <Div btnTitle={ showingBtnTitle }>
+      <button onClick={ showContents }>
+        { showingBtnTitle } 
       </button>
     </Div>
   )

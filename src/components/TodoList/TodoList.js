@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Contents from './Contents';
 import styled from 'styled-components';
+import { TodoContext } from '../TodoStorage';
 
 const Div = styled.div`
   display: ${({ showingBtnTitle }) => showingBtnTitle === 'Show' ? 'none' : 'block'};
@@ -12,12 +13,15 @@ const Div = styled.div`
   font-size: 1.2rem;
 `
 
-const TodoList = ({ myTodo, removeTodo, showingBtnTitle }) => {
+const TodoList = () => {
+  const { todoItems, removeTodo, showingBtnTitle, isFetched } = useContext(TodoContext);
+  
   return (
     <Div showingBtnTitle={ showingBtnTitle }>
       <Contents 
-        myTodo={ myTodo } 
+        myTodo={ todoItems } 
         removeTodo={ removeTodo } 
+        isFetched={ isFetched }
       />
     </Div>
   );
