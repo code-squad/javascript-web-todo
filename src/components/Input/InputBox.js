@@ -3,12 +3,12 @@ import AddBtn from './AddButton';
 import styled from 'styled-components';
 
 const Form = styled.form`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 5rem;
-  margin-bottom: 50px;
   background-color: #8ee4af;
   color: #05386b;
   font-weight: bold;
@@ -44,6 +44,7 @@ const InputBox = ({ addTodo }) => {
   const submitHandler = e => {
     e.preventDefault();
     addTodo(term);
+    setTerm('');
   }
 
   return (

@@ -2,26 +2,29 @@ import React from 'react'
 import styled from 'styled-components';
 
 const Div = styled.div`
-  position: absolute;
-  top: 27%;
-  right: 27%;
+  position: relative;
+  top: 50px;
+  left: 420px;
 
   button {
     border-radius: 6px;
     border: 2px solid #05386b;
     width: 4rem;
     height: 2rem;
-    background-color: transparent;
+    background-color: ${({ btnTitle }) => btnTitle === 'Hide' ? 'transparent' : '#05386b'};
     font-weight: bold;
-    color: #05386b;
+    color: ${({ btnTitle }) => btnTitle === 'Hide' ? '#05386b' : 'white'};
     cursor: pointer;
   }
 `
 
 const ShowingBtn = ({ btnTitle, clickHandler }) => {
+  debugger;
   return (
-    <Div>
-      <button onClick={ clickHandler }>
+    <Div btnTitle={ btnTitle }>
+      <button 
+        onClick={ clickHandler }
+      >
         { btnTitle } 
       </button>
     </Div>

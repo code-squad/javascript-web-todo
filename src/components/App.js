@@ -8,7 +8,7 @@ import { INVALID_DATA, NETWORK_ERROR } from '../message/error';
 
 const Div = styled.div`
   margin: 50px auto;
-  width: 50%;
+  width: 500px;
 `
 
 const App = () => {
@@ -64,14 +64,14 @@ const App = () => {
   return(
     <Div>
       <InputBox addTodo={ addTodo } />
+      <ShowingBtn 
+        btnTitle={ showingBtnTitle } 
+        clickHandler={ showContents }
+      />
       <TodoList 
         myTodo={ todoItems } 
         removeTodo={ removeTodo } 
         showingBtnTitle={ showingBtnTitle }
-      />
-      <ShowingBtn 
-        btnTitle={ showingBtnTitle } 
-        clickHandler={ showContents }
       />
     </Div>
   )

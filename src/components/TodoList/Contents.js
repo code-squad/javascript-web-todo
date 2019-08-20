@@ -6,9 +6,9 @@ const Div = styled.div`
   width: 85%;
   margin: 0 auto;
   color: #05386b;
+  font-weight: bold;
 
   p {
-    font-weight: bold;
     font-size: 1.8rem;
     margin: 0;
   }
@@ -16,6 +16,7 @@ const Div = styled.div`
   ul {
     list-style: none;
     padding: 0;
+    text-align: center;
   }
 `
 
@@ -37,7 +38,7 @@ const Contents = ({ myTodo, removeTodo }) => {
     <Div>
       <p>Todo</p>
       <ul>
-        {myTodo ? todoList : 'Loading....'}
+        {myTodo.length ? todoList : 'Loading....'}
       </ul>
     </Div>
   )

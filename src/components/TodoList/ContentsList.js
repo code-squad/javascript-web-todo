@@ -16,11 +16,6 @@ const Li = styled.li`
     justify-content: space-between;
     width: 80%;
     cursor: pointer;
-
-
-    span {
-      font-weight: 550;
-    }
   }
   
   .line-through::before {

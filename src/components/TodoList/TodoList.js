@@ -3,7 +3,7 @@ import Contents from './Contents';
 import styled from 'styled-components';
 
 const Div = styled.div`
-  display: ${props => props.showingBtnTitle === 'Show' ? 'none' : 'block'};
+  display: ${({ showingBtnTitle }) => showingBtnTitle === 'Show' ? 'none' : 'block'};
   background-color: #8ee4af;
   border-radius: 5px;
   min-height: 400px;
