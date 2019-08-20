@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -9,15 +9,7 @@ const Subtitle = styled.h4`
   font-weight: 300;
 `;
 
-class TodoSubtitle extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return <Subtitle>{this.props.subtitle}</Subtitle>;
-  }
-}
+const TodoSubtitle = props => <Subtitle>{props.subtitle}</Subtitle>;
 
 TodoSubtitle.propTypes = {
   subtitle: PropTypes.string

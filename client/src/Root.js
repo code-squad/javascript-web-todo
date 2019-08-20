@@ -1,8 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import TodoAdd from "./components/TodoAdd";
 import TodoContent from "./components/TodoContent";
+import { TodoProvider } from "./components/TodoContext";
+import Header from "./components/Header";
 
 const StyledRoot = styled.div`
   width: 480px;
@@ -12,19 +14,16 @@ const StyledRoot = styled.div`
   padding: 1rem;
 `;
 
-class Root extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
+const Root = _ => {
+  return (
+    <TodoProvider>
       <StyledRoot>
+        <Header />
         <TodoAdd />
         <TodoContent />
       </StyledRoot>
-    );
-  }
-}
+    </TodoProvider>
+  );
+};
 
 export default Root;

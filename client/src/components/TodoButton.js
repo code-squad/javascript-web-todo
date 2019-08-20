@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import config from "../config";
@@ -17,38 +17,32 @@ const Button = styled.button`
       : config.buttonDefaultStyle.borderRadius};
   font-family: inherit;
   padding: 0;
-  border: 1px solid #428eda;
+  border: 1px solid ${config.themeColor};
   outline: none;
   cursor: pointer;
-  color: #428eda;
+  color: ${config.themeColor};
   position: ${props => (props.absolute ? "absolute" : "static")};
-  top: 0.2rem;
-  right: 1rem;
+  top: ${props => (props.absolute ? props.top : "0")};
+  right: ${props => (props.absolute ? props.right : "0")};
 
   &:active {
     background-color: #579bde;
   }
 `;
 
-class TodoButton extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <Button
-        onClick={this.props.clickHandler}
-        absolute={this.props.absolute}
-        width={this.props.width}
-        height={this.props.height}
-        borderRadius={this.props.borderRadius}
-      >
-        {this.props.name}
-      </Button>
-    );
-  }
-}
+const TodoButton = props => (
+  <Button
+    onClick={props.clickHandler}
+    absolute={props.absolute}
+    top={props.top}
+    right={props.right}
+    width={props.width}
+    height={props.height}
+    borderRadius={props.borderRadius}
+  >
+    {props.name}
+  </Button>
+);
 
 TodoButton.propTypes = {
   name: PropTypes.string,
