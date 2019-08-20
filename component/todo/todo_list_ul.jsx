@@ -11,6 +11,10 @@ const Ul = styled.ul`
     display: ${props => (props.toggle ? 'block' : 'none')}
 `
 
+const NoList = styled.div`
+    text-align: center;
+`
+
 function random4Digit(){
     return shuffle( "0123456789".split('') ).join('').substring(0,4);
 }
@@ -29,15 +33,15 @@ const ToDoListUl = ({ toggle }) => {
     const deleteItem = (target) => {
         setListData((prevData) => {
             const result = prevData.filter((v) => v.id !== target);
-            return result
+            return result;
         })
     }
 
     const changeItem = (target, state) => {
         if(state) {
-            state = 'todo'
+            state = 'todo';
         } else {
-            state = 'done'
+            state = 'done';
         }
 
         setListData((prevData) => {
@@ -64,8 +68,6 @@ const ToDoListUl = ({ toggle }) => {
     }, [apiData])
 
     useEffect(() => { 
-        if(listData.length === 0) return
-
         const jsonAPI = JSON.stringify(listData);
         localStorage.myTodoList = jsonAPI;
 
@@ -88,7 +90,7 @@ const ToDoListUl = ({ toggle }) => {
 
     const renderList = () => {
         return listData.length === 0
-            ? <div>loading...</div>
+            ? <NoList>None</NoList>
             : <Ul toggle={toggle}>
                 {listData.map((v) => {
                     return (
