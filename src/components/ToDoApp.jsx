@@ -10,11 +10,10 @@ export const ToDoContext = React.createContext();
 const ToDoApp = () => {
   const [todoData, setTodoData] = useState([]);
   const [error, setError] = useState(null);
-  const loading = useFetch(
-    setTodoData,
-    `https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/todolist`,
-    errorHandler
-  );
+  const config = {
+    url: `https://michelle-todo.herokuapp.com/todos`
+  };
+  const loading = useFetch(setTodoData, config.url, errorHandler);
 
   const errorHandler = e => {
     console.log(e);
