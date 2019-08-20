@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import ToDoListLi from './todo_list_li';
 import { AddListContext } from './context/addListContext';
+import useFetch from '../custom_hook/useFetch';
 import styled from 'styled-components';
 
-const Wrap = styled.div`
-
-`
 
 const Ul = styled.ul`
     transition: all 0.2s ease-out;    
@@ -24,19 +22,9 @@ function shuffle(o){
 
 const ToDoListUl = ({ toggle }) => {
     const { inputValue, getListStatus } = useContext(AddListContext);
+    const [apiData, setApiData] = useState([]);    
     const [listData, setListData] = useState([]);
-
-    const fetchAPI = async () => {
-        try {
-            const reqData = await fetch("http://ec2-13-124-158-185.ap-northeast-2.compute.amazonaws.com/todoAPI");
-            const resData = await reqData.json();
-            await setListData(resData.body);
-            
-        } catch (e) {
-            console.log(e);
-            return;
-        }
-    }
+    const apiURL = `http://ec2-13-124-158-185.ap-northeast-2.compute.amazonaws.com/todoAPI`
 
     const deleteItem = (target) => {
         setListData((prevData) => {
@@ -61,23 +49,21 @@ const ToDoListUl = ({ toggle }) => {
         })
     }
 
-    useEffect(() => { // compoenetDidMount
+    useFetch(setApiData, apiURL);
+
+    useEffect(() => { // 초기값 설정
         if(localStorage.myTodoList) {
             const savedData = JSON.parse(localStorage.myTodoList);
             setListData(savedData);
             getListStatus(savedData);
-            
             return;
         }
 
-        // setTimeout(() => {
-        //     fetchAPI();
-        // }, 1000)
-        fetchAPI();
+        setListData(apiData);
         getListStatus(listData);
-    }, [])
+    }, [apiData])
 
-    useEffect(() => { // listData => localStorage
+    useEffect(() => { 
         if(listData.length === 0) return
 
         const jsonAPI = JSON.stringify(listData);
@@ -86,7 +72,7 @@ const ToDoListUl = ({ toggle }) => {
         getListStatus(listData);
     }, [listData])
 
-    useEffect(() => { // input 으로 추가 한 값 관련
+    useEffect(() => { 
         if(inputValue) {
             let newData = {
                 "title": inputValue,
@@ -120,9 +106,9 @@ const ToDoListUl = ({ toggle }) => {
     }
 
     return (        
-        <Wrap>
+        <>
             {renderList()}
-        </Wrap>
+        </>
     )
 }
 
