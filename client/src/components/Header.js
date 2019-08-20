@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { TodoContext } from "./TodoContext";
 
-const HeaderWrapper = styled.div`
+const StyledHeader = styled.header`
   & > * {
     font-weight: 300;
   }
@@ -10,26 +10,26 @@ const HeaderWrapper = styled.div`
   h1 {
     text-align: center;
   }
+`;
 
-  nav {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    border-bottom: 1px solid #3498db;
-    height: 2rem;
-  }
+const StyledNav = styled.nav`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: 1px solid #3498db;
+  height: 2rem;
 `;
 
 const Header = _ => {
   const { numOfTodo, numOfDone } = useContext(TodoContext);
 
   return (
-    <HeaderWrapper>
+    <StyledHeader>
       <h1>Todo</h1>
-      <nav>
+      <StyledNav>
         Todo: {numOfTodo} Done: {numOfDone}
-      </nav>
-    </HeaderWrapper>
+      </StyledNav>
+    </StyledHeader>
   );
 };
 

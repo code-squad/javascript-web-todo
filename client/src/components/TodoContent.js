@@ -6,7 +6,7 @@ import TodoContentList from "./TodoContentList";
 import TodoButton from "./TodoButton";
 import { TodoContext } from "./TodoContext";
 
-const Content = styled.div`
+const StyledDiv = styled.div`
   min-height: 200px;
   margin-top: 2rem;
   position: relative;
@@ -21,7 +21,7 @@ const TodoContent = _ => {
   const buttonClickHandler = _ => setShowFlag(!todosShowFlag);
 
   return (
-    <Content>
+    <StyledDiv>
       <TodoSubtitle subtitle="할 일 목록" />
       {todosShowFlag && <TodoContentList />}
       <TodoButton
@@ -33,7 +33,7 @@ const TodoContent = _ => {
         top="0.2rem"
         right="1rem"
       />
-    </Content>
+    </StyledDiv>
   );
 };
 

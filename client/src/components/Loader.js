@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const LoaderText = styled.h3`
+const LoaderTitle = styled.h3`
   width: 100%;
   display: flex;
   justify-content: center;
@@ -12,6 +12,6 @@ const LoaderText = styled.h3`
   font-weight: 300;
 `;
 
-const Loader = props => <LoaderText>{props.message}</LoaderText>;
+const Loader = props => <LoaderTitle>{props.message}</LoaderTitle>;
 
 export default Loader;

@@ -7,7 +7,7 @@ import TodoButton from "./TodoButton";
 import { TodoContext } from "./TodoContext";
 import { useInput } from "../hooks/useInput";
 
-const Add = styled.div`
+const StyledDiv = styled.div`
   display: flex;
   position: relative;
   align-items: center;
@@ -26,7 +26,7 @@ const TodoAdd = _ => {
   };
 
   return (
-    <Add className="todo-add">
+    <StyledDiv className="todo-add">
       <TodoSubtitle subtitle="할 일 입력" />
       <TodoAddInput {...useInput(setInputVal)} />
       <TodoButton
@@ -35,7 +35,7 @@ const TodoAdd = _ => {
         width="4rem"
         height="2rem"
       />
-    </Add>
+    </StyledDiv>
   );
 };
 

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import config from "../config";
 
-const Button = styled.button`
+const StyledButton = styled.button`
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -31,7 +31,7 @@ const Button = styled.button`
 `;
 
 const TodoButton = props => (
-  <Button
+  <StyledButton
     onClick={props.clickHandler}
     absolute={props.absolute}
     top={props.top}
@@ -41,7 +41,7 @@ const TodoButton = props => (
     borderRadius={props.borderRadius}
   >
     {props.name}
-  </Button>
+  </StyledButton>
 );
 
 TodoButton.propTypes = {
