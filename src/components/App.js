@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import InputBox from './Input/InputBox';
 import TodoList from './TodoList/TodoList';
-import ContentsBtn from './ContentsBtn/ContentsBtn';
+import ShowingBtn from './ShowingBtn/ShowingBtn';
 import styled from 'styled-components';
 import todoApi from '../apis/todoApi';
 import { INVALID_DATA, NETWORK_ERROR } from '../message/error';
@@ -13,6 +13,7 @@ const Div = styled.div`
 
 const App = () => {
   const [todoItems, setTodoItems] = useState([]);
+  const [showingBtnTitle, setShowingBtnTitle] = useState('Hide');
 
   const fetchMyTodoList = async (todoItems) => {
     try {
@@ -46,6 +47,16 @@ const App = () => {
     setTodoItems(todoDuplicate);
   }
 
+  const showContents = () => {
+    changeShowBtnTitle(showingBtnTitle);
+  }
+
+  const changeShowBtnTitle = showBtnTitle => {
+    showingBtnTitle === 'Show' 
+      ? setShowingBtnTitle('Hide')
+      : setShowingBtnTitle('Show');
+  }
+
   useEffect( () => {
     fetchMyTodoList(todoItems);
   }, [])
@@ -53,8 +64,15 @@ const App = () => {
   return(
     <Div>
       <InputBox addTodo={ addTodo } />
-      <TodoList myTodo={ todoItems } removeTodo={ removeTodo } />
-      <ContentsBtn />
+      <TodoList 
+        myTodo={ todoItems } 
+        removeTodo={ removeTodo } 
+        showingBtnTitle={ showingBtnTitle }
+      />
+      <ShowingBtn 
+        btnTitle={ showingBtnTitle } 
+        clickHandler={ showContents }
+      />
     </Div>
   )
 }

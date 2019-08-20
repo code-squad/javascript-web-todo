@@ -18,12 +18,14 @@ const Div = styled.div`
   }
 `
 
-const ContentsBtn = () => {
+const ShowingBtn = ({ btnTitle, clickHandler }) => {
   return (
     <Div>
-      <button>Show</button>
+      <button onClick={ clickHandler }>
+        { btnTitle } 
+      </button>
     </Div>
   )
 }
 
-export default ContentsBtn;
+export default ShowingBtn;

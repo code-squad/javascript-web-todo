@@ -3,6 +3,7 @@ import Contents from './Contents';
 import styled from 'styled-components';
 
 const Div = styled.div`
+  display: ${props => props.showingBtnTitle === 'Show' ? 'none' : 'block'};
   background-color: #8ee4af;
   border-radius: 5px;
   min-height: 400px;
@@ -11,10 +12,13 @@ const Div = styled.div`
   font-size: 1.2rem;
 `
 
-const TodoList = ({ myTodo, removeTodo }) => {
+const TodoList = ({ myTodo, removeTodo, showingBtnTitle }) => {
   return (
-    <Div>
-      <Contents myTodo={ myTodo } removeTodo={ removeTodo } />
+    <Div showingBtnTitle={ showingBtnTitle }>
+      <Contents 
+        myTodo={ myTodo } 
+        removeTodo={ removeTodo } 
+      />
     </Div>
   );
 }

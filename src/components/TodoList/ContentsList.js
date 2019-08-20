@@ -38,12 +38,12 @@ const ContentsList = ({ title, status, removeTodo, id }) => {
   const [todoStatus, setTodoStatus] = useState(status);
 
   const removeHandler = (e) => {
-    e.preventDefault();
     removeTodo(id);
   }
 
   const completeTodo = (e) => {
-    e.preventDefault();
+    if(e.target.localName === 'li' || e.target.localName === 'button') return;
+    
     const lineThroughList = e.target.closest('li div');
     lineThroughList.classList.toggle('line-through');
     changeStatus(todoStatus);
