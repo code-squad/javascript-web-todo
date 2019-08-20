@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, memo } from 'react';
 import ToDoCheckBox from './todo_checkbox';
 import ToDoListLiP from './todo_list_li_p';
 import styled from 'styled-components';
@@ -49,19 +49,26 @@ const CheckboxLabel = styled.label`
     cursor: pointer;
 `
 
-const ToDoListLi = (props) => {
+const ToDoListLi = memo((props) => {
+    const { 
+        deleteHandler,
+        changeHandler,
+        id,
+        value,
+        status
+     } = props
     const [checked, setChecked] = useState(false);
 
     useEffect(() => {
-        if(props.status === 'done') {
+        if(status === 'done') {
             setChecked(true)
         }
     }, [])
 
-    const handleCheckboxState = (evt) => {
+    const handleCheckboxState = useCallback((evt) => {
         setChecked(evt.target.checked);
-        props.changeHandler(props.id, checked);
-    }
+        changeHandler(id, checked);
+    }, [checked])
 
     return (
         <Li>
@@ -69,12 +76,12 @@ const ToDoListLi = (props) => {
             <CheckboxLabel>
                 <ToDoCheckBox checked={checked} onChange={handleCheckboxState} />
             </CheckboxLabel>
-            <ToDoListLiP checked={checked} value={props.value}></ToDoListLiP>
-            <CancelButton onClick={() => {props.deleteHandler(props.id)}}>
+            <ToDoListLiP checked={checked} value={value}></ToDoListLiP>
+            <CancelButton onClick={() => {deleteHandler(id)}}>
                 <FontAwesomeIcon icon={faTimesCircle} color="#5a61ff" />
             </CancelButton>            
         </Li>
     )
-}
+})
 
 export default ToDoListLi;

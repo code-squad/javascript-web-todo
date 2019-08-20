@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useCallback, useContext, memo } from 'react';
 import ToDoListLi from './todo_list_li';
 import { AddListContext } from './context/addListContext';
 import useFetch from '../custom_hook/useFetch';
@@ -6,13 +6,12 @@ import styled from 'styled-components';
 
 
 const Ul = styled.ul`
-    transition: all 0.2s ease-out;    
-    opacity: ${props => (props.toggle ? '1' : '0')}
     display: ${props => (props.toggle ? 'block' : 'none')}
 `
 
 const NoList = styled.div`
     text-align: center;
+    padding-bottom: 10px;
 `
 
 function random4Digit(){
@@ -24,20 +23,20 @@ function shuffle(o){
     return o;
 }
 
-const ToDoListUl = ({ toggle }) => {
+const ToDoListUl = memo(({ toggle }) => {
     const { inputValue, getListStatus } = useContext(AddListContext);
     const [apiData, setApiData] = useState([]);    
     const [listData, setListData] = useState([]);
     const apiURL = `http://ec2-13-124-158-185.ap-northeast-2.compute.amazonaws.com/todoAPI`
 
-    const deleteItem = (target) => {
+    const deleteItem = useCallback((target) => {
         setListData((prevData) => {
             const result = prevData.filter((v) => v.id !== target);
             return result;
         })
-    }
+    }, [])
 
-    const changeItem = (target, state) => {
+    const changeItem = useCallback((target, state) => {
         if(state) {
             state = 'todo';
         } else {
@@ -51,11 +50,11 @@ const ToDoListUl = ({ toggle }) => {
             });
             return result;
         })
-    }
+    }, [])
 
     useFetch(setApiData, apiURL);
 
-    useEffect(() => { // 초기값 설정
+    useEffect(() => { // initial value = fetchAPI or localStorage?
         if(localStorage.myTodoList) {
             const savedData = JSON.parse(localStorage.myTodoList);
             setListData(savedData);
@@ -67,14 +66,14 @@ const ToDoListUl = ({ toggle }) => {
         getListStatus(listData);
     }, [apiData])
 
-    useEffect(() => { 
+    useEffect(() => { // listData => localStorage
         const jsonAPI = JSON.stringify(listData);
         localStorage.myTodoList = jsonAPI;
 
         getListStatus(listData);
     }, [listData])
 
-    useEffect(() => { 
+    useEffect(() => { // new input value => listData
         if(inputValue) {
             let newData = {
                 "title": inputValue,
@@ -112,6 +111,6 @@ const ToDoListUl = ({ toggle }) => {
             {renderList()}
         </>
     )
-}
+})
 
 export default ToDoListUl;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, memo } from 'react';
 import ToDoListUl from './todo_list_ul';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -32,17 +32,16 @@ const H3 = styled.h3`
     text-indent: 5px;
 `
 
-const ToDoList = (props) => {
+const ToDoList = memo(() => {
     const [toggle, setToggle] = useState(true)
 
-    const listToggling = () => {
+    const listToggling = useCallback(() => {
         if(toggle) {
             setToggle(false)
             return;
         }
-
         setToggle(true);
-    }
+    }, [toggle])
 
     return (
         <Wrap>
@@ -50,9 +49,9 @@ const ToDoList = (props) => {
                 <FontAwesomeIcon icon={faSortDown} color="#fff" />
             </ToggleButton>
             <H3>&#60; List /&#62;</H3>
-            <ToDoListUl newValue={props.newValue} toggle={toggle}></ToDoListUl>
+            <ToDoListUl toggle={toggle}></ToDoListUl>
         </Wrap>
     )
-}
+})
 
 export default ToDoList;

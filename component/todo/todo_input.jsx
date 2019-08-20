@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, memo } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -44,18 +44,18 @@ const Button = styled.button`
     cursor: pointer;
 `
 
-const ToDoInput = (props) => {
+const ToDoInput = memo(({ inputHandler }) => {
     const [inputValue, setInputValue] = useState('')
 
-    const handleChange = (e) => {
+    const handleChange = useCallback((e) => {
         setInputValue(e.target.value);
-    }
+    }, [inputValue])
 
-    const handleClick = (e) => {
+    const handleClick = useCallback((e) => {
         e.preventDefault();
-        props.handler(inputValue);
+        inputHandler(inputValue);
         setInputValue('');
-    }
+    }, [inputValue])
 
     return (
         <Wrap>
@@ -75,6 +75,6 @@ const ToDoInput = (props) => {
             </form>
         </Wrap>
     )
-}
+})
 
 export default ToDoInput;

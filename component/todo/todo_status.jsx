@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, memo } from 'react';
 import styled from 'styled-components';
 
 const Wrap = styled.div`
@@ -41,14 +41,18 @@ const DoneBlock = styled.div`
     background: #5a61ff;
 ` 
 
-const ToDoStatus = ({ listState }) => {
+const ToDoStatus = memo(({ listState }) => {
     const [listData, setListData] = useState([]);
     const [todoCount, setTodoCount] = useState(0);
     const [allCount, setAllCount] = useState(0);
     const [doneCount, setDoneCount] = useState(0);
     
-    const dataCount = () => {
+    useEffect(() => {
+        setListData(listState);
+        dataCount();
+    }) 
 
+    const dataCount = useCallback(() => {
         let todoNumber = 0;
         let allNumber = 0;
         let doneNumber = 0;
@@ -65,12 +69,9 @@ const ToDoStatus = ({ listState }) => {
         setTodoCount(todoNumber);
         setDoneCount(doneNumber);
         setAllCount(allNumber);
-    }
+    }, [listData])
 
-    useEffect(() => {
-        setListData(listState);
-        dataCount();
-    }) 
+
 
     return (
         <Wrap>
@@ -91,7 +92,7 @@ const ToDoStatus = ({ listState }) => {
             </DoneBlock>
         </Wrap>
     )
-}
+})
 
 export default ToDoStatus;
 

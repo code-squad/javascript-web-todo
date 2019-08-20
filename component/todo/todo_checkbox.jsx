@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
@@ -39,7 +39,7 @@ const StyledCheckbox = styled.div`
     }
 `
 
-const ToDoCheckBox = ({ checked, ...props }) => {
+const ToDoCheckBox = memo(({ checked, ...props }) => {
     return (
         <CheckBoxWrap>
             <HiddenCheckbox checked={checked} {...props} />
@@ -50,6 +50,6 @@ const ToDoCheckBox = ({ checked, ...props }) => {
             </StyledCheckbox>
         </CheckBoxWrap>
     )
-}
+})
 
 export default ToDoCheckBox;
