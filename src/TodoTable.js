@@ -64,7 +64,6 @@ export default function TodoTable() {
   };
 
   useEffect(() => {
-    debugger
     fetchInitialData(
       "https://dxvinci.github.io/react-todo/todolist.json"
     );

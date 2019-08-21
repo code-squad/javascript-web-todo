@@ -14,11 +14,9 @@ const Form = styled.form`
 `;
 
 export default function InputBar(props) {
-  // {useId} , nextId 차이를 모르겠음.
   const id = nextId();
   const [{ todos,newTodo }, dispatch] = useStateValue();
   
-  console.log("Inputbar가 넘겨받는 todos",todos,newTodo);
 
   const handleChangeInput = ({ target: { value } }) => {
     dispatch({
