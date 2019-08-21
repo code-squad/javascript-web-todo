@@ -1,6 +1,7 @@
 import React, { useState, useCallback, memo } from 'react';
 import ToDoListUl from './todo_list_ul';
 import styled from 'styled-components';
+import useFetch from '../custom_hook/useFetch';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSortDown } from "@fortawesome/free-solid-svg-icons";
 
@@ -34,6 +35,10 @@ const H3 = styled.h3`
 
 const ToDoList = memo(() => {
     const [toggle, setToggle] = useState(true)
+    const [apiData, setApiData] = useState([]);   
+    const apiURL = `http://ec2-13-124-158-185.ap-northeast-2.compute.amazonaws.com/todoAPI`
+    
+    let loading = useFetch(setApiData, apiURL);
 
     const listToggling = useCallback(() => {
         if(toggle) {
@@ -49,7 +54,7 @@ const ToDoList = memo(() => {
                 <FontAwesomeIcon icon={faSortDown} color="#fff" />
             </ToggleButton>
             <H3>&#60; List /&#62;</H3>
-            <ToDoListUl toggle={toggle}></ToDoListUl>
+            <ToDoListUl toggle={toggle} loading={loading} apiData={apiData}></ToDoListUl>
         </Wrap>
     )
 })

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback, useContext, memo } from 'react';
 import ToDoListLi from './todo_list_li';
 import { AddListContext } from './context/addListContext';
-import useFetch from '../custom_hook/useFetch';
 import styled from 'styled-components';
 
 
@@ -23,11 +22,9 @@ function shuffle(o){
     return o;
 }
 
-const ToDoListUl = memo(({ toggle }) => {
+const ToDoListUl = memo(({ toggle, loading, apiData }) => {
     const { inputValue, getListStatus } = useContext(AddListContext);
-    const [apiData, setApiData] = useState([]);    
     const [listData, setListData] = useState([]);
-    const apiURL = `http://ec2-13-124-158-185.ap-northeast-2.compute.amazonaws.com/todoAPI`
 
     const deleteItem = useCallback((target) => {
         setListData((prevData) => {
@@ -52,23 +49,27 @@ const ToDoListUl = memo(({ toggle }) => {
         })
     }, [])
 
-    useFetch(setApiData, apiURL);
 
-    useEffect(() => { // initial value = fetchAPI or localStorage?
-        if(localStorage.myTodoList) {
+    useEffect(() => { // initial value => fetchAPI or localStorage?   
+        if(localStorage.getItem('myTodoList')) {
             const savedData = JSON.parse(localStorage.myTodoList);
             setListData(savedData);
             getListStatus(savedData);
-            return;
+            return
         }
 
-        setListData(apiData);
-        getListStatus(listData);
-    }, [apiData])
+        if(apiData.length !== 0) {
+            setListData(apiData);
+            getListStatus(listData);
+        }
 
+    }, [apiData])
+    
     useEffect(() => { // listData => localStorage
+        if(!loading) return;
+
         const jsonAPI = JSON.stringify(listData);
-        localStorage.myTodoList = jsonAPI;
+        localStorage.setItem('myTodoList', jsonAPI);
 
         getListStatus(listData);
     }, [listData])
@@ -87,28 +88,30 @@ const ToDoListUl = memo(({ toggle }) => {
         }
     }, [inputValue])
 
-    const renderList = () => {
-        return listData.length === 0
-            ? <NoList>None</NoList>
-            : <Ul toggle={toggle}>
+
+    let renderList = <div>loading...</div>
+    if(loading) {
+        renderList = 
+            <Ul toggle={toggle}>
                 {listData.map((v) => {
                     return (
                         <ToDoListLi 
-                            deleteHandler={deleteItem} 
-                            changeHandler={changeItem}
                             key={v.id} 
                             id={v.id} 
+                            loading={loading}
                             value={v.title}
                             status={v.status} 
+                            deleteHandler={deleteItem} 
+                            changeHandler={changeItem}
                         />
                     )
                 })}
-            </Ul>              
-    }
+            </Ul> 
+    } 
 
     return (        
         <>
-            {renderList()}
+            {renderList}
         </>
     )
 })

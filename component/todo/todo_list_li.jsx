@@ -58,7 +58,6 @@ const ToDoListLi = memo((props) => {
         status
      } = props
     const [checked, setChecked] = useState(false);
-
     useEffect(() => {
         if(status === 'done') {
             setChecked(true)
