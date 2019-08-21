@@ -53,12 +53,11 @@ const ToDoStatus = memo(({ listState }) => {
     }) 
 
     const dataCount = useCallback(() => {
+        let allNumber = listData.length;
         let todoNumber = 0;
-        let allNumber = 0;
         let doneNumber = 0;
-
+        
         listData.map((v) => {
-            allNumber++
             if(v.status === 'todo') {
                 todoNumber++
             } else if(v.status === 'done') {
