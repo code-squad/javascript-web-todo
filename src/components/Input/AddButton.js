@@ -13,8 +13,8 @@ const Div = styled.div`
     width: 4rem;
     height: 2rem;
     background-color: transparent;
-    font-weight: bold;
     color: #05386b;
+    font-weight: bold;
     cursor: pointer;  
   }
 `

@@ -1,6 +1,6 @@
 import React, { useState, useReducer } from 'react';
-import useFetch from './useFetch/useFetch';
-import { todoReducer } from './reducers/todoReducer';
+import useFetch from './helper/useFetch/useFetch';
+import { todoReducer } from './helper/reducers/todoReducer';
 
 export const TodoContext = React.createContext();
 

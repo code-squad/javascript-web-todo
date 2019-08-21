@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import todoApi from '../../Apis/todoApi';
-import { INVALID_DATA, NETWORK_ERROR } from '../../message/message';
+import todoApi from '../../../Apis';
+import { INVALID_DATA, NETWORK_ERROR } from '../../../message/message';
 
 const useFetch = setInitDataFunc => {
   const [isFetched, setIsFetched] = useState(false);

@@ -1,8 +1,8 @@
-import { getIdxOfMatchedItem } from '../../myUtil/util';
+import { getIdxOfMatchedItem } from '../../../myUtil/util';
 
 export const todoReducer = (todoItems, { type, payload }) => {
-  let matchedIdx;
   const todoDuplicate = [...todoItems];
+  let matchedIdx;
   switch (type) {
     case 'ADD':
       return [...todoItems, {"title": payload, "id": Date.now(), "status": "todo"}];

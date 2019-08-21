@@ -4,7 +4,7 @@ import { TodoContext } from '../TodoStorage';
 
 const Div = styled.div`
   position: relative;
-  top: 50px;
+  top: 160px;
   left: 420px;
 
   button {
@@ -13,9 +13,9 @@ const Div = styled.div`
     width: 4rem;
     height: 2rem;
     background-color: ${({ btnTitle }) => btnTitle === 'Hide' ? 'transparent' : '#05386b'};
-    font-weight: bold;
     color: ${ ({ btnTitle }) => btnTitle === 'Hide' ? '#05386b' : '#8ee4af'};
     cursor: pointer;
+    font-weight: bold;
   }
 `
 

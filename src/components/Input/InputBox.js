@@ -9,12 +9,11 @@ const Form = styled.form`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 5rem;
+  height: 100px;
   background-color: #8ee4af;
   color: #05386b;
-  font-weight: bold;
   vertical-align: middle;
-  border-radius: 5px;
+  border-radius: 5px 5px 0 0 ;
 
   label {
     align-items: center;
@@ -45,6 +44,7 @@ const InputBox = () => {
 
   const submitHandler = e => {
     e.preventDefault();
+    if(!term) return;
     dispatch({type: 'ADD', payload: term})
     setTerm('');
   }
