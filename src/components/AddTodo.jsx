@@ -4,7 +4,6 @@ import styled, { css } from "styled-components";
 
 const AddTodo = props => {
   const [inputValue, setInputValue] = useState("");
-  const { submitTodoHandler } = useContext(ToDoContext);
 
   const onChangeHandler = e => {
     setInputValue(e.target.value);
@@ -14,7 +13,7 @@ const AddTodo = props => {
     <form
       onSubmit={e => {
         e.preventDefault();
-        submitTodoHandler(inputValue);
+        props.onSubmit(inputValue);
         setInputValue("");
       }}
     >

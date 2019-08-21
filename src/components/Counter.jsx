@@ -5,7 +5,6 @@ import Fab from "@material-ui/core/Fab";
 const Counter = () => {
   const [todoCnt, setTodoCnt] = useState(0);
   const [doneCnt, setDoneCnt] = useState(0);
-  const { todoData } = useContext(ToDoContext);
 
   const classify = data => {
     const rawData = data;
@@ -19,7 +18,7 @@ const Counter = () => {
   };
 
   useEffect(() => {
-    classify(todoData);
+    classify(props.data);
   });
 
   return (

@@ -5,13 +5,11 @@ import ShowTodo from "./ShowTodo";
 import useFetch from "../customHooks/useFetch";
 import Counter from "./Counter";
 
-export const ToDoContext = React.createContext();
-
 const ToDoApp = () => {
   const [todoData, setTodoData] = useState([]);
   const [error, setError] = useState(null);
   const config = {
-    url: `https://michelle-todo.herokuapp.com/todos`
+    url: `https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/todolist`
   };
   const loading = useFetch(setTodoData, config.url, errorHandler);
 
@@ -72,24 +70,20 @@ const ToDoApp = () => {
   return (
     <>
       <GlobalStyle />
-      <ToDoContext.Provider
-        value={{
-          todoData,
-          error,
-          loading,
-          deleteItemHandler,
-          changeItemHandler,
-          submitTodoHandler
-        }}
       >
-        <AddTodo />
-        <CounterDIV>
-          <Counter />
-        </CounterDIV>
-        <ShowDIV>
-          <ShowTodo />
-        </ShowDIV>
-      </ToDoContext.Provider>
+      <AddTodo onSubmit={submitTodoHandler} />
+      <CounterDIV>
+        <Counter data={todoData} />
+      </CounterDIV>
+      <ShowDIV>
+        <ShowTodo
+          error={error}
+          loading={loading}
+          data={todoData}
+          onDelete={deleteItemHandler}
+          onChange={changeItemHandler}
+        />
+      </ShowDIV>
     </>
   );
 };
