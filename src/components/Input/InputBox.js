@@ -33,11 +33,10 @@ const Form = styled.form`
 `
 
 const InputBox = () => {
-
   const { dispatch } = useContext(TodoContext);
   const [term, setTerm] = useState('');
 
-  const setCurVal = ({target}) => {
+  const setCurVal = ({ target }) => {
     const { value } = target;
     setTerm(value);
   }
@@ -45,7 +44,7 @@ const InputBox = () => {
   const submitHandler = e => {
     e.preventDefault();
     if(!term) return;
-    dispatch({type: 'ADD', payload: term})
+    dispatch({ type: 'ADD', payload: term })
     setTerm('');
   }
 

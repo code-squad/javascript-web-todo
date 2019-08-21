@@ -9,8 +9,8 @@ const useFetch = setInitDataFunc => {
     try {
       const todoJson = await todoApi.get('/api');
       const initData = todoJson.data.body;
-      setInitDataFunc(initData)
-      setIsFetched(true)
+      setInitDataFunc(initData);
+      setIsFetched(true);
     } catch(err) {
       if(err.name === 'typeError') console.log(INVALID_DATA);
       if(err.message === 'Network Error') console.log(NETWORK_ERROR);

@@ -3,12 +3,13 @@ import { getIdxOfMatchedItem } from '../../../myUtil/util';
 export const todoReducer = (todoItems, { type, payload }) => {
   const todoDuplicate = [...todoItems];
   let matchedIdx;
+  
   switch (type) {
-    case 'ADD':
-      return [...todoItems, {"title": payload, "id": Date.now(), "status": "todo"}];
-      
     case 'INIT':
       return payload;
+
+    case 'ADD':
+      return [...todoItems, {"title": payload, "id": Date.now(), "status": "todo"}];
         
     case 'UPDATE':
       matchedIdx = getIdxOfMatchedItem({ itemCollection: todoItems, id: payload });

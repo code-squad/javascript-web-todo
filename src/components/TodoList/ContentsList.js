@@ -30,15 +30,15 @@ const Li = styled.li`
 `
 
 const ContentsList = ({ title, status, id }) => {
-
   const { dispatch } = useContext(TodoContext);
 
   const removeHandler = (e) => {
     e.preventDefault();
     dispatch({ type: 'DELETE', payload: id });
   }
-
+  
   const completeTodo = (e) => {
+    e.preventDefault();
     if(e.target.localName === 'li' || e.target.localName === 'button') return;
     
     const lineThroughList = e.target.closest('li div');
@@ -47,7 +47,7 @@ const ContentsList = ({ title, status, id }) => {
   }
 
   return (
-    <Li onClick={completeTodo} >
+    <Li onClick={ completeTodo } >
       <div>
         <span>{ title }</span>
         <span>{ status }</span>

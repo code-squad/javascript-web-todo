@@ -22,7 +22,6 @@ const Div = styled.div`
 `
 
 const Contents = ({ myTodo, removeTodo, isFetched }) => {
-
   const todoList = myTodo.map( ({ title, id, status }) => {
     return (
       <ContentsList 

@@ -25,6 +25,7 @@ const Total = styled.p`
 
 const Summary = () => {
   const { todoItems, showingBtnTitle } = useContext(TodoContext);
+  
   return (
     <Div showingBtnTitle={ showingBtnTitle }>
       <p>남은 할 일: {todoItems.filter(item => item.status === 'todo').length}</p>

@@ -26,7 +26,7 @@ const TodoStorage = ({ children }) => {
 
   return(
     <TodoContext.Provider value={{ todoItems, showingBtnTitle, showContents, dispatch, isFetched }}>
-      {children}
+      { children }
     </TodoContext.Provider>
   )
 }
