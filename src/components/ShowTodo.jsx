@@ -62,7 +62,8 @@ const ShowTodo = () => {
       </Button>
       <ul style={{ display: toggle ? "block" : "none" }}>
         {error && <li>네트워크 요청 실패</li>}
-        {loading ? <li>로딩중...</li> : makeLiComponent(todoData)}
+        {loading && <li>로딩중...</li>}
+        {!error && !loading && makeLiComponent(todoData)}
       </ul>
     </DIV>
   );

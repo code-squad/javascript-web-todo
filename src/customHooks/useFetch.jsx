@@ -17,6 +17,7 @@ const useFetch = (cbFunc, url, errorHandler) => {
       setLoading(false);
       cbFunc(jsonData.body);
     } catch (errorMsg) {
+      setLoading(false);
       errorHandler(errorMsg);
     }
   };
