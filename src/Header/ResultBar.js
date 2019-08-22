@@ -3,7 +3,7 @@ import RadiusDisplayer from "../components/Displayer";
 import styled from "styled-components";
 import { useStateValue } from "../state";
 
-const Div = styled.div`
+const ResultWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
 `;
@@ -14,13 +14,13 @@ export default function ResultBar() {
   const todoCount = todos.filter(todo => todo.status === "todo").length;
 
   return (
-    <Div>
+    <ResultWrapper>
       <RadiusDisplayer
         color={"rgb(71, 58, 210)"}
         status={"todos"}
         display={todoCount}
       />
       <RadiusDisplayer status={"done"} display={doneCount} />
-    </Div>
+    </ResultWrapper>
   );
 }

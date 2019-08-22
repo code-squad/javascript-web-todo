@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useStateValue } from "../state";
 
-const Span = styled.span`
+const Title = styled.span`
   height: 2rem;
   line-height: 2rem;
   &:hover {
@@ -12,9 +12,9 @@ const Span = styled.span`
   }
   ${({ isClicked }) =>
     isClicked &&
-    css`
-      text-decoration: line-through;
-      color: #adb5bd;
+    ` 
+    text-decoration: line-through;
+    color: #adb5bd;
     `}
 `;
 
@@ -40,9 +40,9 @@ export default function TodoItem(props) {
   return (
     <>
       <li>
-        <Span onClick={handleClick} isClicked={isClicked}>
+        <Title onClick={handleClick} isClicked={isClicked}>
           {title}
-        </Span>
+        </Title>
         <StyledFontAwesomeIcon icon={faTimes} onClick={handleDeleteTodo} />
       </li>
     </>
