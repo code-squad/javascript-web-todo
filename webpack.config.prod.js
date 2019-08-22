@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { DefinePlugin } = require('webpack')
 const path = require('path');
 
 module.exports = {
@@ -42,7 +43,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'src/index.html'
     }),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new DefinePlugin({
+      FETCH_URL: JSON.stringify('https://allen-webtodo.herokuapp.com/todos')
+    })
   ]
-
 }

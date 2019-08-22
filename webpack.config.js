@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { DefinePlugin } = require('webpack');
 const path = require('path');
 
 module.exports = {
@@ -28,6 +29,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/index.html'
+    }),
+    new DefinePlugin({
+      FETCH_URL: JSON.stringify("http://localhost:3000/todos")
     })
   ]
 

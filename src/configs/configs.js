@@ -1,5 +1,5 @@
 const CONFIGS = {
-  url: 'https://allen-webtodo.herokuapp.com/todos',
+  url: FETCH_URL,
 
   ANIMATE_DURATION: 500,
 
