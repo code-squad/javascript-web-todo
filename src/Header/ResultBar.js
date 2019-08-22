@@ -1,5 +1,5 @@
 import React from "react";
-import RadiusDisplayer from "../components/RadiusDisplayer";
+import RadiusDisplayer from "../components/Displayer";
 import styled from "styled-components";
 import { useStateValue } from "../state";
 
@@ -12,7 +12,6 @@ export default function ResultBar() {
   const [{ todos }, dispatch] = useStateValue();
   const doneCount = todos.filter(todo => todo.status === "done").length;
   const todoCount = todos.filter(todo => todo.status === "todo").length;
-  console.log(doneCount, todoCount);
 
   return (
     <Div>

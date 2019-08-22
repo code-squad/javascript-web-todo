@@ -1,12 +1,12 @@
 import React from "react";
-import TodoTable from "./TodoTable";
+import TodoApp from "./TodoApp";
 import { hot } from "react-hot-loader/root";
 
 
 const App = props => {
   return (
     <div>
-      <TodoTable />
+      <TodoApp />
     </div>
   );
 };

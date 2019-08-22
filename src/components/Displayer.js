@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
-const Div = styled.div`
+const Radius = styled.div`
   text-align: center;
   width: 2rem;
   height: 2rem;
@@ -15,11 +15,11 @@ const Div = styled.div`
     `}
 `;
 
-export default function RadiusDisplayer(props) {
+export default function Displayer(props) {
   const { color, status, display } = props;
   return (
-    <Div status={status} color={color}>
+    <Radius status={status} color={color}>
       {display}
-    </Div>
+    </Radius>
   );
 }

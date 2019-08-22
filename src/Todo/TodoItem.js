@@ -22,25 +22,27 @@ const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
   margin-left: 0.5rem;
 `;
 
-export default function OutputRow(props) {
+export default function TodoItem(props) {
   const [{ todos }, dispatch] = useStateValue();
   const [isClicked, setIsClicked] = useState(false);
 
   const { title, id } = todos.find((todo, idx) => idx === props.idx);
 
   const handleDeleteTodo = () => {
-    dispatch({ type: "delete", id });
+    dispatch({ type: "DELETE_TODO", id });
   };
 
   const handleClick = () => {
     setIsClicked(!isClicked);
-    dispatch({ type: "changeStatus", id });
+    dispatch({ type: "CHANGE_TODO_STATUS", id });
   };
 
   return (
     <>
-      <li >
-        <Span onClick={handleClick} isClicked={isClicked}>{title}</Span>
+      <li>
+        <Span onClick={handleClick} isClicked={isClicked}>
+          {title}
+        </Span>
         <StyledFontAwesomeIcon icon={faTimes} onClick={handleDeleteTodo} />
       </li>
     </>

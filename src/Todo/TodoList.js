@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import OutputRow from "./OutputRow";
+import TodoItem from "./TodoItem";
 import styled, { css } from "styled-components";
 import { useStateValue } from "../state";
 
 const Background = styled.div`
   background: #a6d0d1;
 `;
-const Table = styled.div`
+const Folder = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
-const Ul = styled.ul`
+const TodoWrapper = styled.ul`
   ${props =>
     !props.isOpened &&
     css`
@@ -20,7 +20,7 @@ const Ul = styled.ul`
     `}
 `;
 
-export default function OutputTable(props) {
+export default function TodoList(props) {
   const [{ todos },] = useStateValue();
   const [isOpened, setIsOpened] = useState(true);
 
@@ -28,18 +28,20 @@ export default function OutputTable(props) {
     setIsOpened(!isOpened);
   };
 
+
   const todoList = todos.map((todo, idx) => {
-    return <OutputRow idx={idx} key={todo.id} />;
+    return <TodoItem idx={idx} key={todo.id} />;
   });
 
-  console.log("OutputTable is render...");
+
+  
   return (
     <Background>
-      <Table>
+      <Folder>
         <h3>해야할 일들</h3>
         <button onClick={handleClick}>접기</button>
-      </Table>
-      <Ul isOpened={isOpened}>{todoList}</Ul>
+      </Folder>
+      <TodoWrapper isOpened={isOpened}>{todoList}</TodoWrapper>
     </Background>
   );
 }

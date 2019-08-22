@@ -20,7 +20,7 @@ export default function InputBar(props) {
 
   const handleChangeInput = ({ target: { value } }) => {
     dispatch({
-      type: "changeInput",
+      type: "UPDATE_NEWTODO",
       newTodo: value
     });
   };
@@ -28,7 +28,7 @@ export default function InputBar(props) {
   const handleAddtodo = e => {
     e.preventDefault();
     dispatch({
-      type: "add",
+      type: "ADD_TODO",
       title: newTodo,
       id
     });

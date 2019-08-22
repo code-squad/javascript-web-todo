@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-import OutputTable from "./Output/OutputTable";
+import TodoList from "./Todo/TodoList";
 import InputBar from "./Header/InputBar";
 import Loader from "./Loader";
 import ResultBar from "./Header/ResultBar";
 import { StateProvider } from "./state";
 
-export default function TodoTable() {
+export default function TodoApp() {
   const [todos, setTodos] = useState([]);
 
   const initialState = {
@@ -16,7 +16,7 @@ export default function TodoTable() {
 
   const todosReducer = (state, action) => {
     switch (action.type) {
-      case "add":
+      case "ADD_TODO":
         const newTodoObj = {
           title: action.title,
           id: action.id,
@@ -26,7 +26,7 @@ export default function TodoTable() {
           todos: [...state.todos, newTodoObj],
           newTodo: ""
         };
-      case "delete":
+      case "DELETE_TODO":
         const remaindedTodos = state.todos.filter(
           todo => todo.id !== action.id
         );
@@ -34,12 +34,12 @@ export default function TodoTable() {
           ...state,
           todos: remaindedTodos
         };
-      case "changeInput":
+      case "UPDATE_NEWTODO":
         return {
           ...state,
           newTodo: action.newTodo
         };
-      case "changeStatus":
+      case "CHANGE_TODO_STATUS":
         const index = state.todos.findIndex(todo => todo.id === action.id);
         const selected = state.todos[index];
         const nextTodos = [...state.todos];
@@ -64,9 +64,7 @@ export default function TodoTable() {
   };
 
   useEffect(() => {
-    fetchInitialData(
-      "https://dxvinci.github.io/react-todo/todolist.json"
-    );
+    fetchInitialData(API_URL);
   }, []);
 
   const fetchInitialData = async url => {
@@ -85,7 +83,7 @@ export default function TodoTable() {
     <StateProvider initialState={initialState} reducer={todosReducer}>
       <ResultBar />
       <InputBar />
-      <OutputTable />
+      <TodoList />
     </StateProvider>
   ) : (
     <Loader />
