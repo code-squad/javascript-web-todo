@@ -8,7 +8,11 @@ const useInput = () => {
     setState({ ...state, [name]: value });
   };
 
-  return [state, handleChange];
+  const restore = name => {
+    setState({ ...state, [name]: "" });
+  };
+
+  return [state, handleChange, restore];
 };
 
 export default useInput;

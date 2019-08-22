@@ -11,13 +11,13 @@ const Form = styled.form`
 
 const TodoInput = () => {
   const { dispatch } = useContext(TodoContext);
-  const [state, handleChange] = useInput();
+  const [state, handleChange, restore] = useInput();
   const { todoInput } = state;
 
   const handleSubmit = e => {
     e.preventDefault();
     dispatch({ type: "ADD", payload: todoInput });
-    handleChange({ target: { name: "todoInput", value: "" } });
+    restore("todoInput");
   };
 
   return (
