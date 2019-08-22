@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useReducer, useContext } from "react";
 import useFetch from "../customHooks/useFetch";
-import todoReducer from "./TodoReducer";
+import TodoReducer from "./TodoReducer";
 import config from "../config";
 
 export const TodoContext = React.createContext({});
 
 export const ToDoStore = props => {
-  const [todoData, dispatch] = useReducer(todoReducer, []);
+  const [todoData, dispatch] = useReducer(TodoReducer, []);
   const [error, setError] = useState(null);
   const { url } = config;
 

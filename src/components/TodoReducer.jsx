@@ -19,7 +19,7 @@ const randomIdGenerator = todoData => {
   return randomId;
 };
 
-const todoReducer = (todoData, { type, payload }) => {
+const TodoReducer = (todoData, { type, payload }) => {
   switch (type) {
     case "INIT_TODO":
       return payload;
@@ -60,4 +60,4 @@ const todoReducer = (todoData, { type, payload }) => {
   }
 };
 
-export default todoReducer;
+export default TodoReducer;

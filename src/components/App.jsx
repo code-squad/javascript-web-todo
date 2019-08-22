@@ -5,7 +5,7 @@ import AddTodo from "./AddTodo";
 import ShowTodo from "./ShowTodo";
 import Counter from "./Counter";
 
-export default function App() {
+const App = () => {
   return (
     <>
       <GlobalStyle />
@@ -20,7 +20,9 @@ export default function App() {
       </ToDoStore>
     </>
   );
-}
+};
+
+export default App;
 
 const GlobalStyle = createGlobalStyle`
   body {
