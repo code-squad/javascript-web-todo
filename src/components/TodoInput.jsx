@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Button from "../atomicComponents/Button";
 import Input from "../atomicComponents/Input";
 import { TodoContext } from "./TodoContextProvider";
-import useInput from "./useInput";
+import useInput from "../hooks/useInput";
 
 const Form = styled.form`
   display: flex;
