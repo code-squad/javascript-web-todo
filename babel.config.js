@@ -13,7 +13,6 @@ module.exports = function (api) {
   const plugins = [
     'babel-plugin-styled-components',
     'react-hot-loader/babel',
-    ["@babel/plugin-proposal-class-properties", { "loose": true }],
     "@babel/plugin-transform-runtime"
   ]
 
