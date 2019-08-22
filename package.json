@@ -22,8 +22,10 @@
     "@babel/runtime": "^7.5.5",
     "express": "^4.17.1",
     "morgan": "^1.9.1",
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "npm:@hot-loader/react-dom",
+    "react-router-dom": "^5.0.1",
     "styled-components": "^4.3.2"
   },
   "devDependencies": {
