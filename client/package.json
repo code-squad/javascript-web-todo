@@ -6,10 +6,16 @@
   "scripts": {
     "dev": "webpack-dev-server --hot",
     "build": "webpack",
-    "server": "nodemon ./src/server/App.js"
+    "server": "nodemon ./src/server/App.js",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "author": "Sangkyu <park78951@gmail.com>",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/park78951/javascript-web-todo/issues"
+  },
+  "homepage": "https://park78951/github.io/javascript-web-todo",
   "dependencies": {
     "@babel/runtime": "^7.5.5",
     "axios": "^0.19.0",
