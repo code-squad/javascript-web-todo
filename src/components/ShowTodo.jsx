@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useState, useEffect, useContext } from "react";
+import { TodoContext } from "./ToDoStore";
 import styled, { css } from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
 import { display } from "@material-ui/system";
@@ -7,15 +7,16 @@ import Button from "@material-ui/core/Button";
 import { IconButton } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-const ShowTodo = props => {
+const ShowTodo = () => {
   const [toggle, setToggle] = useState(true);
+  const { todoData, error, loading, dispatch } = useContext(TodoContext);
 
   const makeLiData = todos => {
     const arr = todos.map(data => {
       return (
         <LI
           onClick={() => {
-            props.onDelete({ type: "CHANGE_TODO", payload: data });
+            dispatch({ type: "CHANGE_TODO", payload: data });
           }}
           key={data.id}
         >
@@ -24,7 +25,7 @@ const ShowTodo = props => {
             id={data.id}
             onClick={e => {
               e.stopPropagation();
-              props.onDelete({ type: "DELETE_TODO", payload: data });
+              dispatch({ type: "DELETE_TODO", payload: data });
             }}
           >
             <DeleteIcon fontSize="small" />
@@ -60,8 +61,8 @@ const ShowTodo = props => {
         {toggle ? "접기" : "펼치기"}
       </Button>
       <ul style={{ display: toggle ? "block" : "none" }}>
-        {props.error && <li>네트워크 요청 실패</li>}
-        {props.loading ? <li>로딩중...</li> : makeLiComponent(props.data)}
+        {error && <li>네트워크 요청 실패</li>}
+        {loading ? <li>로딩중...</li> : makeLiComponent(todoData)}
       </ul>
     </DIV>
   );

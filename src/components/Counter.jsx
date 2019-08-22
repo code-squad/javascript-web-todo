@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { TodoContext } from "./ToDoStore";
 import Fab from "@material-ui/core/Fab";
 
-const Counter = props => {
+const Counter = () => {
   const [todoCnt, setTodoCnt] = useState(0);
   const [doneCnt, setDoneCnt] = useState(0);
+  const { todoData } = useContext(TodoContext);
 
   const classify = data => {
     const rawData = data;
@@ -17,7 +19,7 @@ const Counter = props => {
   };
 
   useEffect(() => {
-    classify(props.data);
+    classify(todoData);
   });
 
   return (
