@@ -1,7 +1,15 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { DefinePlugin } = require('webpack');
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
+
+var environment = process.env.NODE_ENV === 'production' ? 'production' : 'development';
+
+var API_URL = {
+  production: JSON.stringify('prod-url'),
+  development: JSON.stringify('https://dxvinci.github.io/react-todo/todolist.json')
+}
+
 
 module.exports = {
   mode: 'development',
@@ -33,9 +41,7 @@ module.exports = {
       template: './public/index.html'
     }),
     new DefinePlugin({
-      FetchUrl: JSON.stringify(
-        'https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/todolist'
-      )
+      'API_URL': API_URL[environment]
     })
   ],
   devtool: 'inline-source-map',
