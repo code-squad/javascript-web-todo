@@ -38,20 +38,14 @@ const Circle = styled.div`
 
 const TodoCounter = () => {
   const { todos } = useContext(TodoContext);
-  const [counts, setCounts] = useState({});
   const [emphasize, setEmphasize] = useState(false);
-  const { todoCount, doneCount } = counts;
 
-  const updateCount = todos => {
-    const todoCount = todos.filter(el => el.status === "todo").length;
-    const doneCount = todos.filter(el => el.status === "done").length;
-    setCounts({ todoCount, doneCount });
-  };
+  const todoCount = todos.filter(el => el.status === "todo").length;
+  const doneCount = todos.filter(el => el.status === "done").length;
 
   useEffect(() => {
     (async () => {
       setEmphasize(true);
-      updateCount(todos);
       await makeDelay(ANIMATE_DURATION);
       setEmphasize(false);
     })();
