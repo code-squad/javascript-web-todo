@@ -7,11 +7,11 @@ const cors = require('cors');
 const app = express();
 
 app.use(cors());
-app.use(express.static(path.join(__dirname, '../../public')));
+app.use(express.static(path.join(__dirname, './json')));
 
 app.get('/api', (req, res) => {
   fs.readFile(
-    path.join(__dirname, '../../public/json/todoData.json'),
+    path.join(__dirname, './json/todoData.json'),
     (err, data) => {
       if(err) {
         res.send(err);
