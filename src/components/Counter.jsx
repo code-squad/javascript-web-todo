@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
-import { ToDoContext } from "./ToDoApp";
+import React, { useState, useEffect } from "react";
 import Fab from "@material-ui/core/Fab";
 
-const Counter = () => {
+const Counter = props => {
   const [todoCnt, setTodoCnt] = useState(0);
   const [doneCnt, setDoneCnt] = useState(0);
 

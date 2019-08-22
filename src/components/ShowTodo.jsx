@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
-import { ToDoContext } from "./ToDoApp";
+import React, { useState, useEffect } from "react";
 
 import styled, { css } from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
@@ -16,7 +15,7 @@ const ShowTodo = props => {
       return (
         <LI
           onClick={() => {
-            props.onChange(data);
+            props.onDelete({ type: "CHANGE_TODO", payload: data });
           }}
           key={data.id}
         >
@@ -25,7 +24,7 @@ const ShowTodo = props => {
             id={data.id}
             onClick={e => {
               e.stopPropagation();
-              props.onDelete(data);
+              props.onDelete({ type: "DELETE_TODO", payload: data });
             }}
           >
             <DeleteIcon fontSize="small" />

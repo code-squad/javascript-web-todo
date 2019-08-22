@@ -13,7 +13,7 @@ const AddTodo = props => {
     <form
       onSubmit={e => {
         e.preventDefault();
-        props.onSubmit(inputValue);
+        props.onSubmit({ type: "ADD_TODO", payload: inputValue });
         setInputValue("");
       }}
     >

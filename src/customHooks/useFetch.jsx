@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const useFetch = (cbFunc, url) => {
+const useFetch = (cbFunc, url, errorHandler) => {
   const [loading, setLoading] = useState(false);
 
   const fetchInitialData = async (cbFunc, url, errorHandler) => {
@@ -22,7 +22,7 @@ const useFetch = (cbFunc, url) => {
   };
 
   useEffect(() => {
-    fetchInitialData(cbFunc, url);
+    fetchInitialData(cbFunc, url, errorHandler);
   }, []);
 
   return loading;

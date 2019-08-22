@@ -4,7 +4,7 @@
   "description": "React based todo application",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "webpack-dev-server --open"
   },
   "repository": {
     "type": "git",
