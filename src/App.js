@@ -1,8 +1,15 @@
-import React from "react";
+import React, { Component } from "react";
+import TodoInput from "./components/TodoInput.jsx";
+import TodoList from "./components/TodoList.jsx";
 
-class App extends React.Component {
+class App extends Component {
   render() {
-    return <div>Hello World</div>;
+    return (
+      <>
+        <TodoInput />
+        <TodoList />
+      </>
+    );
   }
 }
 
