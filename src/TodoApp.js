@@ -8,11 +8,15 @@ import { StateProvider } from "./TodoState";
 
 export default function TodoApp() {
   const [todos, setTodos] = useState([]);
+  const [newTodo, setNewTodo] = useState("");
 
   const initialState = {
-    todos,
-    newTodo: ""
+    todos
   };
+
+  const changeInput = (newTodo) => {
+    setNewTodo(newTodo);
+  }
 
   const todosReducer = (state, action) => {
     switch (action.type) {
@@ -24,21 +28,15 @@ export default function TodoApp() {
         };
         return {
           todos: [...state.todos, newTodoObj],
-          newTodo: ""
         };
       case "DELETE_TODO":
         const remaindedTodos = state.todos.filter(
           todo => todo.id !== action.id
         );
         return {
-          ...state,
           todos: remaindedTodos
         };
-      case "UPDATE_NEWTODO":
-        return {
-          ...state,
-          newTodo: action.newTodo
-        };
+
       case "CHANGE_TODO_STATUS":
         const index = state.todos.findIndex(todo => todo.id === action.id);
         const selected = state.todos[index];
@@ -54,7 +52,6 @@ export default function TodoApp() {
         };
 
         return {
-          ...state,
           todos: nextTodos
         };
 
@@ -82,7 +79,7 @@ export default function TodoApp() {
   return initialState.todos.length !== 0 ? (
     <StateProvider initialState={initialState} reducer={todosReducer}>
       <ResultBar />
-      <InputBar />
+      <InputBar  newTodo={newTodo} changeInput={changeInput}/>
       <TodoList />
     </StateProvider>
   ) : (

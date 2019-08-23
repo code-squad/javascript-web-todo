@@ -13,16 +13,14 @@ const Form = styled.form`
   margin-bottom: 2rem;
 `;
 
-export default function InputBar(props) {
+export default function InputBar({newTodo, changeInput}) {
   const id = nextId();
-  const [{ todos,newTodo }, dispatch] = useStateValue();
+  const [{ todos }, dispatch] = useStateValue();
   
 
   const handleChangeInput = ({ target: { value } }) => {
-    dispatch({
-      type: "UPDATE_NEWTODO",
-      newTodo: value
-    });
+    console.log("handleChangeInput must be excuted")
+    changeInput(value);
   };
 
   const handleAddtodo = e => {
