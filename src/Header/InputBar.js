@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import nextId from "react-id-generator";
 import { useStateValue } from "../TodoState";
@@ -13,14 +13,13 @@ const Form = styled.form`
   margin-bottom: 2rem;
 `;
 
-export default function InputBar({newTodo, changeInput}) {
+export default function InputBar() {
   const id = nextId();
   const [{ todos }, dispatch] = useStateValue();
-  
+  const [newTodo, setNewTodo] = useState("");
 
   const handleChangeInput = ({ target: { value } }) => {
-    console.log("handleChangeInput must be excuted")
-    changeInput(value);
+    setNewTodo(value);
   };
 
   const handleAddtodo = e => {
@@ -30,7 +29,9 @@ export default function InputBar({newTodo, changeInput}) {
       title: newTodo,
       id
     });
+    setNewTodo("");
   };
+
   return (
     <Form>
       <label>할일 입력 : </label>
