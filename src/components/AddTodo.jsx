@@ -1,21 +1,29 @@
-import React, { Component } from "react";
+import React, { useState, useContext } from "react";
+import { TodoContext } from "./ToDoStore";
 import styled, { css } from "styled-components";
 
-class AddTodo extends Component {
-  constructor(props) {
-    super(props);
-  }
+const AddTodo = () => {
+  const [inputValue, setInputValue] = useState("");
+  const { dispatch } = useContext(TodoContext);
 
-  render() {
-    return (
-      <form action="">
-        <Header>what is your One Small Step? </Header>
-        <Input type="text" />
-        <Button>등록</Button>
-      </form>
-    );
-  }
-}
+  const onChangeHandler = e => {
+    setInputValue(e.target.value);
+  };
+
+  return (
+    <form
+      onSubmit={e => {
+        e.preventDefault();
+        dispatch({ type: "ADD_TODO", payload: inputValue });
+        setInputValue("");
+      }}
+    >
+      <Header>what is your One Small Step? </Header>
+      <Input value={inputValue} onChange={onChangeHandler} type="text" />
+      <Button>등록</Button>
+    </form>
+  );
+};
 
 const Header = styled.h1`
   font-family: Monospace;
@@ -27,10 +35,11 @@ const Input = styled.input`
   background: transparent;
   border: 0;
   border-bottom: 1px solid black;
-  width: 800px;
-  height: 60px;
+  width: 100%;
+  height: 2.5em;
+  margin-top: 1em;
   text-align: center;
-  font-size: 20px;
+  font-size: 1.2em;
 `;
 
 const Button = styled.button`
@@ -38,11 +47,11 @@ const Button = styled.button`
   border-radius: 3px;
   border: 2px solid black;
   color: black;
-  width: 100px;
-  height: 30px;
   position: relative;
-  left: 350px;
-  top: 40px;
+  left: 45%;
+  margin-top: 50px;
+  width: 7em;
+  height: 3em;
 `;
 
 export default AddTodo;

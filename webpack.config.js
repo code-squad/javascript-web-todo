@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   name: "todo-setting",
   mode: "development",
-  devtool: "eval",
+  devtool: "inline-source-map", //eval
   resolve: {
     extensions: [".js", ".jsx"]
   },
@@ -31,7 +31,10 @@ module.exports = {
               ],
               "@babel/preset-react"
             ],
-            plugins: ["@babel/plugin-transform-runtime"]
+            plugins: [
+              "@babel/plugin-transform-runtime",
+              "@babel/plugin-proposal-class-properties"
+            ]
           }
         },
         exclude: /node_modules/

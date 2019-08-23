@@ -1,5 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import ToDoApp from "./components/ToDoApp";
+import App from "./components/App";
 
-ReactDOM.render(<ToDoApp />, document.querySelector("#root"));
+ReactDOM.render(<App />, document.querySelector("#root"));

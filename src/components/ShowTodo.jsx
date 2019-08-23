@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { TodoContext } from "./ToDoStore";
 import styled, { css } from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
 import { display } from "@material-ui/system";
@@ -6,17 +7,27 @@ import Button from "@material-ui/core/Button";
 import { IconButton } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-class ShowTodo extends Component {
-  constructor(props) {
-    super(props);
-  }
+const ShowTodo = () => {
+  const [toggle, setToggle] = useState(true);
+  const { todoData, error, loading, dispatch } = useContext(TodoContext);
 
-  makeLiData(todos) {
+  const makeLiData = todos => {
     const arr = todos.map(data => {
       return (
-        <LI key={data.id}>
-          {data.title}
-          <IconButton aria-label="delete">
+        <LI
+          onClick={() => {
+            dispatch({ type: "CHANGE_TODO", payload: data });
+          }}
+          key={data.id}
+        >
+          {data.status === "todo" ? data.title : <del>{data.title}</del>}
+          <IconButton
+            id={data.id}
+            onClick={e => {
+              e.stopPropagation();
+              dispatch({ type: "DELETE_TODO", payload: data });
+            }}
+          >
             <DeleteIcon fontSize="small" />
           </IconButton>
         </LI>
@@ -24,65 +35,60 @@ class ShowTodo extends Component {
     });
 
     return arr;
-  }
+  };
 
-  makeLiComponent(obj) {
-    const todos = obj.data;
-    const error = obj.error;
-    const isEmpty = todos.length === 0 ? true : false;
+  const makeLiComponent = data => {
+    const todos = data;
+    const isEmpty = !todos.length;
     let result;
 
-    if (error) {
-      result = (
-        <ul>
-          <li>데이터 요청 실패</li>
-        </ul>
-      );
-    } else if (!isEmpty) {
-      result = <ul>{this.makeLiData(todos)}</ul>;
+    if (!isEmpty) {
+      result = makeLiData(todos);
     } else {
-      result = (
-        <ul>
-          <li>없음</li>
-        </ul>
-      );
+      result = <li>없음</li>;
     }
-
     return result;
-  }
+  };
 
-  render() {
-    const result = this.makeLiComponent(this.props);
-    return (
-      <DIV>
-        <HEADER>해야할 일</HEADER>
-        <Button color="secondary">접기</Button>
-        {result}
-      </DIV>
-    );
-  }
-}
+  const ModulateWindow = e => {
+    toggle ? setToggle(false) : setToggle(true);
+  };
+
+  return (
+    <DIV>
+      <HEADER customAttr="test">해야할 일</HEADER>
+      <Button color="secondary" onClick={e => ModulateWindow(e)}>
+        {toggle ? "접기" : "펼치기"}
+      </Button>
+      <ul style={{ display: toggle ? "block" : "none" }}>
+        {error && <li>네트워크 요청 실패</li>}
+        {loading && <li>로딩중...</li>}
+        {!error && !loading && makeLiComponent(todoData)}
+      </ul>
+    </DIV>
+  );
+};
 
 const DIV = styled.div`
-  width: 400px;
+  width: 45%;
   background-color: #dedcee;
-  border-radius: 30px;
-  margin-top: 80px;
-`;
-
-const LI = styled.li`
-  font-family: Monospace;
-  font-size: 18px;
-  font-weight: 100;
-  height: 40px;
+  border-radius: 20px;
+  margin-top: 3em;
 `;
 
 const HEADER = styled.h3`
   font-family: Monospace;
   text-align: center;
   font-weight: 400;
-  font-size: 20px;
-  padding-top: 10px;
+  font-size: 1.4em;
+  padding-top: 0.5em;
+`;
+
+const LI = styled.li`
+  font-family: Monospace;
+  font-size: 1.4em;
+  font-weight: 100;
+  height: 2.4em;
 `;
 
 export default ShowTodo;
