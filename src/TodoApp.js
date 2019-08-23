@@ -4,7 +4,7 @@ import TodoList from "./Todo/TodoList";
 import InputBar from "./Header/InputBar";
 import Loader from "./Loader";
 import ResultBar from "./Header/ResultBar";
-import { StateProvider } from "./state";
+import { StateProvider } from "./TodoState";
 
 export default function TodoApp() {
   const [todos, setTodos] = useState([]);

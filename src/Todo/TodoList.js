@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TodoItem from "./TodoItem";
 import styled, { css } from "styled-components";
-import { useStateValue } from "../state";
+import { useStateValue } from "../TodoState";
 
 const Background = styled.div`
   background: #a6d0d1;
