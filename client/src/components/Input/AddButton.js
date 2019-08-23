@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const Div = styled.div`
@@ -13,20 +13,18 @@ const Div = styled.div`
     width: 4rem;
     height: 2rem;
     background-color: transparent;
-    font-weight: bold;
     color: #05386b;
+    font-weight: bold;
     cursor: pointer;  
   }
 `
 
-class AddBtn extends Component {
-  render() {
-    return (
-      <Div>
-        <button type='submit'>Add</button>
-      </Div>
-    )
-  }
+const AddBtn = () => {
+  return (
+    <Div>
+      <button type='submit'>Add</button>
+    </Div>
+  )
 }
 
 export default AddBtn;
