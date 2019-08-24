@@ -1,10 +1,11 @@
 import React, { createContext, useContext, useReducer } from "react";
+import todosReducer from "./todoReducer";
 
 export const StateContext = createContext();
 
-export const StateProvider = ({ reducer, initialState, children }) => {
+export const StateProvider = ({ initialState, children }) => {
   return (
-    <StateContext.Provider value={useReducer(reducer, initialState)}>
+    <StateContext.Provider value={useReducer(todosReducer, initialState)}>
       {children}
     </StateContext.Provider>
   );

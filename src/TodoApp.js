@@ -4,8 +4,8 @@ import TodoList from "./Todo/TodoList";
 import InputBar from "./Header/InputBar";
 import Loader from "./Loader";
 import ResultBar from "./Header/ResultBar";
-import { StateProvider } from "./TodoState";
-import todosReducer from "./todoReducer";
+import { StateProvider } from "./StateHelper/TodoState";
+// import todosReducer from "./StateHelper/todoReducer";
 
 export default function TodoApp() {
   const [todos, setTodos] = useState([]);
@@ -31,7 +31,7 @@ export default function TodoApp() {
   };
 
   return initialState.todos.length !== 0 ? (
-    <StateProvider initialState={initialState} reducer={todosReducer}>
+    <StateProvider initialState={initialState}>
       <ResultBar />
       <InputBar />
       <TodoList />
