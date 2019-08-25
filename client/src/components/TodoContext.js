@@ -15,7 +15,7 @@ export const TodoProvider = props => {
     todos ? todos.filter(todo => todo.status === status).length : 0;
 
   const fetchOptions = {
-    url: config.todosUrl
+    url: process.env.API_URL
   };
 
   const { data, error, refetch } = useFetch(fetchOptions);

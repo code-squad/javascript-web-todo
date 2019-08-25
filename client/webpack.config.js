@@ -1,6 +1,15 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const webpack = require("webpack");
+
+const environment =
+  process.env.NODE_ENV === "production" ? "production" : "development";
+
+const API_URL = {
+  production: "https://react-web-todo.herokuapp.com/api/todos",
+  development: "https://react-web-todo.herokuapp.com/api/todos"
+};
 
 module.exports = {
   entry: "./src/index.js",
@@ -40,6 +49,9 @@ module.exports = {
       template: "./public/index.html",
       filename: "index.html"
     }),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new webpack.EnvironmentPlugin({
+      API_URL: API_URL[environment]
+    })
   ]
 };
