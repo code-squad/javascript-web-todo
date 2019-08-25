@@ -1,18 +1,13 @@
-import React, { useState, createContext, useEffect } from "react";
+import React, { useState, createContext, useEffect, useReducer } from "react";
 import useFetch from "../hooks/useFetch";
-import config from "../config";
+import todoReducer from "../reducers/TodoReducer";
 
 export const TodoContext = createContext();
 
 export const TodoProvider = props => {
-  const [todos, setTodos] = useState(null);
+  const [todos, dispatch] = useReducer(todoReducer, null);
   const [fetchError, setError] = useState(null);
   const [todosShowFlag, setShowFlag] = useState(true);
-  const [numOfTodo, setNumOfTodo] = useState(0);
-  const [numOfDone, setNumOfDone] = useState(0);
-
-  const getNumOfTodosByStatus = (todos, status) =>
-    todos ? todos.filter(todo => todo.status === status).length : 0;
 
   const fetchOptions = {
     url: process.env.API_URL
@@ -21,29 +16,22 @@ export const TodoProvider = props => {
   const { data, error, refetch } = useFetch(fetchOptions);
 
   useEffect(() => {
-    setTodos(data);
+    dispatch({ type: "READ", payload: data });
   }, [data]);
 
   useEffect(() => {
     setError(error);
   }, [error]);
 
-  useEffect(() => {
-    setNumOfTodo(getNumOfTodosByStatus(todos, "todo"));
-    setNumOfDone(getNumOfTodosByStatus(todos, "done"));
-  }, [todos]);
-
   return (
     <TodoContext.Provider
       value={{
         todos,
-        setTodos,
         fetchError,
         refetch,
         todosShowFlag,
         setShowFlag,
-        numOfTodo,
-        numOfDone
+        dispatch
       }}
     >
       {props.children}

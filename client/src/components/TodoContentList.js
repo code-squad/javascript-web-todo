@@ -3,9 +3,11 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { TodoContext } from "./TodoContext";
 import config from "../config";
+import styles from "./styles";
 
 import TodoButton from "./TodoButton";
 import Loader from "./Loader";
+import RefetchContent from "./RefetchContent";
 
 const ContentUl = styled.ul`
   margin: 1rem 0;
@@ -36,16 +38,16 @@ const ContentList = styled.li`
 `;
 
 const TodoContentList = _ => {
-  const { todos, setTodos, fetchError, refetch } = useContext(TodoContext);
+  const { todos, dispatch, fetchError } = useContext(TodoContext);
+  const removeTodoById = id => dispatch({ type: "DELETE", payload: id });
 
-  const removeTodoById = id => setTodos(todos.filter(todo => todo.id !== id));
   const toggleTodoStatus = ({ evt, id }) => {
     if (evt.target.tagName !== "LI") return;
     todos.forEach(todo => {
       if (todo.id === id)
         todo.status = todo.status === "todo" ? "done" : "todo";
     });
-    setTodos([...todos]);
+    dispatch({ type: "UPDATE", payload: todos });
   };
 
   return todos ? (
@@ -60,27 +62,15 @@ const TodoContentList = _ => {
             {todo.title}
             <TodoButton
               name="X"
-              width="1rem"
-              height="1rem"
-              borderRadius="50%"
               clickHandler={_ => removeTodoById(todo.id)}
+              {...styles.TODO_BUTTON_STYLES}
             />
           </ContentList>
         );
       })}
     </ContentUl>
   ) : fetchError ? (
-    <>
-      <Loader message={fetchError.message} />
-      <TodoButton
-        clickHandler={refetch}
-        name="Refetch"
-        width="4rem"
-        height="2rem"
-        absolute={true}
-        top="3rem"
-      />
-    </>
+    <RefetchContent />
   ) : (
     <Loader message="Loading..." />
   );

@@ -16,13 +16,13 @@ const StyledDiv = styled.div`
 `;
 
 const TodoAdd = _ => {
-  const { todos, setTodos } = useContext(TodoContext);
+  const { dispatch } = useContext(TodoContext);
   const [inputVal, setInputVal] = useState("");
 
   const getNewTodoObj = title => ({ title, id: Date.now(), status: "todo" });
   const setNewTodo = _ => {
     if (inputVal === "") return;
-    setTodos([...todos, getNewTodoObj(inputVal)]);
+    dispatch({ type: "CREATE", payload: getNewTodoObj(inputVal) });
   };
 
   return (
