@@ -20,7 +20,11 @@ const Div = styled.div`
 `
 
 const ShowingBtn = () => {
-  const { showingBtnTitle, showContents } = useContext(TodoContext);
+  const { todoData: { showingBtnTitle }, dispatch } = useContext(TodoContext);
+  
+  const showContents = () => {
+    dispatch({ type: 'CHANGE_BTNTITLE' });
+  }
 
   return (
     <Div btnTitle={ showingBtnTitle }>

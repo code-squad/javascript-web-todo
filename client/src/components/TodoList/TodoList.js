@@ -15,8 +15,8 @@ const Div = styled.div`
 `
 
 const TodoList = () => {
-  const { todoItems, showingBtnTitle, isFetched } = useContext(TodoContext);
-  
+  const { todoData, isFetched } = useContext(TodoContext);
+  const { todoItems, showingBtnTitle } = todoData;
   return (
     <Div showingBtnTitle={ showingBtnTitle }>
       <Contents 

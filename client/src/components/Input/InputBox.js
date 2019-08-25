@@ -44,7 +44,7 @@ const InputBox = () => {
   const submitHandler = e => {
     e.preventDefault();
     if(!term) return;
-    dispatch({ type: 'ADD', payload: term })
+    dispatch({ type: 'ADD_TODOITEMS', payload: term })
     setTerm('');
   }
 

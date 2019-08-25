@@ -33,7 +33,7 @@ const ContentsList = ({ title, status, id }) => {
   const { dispatch } = useContext(TodoContext);
 
   const removeHandler = (e) => {
-    dispatch({ type: 'DELETE', payload: id });
+    dispatch({ type: 'DELETE_TODOITEMS', payload: id });
   }
   
   const completeTodo = (e) => {
@@ -41,7 +41,7 @@ const ContentsList = ({ title, status, id }) => {
     
     const lineThroughList = e.target.closest('li div');
     lineThroughList.classList.toggle('line-through');
-    dispatch({ type: 'UPDATE', payload: id })
+    dispatch({ type: 'UPDATE_TODOITEMS', payload: id })
   }
 
   return (
