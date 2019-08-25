@@ -12,7 +12,7 @@ const Subtitle = styled.h4`
 const TodoSubtitle = props => <Subtitle>{props.subtitle}</Subtitle>;
 
 TodoSubtitle.propTypes = {
-  subtitle: PropTypes.string
+  subtitle: PropTypes.string.isRequired
 };
 
 export default TodoSubtitle;

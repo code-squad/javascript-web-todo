@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const LoaderTitle = styled.h3`
   width: 100%;
@@ -12,6 +13,10 @@ const LoaderTitle = styled.h3`
   font-weight: 300;
 `;
 
-const Loader = props => <LoaderTitle>{props.message}</LoaderTitle>;
+const Loader = ({ message }) => <LoaderTitle>{message}</LoaderTitle>;
+
+Loader.propTypes = {
+  message: PropTypes.string.isRequired
+};
 
 export default Loader;

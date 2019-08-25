@@ -5,7 +5,6 @@ export default (todos, { type, payload }) => {
     case "CREATE":
       return [...todos, payload];
     case "UPDATE":
-      console.log(payload);
       return [...payload];
     case "DELETE":
       return [...todos.filter(todo => todo.id !== payload)];

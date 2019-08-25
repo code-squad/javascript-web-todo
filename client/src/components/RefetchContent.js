@@ -4,7 +4,7 @@ import { TodoContext } from "./TodoContext";
 import Loader from "./Loader";
 import TodoButton from "./TodoButton";
 
-export default function RefetchContent() {
+export default _ => {
   const { fetchError, refetch } = useContext(TodoContext);
   return (
     <>
@@ -19,4 +19,4 @@ export default function RefetchContent() {
       />
     </>
   );
-}
+};
