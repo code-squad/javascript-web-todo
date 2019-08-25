@@ -63,7 +63,7 @@ const TodoContentList = _ => {
             <TodoButton
               name="X"
               clickHandler={_ => removeTodoById(todo.id)}
-              {...styleOptions.TODO_BUTTON_STYLES}
+              {...styleOptions.DELETE_BUTTON}
             />
           </ContentList>
         );

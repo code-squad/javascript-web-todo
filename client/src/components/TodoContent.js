@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
+import styleOptions from "./styleOptions";
 
 import TodoSubtitle from "./TodoSubtitle";
 import TodoContentList from "./TodoContentList";
@@ -27,11 +28,7 @@ const TodoContent = _ => {
       <TodoButton
         name={todosShowFlag ? "숨기기" : "보이기"}
         clickHandler={buttonClickHandler}
-        absolute={true}
-        width="4rem"
-        height="2rem"
-        top="0.2rem"
-        right="1rem"
+        {...styleOptions.STATUS_TOGGLE_BUTTON}
       />
     </StyledDiv>
   );

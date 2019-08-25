@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
+import styleOptions from "./styleOptions";
 
 import TodoSubtitle from "./TodoSubtitle";
 import TodoAddInput from "./TodoAddInput";
@@ -32,8 +33,7 @@ const TodoAdd = _ => {
       <TodoButton
         name="등록"
         clickHandler={setNewTodo}
-        width="4rem"
-        height="2rem"
+        {...styleOptions.ADD_BUTTON}
       />
     </StyledDiv>
   );
