@@ -12,6 +12,7 @@ const Div = styled.div`
   height: 100%;
   font-weight: bold;
 `
+// Style overriding ex) styled(Button) -> 컴포넌트 재사용시
 
 const App = () => {
   return (

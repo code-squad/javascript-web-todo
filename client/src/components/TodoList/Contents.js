@@ -21,7 +21,7 @@ const Div = styled.div`
   }
 `
 
-const Contents = ({ myTodo, removeTodo, isFetched }) => {
+const Contents = ({ myTodo, isFetched }) => {
   const todoList = myTodo.map( ({ title, id, status }) => {
     return (
       <ContentsList 
@@ -29,7 +29,6 @@ const Contents = ({ myTodo, removeTodo, isFetched }) => {
         status={status.toUpperCase()} 
         key={id}
         id={id}
-        removeTodo={ removeTodo }
       />
     )
   });

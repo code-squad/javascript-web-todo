@@ -8,6 +8,7 @@ module.exports = {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js'
   },
+  devtool: 'source-map',
   module: {
     rules: [
       { 
@@ -20,6 +21,6 @@ module.exports = {
   plugins: [
     new HtmlWebPackPlugin({
       template: 'public/index.html'
-    })
+    }),
   ]
 }

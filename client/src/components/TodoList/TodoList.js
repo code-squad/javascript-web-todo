@@ -15,13 +15,12 @@ const Div = styled.div`
 `
 
 const TodoList = () => {
-  const { todoItems, removeTodo, showingBtnTitle, isFetched } = useContext(TodoContext);
+  const { todoItems, showingBtnTitle, isFetched } = useContext(TodoContext);
   
   return (
     <Div showingBtnTitle={ showingBtnTitle }>
       <Contents 
         myTodo={ todoItems } 
-        removeTodo={ removeTodo } 
         isFetched={ isFetched }
       />
     </Div>

@@ -20,9 +20,11 @@ const TodoStorage = ({ children }) => {
     : setShowingBtnTitle('Show');
   }
   
-  const showContents = () => {
+  const showContents = () => { // 수정사항
     changeShowBtnTitle(showingBtnTitle);
   }
+  // action 이후 data를 변경하는 것은 각 컴포넌트에서 함수를 생성하는 것으로 refactoring
+  
 
   return(
     <TodoContext.Provider value={{ todoItems, showingBtnTitle, showContents, dispatch, isFetched }}>
