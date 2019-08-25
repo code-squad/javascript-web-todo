@@ -9,6 +9,6 @@ export default (todos, { type, payload }) => {
     case "DELETE":
       return [...todos.filter(todo => todo.id !== payload)];
     default:
-      console.error(`action type error: ${action.type}`);
+      console.error(`action type error: ${type}`);
   }
 };

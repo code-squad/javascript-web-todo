@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 import Layout from "./components/Layout";
 import { TodoProvider } from "./components/TodoContext";
@@ -12,7 +12,8 @@ const Root = _ => {
     <TodoProvider>
       <Router>
         <Layout>
-          <Route path="/Home" exact component={Home} />
+          <Route path="/" exact render={() => <Redirect to="/Home" />} />
+          <Route path="/Home" component={Home} />
           <Route path="/Todo/" component={Todo} />
           <Route path="/about/" component={About} />
         </Layout>

@@ -5,8 +5,6 @@ import { BrowserRouter as Router, Link } from "react-router-dom";
 
 const StyledNav = styled.nav`
   background-color: #3398da;
-  border-top-left-radius: 0.4rem;
-  border-top-right-radius: 0.4rem;
 
   & a {
     color: white;

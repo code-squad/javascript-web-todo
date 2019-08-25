@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { TodoContext } from "./TodoContext";
+import { getNumOfTodos } from "../utils/utils";
 
 const StyledHeader = styled.header`
   & > * {
@@ -19,15 +20,6 @@ const StyledNav = styled.nav`
   border-bottom: 1px solid #3498db;
   height: 2rem;
 `;
-
-const getNumOfTodos = todos => {
-  return todos
-    ? {
-        todo: todos.filter(todo => todo.status === "todo").length,
-        done: todos.filter(todo => todo.status === "done").length
-      }
-    : { todo: 0, done: 0 };
-};
 
 const Header = _ => {
   const { todos } = useContext(TodoContext);

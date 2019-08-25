@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 
 import Nav from "./Nav";
 
 const StyledLayout = styled.div`
   width: 480px;
   margin: 0 auto;
+  border: 1px solid #2196f3;
+  border-radius: 0.4rem;
   &,
   & * {
     box-sizing: border-box;
@@ -25,7 +26,3 @@ export default function Layout({ children }) {
     </StyledLayout>
   );
 }
-
-// Layout.propTypes = {
-//   children: PropTypes.object
-// };
