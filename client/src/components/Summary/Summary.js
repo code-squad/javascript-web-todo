@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { TodoContext } from '../TodoStorage';
+import ShowingBtn from '../ShowingBtn/ShowingBtn';
 import styled from 'styled-components';
 
 const Div = styled.div`
@@ -26,12 +27,13 @@ const Total = styled.p`
 const Summary = () => {
   const { todoData } = useContext(TodoContext);
   const { showingBtnTitle, todoItems } = todoData;
-  debugger;
+
   return (
     <Div showingBtnTitle={ showingBtnTitle }>
       <p>남은 할 일: {todoItems.filter(item => item.status === 'todo').length}</p>
       <p>완료 한 일: {todoItems.filter(item => item.status === 'done').length}</p>
       <Total>총 리스트: {todoItems.length}</Total>
+      <ShowingBtn />
     </Div>
   )
 }

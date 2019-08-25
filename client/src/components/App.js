@@ -1,6 +1,5 @@
 import { hot } from 'react-hot-loader/root';
 import React from 'react';
-import ShowingBtn from './ShowingBtn/ShowingBtn';
 import InputBox from './Input/InputBox';
 import Summary from './Summary/Summary';
 import TodoList from './TodoList/TodoList';
@@ -27,7 +26,6 @@ const App = () => {
     <TodoStorage>
       <>
         <GlobalStyle />
-        <ShowingBtn />
         <InputBox />
         <Summary />
         <TodoList />

@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { TodoContext } from '../TodoStorage';
 
 const Div = styled.div`
-  position: relative;
-  top: 160px;
-  left: 420px;
+  display: flex;
+  align-items: center;
+  margin-left: 105px;
 
   button {
     border-radius: 6px;

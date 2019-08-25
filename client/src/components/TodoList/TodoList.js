@@ -5,7 +5,7 @@ import { TodoContext } from '../TodoStorage';
 
 const Div = styled.div`
   display: ${({ showingBtnTitle }) => showingBtnTitle === 'Show' ? 'none' : 'block'};
-  min-height: 400px;
+  min-height: 250px;
   font-size: 1.2rem;
   padding-top: 2rem;
   background-color: #8ee4af;
