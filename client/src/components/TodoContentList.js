@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { TodoContext } from "./TodoContext";
 import config from "../config";
-import styles from "./styles";
+import styleOptions from "./styleOptions";
 
 import TodoButton from "./TodoButton";
 import Loader from "./Loader";
@@ -63,7 +63,7 @@ const TodoContentList = _ => {
             <TodoButton
               name="X"
               clickHandler={_ => removeTodoById(todo.id)}
-              {...styles.TODO_BUTTON_STYLES}
+              {...styleOptions.TODO_BUTTON_STYLES}
             />
           </ContentList>
         );
