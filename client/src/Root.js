@@ -1,27 +1,22 @@
 import React from "react";
-import styled from "styled-components";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import TodoAdd from "./components/TodoAdd";
-import TodoContent from "./components/TodoContent";
+import Layout from "./components/Layout";
 import { TodoProvider } from "./components/TodoContext";
-import Header from "./components/Header";
-
-const StyledRoot = styled.div`
-  width: 480px;
-  margin: 0 auto;
-  border: 1px solid #2196f3;
-  border-radius: 0.4rem;
-  padding: 1rem;
-`;
+import Home from "./pages/Home";
+import Todo from "./pages/Todo";
+import About from "./pages/About";
 
 const Root = _ => {
   return (
     <TodoProvider>
-      <StyledRoot>
-        <Header />
-        <TodoAdd />
-        <TodoContent />
-      </StyledRoot>
+      <Router>
+        <Layout>
+          <Route path="/Home" exact component={Home} />
+          <Route path="/Todo/" component={Todo} />
+          <Route path="/about/" component={About} />
+        </Layout>
+      </Router>
     </TodoProvider>
   );
 };
