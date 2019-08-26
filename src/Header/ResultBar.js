@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useStateValue } from "../StateHelper/TodoState";
 import RadiusDisplayer from "../components/Displayer";
 import styled from "styled-components";
-import { useStateValue } from "../StateHelper/TodoState";
 
 const ResultWrapper = styled.div`
   display: flex;
@@ -9,13 +9,15 @@ const ResultWrapper = styled.div`
 `;
 
 export default function ResultBar() {
-  const { state, isLoading } = useStateValue();
+  // isLoading이 state.todos로 파악이 가능해서 필요없음.
+  const { state } = useStateValue();
   const [todoCnt, setTodoCnt] = useState(0);
   const [doneCnt, setDoneCnt] = useState(0);
 
-  // 조건부로 state.todos가 들어왔을때 바꿔주는 로직이 아님
-  // state.todos가 fetch되었을때도 todoCnt와 doneCnt가 바뀌지만
-  // state.todos가 변경이있을때마다 Cnt의 값을 계산하는 로직
+  useEffect(() => {
+    calcStatusCnt(state.todos);
+  }, [state.todos]);
+
   const calcStatusCnt = todos => {
     const todoArr = todos.filter(todo => todo.status === "todo");
     const doneArr = todos.filter(todo => todo.status === "done");
@@ -23,10 +25,6 @@ export default function ResultBar() {
     setTodoCnt(todoArr.length);
     setDoneCnt(doneArr.length);
   };
-
-  useEffect(() => {
-    calcStatusCnt(state.todos);
-  }, [state.todos]);
 
   return (
     <ResultWrapper>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import TodoItem from "./TodoItem";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { useStateValue } from "../StateHelper/TodoState";
 
 const Background = styled.div`
@@ -13,15 +13,11 @@ const Folder = styled.div`
 `;
 
 const TodoWrapper = styled.ul`
-  ${props =>
-    !props.isOpened &&
-    css`
-      display: none;
-    `}
+  ${props => !props.isOpened && `display: none;`}
 `;
 
-export default function TodoList(props) {
-  const { state, dispatch, isLoading } = useStateValue();
+export default function TodoList() {
+  const { state, isLoading } = useStateValue();
   const [isOpened, setIsOpened] = useState(true);
 
   const handleClick = () => {

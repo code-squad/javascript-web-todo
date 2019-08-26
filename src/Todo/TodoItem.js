@@ -23,10 +23,9 @@ const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
 `;
 
 export default function TodoItem(props) {
-  const { state, dispatch, isLoading } = useStateValue();
-  const [isClicked, setIsClicked] = useState(false);
-
+  const { dispatch } = useStateValue();
   const { title, id } = props.todo;
+  const [isClicked, setIsClicked] = useState(false);
 
   const handleDeleteTodo = () => {
     dispatch({ type: "DELETE_TODO", id });
