@@ -8,7 +8,7 @@ const StyledButton = styled.button`
   color: palevioletred;
   margin: 0 1rem;
   padding: 0.25rem 1rem;
-  width: 6.5rem;
+  min-width: 6.5rem;
   height: 3.5rem;
   font-size: 1.5rem;
 
