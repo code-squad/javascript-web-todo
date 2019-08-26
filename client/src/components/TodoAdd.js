@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useCallback } from "react";
 import styled from "styled-components";
 import styleOptions from "./styleOptions";
 
@@ -20,11 +20,18 @@ const TodoAdd = _ => {
   const { dispatch } = useContext(TodoContext);
   const [inputVal, setInputVal] = useState("");
 
-  const getNewTodoObj = title => ({ title, id: Date.now(), status: "todo" });
-  const setNewTodo = _ => {
-    if (inputVal === "") return;
-    dispatch({ type: "CREATE", payload: getNewTodoObj(inputVal) });
-  };
+  const getNewTodoObj = useCallback(
+    title => ({ title, id: Date.now(), status: "todo" }),
+    []
+  );
+
+  const setNewTodo = useCallback(
+    _ => {
+      if (inputVal === "") return;
+      dispatch({ type: "CREATE", payload: getNewTodoObj(inputVal) });
+    },
+    [inputVal]
+  );
 
   return (
     <StyledDiv className="todo-add">

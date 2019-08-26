@@ -7,7 +7,9 @@ const AddInput = styled.input`
   height: 1.4rem;
 `;
 
-const TodoAddInput = ({ onChange }) => <AddInput onChange={onChange} />;
+const TodoAddInput = ({ onChange }) => {
+  return <AddInput onChange={onChange} />;
+};
 
 TodoAddInput.propTypes = {
   onChange: PropTypes.func
