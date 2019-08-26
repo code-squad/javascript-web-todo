@@ -47,9 +47,10 @@ export default _ => {
     <StyledNav>
       <StyledUl>
         {config.navList.map(item => {
-          const path = `/${item}`;
+          const path = item === "Home" ? `/` : `/${item}`;
+          const className = item === "Home" ? `active` : ``;
           return (
-            <Link to={path} key={item}>
+            <Link to={path} key={item} className={className}>
               <StyledLi onClick={setActiveClass}>{item}</StyledLi>
             </Link>
           );

@@ -8,6 +8,8 @@ const StyledLayout = styled.div`
   margin: 0 auto;
   border: 1px solid #2196f3;
   border-radius: 0.4rem;
+  overflow: hidden;
+
   &,
   & * {
     box-sizing: border-box;
