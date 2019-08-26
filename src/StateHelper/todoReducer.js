@@ -1,28 +1,24 @@
-const todosReducer = (state, action) => {
+const todosReducer = (todos, action) => {
   switch (action.type) {
     case "INIT_TODO":
-      return {
-        todos: action.todos
-      };
+      return action.todos;
+
     case "ADD_TODO":
       const newTodoObj = {
         title: action.title,
         id: action.id,
         status: "todo"
       };
-      return {
-        todos: [...state.todos, newTodoObj]
-      };
+      return [...todos, newTodoObj];
+
     case "DELETE_TODO":
-      const remaindedTodos = state.todos.filter(todo => todo.id !== action.id);
-      return {
-        todos: remaindedTodos
-      };
+      const remaindedTodos = todos.filter(todo => todo.id !== action.id);
+      return remaindedTodos;
 
     case "CHANGE_TODO_STATUS":
-      const index = state.todos.findIndex(todo => todo.id === action.id);
-      const selected = state.todos[index];
-      const nextTodos = [...state.todos];
+      const index = todos.findIndex(todo => todo.id === action.id);
+      const selected = todos[index];
+      const nextTodos = [...todos];
 
       const statusToggle = status => {
         return status === "todo" ? "done" : "todo";
@@ -33,12 +29,10 @@ const todosReducer = (state, action) => {
         status: statusToggle(selected.status)
       };
 
-      return {
-        todos: nextTodos
-      };
+      return nextTodos;
 
     default:
-      return state;
+      return todos;
   }
 };
 

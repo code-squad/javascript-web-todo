@@ -20,7 +20,7 @@ const TodoWrapper = styled.ul`
 `;
 
 export default function TodoList() {
-  const { state, isLoading } = useStateValue();
+  const { todos, isLoading } = useStateValue();
   const [isOpened, setIsOpened] = useState(true);
 
   const handleClick = () => {
@@ -44,7 +44,7 @@ export default function TodoList() {
 
       <TodoWrapper isOpened={isOpened}>
         {isLoading && <li>로딩중...</li>}
-        {!isLoading && makeTodoList(state.todos)}
+        {!isLoading && makeTodoList(todos)}
       </TodoWrapper>
     </Background>
   );

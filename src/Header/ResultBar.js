@@ -10,13 +10,13 @@ const ResultWrapper = styled.div`
 
 export default function ResultBar() {
   // isLoading이 state.todos로 파악이 가능해서 필요없음.
-  const { state } = useStateValue();
+  const {todos} = useStateValue();  
   const [todoCnt, setTodoCnt] = useState(0);
   const [doneCnt, setDoneCnt] = useState(0);
 
   useEffect(() => {
-    calcStatusCnt(state.todos);
-  }, [state.todos]);
+    calcStatusCnt(todos);
+  }, [todos]);
 
   const calcStatusCnt = todos => {
     const todoArr = todos.filter(todo => todo.status === "todo");
