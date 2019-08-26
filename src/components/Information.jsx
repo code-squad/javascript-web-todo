@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
-import { TodoContext } from "./TodoContextProvider";
+import { useTodoContext } from "./TodoContextProvider";
 import WarningModal from "../atomicComponents/WarningModal";
 
 const Typography = styled.div`
@@ -8,7 +8,7 @@ const Typography = styled.div`
 `;
 
 const Information = () => {
-  const { loading, warningVisible } = useContext(TodoContext);
+  const { loading, warningVisible } = useTodoContext();
 
   return (
     <>

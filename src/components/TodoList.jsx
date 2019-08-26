@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import Li from "../atomicComponents/Li";
 import XButton from "../atomicComponents/XButton";
-import { TodoContext } from "./TodoContextProvider";
+import { useTodoContext } from "./TodoContextProvider";
 
 const StyledLi = styled(Li)`
   text-decoration: ${({ textDeco }) => (textDeco === "done" ? "line-through" : "none")};
@@ -14,7 +14,7 @@ const Ul = styled.ul`
 `;
 
 const TodoList = () => {
-  const { todos, dispatch } = useContext(TodoContext);
+  const { todos, dispatch } = useTodoContext();
 
   const updateStatus = ({ target }) => {
     const targetId = Number(target.dataset.id);

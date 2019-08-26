@@ -5,6 +5,7 @@ import App from "./pages/App";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Header from "./components/Header";
+import TodoContextProvider from "./components/TodoContextProvider";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -29,10 +30,12 @@ const Root = () => {
       <GlobalStyle />
       <Router>
         <Wrapper>
-          <Header />
-          <Route path="/" exact component={Home} />
-          <Route path="/todo/" component={App} />
-          <Route path="/about/" component={About} />
+          <TodoContextProvider>
+            <Header />
+            <Route path="/" exact component={Home} />
+            <Route path="/todo/" component={App} />
+            <Route path="/about/" component={About} />
+          </TodoContextProvider>
         </Wrapper>
       </Router>
     </>

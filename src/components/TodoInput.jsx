@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import Button from "../atomicComponents/Button";
 import Input from "../atomicComponents/Input";
-import { TodoContext } from "./TodoContextProvider";
+import { useTodoContext } from "./TodoContextProvider";
 import useInput from "../hooks/useInput";
 
 const Form = styled.form`
@@ -10,7 +10,7 @@ const Form = styled.form`
 `;
 
 const TodoInput = () => {
-  const { dispatch } = useContext(TodoContext);
+  const { dispatch } = useTodoContext();
   const [state, handleChange, restore] = useInput();
   const { todoInput } = state;
 

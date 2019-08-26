@@ -1,6 +1,6 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { TodoContext } from "./TodoContextProvider";
+import { useTodoContext } from "./TodoContextProvider";
 import CONFIGS from "../configs/configs";
 import { makeDelay } from "../utils/myUtils";
 
@@ -37,11 +37,8 @@ const Circle = styled.div`
 `;
 
 const TodoCounter = () => {
-  const { todos } = useContext(TodoContext);
+  const { todoCount, doneCount } = useTodoContext();
   const [emphasize, setEmphasize] = useState(false);
-
-  const todoCount = todos.filter(el => el.status === "todo").length;
-  const doneCount = todos.filter(el => el.status === "done").length;
 
   useEffect(() => {
     (async () => {
@@ -49,7 +46,7 @@ const TodoCounter = () => {
       await makeDelay(ANIMATE_DURATION);
       setEmphasize(false);
     })();
-  }, [todos]);
+  }, [todoCount]);
 
   return (
     <Wrapper>
