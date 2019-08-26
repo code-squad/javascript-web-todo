@@ -21,27 +21,32 @@ const TodoWrapper = styled.ul`
 `;
 
 export default function TodoList(props) {
-  const [{ todos },] = useStateValue();
+  const { state, dispatch, isLoading } = useStateValue();
   const [isOpened, setIsOpened] = useState(true);
 
   const handleClick = () => {
     setIsOpened(!isOpened);
   };
 
+  const makeTodoList = data => {
+    const todoList = data.map((todo, idx) => {
+      return <TodoItem key={todo.id} idx={idx} todo={todo} />;
+    });
 
-  const todoList = todos.map((todo, idx) => {
-    return <TodoItem idx={idx} key={todo.id} />;
-  });
+    return todoList;
+  };
 
-
-  
   return (
     <Background>
       <Folder>
         <h3>해야할 일들</h3>
         <button onClick={handleClick}>접기</button>
       </Folder>
-      <TodoWrapper isOpened={isOpened}>{todoList}</TodoWrapper>
+
+      <TodoWrapper isOpened={isOpened}>
+        {isLoading && <li>로딩중...</li>}
+        {!isLoading && makeTodoList(state.todos)}
+      </TodoWrapper>
     </Background>
   );
 }

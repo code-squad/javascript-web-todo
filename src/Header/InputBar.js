@@ -15,7 +15,7 @@ const Form = styled.form`
 
 export default function InputBar() {
   const id = nextId();
-  const [{ todos }, dispatch] = useStateValue();
+  const { dispatch, isLoading } = useStateValue();
   const [newTodo, setNewTodo] = useState("");
 
   const handleChangeInput = ({ target: { value } }) => {

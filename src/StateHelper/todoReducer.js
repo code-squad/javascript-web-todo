@@ -1,5 +1,9 @@
 const todosReducer = (state, action) => {
   switch (action.type) {
+    case "INIT_TODO":
+      return {
+        todos: action.todos
+      };
     case "ADD_TODO":
       const newTodoObj = {
         title: action.title,
@@ -7,12 +11,10 @@ const todosReducer = (state, action) => {
         status: "todo"
       };
       return {
-        todos: [...state.todos, newTodoObj],
+        todos: [...state.todos, newTodoObj]
       };
     case "DELETE_TODO":
-      const remaindedTodos = state.todos.filter(
-        todo => todo.id !== action.id
-      );
+      const remaindedTodos = state.todos.filter(todo => todo.id !== action.id);
       return {
         todos: remaindedTodos
       };
