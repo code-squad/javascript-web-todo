@@ -1,16 +1,31 @@
 import React from "react";
+import styled from "styled-components";
 import { useTodoContext } from "./TodoContextProvider";
 
 const Welcome = () => {
   const { todoCount, doneCount } = useTodoContext();
   return (
     <>
-      <div>반갑습니다.</div>
-      <div>할일관리 애플리케이션입니다.</div>
-      <div>현재 해야 할 일이 {todoCount}개,</div>
-      <div>완료된 일이 {doneCount}개 있습니다.</div>
+      <Typography>반갑습니다.</Typography>
+      <Typography>할일관리 애플리케이션입니다.</Typography>
+      <Typography>
+        현재 해야 할 일이 <TextHighlight>{todoCount}</TextHighlight>개,
+      </Typography>
+      <Typography>
+        완료된 일이 <TextHighlight>{doneCount}</TextHighlight>개 있습니다.
+      </Typography>
     </>
   );
 };
 
 export default Welcome;
+
+const Typography = styled.div`
+  font-size: 4.5rem;
+  font-weight: bold;
+  line-height: 7.5rem;
+`;
+
+const TextHighlight = styled.span`
+  color: #1976d2;
+`;
