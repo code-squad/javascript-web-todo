@@ -9,31 +9,20 @@ const ResultWrapper = styled.div`
 `;
 
 export default function ResultBar() {
-  // isLoading이 state.todos로 파악이 가능해서 필요없음.
   const {todos} = useStateValue();  
-  const [todoCnt, setTodoCnt] = useState(0);
-  const [doneCnt, setDoneCnt] = useState(0);
 
-  useEffect(() => {
-    calcStatusCnt(todos);
-  }, [todos]);
+  const todoCount = todos.filter(todo => todo.status === "todo").length;
+  const doneCount = todos.filter(todo => todo.status === "done").length;
 
-  const calcStatusCnt = todos => {
-    const todoArr = todos.filter(todo => todo.status === "todo");
-    const doneArr = todos.filter(todo => todo.status === "done");
-
-    setTodoCnt(todoArr.length);
-    setDoneCnt(doneArr.length);
-  };
 
   return (
     <ResultWrapper>
       <RadiusDisplayer
         color={"rgb(71, 58, 210)"}
         status={"todos"}
-        display={todoCnt}
+        display={todoCount}
       />
-      <RadiusDisplayer status={"done"} display={doneCnt} />
+      <RadiusDisplayer status={"done"} display={doneCount} />
     </ResultWrapper>
   );
 }
