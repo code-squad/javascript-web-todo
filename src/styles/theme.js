@@ -4,10 +4,10 @@ const theme = {
     sub: "#2261B7",
     bg: "#fff"
   },
-  dark: {
-    defaultColor: "#0080ff",
-    subColor: "#2261B7",
-    bgColor: "#2A2A2B"
+  coral: {
+    default: "#F76E60",
+    sub: "#D15D51",
+    bg: "#fff"
   }
 };
 

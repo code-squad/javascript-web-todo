@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Input from "./Input.jsx";
 import Button from "./Button.jsx";
+import theme from "../styles/theme";
 import styled from "styled-components";
 
 class TodoInput extends Component {
@@ -15,6 +16,7 @@ class TodoInput extends Component {
 }
 
 const Wrapper = styled.div`
+  background: ${theme.deepblue.bg};
   border-radius: 8px;
   padding: 1rem 2rem;
   display: flex;
