@@ -12,7 +12,8 @@ const Root = _ => {
     <TodoProvider>
       <Router>
         <Layout>
-          <Route path="/" exact component={Home} />
+          <Route path="/" render={() => <Redirect to="/Home" />} />
+          <Route path="/Home" component={Home} />
           <Route path="/Todo/" component={Todo} />
           <Route path="/about/" component={About} />
         </Layout>

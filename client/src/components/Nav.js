@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import config from "../config";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { BrowserRouter as Router, Link, NavLink } from "react-router-dom";
 
 const StyledNav = styled.nav`
   background-color: #3398da;
@@ -32,27 +32,16 @@ const StyledLi = styled.li`
   }
 `;
 
-const setActiveClass = ({ target }) => {
-  const linkNode = target.parentNode;
-  const linkNodes = [...linkNode.parentNode.children];
-
-  linkNodes.forEach(node => {
-    node.classList.remove("active");
-  });
-  linkNode.classList.add("active");
-};
-
 export default _ => {
   return (
     <StyledNav>
       <StyledUl>
         {config.navList.map(item => {
-          const path = item === "Home" ? `/` : `/${item}`;
-          const className = item === "Home" ? `active` : ``;
+          const path = `/${item}`;
           return (
-            <Link to={path} key={item} className={className}>
-              <StyledLi onClick={setActiveClass}>{item}</StyledLi>
-            </Link>
+            <NavLink strict to={path} key={item} activeClassName="active">
+              <StyledLi>{item}</StyledLi>
+            </NavLink>
           );
         })}
       </StyledUl>
