@@ -4,6 +4,7 @@ import Button from "../atomicComponents/Button";
 import Input from "../atomicComponents/Input";
 import { useTodoContext } from "./TodoContextProvider";
 import useInput from "../hooks/useInput";
+import PropTypes from "prop-types";
 
 const Form = styled.form`
   display: flex;
@@ -26,6 +27,10 @@ const TodoInput = () => {
       <Button>입력</Button>
     </Form>
   );
+};
+
+Form.propTypes = {
+  onSubmit: PropTypes.func
 };
 
 export default TodoInput;

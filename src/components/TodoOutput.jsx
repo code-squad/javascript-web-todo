@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "../atomicComponents/Button";
 import TodoList from "./TodoList";
+import PropTypes from "prop-types";
 
 const Wrapper = styled.div`
   position: relative;
@@ -36,6 +37,10 @@ const TodoOutput = () => {
       {listVisible && <TodoList />}
     </Wrapper>
   );
+};
+
+ToggleButton.propTypes = {
+  onClick: PropTypes.func
 };
 
 export default TodoOutput;

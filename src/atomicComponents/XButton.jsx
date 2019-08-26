@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const StyledButton = styled.button`
   background: transparent;
@@ -18,6 +19,10 @@ const StyledButton = styled.button`
 
 const XButton = props => {
   return <StyledButton {...props}>{props.children}❌</StyledButton>;
+};
+
+XButton.propTypes = {
+  onClick: PropTypes.func
 };
 
 export default XButton;

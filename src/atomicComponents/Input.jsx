@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const SInput = styled.input`
   background: transparent;
@@ -14,6 +15,12 @@ const SInput = styled.input`
 
 const Input = props => {
   return <SInput {...props} />;
+};
+
+Input.propTypes = {
+  placeholder: PropTypes.string,
+  name: PropTypes.string,
+  onChange: PropTypes.func
 };
 
 export default Input;

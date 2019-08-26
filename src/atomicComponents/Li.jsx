@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const StyledLi = styled.li`
   margin: 0 1rem;
@@ -13,6 +14,10 @@ const StyledLi = styled.li`
 
 const Li = props => {
   return <StyledLi {...props}>{props.children}</StyledLi>;
+};
+
+Li.propTypes = {
+  onClick: PropTypes.func
 };
 
 export default Li;
