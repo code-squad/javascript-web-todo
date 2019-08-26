@@ -14,20 +14,9 @@ const ShowTodo = () => {
   const makeLiData = todos => {
     const arr = todos.map(data => {
       return (
-        <LI
-          onClick={() => {
-            dispatch({ type: "CHANGE_TODO", payload: data });
-          }}
-          key={data.id}
-        >
+        <LI onClick={() => onChangeHandler(data)} key={data.id}>
           {data.status === "todo" ? data.title : <del>{data.title}</del>}
-          <IconButton
-            id={data.id}
-            onClick={e => {
-              e.stopPropagation();
-              dispatch({ type: "DELETE_TODO", payload: data });
-            }}
-          >
+          <IconButton id={data.id} onClick={e => onDeleteHandler(e, data)}>
             <DeleteIcon fontSize="small" />
           </IconButton>
         </LI>
@@ -35,6 +24,15 @@ const ShowTodo = () => {
     });
 
     return arr;
+  };
+
+  const onChangeHandler = data => {
+    dispatch({ type: "CHANGE_TODO", payload: data });
+  };
+
+  const onDeleteHandler = (e, data) => {
+    e.stopPropagation();
+    dispatch({ type: "DELETE_TODO", payload: data });
   };
 
   const makeLiComponent = data => {
@@ -55,17 +53,19 @@ const ShowTodo = () => {
   };
 
   return (
-    <DIV>
-      <HEADER customAttr="test">해야할 일</HEADER>
-      <Button color="secondary" onClick={e => ModulateWindow(e)}>
-        {toggle ? "접기" : "펼치기"}
-      </Button>
-      <ul style={{ display: toggle ? "block" : "none" }}>
-        {error && <li>네트워크 요청 실패</li>}
-        {loading && <li>로딩중...</li>}
-        {!error && !loading && makeLiComponent(todoData)}
-      </ul>
-    </DIV>
+    <ShowDIV>
+      <DIV>
+        <HEADER customAttr="test">해야할 일</HEADER>
+        <Button color="secondary" onClick={e => ModulateWindow(e)}>
+          {toggle ? "접기" : "펼치기"}
+        </Button>
+        <ul style={{ display: toggle ? "block" : "none" }}>
+          {error && <li>네트워크 요청 실패</li>}
+          {loading && <li>로딩중...</li>}
+          {!error && !loading && makeLiComponent(todoData)}
+        </ul>
+      </DIV>
+    </ShowDIV>
   );
 };
 
@@ -82,6 +82,11 @@ const HEADER = styled.h3`
   font-weight: 400;
   font-size: 1.4em;
   padding-top: 0.5em;
+`;
+
+const ShowDIV = styled.div`
+  display: flex;
+  justify-content: space-around;
 `;
 
 const LI = styled.li`

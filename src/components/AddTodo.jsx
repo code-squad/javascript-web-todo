@@ -10,14 +10,14 @@ const AddTodo = () => {
     setInputValue(e.target.value);
   };
 
+  const onSubmitHandler = e => {
+    e.preventDefault();
+    dispatch({ type: "ADD_TODO", payload: inputValue });
+    setInputValue("");
+  };
+
   return (
-    <form
-      onSubmit={e => {
-        e.preventDefault();
-        dispatch({ type: "ADD_TODO", payload: inputValue });
-        setInputValue("");
-      }}
-    >
+    <form onSubmit={onSubmitHandler}>
       <Header>what is your One Small Step? </Header>
       <Input value={inputValue} onChange={onChangeHandler} type="text" />
       <Button>등록</Button>
