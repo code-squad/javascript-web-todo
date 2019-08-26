@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { TodoContext } from "./ToDoStore";
+import styled from "styled-components";
 import Fab from "@material-ui/core/Fab";
 
 const Counter = () => {
@@ -9,6 +10,7 @@ const Counter = () => {
 
   const classify = data => {
     const rawData = data;
+
     if (!!rawData.length) {
       const todoArr = rawData.filter(v => v.status === "todo");
       const doneArr = rawData.filter(v => v.status === "done");
@@ -23,11 +25,20 @@ const Counter = () => {
   });
 
   return (
-    <React.Fragment>
-      진행 중 :<Fab color="primary">{todoCnt}</Fab>
-      완료 : <Fab color="secondary">{doneCnt}</Fab>
-    </React.Fragment>
+    <>
+      <CounterDIV>
+        진행 중 :<Fab color="primary">{todoCnt}</Fab>
+        완료 : <Fab color="secondary">{doneCnt}</Fab>
+      </CounterDIV>
+    </>
   );
 };
 
 export default Counter;
+
+const CounterDIV = styled.div`
+  font-family: Monospace;
+  font-weight: 300;
+  margin-top: 4em;
+  text-align: right;
+`;

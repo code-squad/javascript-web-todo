@@ -11,12 +11,8 @@ const App = () => {
       <GlobalStyle />
       <ToDoStore>
         <AddTodo />
-        <CounterDIV>
-          <Counter />
-        </CounterDIV>
-        <ShowDIV>
-          <ShowTodo />
-        </ShowDIV>
+        <Counter />
+        <ShowTodo />
       </ToDoStore>
     </>
   );
@@ -37,9 +33,4 @@ const CounterDIV = styled.div`
   font-weight: 300;
   margin-top: 4em;
   text-align: right;
-`;
-
-const ShowDIV = styled.div`
-  display: flex;
-  justify-content: space-around;
 `;

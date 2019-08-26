@@ -5,7 +5,7 @@ import config from "../config";
 
 export const TodoContext = React.createContext({});
 
-export const ToDoStore = props => {
+export const ToDoStore = ({ children }) => {
   const [todoData, dispatch] = useReducer(TodoReducer, []);
   const [error, setError] = useState(null);
   const { url } = config;
@@ -24,7 +24,7 @@ export const ToDoStore = props => {
   return (
     <>
       <TodoContext.Provider value={{ todoData, error, loading, dispatch }}>
-        {props.children}
+        {children}
       </TodoContext.Provider>
     </>
   );
