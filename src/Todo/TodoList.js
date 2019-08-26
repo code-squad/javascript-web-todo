@@ -3,13 +3,16 @@ import TodoItem from "./TodoItem";
 import styled from "styled-components";
 import { useStateValue } from "../StateHelper/TodoState";
 
-const Background = styled.div`
-  background: #a6d0d1;
-`;
+const Background = styled.div``;
+
 const Folder = styled.div`
+  background: #ececec;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  h3 {
+    margin-left: 2rem;
+  }
 `;
 
 const TodoWrapper = styled.ul`
@@ -35,8 +38,8 @@ export default function TodoList() {
   return (
     <Background>
       <Folder>
-        <h3>해야할 일들</h3>
-        <button onClick={handleClick}>접기</button>
+        <h3>Todos</h3>
+        <button onClick={handleClick}>Toggle</button>
       </Folder>
 
       <TodoWrapper isOpened={isOpened}>
