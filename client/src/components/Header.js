@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useMemo } from "react";
 import styled from "styled-components";
 import { TodoContext } from "./TodoContext";
 import { getNumOfTodos } from "../utils/utils";
@@ -23,17 +23,13 @@ const StyledNav = styled.nav`
 
 const Header = _ => {
   const { todos } = useContext(TodoContext);
-  const [nums, setNums] = useState({ todo: 0, done: 0 });
-
-  useEffect(() => {
-    setNums(getNumOfTodos(todos));
-  }, [todos]);
+  const statusNums = useMemo(() => getNumOfTodos(todos), [todos]);
 
   return (
     <StyledHeader>
       <h1>Todo</h1>
       <StyledNav>
-        Todo: {nums.todo} Done: {nums.done}
+        Todo: {statusNums.todo} Done: {statusNums.done}
       </StyledNav>
     </StyledHeader>
   );
