@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react';
+import React, { useReducer } from 'react';
 import useFetch from './helper/useFetch/useFetch';
 import { todoReducer } from './helper/reducers/todoReducer';
 

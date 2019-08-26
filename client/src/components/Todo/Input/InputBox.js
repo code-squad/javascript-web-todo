@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import AddBtn from './AddButton';
 import styled from 'styled-components';
-import { TodoContext } from '../TodoStorage';
+import { TodoContext } from '../../TodoStorage';
 
 const Form = styled.form`
   position: relative;
@@ -13,7 +13,6 @@ const Form = styled.form`
   background-color: #8ee4af;
   color: #05386b;
   vertical-align: middle;
-  border-radius: 5px 5px 0 0 ;
 
   label {
     align-items: center;

@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
-import { TodoContext } from '../TodoStorage';
-import ShowingBtn from '../ShowingBtn/ShowingBtn';
+import { TodoContext } from '../../TodoStorage';
+import ShowingBtn from './ShowingBtn';
 import styled from 'styled-components';
 
 const Div = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
   height: 80px;
   background-color: #8ee4af;
   color: #05386b;

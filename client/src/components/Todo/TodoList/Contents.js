@@ -1,7 +1,7 @@
 import React from 'react';
 import ContentsList from './ContentsList';
 import styled from 'styled-components';
-import { LOADING, EMPTY_LIST } from '../../message/message';
+import { LOADING, EMPTY_LIST } from '../../../message/message';
 
 const Div = styled.div`
   width: 85%;

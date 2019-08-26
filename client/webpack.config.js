@@ -14,6 +14,11 @@ module.exports = {
       'react-dom': '@hot-loader/react-dom'
     }
   },
+  devServer: {
+    inline: true,
+    port: 8080,
+    historyApiFallback: true
+  },
   module: {
     rules: [
       { 

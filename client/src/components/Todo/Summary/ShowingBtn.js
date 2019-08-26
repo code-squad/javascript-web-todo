@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components';
-import { TodoContext } from '../TodoStorage';
+import { TodoContext } from '../../TodoStorage';
 
 const Div = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 105px;
+  margin-left: 10px;
 
   button {
     border-radius: 6px;

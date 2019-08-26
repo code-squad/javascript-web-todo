@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import RemoveBtn from './RemoveBtn';
 import styled from 'styled-components';
-import { TodoContext } from '../TodoStorage';
+import { TodoContext } from '../../TodoStorage';
 
 const Li = styled.li`
   display: flex;
