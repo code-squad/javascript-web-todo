@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useMemo } from "react";
 import { getNumOfTodos } from "../utils/utils";
 import styled from "styled-components";
 
@@ -23,11 +23,7 @@ const StyledContent = styled.div`
 
 export default function Home() {
   const { todos } = useContext(TodoContext);
-  const [nums, setNums] = useState({ todo: 0, done: 0 });
-
-  useEffect(() => {
-    setNums(getNumOfTodos(todos));
-  }, [todos]);
+  const statusNums = useMemo(() => getNumOfTodos(todos), [todos]);
 
   return (
     <StyledHome>
@@ -36,8 +32,8 @@ export default function Home() {
           할 일 관리 앱입니다.
           <br />
           <br />
-          해야 할 일 {nums.todo}개<br />
-          완료한 일이 {nums.done}개 있습니다.
+          해야 할 일 {statusNums.todo}개<br />
+          완료한 일이 {statusNums.done}개 있습니다.
         </StyledContent>
       ) : (
         <Loader message="Loading..." />
