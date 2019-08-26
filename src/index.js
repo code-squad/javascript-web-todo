@@ -1,7 +1,7 @@
 import { hot } from 'react-hot-loader/root'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Root from './components/Root'
+import Root from './Root'
 
 const Hot = hot(Root);
 

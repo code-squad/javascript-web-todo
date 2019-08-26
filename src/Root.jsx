@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
-import App from "./App";
-import Home from "./Home";
-import About from "./About";
-import Header from "./Header";
+import App from "./pages/App";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Header from "./components/Header";
 
 const GlobalStyle = createGlobalStyle`
   * {

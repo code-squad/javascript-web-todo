@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import TodoInput from "./TodoInput";
-import TodoOutput from "./TodoOutput";
-import TodoContextProvider from "./TodoContextProvider";
-import Information from "./Information";
-import TodoCounter from "./TodoCounter";
+import TodoInput from "../components/TodoInput";
+import TodoOutput from "../components/TodoOutput";
+import TodoContextProvider from "../components/TodoContextProvider";
+import Information from "../components/Information";
+import TodoCounter from "../components/TodoCounter";
 
 const Wrapper = styled.div`
   display: flex;
