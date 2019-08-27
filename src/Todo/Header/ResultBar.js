@@ -18,7 +18,7 @@ export default function ResultBar() {
   return (
     <ResultWrapper>
       <RadiusDisplayer
-        color={"rgb(71, 58, 210)"}
+        color={"rgb(210, 209, 221);"}
         status={"todos"}
         display={todoCount}
       />

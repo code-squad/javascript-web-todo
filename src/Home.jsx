@@ -1,0 +1,31 @@
+import React from "react";
+import { useStateValue } from "./StateHelper/TodoState";
+import styled from "styled-components";
+
+const HomeWrapper = styled.div`
+  font-size: 1.2rem;
+  p {
+    margin: 0;
+    span {
+      color: hotpink;
+    }
+  }
+`;
+
+export default function Home() {
+  const { todos } = useStateValue();
+  const todoCount = todos.filter(todo => todo.status === "todo").length;
+  const doneCount = todos.filter(todo => todo.status === "done").length;
+
+  return (
+    <HomeWrapper>
+      <p>반갑습니다.할일관리 애플리케이션입니다.</p>
+      <p>
+        현재 해야 할일이 <span>{todoCount}</span>개,
+      </p>
+      <p>
+        완료된 일이 <span>{doneCount}</span>개 있습니다.
+      </p>
+    </HomeWrapper>
+  );
+}
