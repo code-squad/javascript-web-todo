@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Button = styled.button`
@@ -15,6 +16,10 @@ const Button = styled.button`
 
 const RemoveBtn = ({ removeHandler }) => {
   return <Button onClick={ removeHandler }>X</Button>
+}
+
+RemoveBtn.PropTypes = {
+  removeHandler: PropTypes.func
 }
 
 export default RemoveBtn;

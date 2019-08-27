@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import RemoveBtn from './RemoveBtn';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { TodoContext } from '../../TodoStorage';
 
 const Li = styled.li`
@@ -53,6 +54,12 @@ const ContentsList = ({ title, status, id }) => {
       <RemoveBtn removeHandler={ removeHandler } />
     </Li>
   );
+}
+
+ContentsList.propTypes = {
+  title: PropTypes.string,
+  status: PropTypes.string,
+  id: PropTypes.number
 }
 
 export default ContentsList;

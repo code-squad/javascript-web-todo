@@ -1,6 +1,6 @@
-import React, { useContext } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { TodoContext } from '../../TodoStorage';
 
 const Div = styled.div`
   display: flex;
@@ -19,8 +19,7 @@ const Div = styled.div`
   }
 `
 
-const ShowingBtn = () => {
-  const { todoData: { showingBtnTitle }, dispatch } = useContext(TodoContext);
+const ShowingBtn = ({ showingBtnTitle, dispatch }) => {
   
   const showContents = () => {
     dispatch({ type: 'CHANGE_BTNTITLE' });
@@ -33,6 +32,11 @@ const ShowingBtn = () => {
       </button>
     </Div>
   )
+}
+
+ShowingBtn.propTypes = {
+  showingBtnTitle: PropTypes.string,
+  dispatch: PropTypes.func
 }
 
 export default ShowingBtn;

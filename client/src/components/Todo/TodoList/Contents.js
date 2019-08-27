@@ -1,6 +1,7 @@
 import React from 'react';
 import ContentsList from './ContentsList';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { LOADING, EMPTY_LIST } from '../../../config';
 
 const Div = styled.div`
@@ -43,6 +44,11 @@ const Contents = ({ myTodo, isFetched }) => {
       </ul>
     </Div>
   )
+}
+
+Contents.propTypes = {
+  myTodo: PropTypes.array,
+  isFetched: PropTypes.bool
 }
 
 export default Contents;

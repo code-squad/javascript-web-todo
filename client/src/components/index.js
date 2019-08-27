@@ -31,17 +31,17 @@ const Main = () => {
   return (
     <Router>
       <>
-        <TodoStorage>
-          <GlobalStyle />
-          <Nav />
-          <MainLayout>
-            <Switch>
+        <GlobalStyle />
+        <Nav />
+        <MainLayout>
+          <Switch>
+            <TodoStorage>
               <Route path='/' exact component={ Home } />
               <Route path='/todo' component={ TodoApp } />
               <Route path='/about' component={ About } />
-            </Switch>
-          </MainLayout>
-        </TodoStorage>
+            </TodoStorage>
+          </Switch>
+        </MainLayout>
       </>
     </Router>
   )
