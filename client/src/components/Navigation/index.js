@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import { NAV_NAMES } from '../../config';
 
 const Nav = styled.nav`
   height: 80px;
@@ -9,6 +10,7 @@ const Nav = styled.nav`
   margin: 30px auto 0 auto;
   border-radius: 5px 5px 0 0 ;
   overflow: hidden;
+  font-weight: bold;
 
   ul {
     display: flex;
@@ -17,7 +19,6 @@ const Nav = styled.nav`
     margin: 0;
     padding: 0;
     color: #8ee4af;
-    font-weight: bold;
     font-size: 2rem;
     height: 100%;
 
@@ -29,25 +30,28 @@ const Nav = styled.nav`
       height: 100%;
       width: 200px;
       cursor: pointer;
-    }
 
-    .selected {
-      background-color: #8ee4af;
-      color: #05386b;
+      &:visited {
+        color: #8ee4af;
+      }
+
+      &.selected {
+        background-color: #8ee4af;
+        color: #05386b;
+      }
     }
   }
 `
 
-//#05386b
-
 const Navigation = () => {
-  const navNames = ['Home', 'Todo', 'About'];
-  const navList = navNames.map( (name, idx) => {
-  const route = name==='Home' ? '/' : '/' + name.toLowerCase();
+  const navList = NAV_NAMES.map( (name, idx) => {
+  const route = name === 'Home' ? '/' : '/' + name.toLowerCase();
     return (
-      <NavLink to={route} key={idx+1} activeClassName='selected' exact={true}>
-        <li>{name}</li>
-      </NavLink>
+      <li key={ idx+1 }>
+        <NavLink to={ route } activeClassName='selected' exact={ true }>
+          { name }
+        </NavLink>
+      </li>
     )
   });
 
