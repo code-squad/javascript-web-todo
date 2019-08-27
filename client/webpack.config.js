@@ -44,6 +44,10 @@ module.exports = {
     ]
   },
 
+  devServer: {
+    historyApiFallback: true
+  },
+
   resolve: {
     alias: {
       "react-dom$": "react-dom/profiling",
