@@ -5,13 +5,17 @@ import { BrowserRouter as Router, NavLink } from "react-router-dom";
 
 export default _ => {
   const getNavLinkOptions = useCallback(({ item }) => {
-    const path = item === "Home" ? `/` : `/${item}`;
+    const path =
+      item === "Home"
+        ? `${process.env.ACCESS_PATH}`
+        : `${process.env.ACCESS_PATH}${item}`;
+    console.log(path);
     const obj = {
       activeClassName: "active",
       key: item,
       to: path
     };
-    if (path === "/") obj.exact = true;
+    if (path === process.env.ACCESS_PATH) obj.exact = true;
     return obj;
   }, []);
 

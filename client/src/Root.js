@@ -6,13 +6,14 @@ import { TodoProvider } from "./components/TodoContext";
 import { Home, About, Todo } from "./pages";
 
 const Root = _ => {
+  debugger;
   return (
     <TodoProvider>
       <Router>
         <Layout>
-          <Route path="/" exact component={Home} />
-          <Route path="/Todo" component={Todo} />
-          <Route path="/About" component={About} />
+          <Route path={process.env.ACCESS_PATH} exact component={Home} />
+          <Route path={process.env.ACCESS_PATH + "Todo"} component={Todo} />
+          <Route path={process.env.ACCESS_PATH + "About"} component={About} />
         </Layout>
       </Router>
     </TodoProvider>

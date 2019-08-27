@@ -11,6 +11,11 @@ const API_URL = {
   development: "https://react-web-todo.herokuapp.com/api/todos"
 };
 
+const ACCESS_PATH = {
+  production: "/javascript-web-todo/",
+  development: "/"
+};
+
 module.exports = {
   entry: "./src/index.js",
   output: {
@@ -47,6 +52,7 @@ module.exports = {
   devServer: {
     historyApiFallback: true
   },
+  devtool: "source-map",
 
   resolve: {
     alias: {
@@ -62,7 +68,8 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new webpack.EnvironmentPlugin({
-      API_URL: API_URL[environment]
+      API_URL: API_URL[environment],
+      ACCESS_PATH: ACCESS_PATH[environment]
     })
   ]
 };
