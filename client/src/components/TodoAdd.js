@@ -8,15 +8,7 @@ import TodoButton from "./TodoButton";
 import { TodoContext } from "./TodoContext";
 import { useInput } from "../hooks";
 
-const StyledDiv = styled.div`
-  display: flex;
-  position: relative;
-  align-items: center;
-  justify-content: space-around;
-  padding: 0.5rem 0.3rem;
-`;
-
-const TodoAdd = _ => {
+export default _ => {
   const { dispatch } = useContext(TodoContext);
   const [inputVal, setInputVal] = useState("");
 
@@ -46,4 +38,10 @@ const TodoAdd = _ => {
   );
 };
 
-export default TodoAdd;
+const StyledDiv = styled.div`
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0.5rem 0.3rem;
+`;

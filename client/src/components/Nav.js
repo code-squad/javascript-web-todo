@@ -1,7 +1,34 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
 import config from "../config";
-import { BrowserRouter as Router, Link, NavLink } from "react-router-dom";
+import { BrowserRouter as Router, NavLink } from "react-router-dom";
+
+export default _ => {
+  const getNavLinkOptions = useCallback(({ item }) => {
+    const path = item === "Home" ? `/` : `/${item}`;
+    const obj = {
+      activeClassName: "active",
+      key: item,
+      to: path
+    };
+    if (path === "/") obj.exact = true;
+    return obj;
+  }, []);
+
+  return (
+    <StyledNav>
+      <StyledUl>
+        {config.navList.map(item => {
+          return (
+            <NavLink {...getNavLinkOptions({ item })}>
+              <StyledLi>{item}</StyledLi>
+            </NavLink>
+          );
+        })}
+      </StyledUl>
+    </StyledNav>
+  );
+};
 
 const StyledNav = styled.nav`
   background-color: #3398da;
@@ -31,26 +58,3 @@ const StyledLi = styled.li`
     text-decoration: underline;
   }
 `;
-
-export default _ => {
-  return (
-    <StyledNav>
-      <StyledUl>
-        {config.navList.map(item => {
-          const path = item === "Home" ? `/` : `/${item}`;
-          const navLinkOptions = {
-            exact: path === "Home" ? true : null,
-            activeClassName: "active",
-            key: item,
-            to: path
-          };
-          return (
-            <NavLink {...navLinkOptions}>
-              <StyledLi>{item}</StyledLi>
-            </NavLink>
-          );
-        })}
-      </StyledUl>
-    </StyledNav>
-  );
-};

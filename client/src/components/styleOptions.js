@@ -14,5 +14,11 @@ export default {
   ADD_BUTTON: {
     width: "4rem",
     height: "2rem"
+  },
+  REFETCH_BUTTON: {
+    width: "4rem",
+    height: "2rem",
+    absolute: "true",
+    top: "3rem"
   }
 };

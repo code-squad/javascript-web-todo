@@ -3,6 +3,13 @@ import styled from "styled-components";
 
 import Nav from "./Nav";
 
+export default ({ children }) => (
+  <StyledLayout>
+    <Nav />
+    {children}
+  </StyledLayout>
+);
+
 const StyledLayout = styled.div`
   width: 480px;
   margin: 0 auto;
@@ -19,12 +26,3 @@ const StyledLayout = styled.div`
     text-decoration: none;
   }
 `;
-
-export default function Layout({ children }) {
-  return (
-    <StyledLayout>
-      <Nav />
-      {children}
-    </StyledLayout>
-  );
-}

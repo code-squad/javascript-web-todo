@@ -2,6 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
+const Loader = ({ message }) => <LoaderTitle>{message}</LoaderTitle>;
+
+Loader.propTypes = {
+  message: PropTypes.string.isRequired
+};
+
 const LoaderTitle = styled.h3`
   width: 100%;
   display: flex;
@@ -12,11 +18,5 @@ const LoaderTitle = styled.h3`
   color: red;
   font-weight: 300;
 `;
-
-const Loader = ({ message }) => <LoaderTitle>{message}</LoaderTitle>;
-
-Loader.propTypes = {
-  message: PropTypes.string.isRequired
-};
 
 export default Loader;

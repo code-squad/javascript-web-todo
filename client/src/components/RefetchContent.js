@@ -3,6 +3,7 @@ import { TodoContext } from "./TodoContext";
 
 import Loader from "./Loader";
 import TodoButton from "./TodoButton";
+import styleOptions from "./styleOptions";
 
 export default _ => {
   const { fetchError, refetch } = useContext(TodoContext);
@@ -12,10 +13,7 @@ export default _ => {
       <TodoButton
         clickHandler={refetch}
         name="Refetch"
-        width="4rem"
-        height="2rem"
-        absolute={true}
-        top="3rem"
+        {...styleOptions.REFETCH_BUTTON}
       />
     </>
   );
