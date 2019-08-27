@@ -5,10 +5,9 @@ import { makeDelay } from "../utils/myUtils";
 const { LOADING_DELAY } = CONFIGS;
 
 const useFetch = (url, callback, errorHandler = () => {}) => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
     (async () => {
       try {
         await makeDelay(LOADING_DELAY);
