@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useStateValue } from "../StateHelper/TodoState";
-import RadiusDisplayer from "../components/Displayer";
+import { useStateValue } from "../../StateHelper/TodoState";
+import RadiusDisplayer from "../../components/Displayer";
 import styled from "styled-components";
 
 const ResultWrapper = styled.div`
