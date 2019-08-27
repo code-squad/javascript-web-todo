@@ -1,5 +1,5 @@
 import React, { useState, createContext, useEffect, useReducer } from "react";
-import useFetch from "../hooks/useFetch";
+import { useFetch } from "../hooks";
 import todoReducer from "../reducers/TodoReducer";
 import PropTypes from "prop-types";
 

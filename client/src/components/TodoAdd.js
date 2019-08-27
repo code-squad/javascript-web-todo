@@ -6,7 +6,7 @@ import TodoSubtitle from "./TodoSubtitle";
 import TodoAddInput from "./TodoAddInput";
 import TodoButton from "./TodoButton";
 import { TodoContext } from "./TodoContext";
-import { useInput } from "../hooks/useInput";
+import { useInput } from "../hooks";
 
 const StyledDiv = styled.div`
   display: flex;

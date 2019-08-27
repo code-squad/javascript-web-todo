@@ -1,11 +1,9 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Layout from "./components/Layout";
 import { TodoProvider } from "./components/TodoContext";
-import Home from "./pages/Home";
-import Todo from "./pages/Todo";
-import About from "./pages/About";
+import { Home, About, Todo } from "./pages";
 
 const Root = _ => {
   return (
