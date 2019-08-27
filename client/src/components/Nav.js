@@ -9,7 +9,7 @@ export default _ => {
       item === "Home"
         ? `${process.env.ACCESS_PATH}`
         : `${process.env.ACCESS_PATH}${item}`;
-    console.log(path);
+
     const obj = {
       activeClassName: "active",
       key: item,

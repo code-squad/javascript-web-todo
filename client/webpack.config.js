@@ -4,7 +4,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const webpack = require("webpack");
 
 const environment =
-  process.env.NODE_ENV === "production" ? "production" : "development";
+  process.env.NODE_ENV === "development" ? "development" : "production";
 
 const API_URL = {
   production: "https://react-web-todo.herokuapp.com/api/todos",
