@@ -23,7 +23,7 @@ export default function TodoList() {
   const { todos, isLoading } = useStateValue();
   const [isOpened, setIsOpened] = useState(true);
 
-  const handleClick = () => {
+  const handleOpen = () => {
     setIsOpened(!isOpened);
   };
 
@@ -39,12 +39,12 @@ export default function TodoList() {
     <Background>
       <Folder>
         <h3>Todos</h3>
-        <button onClick={handleClick}>Toggle</button>
+        <button onClick={handleOpen}>Toggle</button>
       </Folder>
 
       <TodoWrapper isOpened={isOpened}>
-        {isLoading && <li>로딩중...</li>}
-        {!isLoading && makeTodoList(todos)}
+        {isLoading === true && <li>로딩중...</li>}
+        {isLoading === false && makeTodoList(todos)}
       </TodoWrapper>
     </Background>
   );
