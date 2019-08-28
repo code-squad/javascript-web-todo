@@ -1,34 +1,38 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { DefinePlugin } = require('webpack');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { DefinePlugin } = require("webpack");
 
 const port = process.env.PORT || 3000;
 
-var environment = process.env.NODE_ENV === 'production' ? 'production' : 'development';
-
+var environment =
+  process.env.NODE_ENV === "production" ? "production" : "development";
+console.log(process.env.NODE_ENV);
 var API_URL = {
-  production: JSON.stringify('prod-url'),
-  development: JSON.stringify('https://dxvinci.github.io/react-todo/todolist.json')
-}
-
+  production: JSON.stringify(
+    "https://killsanghyuck.github.io/prography_5th_front/todoDummy.json"
+  ),
+  development: JSON.stringify(
+    "https://dxvinci.github.io/react-todo/todolist.json"
+  )
+};
 
 module.exports = {
-  mode: 'development',
-  entry: './src/index.js',
+  mode: "development",
+  entry: "./src/index.js",
   output: {
     path: `${__dirname}/dist`,
-    filename: 'bundle.[hash].js'
+    filename: "bundle.[hash].js"
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: ["babel-loader"]
       },
       {
         test: /\.(svg|jpg|png)$/,
         use: {
-          loader: 'url-loader',
+          loader: "url-loader",
           options: {
             limit: 25000
           }
@@ -38,15 +42,15 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html'
+      template: "./public/index.html"
     }),
     new DefinePlugin({
-      'API_URL': API_URL[environment]
+      API_URL: API_URL[environment]
     })
   ],
-  devtool: 'inline-source-map',
+  devtool: "inline-source-map",
   devServer: {
-    host: 'localhost',
+    host: "localhost",
     port,
     open: true,
     historyApiFallback: true,
