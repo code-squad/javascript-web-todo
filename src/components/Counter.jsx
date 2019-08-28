@@ -4,31 +4,27 @@ import styled from "styled-components";
 import Fab from "@material-ui/core/Fab";
 
 const Counter = () => {
-  const [todoCnt, setTodoCnt] = useState(0);
-  const [doneCnt, setDoneCnt] = useState(0);
   const { todoData } = useContext(TodoContext);
 
-  const classify = data => {
-    const rawData = data;
+  const calTodoCnt = () => {
+    const todoArr = todoData.filter(v => v.status === "todo");
 
-    if (!!rawData.length) {
-      const todoArr = rawData.filter(v => v.status === "todo");
-      const doneArr = rawData.filter(v => v.status === "done");
-
-      setTodoCnt(todoArr.length);
-      setDoneCnt(doneArr.length);
-    }
+    if (!todoArr) return 0;
+    return todoArr.length;
   };
 
-  useEffect(() => {
-    classify(todoData);
-  });
+  const calDoneCnt = () => {
+    const doneArr = todoData.filter(v => v.status === "done");
+
+    if (!doneArr) return 0;
+    return doneArr.length;
+  };
 
   return (
     <>
       <CounterDIV>
-        진행 중 :<Fab color="primary">{todoCnt}</Fab>
-        완료 : <Fab color="secondary">{doneCnt}</Fab>
+        진행 중 :<Fab color="primary">{calTodoCnt()}</Fab>
+        완료 : <Fab color="secondary">{calDoneCnt()}</Fab>
       </CounterDIV>
     </>
   );
