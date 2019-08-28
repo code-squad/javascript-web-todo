@@ -21,18 +21,16 @@ const useFetch = ({ url }) => {
       ...state,
       loading: true
     });
-    fetch(url)
-      .then(data => data.json())
-      .then(data => {
-        setState({
-          ...state,
-          loading: false,
-          data: data.body
-        });
-      })
-      .catch(error => {
-        setState({ ...state, loading: false, error });
+    async function fetchData() {
+      const response = await fetch(url);
+      const jsonData = await response.json();
+      setState({
+        ...state,
+        loading: false,
+        data: jsonData.body
       });
+    }
+    fetchData();
   }, [trigger]);
 
   return { ...state, refetch };

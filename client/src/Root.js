@@ -1,29 +1,20 @@
 import React from "react";
-import styled from "styled-components";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import TodoAdd from "./components/TodoAdd";
-import TodoContent from "./components/TodoContent";
+import Layout from "./components/Layout";
 import { TodoProvider } from "./components/TodoContext";
-import Header from "./components/Header";
+import { Home, About, Todo } from "./pages";
 
-const StyledRoot = styled.div`
-  width: 480px;
-  margin: 0 auto;
-  border: 1px solid #2196f3;
-  border-radius: 0.4rem;
-  padding: 1rem;
-`;
-
-const Root = _ => {
-  return (
-    <TodoProvider>
-      <StyledRoot>
-        <Header />
-        <TodoAdd />
-        <TodoContent />
-      </StyledRoot>
-    </TodoProvider>
-  );
-};
+const Root = _ => (
+  <TodoProvider>
+    <Router>
+      <Layout>
+        <Route path={process.env.ACCESS_PATH} exact component={Home} />
+        <Route path={process.env.ACCESS_PATH + "Todo"} component={Todo} />
+        <Route path={process.env.ACCESS_PATH + "About"} component={About} />
+      </Layout>
+    </Router>
+  </TodoProvider>
+);
 
 export default Root;

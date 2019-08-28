@@ -1,7 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
-const LoaderText = styled.h3`
+const Loader = ({ message }) => <LoaderTitle>{message}</LoaderTitle>;
+
+Loader.propTypes = {
+  message: PropTypes.string.isRequired
+};
+
+const LoaderTitle = styled.h3`
   width: 100%;
   display: flex;
   justify-content: center;
@@ -11,7 +18,5 @@ const LoaderText = styled.h3`
   color: red;
   font-weight: 300;
 `;
-
-const Loader = props => <LoaderText>{props.message}</LoaderText>;
 
 export default Loader;

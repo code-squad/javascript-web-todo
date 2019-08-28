@@ -3,7 +3,26 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import config from "../config";
 
-const Button = styled.button`
+const TodoButton = props => (
+  <StyledButton
+    onClick={props.clickHandler}
+    absolute={props.absolute}
+    top={props.top}
+    right={props.right}
+    width={props.width}
+    height={props.height}
+    borderRadius={props.borderRadius}
+  >
+    {props.name}
+  </StyledButton>
+);
+
+TodoButton.propTypes = {
+  name: PropTypes.string,
+  clickHandler: PropTypes.func
+};
+
+const StyledButton = styled.button`
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -29,24 +48,5 @@ const Button = styled.button`
     background-color: #579bde;
   }
 `;
-
-const TodoButton = props => (
-  <Button
-    onClick={props.clickHandler}
-    absolute={props.absolute}
-    top={props.top}
-    right={props.right}
-    width={props.width}
-    height={props.height}
-    borderRadius={props.borderRadius}
-  >
-    {props.name}
-  </Button>
-);
-
-TodoButton.propTypes = {
-  name: PropTypes.string,
-  clickHandler: PropTypes.func
-};
 
 export default TodoButton;

@@ -9,7 +9,8 @@ const config = {
   doneTextDecoration: "line-through",
   todoStatusColor: "#222",
   todoTextDecoration: "none",
-  themeColor: "#428eda"
+  themeColor: "#428eda",
+  navList: ["Home", "Todo", "About"]
 };
 
 export default config;

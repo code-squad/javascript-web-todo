@@ -1,8 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import styled from "styled-components";
 import { TodoContext } from "./TodoContext";
+import { getNumOfTodos } from "../utils/utils";
 
-const HeaderWrapper = styled.div`
+export default _ => {
+  const { todos } = useContext(TodoContext);
+  const statusNums = useMemo(() => getNumOfTodos(todos), [todos]);
+
+  return (
+    <StyledHeader>
+      <h1>Todo</h1>
+      <StyledDiv>
+        Todo: {statusNums.todo} Done: {statusNums.done}
+      </StyledDiv>
+    </StyledHeader>
+  );
+};
+
+const StyledHeader = styled.header`
   & > * {
     font-weight: 300;
   }
@@ -10,27 +25,12 @@ const HeaderWrapper = styled.div`
   h1 {
     text-align: center;
   }
-
-  nav {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    border-bottom: 1px solid #3498db;
-    height: 2rem;
-  }
 `;
 
-const Header = _ => {
-  const { numOfTodo, numOfDone } = useContext(TodoContext);
-
-  return (
-    <HeaderWrapper>
-      <h1>Todo</h1>
-      <nav>
-        Todo: {numOfTodo} Done: {numOfDone}
-      </nav>
-    </HeaderWrapper>
-  );
-};
-
-export default Header;
+const StyledDiv = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: 1px solid #3498db;
+  height: 2rem;
+`;
