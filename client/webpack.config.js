@@ -3,11 +3,11 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const ENV = process.env.NODE_ENV === 'development' ? 'development' :   'production';
+const ENV = process.env.NODE_ENV === 'development' ? 'development' : 'production';
 
 const PROPER_PATH = {
   development: '/',
-  production: '/javascript-web-todo'
+  production: '/javascript-web-todo/'
 }
 
 module.exports = {
