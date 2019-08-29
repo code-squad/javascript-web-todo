@@ -18,7 +18,7 @@ const RemoveBtn = ({ removeHandler }) => {
   return <Button onClick={ removeHandler }>X</Button>
 }
 
-RemoveBtn.PropTypes = {
+RemoveBtn.propTypes = {
   removeHandler: PropTypes.func
 }
 

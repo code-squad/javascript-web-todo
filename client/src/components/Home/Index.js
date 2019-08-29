@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { TodoContext } from '../TodoStorage';
 import { LOADING } from '../../config';
 import styled from 'styled-components';
+import { countTodoItems } from '../../myUtil';
 
 const Div = styled.div`
   display: flex;
@@ -22,10 +23,15 @@ const Div = styled.div`
 
 const Home = () => {
   const { todoData: { todoItems } } = useContext( TodoContext );
+
+  // const countTodoItems = (todoItems, status) => todoItems.filter((item) => item.status === status).length;
+  // const numOfTodo = useMemo(() => countTodoItems(todoItems, 'todo'), [todoItems]);
+  const { numOfTodo, numOfDone } = useMemo(() => countTodoItems(todoItems), [todoItems]);
+
   const todoSummary = (
     <div>
-      <p>해야할 일: { todoItems.filter( ({ status }) => status === "todo" ).length }개 </p>
-      <p>완료할 일: { todoItems.filter( ({ status }) => status === "done" ).length }개 </p>
+      <p>해야할 일: { numOfTodo }개 </p>
+      <p>완료할 일: { numOfDone }개 </p>
     </div>
   )
 

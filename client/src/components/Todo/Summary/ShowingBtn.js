@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -21,9 +21,9 @@ const Div = styled.div`
 
 const ShowingBtn = ({ showingBtnTitle, dispatch }) => {
   
-  const showContents = () => {
+  const showContents = useCallback(() => {
     dispatch({ type: 'CHANGE_BTNTITLE' });
-  }
+  })
 
   return (
     <Div btnTitle={ showingBtnTitle }>

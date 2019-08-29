@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import ContentsList from './ContentsList';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -23,7 +23,8 @@ const Div = styled.div`
 `
 
 const Contents = ({ myTodo, isFetched }) => {
-  const todoList = myTodo.map( ({ title, id, status }) => {
+  const todoList = useMemo( 
+    () => myTodo.map( ({ title, id, status }) => {
     return (
       <ContentsList 
         title={title} 
@@ -32,7 +33,9 @@ const Contents = ({ myTodo, isFetched }) => {
         id={id}
       />
     )
-  });
+  }), 
+  [myTodo]
+  );
 
   const ifEmpty = isFetched ? EMPTY_LIST : LOADING;
 

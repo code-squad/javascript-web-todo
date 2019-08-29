@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useCallback } from 'react';
 import AddBtn from './AddButton';
 import styled from 'styled-components';
 import { TodoContext } from '../../TodoStorage';
@@ -46,9 +46,16 @@ const InputBox = () => {
     dispatch({ type: 'ADD_TODOITEMS', payload: term })
     setTerm('');
   }
+  
+  const submitData = useCallback(
+    e => {
+      submitHandler(e);
+    },
+    [term],
+  )
 
   return (
-    <Form onSubmit={ submitHandler }>
+    <Form onSubmit={ submitData }>
       <label>할일입력: </label>
       <input type="text" onChange={ setCurVal } value={ term } />
       <AddBtn />

@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useMemo, useContext } from 'react';
 import { TodoContext } from '../../TodoStorage';
 import ShowingBtn from './ShowingBtn';
 import styled from 'styled-components';
+import { countTodoItems } from '../../../myUtil';
 
 const Div = styled.div`
   display: flex;
@@ -29,10 +30,14 @@ const Summary = () => {
   const { todoData, dispatch } = useContext(TodoContext);
   const { showingBtnTitle, todoItems } = todoData;
 
+  // const countTodoItems = (todoItems, status) => todoItems.filter((item) => item.status === status).length;
+  const { numOfTodo, numOfDone } = useMemo(() => countTodoItems(todoItems), [todoItems]);
+  // const numOfDone = useMemo(() => countTodoItems(todoItems, 'done'), [todoItems]);
+
   return (
     <Div showingBtnTitle={ showingBtnTitle }>
-      <p>해야할 일: {todoItems.filter(item => item.status === 'todo').length}</p>
-      <p>완료한 일: {todoItems.filter(item => item.status === 'done').length}</p>
+      <p>해야할 일: { numOfTodo }</p>
+      <p>완료한 일: { numOfDone }</p>
       <Total>총 리스트: {todoItems.length}</Total>
       <ShowingBtn
         dispatch = { dispatch }

@@ -1,4 +1,4 @@
-import { getIdxOfMatchedItem } from '../../../myUtil/util';
+import { getIdxOfMatchedItem } from '../../../myUtil';
 
 export const todoReducer = ({ todoItems, showingBtnTitle }, { type, payload }) => {
   const todoDuplicate = [...todoItems];
