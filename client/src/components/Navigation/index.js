@@ -45,14 +45,18 @@ const Nav = styled.nav`
 
 const Navigation = () => {
   const navList = NAV_NAMES.map( (name, idx) => {
-  const route = name === 'Home' ? '/' : '/' + name.toLowerCase();
-    return (
-      <li key={ idx+1 }>
-        <NavLink to={ route } activeClassName='selected' exact={ true }>
-          { name }
-        </NavLink>
-      </li>
-    );
+    const route = name === 'Home' 
+    ? process.env.PROPER_PATH 
+    : process.env.PROPER_PATH + name.toLowerCase();
+    
+    console.log(route);
+      return (
+        <li key={ idx+1 }>
+          <NavLink to={ route } activeClassName='selected' exact={ true }>
+            { name }
+          </NavLink>
+        </li>
+      );
   });
 
   return (

@@ -23,8 +23,6 @@ const Div = styled.div`
 const Home = () => {
   const { todoData: { todoItems } } = useContext( TodoContext );
 
-  // const countTodoItems = (todoItems, status) => todoItems.filter((item) => item.status === status).length;
-  // const numOfTodo = useMemo(() => countTodoItems(todoItems, 'todo'), [todoItems]);
   const { numOfTodo, numOfDone } = useMemo(() => countTodoItems(todoItems), [todoItems]);
 
   const todoSummary = (
