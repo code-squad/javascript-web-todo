@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 const useInput = () => {
   const [state, setState] = useState({});
 
-  const handleChange = ({ target }) => {
+  const handleChange = useCallback(({ target }) => {
     const { name, value } = target;
     setState({ ...state, [name]: value });
-  };
+  }, []);
 
-  const restore = name => {
+  const restore = useCallback(name => {
     setState({ ...state, [name]: "" });
-  };
+  }, []);
 
   return [state, handleChange, restore];
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
 import Button from "../atomicComponents/Button";
 import Input from "../atomicComponents/Input";
@@ -15,11 +15,14 @@ const TodoInput = () => {
   const [state, handleChange, restore] = useInput();
   const { todoInput } = state;
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    dispatch({ type: "ADD", payload: todoInput });
-    restore("todoInput");
-  };
+  const handleSubmit = useCallback(
+    e => {
+      e.preventDefault();
+      dispatch({ type: "ADD", payload: todoInput });
+      restore("todoInput");
+    },
+    [todoInput]
+  );
 
   return (
     <Form onSubmit={handleSubmit} action="/">

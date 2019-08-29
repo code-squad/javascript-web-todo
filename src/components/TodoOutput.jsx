@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import styled from "styled-components";
 import Button from "../atomicComponents/Button";
 import TodoList from "./TodoList";
@@ -26,9 +26,9 @@ const ToggleButton = styled(Button)`
 const TodoOutput = () => {
   const [listVisible, setListVisible] = useState(true);
 
-  const toggleLists = () => {
+  const toggleLists = useCallback(() => {
     setListVisible(!listVisible);
-  };
+  }, [listVisible]);
 
   return (
     <Wrapper>

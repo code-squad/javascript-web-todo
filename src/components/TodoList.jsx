@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
 import Li from "../atomicComponents/Li";
 import XButton from "../atomicComponents/XButton";
@@ -16,16 +16,16 @@ const Ul = styled.ul`
 const TodoList = () => {
   const { todos, dispatch } = useTodoContext();
 
-  const updateStatus = ({ target }) => {
+  const updateStatus = useCallback(({ target }) => {
     const targetId = Number(target.dataset.id);
     dispatch({ type: "UPDATE", payload: targetId });
-  };
+  }, []);
 
-  const deleteTodo = e => {
+  const deleteTodo = useCallback(e => {
     e.stopPropagation();
     const targetId = Number(e.target.closest("li").dataset.id);
     dispatch({ type: "DELETE", payload: targetId });
-  };
+  }, []);
 
   return (
     <Ul>

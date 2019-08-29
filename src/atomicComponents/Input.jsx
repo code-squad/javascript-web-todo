@@ -23,4 +23,4 @@ Input.propTypes = {
   onChange: PropTypes.func
 };
 
-export default Input;
+export default React.memo(Input);
