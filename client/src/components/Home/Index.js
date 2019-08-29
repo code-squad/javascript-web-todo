@@ -20,7 +20,6 @@ const Div = styled.div`
   }
 `
 
-
 const Home = () => {
   const { todoData: { todoItems } } = useContext( TodoContext );
 
@@ -33,7 +32,7 @@ const Home = () => {
       <p>해야할 일: { numOfTodo }개 </p>
       <p>완료할 일: { numOfDone }개 </p>
     </div>
-  )
+  );
 
   return (
     <Div>

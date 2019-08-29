@@ -15,7 +15,7 @@ const useFetch = setInitDataFunc => {
       if(err.name === 'typeError') console.log(INVALID_DATA);
       if(err.message === 'Network Error') console.log(NETWORK_ERROR);
     }
-  }
+  };
 
   useEffect(() => {
     fetchMyTodoList();

@@ -46,7 +46,7 @@ const Contents = ({ myTodo, isFetched }) => {
         {myTodo.length ? todoList : ifEmpty}
       </ul>
     </Div>
-  )
+  );
 }
 
 Contents.propTypes = {

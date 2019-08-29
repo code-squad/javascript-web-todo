@@ -23,7 +23,7 @@ const ShowingBtn = ({ showingBtnTitle, dispatch }) => {
   
   const showContents = useCallback(() => {
     dispatch({ type: 'CHANGE_BTNTITLE' });
-  })
+  });
 
   return (
     <Div btnTitle={ showingBtnTitle }>
@@ -31,7 +31,7 @@ const ShowingBtn = ({ showingBtnTitle, dispatch }) => {
         { showingBtnTitle } 
       </button>
     </Div>
-  )
+  );
 }
 
 ShowingBtn.propTypes = {

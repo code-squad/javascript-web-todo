@@ -43,7 +43,7 @@ const InputBox = () => {
   const submitHandler = e => {
     e.preventDefault();
     if(!term) return;
-    dispatch({ type: 'ADD_TODOITEMS', payload: term })
+    dispatch({ type: 'ADD_TODOITEMS', payload: term });
     setTerm('');
   }
   
@@ -60,7 +60,7 @@ const InputBox = () => {
       <input type="text" onChange={ setCurVal } value={ term } />
       <AddBtn />
     </Form>
-  )
+  );
 }
 
 export default InputBox;

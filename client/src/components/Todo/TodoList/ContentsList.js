@@ -42,7 +42,7 @@ const ContentsList = ({ title, status, id }) => {
     
     const lineThroughList = e.target.closest('li div');
     lineThroughList.classList.toggle('line-through');
-    dispatch({ type: 'UPDATE_TODOITEMS', payload: id })
+    dispatch({ type: 'UPDATE_TODOITEMS', payload: id });
   }
 
   return (

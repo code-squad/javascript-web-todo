@@ -15,7 +15,7 @@ const Button = styled.button`
 `
 
 const RemoveBtn = ({ removeHandler }) => {
-  return <Button onClick={ removeHandler }>X</Button>
+  return <Button onClick={ removeHandler }>X</Button>;
 }
 
 RemoveBtn.propTypes = {

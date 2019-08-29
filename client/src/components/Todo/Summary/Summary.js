@@ -30,9 +30,7 @@ const Summary = () => {
   const { todoData, dispatch } = useContext(TodoContext);
   const { showingBtnTitle, todoItems } = todoData;
 
-  // const countTodoItems = (todoItems, status) => todoItems.filter((item) => item.status === status).length;
   const { numOfTodo, numOfDone } = useMemo(() => countTodoItems(todoItems), [todoItems]);
-  // const numOfDone = useMemo(() => countTodoItems(todoItems, 'done'), [todoItems]);
 
   return (
     <Div showingBtnTitle={ showingBtnTitle }>
@@ -44,7 +42,7 @@ const Summary = () => {
         showingBtnTitle = { showingBtnTitle }
       />
     </Div>
-  )
+  );
 }
 
 export default Summary;

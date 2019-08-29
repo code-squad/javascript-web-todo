@@ -9,7 +9,7 @@ const TodoStorage = ({ children }) => {
   const [todoData, dispatch] = useReducer(todoReducer, initTodoData);
   
   const setInitTodoData = initData => {
-    dispatch({ type: "INIT_TODOITEMS", payload: initData })
+    dispatch({ type: "INIT_TODOITEMS", payload: initData });
   }
 
   const isFetched = useFetch(setInitTodoData);
@@ -18,7 +18,7 @@ const TodoStorage = ({ children }) => {
     <TodoContext.Provider value={{ todoData, dispatch, isFetched }}>
       { children }
     </TodoContext.Provider>
-  )
+  );
 }
 
 export default TodoStorage;

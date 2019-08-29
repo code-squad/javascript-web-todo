@@ -1,7 +1,7 @@
 import { hot } from 'react-hot-loader/root';
 import React from 'react';
 import TodoStorage from './TodoStorage';
-import TodoApp from './Todo/App';
+import TodoApp from './Todo';
 import Home from './Home';
 import About from './About';
 import Nav from './Navigation';

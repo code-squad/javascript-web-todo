@@ -52,7 +52,7 @@ const Navigation = () => {
           { name }
         </NavLink>
       </li>
-    )
+    );
   });
 
   return (
@@ -61,7 +61,7 @@ const Navigation = () => {
         {navList}
       </ul>
     </Nav>
-  )
+  );
 }
 
 export default Navigation;

@@ -24,7 +24,7 @@ const AddBtn = () => {
     <Div>
       <button type='submit'>Add</button>
     </Div>
-  )
+  );
 }
 
 export default AddBtn;
