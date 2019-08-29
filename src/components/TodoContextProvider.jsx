@@ -2,6 +2,7 @@ import React, { useReducer, useState, useContext, createContext } from "react";
 import CONFIGS from "../configs/configs";
 import reducer from "../reducers/Reducer";
 import useFetch from "../hooks/useFetch";
+import PropTypes from "prop-types";
 
 const TodoContext = createContext();
 
@@ -21,6 +22,17 @@ const TodoContextProvider = ({ children }) => {
       {children}
     </TodoContext.Provider>
   );
+};
+
+TodoContext.Provider.propTypes = {
+  value: PropTypes.shape({
+    loading: PropTypes.bool,
+    warningVisible: PropTypes.bool,
+    todos: PropTypes.array,
+    dispatch: PropTypes.func,
+    todoCount: PropTypes.number,
+    doneCount: PropTypes.number
+  })
 };
 
 export default TodoContextProvider;
