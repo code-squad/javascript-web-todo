@@ -28,8 +28,8 @@ export default function TodoList() {
   };
 
   const makeTodoList = data => {
-    const todoList = data.map((todo, idx) => {
-      return <TodoItem key={todo.id} idx={idx} todo={todo} />;
+    const todoList = data.map(todo => {
+      return <TodoItem key={todo.id} {...todo} />;
     });
 
     return todoList;

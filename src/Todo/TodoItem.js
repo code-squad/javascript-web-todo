@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useStateValue } from "../StateHelper/TodoState";
+import PropTypes from "prop-types";
 
 const Title = styled.span`
   height: 2rem;
@@ -22,9 +23,8 @@ const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
   margin-left: 0.5rem;
 `;
 
-export default function TodoItem(props) {
+export default function TodoItem({ title, id }) {
   const { dispatch } = useStateValue();
-  const { title, id } = props.todo;
   const [isClicked, setIsClicked] = useState(false);
 
   const handleDeleteTodo = () => {
@@ -47,3 +47,8 @@ export default function TodoItem(props) {
     </>
   );
 }
+
+TodoItem.propTypes = {
+  title: PropTypes.string,
+  id: PropTypes.number
+};
