@@ -9,6 +9,11 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
 
+  devServer: {
+    port: 8080,
+    historyApiFallback: true
+  },
+
   entry: './src/index.js',
 
   module: {
@@ -22,6 +27,7 @@ module.exports = {
   },
 
   output: {
+    publicPath: '/',
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
