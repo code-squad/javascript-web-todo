@@ -49,7 +49,6 @@ const Navigation = () => {
     ? process.env.PROPER_PATH 
     : process.env.PROPER_PATH + name.toLowerCase();
     
-    console.log(route);
       return (
         <li key={ idx+1 }>
           <NavLink to={ route } activeClassName='selected' exact={ true }>
