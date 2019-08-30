@@ -1,10 +1,13 @@
 const express = require('express');
 const app = express();
 const logger = require('morgan');
-const initialTodo = require('./resource/localdata')
+const cors = require('cors');
+const initialTodo = require('./resource/localdata');
 
 app.use(logger('dev'));
 app.use(express.static('dist'));
+
+app.use(cors())
 
 app.get('/todos', (req, res, next) => {
   res.json(initialTodo);
