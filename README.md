@@ -16,3 +16,8 @@
     - InputBar
     - TodoList
         - TodoItem
+
+### 3. 코드개선
+1. Proptypes 를 어디에 사용할것인가
+- Todoitem 
+- StateProvider 
