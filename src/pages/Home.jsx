@@ -4,8 +4,8 @@ import Information from "../components/Information";
 import { useTodoContext } from "../components/TodoContextProvider";
 
 const Home = () => {
-  const { loading } = useTodoContext();
-  return <>{loading ? <Information /> : <Welcome />}</>;
+  const { loading, warningVisible } = useTodoContext();
+  return <>{loading || warningVisible ? <Information /> : <Welcome />}</>;
 };
 
 export default Home;
