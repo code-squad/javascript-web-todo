@@ -1,17 +1,21 @@
-const webpack = require("webpack");
 const path = require("path");
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 // const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-console.log("난 prod");
+console.log("난 development");
 
 module.exports = {
   name: "todo-setting",
-  mode: "production",
+  mode: "development",
   devtool: "source-map", //eval
   resolve: {
     extensions: [".js", ".jsx"]
   },
-
+  devServer: {
+    contentBase: path.join(__dirname, "dist"), // 이 경로에 있는 파일이 변경될 때 번들을 다시 컴파일
+    compress: true,
+    port: 8080
+  },
   entry: "./src/index",
   module: {
     // loader 적용
@@ -47,13 +51,12 @@ module.exports = {
   },
 
   plugins: [
-    // new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       // template의 html에 output에서 만들어진 bundle.js를 적용하여 html 파일 생성
       template: `./public/index.html`
     }),
     new webpack.DefinePlugin({
-      URL: JSON.stringify("https://michelle-todo.herokuapp.com/todos")
+      URL: JSON.stringify(`http://localhost:3000/todos`)
     })
   ]
 };
