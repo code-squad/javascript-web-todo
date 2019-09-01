@@ -8,6 +8,9 @@ import PropTypes from "prop-types";
 
 const Form = styled.form`
   display: flex;
+  width: 100%;
+  max-width: inherit;
+  min-width: inherit;
 `;
 
 const TodoInput = () => {

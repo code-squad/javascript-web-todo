@@ -10,6 +10,10 @@ const Wrapper = styled.div`
   flex-flow: column;
   align-items: center;
   margin: 0 auto;
+  width: 100%;
+  max-width: 52rem;
+  min-width: 35rem;
+  padding: 2rem;
 
   h1 {
     font-size: 5rem;

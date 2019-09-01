@@ -1,15 +1,25 @@
-import React from "react";
-import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
+import CONFIGS from '../configs/configs';
+const { MAIN_COLOR } = CONFIGS;
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: center;
   width: 100%;
-  max-width: 100rem;
-  background: #1976d2;
+  background: ${MAIN_COLOR};
   height: 4rem;
+  margin-bottom: 1rem;
+
+  .innerWrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    max-width: 70rem;
+    min-width: 40rem;
+  }
 
   .item {
     text-decoration: none;
@@ -36,15 +46,17 @@ const Wrapper = styled.div`
 const Header = () => {
   return (
     <Wrapper>
-      <NavLink exact to="/" className="item" activeClassName="active">
-        HOME
-      </NavLink>
-      <NavLink to="/todo/" className="item" activeClassName="active">
-        할일관리
-      </NavLink>
-      <NavLink to="/about/" className="item" activeClassName="active">
-        ABOUT
-      </NavLink>
+      <div className="innerWrapper">
+        <NavLink exact to="/" className="item" activeClassName="active">
+          HOME
+        </NavLink>
+        <NavLink to="/todo/" className="item" activeClassName="active">
+          할일관리
+        </NavLink>
+        <NavLink to="/about/" className="item" activeClassName="active">
+          ABOUT
+        </NavLink>
+      </div>
     </Wrapper>
   );
 };

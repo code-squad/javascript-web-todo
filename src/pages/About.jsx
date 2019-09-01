@@ -3,7 +3,7 @@ import React from "react";
 const About = () => {
   return (
     <div>
-      <h1>어바웃...왓?</h1>
+      <h1>React Todo App</h1>
     </div>
   );
 };

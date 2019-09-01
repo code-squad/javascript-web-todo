@@ -1,12 +1,11 @@
-import React from "react";
-import styled from "styled-components";
-import PropTypes from "prop-types";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const StyledButton = styled.button`
   background: transparent;
   border-radius: 3px;
-  border: 2px solid palevioletred;
-  color: palevioletred;
+  border: 2px solid #1976d2;
   margin: 0 1rem;
   padding: 0.25rem 1rem;
   min-width: 6.5rem;
@@ -14,8 +13,9 @@ const StyledButton = styled.button`
   font-size: 1.5rem;
 
   &:hover {
-    background: palevioletred;
+    background: #1976d2;
     color: white;
+    cursor: pointer;
   }
 `;
 

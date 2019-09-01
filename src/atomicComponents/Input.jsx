@@ -5,11 +5,10 @@ import PropTypes from "prop-types";
 const SInput = styled.input`
   background: transparent;
   border-radius: 3px;
-  border: 2px solid palevioletred;
-  color: palevioletred;
+  border: 2px solid #1976d2;
   margin: 0 1rem;
   padding: 0.25rem 1rem;
-  width: 25rem;
+  width: 100%;
   height: 3.5rem;
 `;
 

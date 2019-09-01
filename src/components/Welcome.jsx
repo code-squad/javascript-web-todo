@@ -1,6 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import { useTodoContext } from "./TodoContextProvider";
+import React from 'react';
+import styled from 'styled-components';
+import { useTodoContext } from './TodoContextProvider';
+import CONFIGS from '../configs/configs';
+const { MAIN_COLOR } = CONFIGS;
 
 const Welcome = () => {
   const { todoCount, doneCount } = useTodoContext();
@@ -27,5 +29,5 @@ const Typography = styled.div`
 `;
 
 const TextHighlight = styled.span`
-  color: #1976d2;
+  color: ${MAIN_COLOR};
 `;

@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import PropTypes from "prop-types";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const StyledLi = styled.li`
   margin: 0 1rem;
@@ -8,8 +8,6 @@ const StyledLi = styled.li`
   width: 100%;
   height: 3rem;
   font-size: 1.5rem;
-  font-weight: bold;
-  color: palevioletred;
 `;
 
 const Li = props => {
