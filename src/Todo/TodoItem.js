@@ -26,7 +26,7 @@ const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
 export default function TodoItem({ title, id }) {
   const dispatch = useTodosDispatchValue();
   const [isClicked, setIsClicked] = useState(false);
-
+  
   const handleDeleteTodo = () => {
     dispatch({ type: "DELETE_TODO", id });
   };
@@ -50,5 +50,5 @@ export default function TodoItem({ title, id }) {
 
 TodoItem.propTypes = {
   title: PropTypes.string,
-  id: PropTypes.number
+  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
