@@ -23,7 +23,7 @@ const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
   margin-left: 0.5rem;
 `;
 
-export default function TodoItem({ title, id }) {
+function TodoItem({ title, id }) {
   const dispatch = useTodosDispatchValue();
   const [isClicked, setIsClicked] = useState(false);
   
@@ -52,3 +52,5 @@ TodoItem.propTypes = {
   title: PropTypes.string,
   id: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
+
+export default React.memo(TodoItem);

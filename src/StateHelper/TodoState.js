@@ -15,7 +15,6 @@ export const StateProvider = ({ children }) => {
   };
 
   const isLoading = useFetch(initTodoData);
-  // console.log(isLoading,todos,"isLoading + todos");
 
   return (
     <TodosStateContext.Provider value={todos}>
