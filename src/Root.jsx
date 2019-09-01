@@ -1,11 +1,11 @@
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import React from "react";
-import styled, { createGlobalStyle } from "styled-components";
-import App from "./pages/App";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Header from "./components/Header";
-import TodoContextProvider from "./components/TodoContextProvider";
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import React from 'react';
+import styled, { createGlobalStyle } from 'styled-components';
+import App from './pages/App';
+import Home from './pages/Home';
+import About from './pages/About';
+import Header from './components/Header';
+import TodoContextProvider from './context/TodoContextProvider';
 
 const GlobalStyle = createGlobalStyle`
   * {

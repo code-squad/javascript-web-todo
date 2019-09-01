@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import Li from '../atomicComponents/Li';
 import XButton from '../atomicComponents/XButton';
-import { useTodoContext, useDispatch } from './TodoContextProvider';
+import { useTodoContext, useDispatch } from '../context/TodoContextProvider';
 import CONFIGS from '../configs/configs';
 const { MAIN_COLOR } = CONFIGS;
 

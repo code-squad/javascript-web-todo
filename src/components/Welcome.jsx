@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useTodoContext } from './TodoContextProvider';
+import { useTodoContext } from '../context/TodoContextProvider';
 import CONFIGS from '../configs/configs';
 const { MAIN_COLOR } = CONFIGS;
 

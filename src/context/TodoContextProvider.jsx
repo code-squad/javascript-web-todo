@@ -54,10 +54,12 @@ TodoContext.Provider.propTypes = {
     loading: PropTypes.bool,
     warningVisible: PropTypes.bool,
     todos: PropTypes.array,
-    dispatch: PropTypes.func,
     todoCount: PropTypes.number,
     doneCount: PropTypes.number
   })
+};
+DispatchContext.Provider.propTypes = {
+  value: PropTypes.func
 };
 
 export default TodoContextProvider;

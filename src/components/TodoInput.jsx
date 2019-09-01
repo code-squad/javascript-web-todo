@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import Button from '../atomicComponents/Button';
 import Input from '../atomicComponents/Input';
-import { useDispatch } from './TodoContextProvider';
+import { useDispatch } from '../context/TodoContextProvider';
 import useInput from '../hooks/useInput';
 import PropTypes from 'prop-types';
 
