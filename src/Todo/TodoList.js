@@ -31,10 +31,7 @@ export default function TodoList() {
     setIsOpened(!isOpened);
   };
 
-  // todos 새 refer 주소를 가져서 아얘 새로운 TodoItem 들이 만들어지지 않을까?
-  //// todos 주소가 안바뀌나봄. TodoItem만 메모해놓으면 리랜더링 막힘
-  // useMemo를 사용해야하지 않을까? 
-  //// 밑에서 사용해봄 , 차이 없었음  
+
   const makeTodoList = data => {
     const todoList = data.map(todo => {
       return <TodoItem key={todo.id} {...todo} />;

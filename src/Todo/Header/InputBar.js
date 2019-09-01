@@ -12,7 +12,6 @@ const Form = styled.form`
   margin-bottom: 2rem;
 `;
 
-// InputBar의 리 랜더링은 StateProvider 때문에 생김 
 export default function InputBar() {
   const id = nextId();
   const dispatch = useTodosDispatchValue();
@@ -32,7 +31,6 @@ export default function InputBar() {
     setNewTodo("");
   };
 
-  // console.log(dispatch,"dispatch");
   return (
     <Form>
       <label>enter todo : </label>
