@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import Li from '../atomicComponents/Li';
 import XButton from '../atomicComponents/XButton';
-import { useTodoContext } from './TodoContextProvider';
+import { useTodoContext, useDispatch } from './TodoContextProvider';
 import CONFIGS from '../configs/configs';
 const { MAIN_COLOR } = CONFIGS;
 
@@ -24,7 +24,8 @@ const Ul = styled.ul`
 `;
 
 const TodoList = () => {
-  const { todos, dispatch } = useTodoContext();
+  const { todos } = useTodoContext();
+  const dispatch = useDispatch();
 
   const updateStatus = useCallback(({ target }) => {
     const targetId = Number(target.closest('li').dataset.id);

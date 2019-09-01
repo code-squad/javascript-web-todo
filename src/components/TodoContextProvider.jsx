@@ -11,8 +11,15 @@ import useFetch from '../hooks/useFetch';
 import PropTypes from 'prop-types';
 
 const TodoContext = createContext();
+const DispatchContext = createContext();
 
 export const useTodoContext = () => useContext(TodoContext);
+export const useDispatch = () => {
+  const dispatch = useContext(DispatchContext);
+  return useCallback(({ type, payload }) => dispatch({ type, payload }), [
+    dispatch
+  ]);
+};
 
 const TodoContextProvider = ({ children }) => {
   const [todos, dispatch] = useReducer(reducer, []);
@@ -33,9 +40,11 @@ const TodoContextProvider = ({ children }) => {
 
   return (
     <TodoContext.Provider
-      value={{ loading, warningVisible, todos, dispatch, todoCount, doneCount }}
+      value={{ loading, warningVisible, todos, todoCount, doneCount }}
     >
-      {children}
+      <DispatchContext.Provider value={dispatch}>
+        {children}
+      </DispatchContext.Provider>
     </TodoContext.Provider>
   );
 };

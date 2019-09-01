@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import Button from '../atomicComponents/Button';
 import Input from '../atomicComponents/Input';
-import { useTodoContext } from './TodoContextProvider';
+import { useDispatch } from './TodoContextProvider';
 import useInput from '../hooks/useInput';
 import PropTypes from 'prop-types';
 
@@ -14,7 +14,7 @@ const Form = styled.form`
 `;
 
 const TodoInput = () => {
-  const { dispatch } = useTodoContext();
+  const dispatch = useDispatch();
   const [state, handleChange, restore] = useInput();
   const { todoInput } = state;
 
