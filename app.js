@@ -6,8 +6,6 @@ const initialData = require("./resource/localData");
 
 const port = process.env.PORT || 3000;
 
-console.log("요기당");
-
 app.use(logger("dev"));
 app.use(express.static("dist"));
 

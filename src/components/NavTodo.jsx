@@ -1,19 +1,29 @@
 import React, { useState } from "react";
+import { BrowserRouter, Link, Route } from "react-router-dom";
 import styled from "styled-components";
+import Home from "./Home";
+import Manage from "./Manage";
+import About from "./About";
 
 export default function NavTodo() {
   return (
-    <NavUl>
-      <NavLi>
-        <A href="http://localhost:8080/home">HOME</A>
-      </NavLi>
-      <NavLi>
-        <A href="http://localhost:8080/manage">MANAGE</A>
-      </NavLi>
-      <NavLi>
-        <A href="http://localhost:8080/about">ABOUT</A>
-      </NavLi>
-    </NavUl>
+    <BrowserRouter>
+      <NavUl>
+        <NavLi>
+          <Link to="/home">HOME</Link>
+        </NavLi>
+        <NavLi>
+          <Link to="/manage">MANAGE</Link>
+        </NavLi>
+        <NavLi>
+          <Link to="/about">ABOUT</Link>
+        </NavLi>
+      </NavUl>
+
+      <Route exact path="/home" component={Home} />
+      <Route path="/manage" component={Manage} />
+      <Route path="/about" component={About} />
+    </BrowserRouter>
   );
 }
 
