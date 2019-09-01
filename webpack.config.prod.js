@@ -3,6 +3,12 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { DefinePlugin } = require('webpack')
 const path = require('path');
 
+const ENV = process.env.NODE_ENV === 'dev' ? 'local' : 'heroku';
+const URL = {
+  local: 'http://localhost:3000/todos',
+  heroku: 'https://allen-webtodo.herokuapp.com/todos'
+}
+
 module.exports = {
   mode: 'production',
   devtool: 'cheap-module-source-map',
@@ -46,7 +52,7 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new DefinePlugin({
-      FETCH_URL: JSON.stringify('https://allen-webtodo.herokuapp.com/todos')
+      FETCH_URL: JSON.stringify(URL[ENV])
     })
   ]
 }
