@@ -1,5 +1,5 @@
 import React from "react";
-import { useStateValue } from "./StateHelper/TodoState";
+import { useTodosStateValue } from "./StateHelper/TodoState";
 import styled from "styled-components";
 
 const HomeWrapper = styled.div`
@@ -18,7 +18,7 @@ const HomeWrapper = styled.div`
 `;
 
 export default function Home() {
-  const { todos } = useStateValue();
+  const todos = useTodosStateValue();
   const todoCount = todos.filter(todo => todo.status === "todo").length;
   const doneCount = todos.filter(todo => todo.status === "done").length;
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TodoItem from "./TodoItem";
 import styled from "styled-components";
-import { useStateValue } from "../StateHelper/TodoState";
+import { useTodosStateValue , useIsLoadingValue } from "../StateHelper/TodoState";
 
 const Background = styled.div``;
 
@@ -20,7 +20,8 @@ const TodoWrapper = styled.ul`
 `;
 
 export default function TodoList() {
-  const { todos, isLoading } = useStateValue();
+  const todos  = useTodosStateValue();
+  const isLoading = useIsLoadingValue();
   const [isOpened, setIsOpened] = useState(true);
 
   const handleOpen = () => {

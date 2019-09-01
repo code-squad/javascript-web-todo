@@ -3,7 +3,9 @@ import todosReducer from "./todoReducer";
 import useFetch from "../customHooks/useFetch";
 import PropTypes from "prop-types";
 
-export const StateContext = createContext();
+const TodosStateContext = createContext();
+const TodosDispatchContext = createContext();
+const IsLoadingContext = createContext();
 
 export const StateProvider = ({ children }) => {
   const [todos, dispatch] = useReducer(todosReducer, []);
@@ -13,22 +15,39 @@ export const StateProvider = ({ children }) => {
   };
 
   const isLoading = useFetch(initTodoData);
+  // console.log(isLoading,todos,"isLoading + todos");
 
   return (
-    <StateContext.Provider value={{ todos, dispatch, isLoading }}>
-      {children}
-    </StateContext.Provider>
+    <TodosStateContext.Provider value={todos}>
+      <TodosDispatchContext.Provider value={dispatch}>
+        <IsLoadingContext.Provider value={isLoading}>
+          {children}
+        </IsLoadingContext.Provider>
+      </TodosDispatchContext.Provider>
+    </TodosStateContext.Provider>
   );
 };
 
-export const useStateValue = () => {
-  return useContext(StateContext);
+export const useTodosStateValue = () => {
+  return useContext(TodosStateContext);
 };
 
-StateContext.Provider.propTypes = {
-  value: PropTypes.shape({
-    todos: PropTypes.array,
-    dispatch: PropTypes.func,
-    isLoading: PropTypes.bool
-  })
+export const useTodosDispatchValue = () => {
+  return useContext(TodosDispatchContext);
+};
+
+export const useIsLoadingValue = () => {
+  return useContext(IsLoadingContext);
+};
+
+TodosStateContext.Provider.propTypes = {
+  value: PropTypes.array
+};
+
+TodosDispatchContext.Provider.propTypes = {
+  value: PropTypes.func
+};
+
+IsLoadingContext.Provider.propTypes = {
+  value: PropTypes.bool
 };

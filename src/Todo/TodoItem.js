@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { useStateValue } from "../StateHelper/TodoState";
+import { useTodosDispatchValue } from "../StateHelper/TodoState";
 import PropTypes from "prop-types";
 
 const Title = styled.span`
@@ -24,7 +24,7 @@ const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
 `;
 
 export default function TodoItem({ title, id }) {
-  const { dispatch } = useStateValue();
+  const dispatch = useTodosDispatchValue();
   const [isClicked, setIsClicked] = useState(false);
 
   const handleDeleteTodo = () => {
