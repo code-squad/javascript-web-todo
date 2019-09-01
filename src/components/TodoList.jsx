@@ -28,13 +28,13 @@ const TodoList = () => {
 
   const updateStatus = useCallback(({ target }) => {
     const targetId = Number(target.closest('li').dataset.id);
-    dispatch({ type: 'UPDATE', payload: targetId });
+    dispatch({ type: 'UPDATE_TODO', payload: targetId });
   }, []);
 
   const deleteTodo = useCallback(e => {
     e.stopPropagation();
     const targetId = Number(e.target.closest('li').dataset.id);
-    dispatch({ type: 'DELETE', payload: targetId });
+    dispatch({ type: 'DELETE_TODO', payload: targetId });
   }, []);
 
   return (
