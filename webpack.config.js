@@ -2,7 +2,11 @@ const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 // const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-console.log("난 prod");
+const mode = process.env.NODE_ENV;
+const url =
+  mode === "dev"
+    ? `http://localhost:3000/todos`
+    : "https://michelle-todo.herokuapp.com/todos";
 
 module.exports = {
   name: "todo-setting",
@@ -53,7 +57,7 @@ module.exports = {
       template: `./public/index.html`
     }),
     new webpack.DefinePlugin({
-      URL: JSON.stringify("https://michelle-todo.herokuapp.com/todos")
+      URL: JSON.stringify(url)
     })
   ]
 };

@@ -5,10 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --open --config webpack.config.dev.js",
-    "dev-build": "webpack --config webpack.config.dev.js",
-    "dev-start": "node app.js",
-    "prod-build": "webpack --config webpack.config.js",
-    "heroku-postbuild": "node app.js"
+    "dev-build": "NODE_ENV=dev webpack --config webpack.config.js",
+    "build": "webpack --config webpack.config.js",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
