@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import todoApi from '../../../Apis';
-import { INVALID_DATA, NETWORK_ERROR } from '../../../message/message';
+import { INVALID_DATA, NETWORK_ERROR } from '../../../config';
 
 const useFetch = setInitDataFunc => {
   const [isFetched, setIsFetched] = useState(false);
@@ -15,7 +15,7 @@ const useFetch = setInitDataFunc => {
       if(err.name === 'typeError') console.log(INVALID_DATA);
       if(err.message === 'Network Error') console.log(NETWORK_ERROR);
     }
-  }
+  };
 
   useEffect(() => {
     fetchMyTodoList();
