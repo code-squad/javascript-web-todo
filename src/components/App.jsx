@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
-import { ToDoStore } from "./ToDoStore";
+import { ToDoStore } from "../provider/ToDoStore";
 import NavTodo from "./NavTodo";
 
 const App = () => {

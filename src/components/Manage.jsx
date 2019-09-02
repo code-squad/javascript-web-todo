@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { TodoContext } from "./ToDoStore";
+import { TodoContext } from "../provider/ToDoStore";
 import AddTodo from "./AddTodo";
 import ShowTodo from "./ShowTodo";
 import Counter from "./Counter";
