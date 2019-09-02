@@ -12,7 +12,7 @@ const Div = styled.div`
   width: 50vw;
   height: 10vh;
   border-radius: 3px;
-  border: 2px solid palevioletred;
+  border: 2px solid #1976d2;
   font-size: 2rem;
   background: white;
 `;
