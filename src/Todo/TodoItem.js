@@ -11,8 +11,8 @@ const Title = styled.span`
   &:hover {
     background: rgba(255, 255, 255, 0.9);
   }
-  ${({ isClicked }) =>
-    isClicked &&
+  ${({ status }) =>
+    status === 'done' &&
     ` 
     text-decoration: line-through;
     color: #adb5bd;
@@ -23,23 +23,25 @@ const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
   margin-left: 0.5rem;
 `;
 
-function TodoItem({ title, id }) {
+function TodoItem({ title, id , status }) {
   const dispatch = useTodosDispatchValue();
-  const [isClicked, setIsClicked] = useState(false);
   
   const handleDeleteTodo = () => {
     dispatch({ type: "DELETE_TODO", id });
   };
 
   const handleClick = () => {
-    setIsClicked(!isClicked);
     dispatch({ type: "CHANGE_TODO_STATUS", id });
   };
 
   return (
     <>
       <li>
-        <Title onClick={handleClick} isClicked={isClicked}>
+        <Title 
+        onClick={handleClick} 
+        // isClicked={isClicked}
+        status={status}
+        >
           {title}
         </Title>
         <StyledFontAwesomeIcon icon={faTimes} onClick={handleDeleteTodo} />
