@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { StateProvider } from "./StateHelper/TodoState";
 import styled from "styled-components";
-
+''
 import TodoList from "./Todo/TodoList";
 import InputBar from "./Todo/Header/InputBar";
 import ResultBar from "./Todo/Header/ResultBar";
@@ -43,13 +43,13 @@ const NavUl = styled.ul`
 const Navbar = () => (
   <NavUl>
     <li>
-      <Link to="home">Home</Link>
+      <Link to="/">Home</Link>
     </li>
     <li>
-      <Link to="list">할일관리</Link>
+      <Link to="/list">할일관리</Link>
     </li>
     <li>
-      <Link to="about">about</Link>
+      <Link to="/about">about</Link>
     </li>
   </NavUl>
 );
@@ -59,7 +59,7 @@ export default function TodoApp() {
     <Router>
       <StateProvider>
         <Navbar />
-        <Route exact path="/home" component={Home} />
+        <Route exact path="/" component={Home} />
         <Route path="/about/" component={About} />
         <Route path="/list/" component={TodoManage} />
       </StateProvider>
