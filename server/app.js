@@ -2,43 +2,18 @@
 const express = require("express");
 const cors = require('cors');
 const app = express();
+const todoApp = require('./todoApp')
 
 // process.env 라는게 있음 (기본 경로관련) 
 const port = process.env.PORT || 3001;
 
+// cors 미들웨어 사용하지 않고, header에 Access-Control-Allow-Origin: * 넣어서도 해결할 수 있음.
 app.use(cors({
   origin: 'http://localhost:8080'
 }));
 
-app.get("/todolist",(req,res,next)=>{
-  res.json({
-    "statusCode": 200,
-    "body": [
-      {
-        "title": "로컬서버 웹팩에서 데이터 받아오기",
-        "id": 1233,
-        "status": "todo"
-      },
-      {
-        "title": "서버코드 작성하기",
-        "id": 1234,
-        "status": "todo"
-      },
-      {
-        "title": "라우터 404, 스위치 처리하기",
-        "id": 1230,
-        "status": "todo"
-      },
-      {
-        "title": "step20 테스트코드",
-        "id": 1231,
-        "status": "todo"
-      }
-    ]
-  }
-  );
+app.use('/todoApp',todoApp)
 
-})
 app.listen(port, () => {
  console.log(`Server running on port ${port}`);
 });
