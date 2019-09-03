@@ -1,6 +1,10 @@
-var express = require("express");
-var cors = require('cors');
-var app = express();
+// const 로 써도 되는것같은데 왜 var을 씀? -> 컨벤션? 
+const express = require("express");
+const cors = require('cors');
+const app = express();
+
+// process.env 라는게 있음 (기본 경로관련) 
+const port = process.env.PORT || 3001;
 
 app.use(cors({
   origin: 'http://localhost:8080'
@@ -16,17 +20,17 @@ app.get("/todolist",(req,res,next)=>{
         "status": "todo"
       },
       {
-        "title": "스터디준비",
+        "title": "서버코드 작성하기",
         "id": 1234,
         "status": "todo"
       },
       {
-        "title": "알고리즘공부",
+        "title": "라우터 404, 스위치 처리하기",
         "id": 1230,
         "status": "todo"
       },
       {
-        "title": "컴퓨터게임",
+        "title": "step20 테스트코드",
         "id": 1231,
         "status": "todo"
       }
@@ -35,6 +39,6 @@ app.get("/todolist",(req,res,next)=>{
   );
 
 })
-app.listen(3000, () => {
- console.log("Server running on port 3000");
+app.listen(port, () => {
+ console.log(`Server running on port ${port}`);
 });
