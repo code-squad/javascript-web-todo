@@ -43,25 +43,26 @@ const NavUl = styled.ul`
 const Navbar = () => (
   <NavUl>
     <li>
-      <Link to="/">Home</Link>
+      <Link to={ACCESS_PATH}>Home</Link>
     </li>
     <li>
-      <Link to="/list">할일관리</Link>
+      <Link to={ACCESS_PATH+ "list"}>할일관리</Link>
     </li>
     <li>
-      <Link to="/about">about</Link>
+      <Link to={ACCESS_PATH+"about"}>about</Link>
     </li>
   </NavUl>
 );
 
 export default function TodoApp() {
+  console.log("ACCESS_PATH",ACCESS_PATH);
   return (
     <Router>
       <StateProvider>
         <Navbar />
-        <Route exact path="/" component={Home} />
-        <Route path="/about/" component={About} />
-        <Route path="/list/" component={TodoManage} />
+        <Route exact path={ACCESS_PATH} component={Home} />
+        <Route path={ACCESS_PATH+"list"} component={TodoManage} />
+        <Route path={ACCESS_PATH+ "about"} component={About} />
       </StateProvider>
     </Router>
   );
