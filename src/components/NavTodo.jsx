@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { BrowserRouter, Link, Route } from "react-router-dom";
+import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 import Home from "./Home";
 import Manage from "./Manage";
 import About from "./About";
+import Error404 from "./Error404";
 
 export default function NavTodo() {
   return (
@@ -19,10 +20,12 @@ export default function NavTodo() {
           <Link to="/about">ABOUT</Link>
         </NavLi>
       </NavUl>
-
-      <Route exact path="/" component={Home} />
-      <Route path="/manage" component={Manage} />
-      <Route path="/about" component={About} />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/manage" component={Manage} />
+        <Route exact path="/about" component={About} />
+        <Route component={Error404} />
+      </Switch>
     </BrowserRouter>
   );
 }
