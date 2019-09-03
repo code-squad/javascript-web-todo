@@ -10,7 +10,7 @@ export default function NavTodo() {
     <BrowserRouter>
       <NavUl>
         <NavLi>
-          <Link to="/home">HOME</Link>
+          <Link to="/">HOME</Link>
         </NavLi>
         <NavLi>
           <Link to="/manage">MANAGE</Link>
@@ -20,7 +20,7 @@ export default function NavTodo() {
         </NavLi>
       </NavUl>
 
-      <Route exact path="/home" component={Home} />
+      <Route exact path="/" component={Home} />
       <Route path="/manage" component={Manage} />
       <Route path="/about" component={About} />
     </BrowserRouter>
