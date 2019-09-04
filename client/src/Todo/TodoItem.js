@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { useStateValue } from "../StateHelper/TodoState";
+import { useTodosDispatchValue } from "../StateHelper/TodoState";
+import PropTypes from "prop-types";
 
 const Title = styled.span`
   height: 2rem;
@@ -10,8 +11,8 @@ const Title = styled.span`
   &:hover {
     background: rgba(255, 255, 255, 0.9);
   }
-  ${({ isClicked }) =>
-    isClicked &&
+  ${({ status }) =>
+    status === 'done' &&
     ` 
     text-decoration: line-through;
     color: #adb5bd;
@@ -22,24 +23,25 @@ const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
   margin-left: 0.5rem;
 `;
 
-export default function TodoItem(props) {
-  const { dispatch } = useStateValue();
-  const { title, id } = props.todo;
-  const [isClicked, setIsClicked] = useState(false);
-
+function TodoItem({ title, id , status }) {
+  const dispatch = useTodosDispatchValue();
+  
   const handleDeleteTodo = () => {
     dispatch({ type: "DELETE_TODO", id });
   };
 
   const handleClick = () => {
-    setIsClicked(!isClicked);
     dispatch({ type: "CHANGE_TODO_STATUS", id });
   };
 
   return (
     <>
       <li>
-        <Title onClick={handleClick} isClicked={isClicked}>
+        <Title 
+        onClick={handleClick} 
+        // isClicked={isClicked}
+        status={status}
+        >
           {title}
         </Title>
         <StyledFontAwesomeIcon icon={faTimes} onClick={handleDeleteTodo} />
@@ -47,3 +49,10 @@ export default function TodoItem(props) {
     </>
   );
 }
+
+TodoItem.propTypes = {
+  title: PropTypes.string,
+  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+};
+
+export default React.memo(TodoItem);

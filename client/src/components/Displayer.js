@@ -6,7 +6,7 @@ const Radius = styled.div`
   width: 2rem;
   height: 2rem;
   font-size: 2rem;
-  background: ${({ color }) => color || "rgb(215, 121, 153)"};
+  background: ${({ color }) => color || "rgb(145, 142, 143);"};
   border-radius: 50%;
   ${({ status }) => status === "done" && "text-decoration: line-through"}
 `;

@@ -1,4 +1,4 @@
-import { hot } from "react-hot-loader/root";
+// import { hot } from "react-hot-loader/root";
 import React from "react";
 import TodoApp from "./TodoApp";
 
@@ -11,4 +11,4 @@ const App = props => {
   );
 };
 
-export default hot(App);
+export default App;

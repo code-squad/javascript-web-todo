@@ -6,15 +6,17 @@
   "author": "sunwook kim <koownusmik@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "NODE_ENV=development webpack-dev-server",
     "build": "webpack --mode production"
   },
   "dependencies": {
     "@babel/runtime": "^7.5.5",
+    "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-id-generator": "^2.0.0",
-    "react-prop-types": "^0.4.0"
+    "react-prop-types": "^0.4.0",
+    "react-router-dom": "^5.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
