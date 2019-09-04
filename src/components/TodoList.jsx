@@ -11,7 +11,7 @@ const TodoList = ({ onChangeHandler, onDeleteHandler }) => {
   const makeLiData = todos => {
     return todos.map(todo => {
       return (
-        <LI onClick={() => onChangeHandler(data)} key={todo.id}>
+        <LI onClick={() => onChangeHandler(todo)} key={todo.id}>
           {todo.status === "todo" ? todo.title : <del>{todo.title}</del>}
           <IconButton id={todo.id} onClick={e => onDeleteHandler(e, todo)}>
             <DeleteIcon fontSize="small" />
