@@ -1,13 +1,14 @@
 import React, { useState, useContext } from "react";
 import { TodoContext } from "../provider/ToDoStore";
 import styled, { css } from "styled-components";
+import propTypes from "prop-types";
 
 const AddTodo = () => {
   const [inputValue, setInputValue] = useState("");
   const { dispatch } = useContext(TodoContext);
 
-  const onChangeHandler = e => {
-    setInputValue(e.target.value);
+  const onChangeHandler = ({ target }) => {
+    setInputValue(target.value);
   };
 
   const onSubmitHandler = e => {
@@ -53,5 +54,10 @@ const Button = styled.button`
   width: 7em;
   height: 3em;
 `;
+
+Input.propTypes = {
+  value: propTypes.string,
+  onChange: propTypes.func
+};
 
 export default AddTodo;

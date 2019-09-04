@@ -1,30 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import { TodoContext } from "../provider/ToDoStore";
+import TodoList from "./TodoList";
 import styled, { css } from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
 import { display } from "@material-ui/system";
 import Button from "@material-ui/core/Button";
-import { IconButton } from "@material-ui/core";
-import DeleteIcon from "@material-ui/icons/Delete";
 
 const ShowTodo = () => {
   const [toggle, setToggle] = useState(true);
-  const { todoData, error, loading, dispatch } = useContext(TodoContext);
-
-  const makeLiData = todos => {
-    const arr = todos.map(data => {
-      return (
-        <LI onClick={() => onChangeHandler(data)} key={data.id}>
-          {data.status === "todo" ? data.title : <del>{data.title}</del>}
-          <IconButton id={data.id} onClick={e => onDeleteHandler(e, data)}>
-            <DeleteIcon fontSize="small" />
-          </IconButton>
-        </LI>
-      );
-    });
-
-    return arr;
-  };
+  const { dispatch } = useContext(TodoContext);
 
   const onChangeHandler = data => {
     dispatch({ type: "CHANGE_TODO", payload: data });
@@ -33,14 +17,6 @@ const ShowTodo = () => {
   const onDeleteHandler = (e, data) => {
     e.stopPropagation();
     dispatch({ type: "DELETE_TODO", payload: data });
-  };
-
-  const makeLiComponent = data => {
-    const todos = data;
-    const isEmpty = !todos.length;
-
-    const result = !isEmpty ? makeLiData(todos) : <li>없음</li>;
-    return result;
   };
 
   const ModulateWindow = e => {
@@ -55,9 +31,10 @@ const ShowTodo = () => {
           {toggle ? "접기" : "펼치기"}
         </Button>
         <ul style={{ display: toggle ? "block" : "none" }}>
-          {error && <li>네트워크 요청 실패</li>}
-          {loading && <li>로딩중...</li>}
-          {!error && !loading && makeLiComponent(todoData)}
+          <TodoList
+            onChangeHandler={onChangeHandler}
+            onDeleteHandler={onDeleteHandler}
+          />
         </ul>
       </DIV>
     </ShowDIV>
@@ -82,13 +59,6 @@ const HEADER = styled.h3`
 const ShowDIV = styled.div`
   display: flex;
   justify-content: space-around;
-`;
-
-const LI = styled.li`
-  font-family: Monospace;
-  font-size: 1.4em;
-  font-weight: 100;
-  height: 2.4em;
 `;
 
 export default ShowTodo;
