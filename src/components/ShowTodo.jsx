@@ -38,13 +38,8 @@ const ShowTodo = () => {
   const makeLiComponent = data => {
     const todos = data;
     const isEmpty = !todos.length;
-    let result;
 
-    if (!isEmpty) {
-      result = makeLiData(todos);
-    } else {
-      result = <li>없음</li>;
-    }
+    const result = !isEmpty ? makeLiData(todos) : <li>없음</li>;
     return result;
   };
 

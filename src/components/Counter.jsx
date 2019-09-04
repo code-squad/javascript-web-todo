@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Fab from "@material-ui/core/Fab";
 
 const Counter = () => {
-  const { todoData, todoCnt, doneCnt } = useContext(TodoContext);
+  const { todoCnt, doneCnt } = useContext(TodoContext);
 
   return (
     <>

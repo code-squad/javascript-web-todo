@@ -1,10 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { TodoContext } from "../provider/ToDoStore";
 
 const Home = () => {
-  const { todoData, error, loading, todoCnt, doneCnt } = useContext(
-    TodoContext
-  );
+  const { error, loading, todoCnt, doneCnt } = useContext(TodoContext);
 
   const showStatus = () => {
     if (loading) return <h2>로딩중...</h2>;
