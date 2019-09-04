@@ -1,6 +1,7 @@
 import React, { useState, useReducer, useContext, useMemo } from "react";
 import useFetch from "../customHooks/useFetch";
 import TodoReducer from "../reducer/TodoReducer";
+import propTypes from "prop-types";
 
 export const TodoContext = React.createContext({});
 
@@ -40,4 +41,12 @@ const filterdData = arr => {
     todoCnt: todoCnt,
     doneCnt: doneCnt
   };
+};
+
+TodoContext.Provider.propTypes = {
+  todoData: propTypes.array,
+  error: propTypes.bool,
+  loading: propTypes.bool,
+  todoCnt: propTypes.number,
+  doneCnt: propTypes.number
 };
