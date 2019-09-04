@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useReducer, useContext } from "react";
+import React, {
+  useState,
+  useEffect,
+  useReducer,
+  useContext,
+  useMemo
+} from "react";
 import useFetch from "../customHooks/useFetch";
 import TodoReducer from "../reducer/TodoReducer";
 
@@ -19,8 +25,7 @@ export const ToDoStore = ({ children }) => {
 
   const loading = useFetch(setInitTodoData, URL, errorHandler);
 
-  const todoCnt = todoData.filter(v => v.status === "todo").length;
-  const doneCnt = todoData.filter(v => v.status === "done").length;
+  const { todoCnt, doneCnt } = useMemo(() => filterdData(todoData), [todoData]);
 
   return (
     <>
@@ -31,4 +36,14 @@ export const ToDoStore = ({ children }) => {
       </TodoContext.Provider>
     </>
   );
+};
+
+const filterdData = arr => {
+  const todoCnt = arr.filter(v => v.status === "todo").length;
+  const doneCnt = arr.filter(v => v.status === "done").length;
+
+  return {
+    todoCnt: todoCnt,
+    doneCnt: doneCnt
+  };
 };
