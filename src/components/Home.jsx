@@ -4,7 +4,7 @@ import { TodoContext } from "../provider/ToDoStore";
 const Home = () => {
   const { error, loading, todoCnt, doneCnt } = useContext(TodoContext);
 
-  const showStatus = () => {
+  const displayMsg = (error, loading, todoCnt, doneCnt) => {
     if (loading) return <h2>로딩중...</h2>;
     if (error) return <h2>네트워크 요청 실패</h2>;
 
@@ -20,7 +20,7 @@ const Home = () => {
     <>
       <h2>반갑습니다.</h2>
       <h2>할 일 관리 어플리케이션 입니다.</h2>
-      {showStatus()}
+      {displayMsg(error, loading, todoCnt, doneCnt)}
     </>
   );
 };

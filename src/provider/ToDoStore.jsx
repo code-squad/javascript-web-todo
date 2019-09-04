@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useReducer,
-  useContext,
-  useMemo
-} from "react";
+import React, { useState, useReducer, useContext, useMemo } from "react";
 import useFetch from "../customHooks/useFetch";
 import TodoReducer from "../reducer/TodoReducer";
 
@@ -12,7 +6,7 @@ export const TodoContext = React.createContext({});
 
 export const ToDoStore = ({ children }) => {
   const [todoData, dispatch] = useReducer(TodoReducer, []);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
 
   const errorHandler = e => {
     console.log(e);

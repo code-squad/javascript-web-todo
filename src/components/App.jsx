@@ -14,8 +14,6 @@ const App = () => {
   );
 };
 
-export default App;
-
 const GlobalStyle = createGlobalStyle`
   body {
     background-color: #fffcf0;
@@ -24,3 +22,5 @@ const GlobalStyle = createGlobalStyle`
     font-family: Monospace;
   }
 `;
+
+export default App;
