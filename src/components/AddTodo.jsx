@@ -1,23 +1,24 @@
 import React, { useState, useContext } from "react";
-import { TodoContext } from "./ToDoStore";
+import { TodoContext } from "../provider/ToDoStore";
 import styled, { css } from "styled-components";
+import propTypes from "prop-types";
 
 const AddTodo = () => {
   const [inputValue, setInputValue] = useState("");
   const { dispatch } = useContext(TodoContext);
 
-  const onChangeHandler = e => {
-    setInputValue(e.target.value);
+  const onChangeHandler = ({ target }) => {
+    setInputValue(target.value);
+  };
+
+  const onSubmitHandler = e => {
+    e.preventDefault();
+    dispatch({ type: "ADD_TODO", payload: inputValue });
+    setInputValue("");
   };
 
   return (
-    <form
-      onSubmit={e => {
-        e.preventDefault();
-        dispatch({ type: "ADD_TODO", payload: inputValue });
-        setInputValue("");
-      }}
-    >
+    <form onSubmit={onSubmitHandler}>
       <Header>what is your One Small Step? </Header>
       <Input value={inputValue} onChange={onChangeHandler} type="text" />
       <Button>등록</Button>
@@ -53,5 +54,10 @@ const Button = styled.button`
   width: 7em;
   height: 3em;
 `;
+
+Input.propTypes = {
+  value: propTypes.string,
+  onChange: propTypes.func
+};
 
 export default AddTodo;

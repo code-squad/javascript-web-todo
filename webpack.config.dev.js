@@ -1,21 +1,21 @@
-const webpack = require("webpack");
 const path = require("path");
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
-const url =
-  process.env.NODE_ENV === "dev"
-    ? `http://localhost:3000/todos`
-    : "https://michelle-todo.herokuapp.com/todos";
-
 module.exports = {
   name: "todo-setting",
-  mode: "production",
+  mode: "development",
   devtool: "source-map", //eval
   resolve: {
     extensions: [".js", ".jsx"]
   },
-
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
+    compress: true,
+    port: 8080,
+    historyApiFallback: true
+  },
   entry: "./src/index",
   module: {
     rules: [
@@ -52,10 +52,11 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
+      // template의 html에 output에서 만들어진 bundle.js를 적용하여 html 파일 생성
       template: `./public/index.html`
     }),
     new webpack.DefinePlugin({
-      URL: JSON.stringify(url)
+      URL: JSON.stringify(`http://localhost:3000/todos`)
     })
   ]
 };

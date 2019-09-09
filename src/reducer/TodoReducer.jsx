@@ -1,21 +1,14 @@
 import React, { useReducer } from "react";
 
 const countIf = (todoData, randomId) => {
-  const todos = [...todoData];
-
-  todos.forEach(todo => {
-    if (todo.id === randomId) {
-      return true;
-    }
-  });
-
-  return false;
+  return todoData.some(todo => todo.id === randomId);
 };
 
 const randomIdGenerator = todoData => {
   const randomId = Math.floor(Math.random() * 9999) + 1;
 
   if (countIf(todoData, randomId)) return randomIdGenerator();
+
   return randomId;
 };
 
@@ -54,9 +47,6 @@ const TodoReducer = (todoData, { type, payload }) => {
 
       return filteredTodos;
     }
-
-    default:
-      throw new Error();
   }
 };
 

@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 
 const useFetch = (cbFunc, url, errorHandler) => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const fetchInitialData = async (cbFunc, url, errorHandler) => {
     try {
-      setLoading(true);
-
       const response = await fetch(url);
 
       if (!response.ok) throw new Error(response.status); // resolved지만 404, 500..인 경우
