@@ -9,7 +9,7 @@
   - useState를 통해 history 객체를 상태로 관리함
   - useEffect 에  history.listen을 등록해 history 의 변화를 감지하여, 변화가 있으면 setState로 history 상태를 변경하여 컴포넌트의 리렌더링을 발생시킴 
 - Link 컴포넌트의 역할
-  - BrowerRouter의 하위컴포넌트로`history.push(path)` 를 통해 히스토리 객체의 변경을 유도
+  - BrowerRouter의 하위컴포넌트로`history.push(path)` 를 통해 히스토리 객체의 변경을 유도
 - Route 컴포넌트의 역할 
   - `if(path=== history.location.pathname)` 를 통해 prop으로 전달된  `path` 속성과 `history.loacation.pathname` 속성이 같을 경우 prop으로 전달된 component 를 렌더링함
 
@@ -17,7 +17,7 @@
 
 #### 이슈
 
-path 가 `/, /home`  에 해당 할 때 `Home` 컴포넌트를 렌더링 하려고 의도했다. 그러나 NavLink `to`  속성에는 하나의 `path` 만 등록할 수 있다. `/` 에서는 `selected` 클래스가 적용되지 않는다.   
+path 가 `/, /home`  에 해당 할 때 `Home` 컴포넌트를 렌더링 하려고 의도했다. 그러나 NavLink `to`  속성에는 하나의 `path` 만 등록할 수 있다. `/` 에서는 `selected` 클래스가 적용되지 않는다.   
 
 ```jsx
 <NavLink
@@ -39,7 +39,7 @@ path 가 `/, /home`  에 해당 할 때 `Home` 컴포넌트를 렌더링 하�
 
 여기서 문제가 하나있었다.  `isActive` 에 전달되는 함수는 `(location, match) => {}` 의 프로토콜을 가지고 있어 `loaction, match `  이외에 다른 인자를 전달하여 사용할 수 없다. 다른 인자를 전달하기 위해서는 `currying` 을 활용해서 함수를 리턴하는 함수를 만들어야 한다.  
 
-`onPath` 라는  currying 함수를 생성하여 `onPaths(['/', '/home'])` 형태로   `isActive` 에 전달하는 형태로 문제를 해결했다. 
+`onPath` 라는  currying 함수를 생성하여 `onPaths(['/', '/home'])` 형태로   `isActive` 에 전달하는 형태로 문제를 해결했다. 
 
 ```jsx
 const onPaths = paths => {
@@ -156,3 +156,38 @@ export default Form;
 - useState or useContext 를 통해 생성된 값의 경우 type 강제가 어려움 
 - 이러한 이유로 typescript 사용이 필요해지는 것으로 보임 
 
+## splitChunk
+
+node_modules 처럼 변하지 않는 JS 파일을 vendor파일로 분리(chunkhash로 네이밍)하여 브라우저 캐시를 활용하도록 최적화 하기 위해 splitChunk 라는 webPakck 내장 플러그인을 설정했다.
+
+ splitChunk를 이용하면 대형 프로젝트에서 거대한 번들 파일을 적절히 분리하고 나눌 수 있다. 파일 사이즈, 비동기 요청 횟수 등의 옵션에 따라 자동으로 분리할 수 있고 정규식에 따라서 특정 파일들만 분리할 수 있고 혹은 특정 엔트리 포인트를 분리할 수 있다. 번들 파일을 적절히 분리하면 브라우저 캐시를 전략적으로 활용할 수 있으며 초기 로딩속도를 최적화할 수도 있다. 물론 프로젝트의 필요에 따라 엔트리 포인트를 분리해서 여러 가지 번들 파일을 만들 때도 사용된다.
+splitChunks 에 대한 자세한 이야기는 [여기](https://webpack.js.org/plugins/split-chunks-plugin/#select-chunks) 에서 확인할 수 있다.
+
+```js
+//..
+module.exports = {
+    //..
+    output: {
+      filename: '[name].bundle.js',
+      path: path.resolve(__dirname, 'dist')
+    },
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          commons: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all'
+          }
+        }
+      }
+    }
+  }
+
+  //..
+}
+```
+
+`cacheGroups` 는 명시적으로 특정 파일들을 청크로 분리할 때 사용한다. 여기서는 common 이란 청크를 분리한다. 내용을 살펴보면 `test` 를 사용해 대상이 되는 파일을 정규식으로 잡는다. 여기서는 `node_modules` 디렉터리에 있는 파일들이다. `name` 은 청크로 분리할 때 이름으로 사용될 파일명이다. 우리의 설정에서는 output.filename 옵션에 `[name]` 에 대치될 내용이기도 하다. `chunks` 는 모듈의 종류에 따라 청크에 포함할지 말지를 결정하는 옵션이다 `initial` 과 `async` 그리고 `all` 이 있다. 여기서는 `all` 을 사용하는데 말 그대로 `test` 조건에 포함되는 모든 것을 분리하겠다는 뜻이다. `initial` 은 초기 로딩에 필요한 경우, `async` 은 `import()` 를 이용해 다이나믹하게 사용되는 경우에 분리한다.
+
+분리된 파일들은 서버가 열리면 `HtmlWebpackPlugin` 이 알아서 index.html에 주입해준다. 물론 production 빌드를 하면 분리된 번들 파일 두개가 생성된다
